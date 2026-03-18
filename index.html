@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nudes Barcelona — bocadillos artesanales, matcha ceremonial y café de especialidad. C/Rec 10 y C/Nueva Dirección.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://eatnudes.com">
+  <title>NUDES — For People With Really Great Taste | Barcelona</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="NUDES — For People With Really Great Taste">
+  <meta property="og:description" content="Bocadillos artesanales, matcha ceremonial y café de especialidad en Barcelona.">
+  <meta property="og:image" content="https://placehold.co/1200x630/F2E49B/1A1410?text=NUDES">
+  <meta property="og:url" content="https://eatnudes.com">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NUDES — For People With Really Great Taste">
+  <meta name="twitter:description" content="Bocadillos artesanales, matcha ceremonial y café de especialidad en Barcelona.">
+  <meta name="twitter:image" content="https://placehold.co/1200x630/F2E49B/1A1410?text=NUDES">
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://placehold.co">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- JSON-LD: LocalBusiness (both locations) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "NUDES",
+    "url": "https://eatnudes.com",
+    "description": "Bocadillos artesanales, matcha ceremonial y café de especialidad en Barcelona.",
+    "sameAs": ["https://instagram.com/eat.nudes"],
+    "location": [
+      {
+        "@type": "LocalBusiness",
+        "name": "NUDES — C/Rec 10",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "C/Rec 10",
+          "addressLocality": "Barcelona",
+          "addressRegion": "Catalunya",
+          "addressCountry": "ES"
+        },
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday","Sunday"], "opens": "09:00", "closes": "17:00" }
+        ],
+        "telephone": "+34605872350",
+        "email": "info@eatnudes.com"
+      },
+      {
+        "@type": "LocalBusiness",
+        "name": "NUDES — C/Nueva Dirección",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "C/Nueva Dirección",
+          "addressLocality": "Barcelona",
+          "addressRegion": "Catalunya",
+          "addressCountry": "ES"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* =============================================
+       CSS CUSTOM PROPERTIES
+    ============================================= */
+    :root {
+      --color-primary:    #F2E49B;
+      --color-ink:        #1A1410;
+      --color-cream:      #FDFAF2;
+      --color-pink:       #E8A0B4;
+      --color-grey:       #8C8070;
+      --color-grey-light: #D4CCBC;
+
+      --font-wordmark: 'Bebas Neue', sans-serif;
+      --font-headline: 'Neue Haas Grotesk Display', 'HelveticaNeue', 'Helvetica Neue', sans-serif;
+      --font-body:     'Suisse Intl', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+      --space-xs:  0.5rem;
+      --space-sm:  1rem;
+      --space-md:  1.5rem;
+      --space-lg:  2.5rem;
+      --space-xl:  4rem;
+      --space-2xl: 6rem;
+      --space-3xl: 10rem;
+
+      --nav-h: 64px;
+    }
+
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      background: var(--color-cream);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 1.2vw, 1.125rem);
+      line-height: 1.70;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; }
+
+    /* =============================================
+       SKIP LINK
+    ============================================= */
+    .skip-link {
+      position: absolute;
+      top: -200%;
+      left: var(--space-sm);
+      background: var(--color-ink);
+      color: var(--color-primary);
+      padding: 0.6rem 1.25rem;
+      font-family: var(--font-body);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      z-index: 9999;
+      transition: top 0.3s ease;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: var(--space-sm); }
+
+    /* =============================================
+       GRAIN TEXTURE OVERLAY
+    ============================================= */
+    .grain {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 300px 300px;
+    }
+
+    /* =============================================
+       NAVIGATION
+    ============================================= */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      padding: 0 var(--space-lg);
+      background: transparent;
+      /* Hidden while hero is in view; JS adds .nav-visible when hero exits */
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 400ms ease,
+                  background 400ms ease,
+                  backdrop-filter 400ms ease,
+                  -webkit-backdrop-filter 400ms ease;
+    }
+
+    #nav.nav-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #nav.nav-scrolled {
+      background: rgba(253, 250, 242, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-family: var(--font-wordmark);
+      font-size: 28px;
+      line-height: 1;
+      color: var(--color-ink);
+      text-decoration: none;
+      letter-spacing: 0;
+    }
+
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-md);
+      list-style: none;
+    }
+
+    .nav-center a {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-center a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 1px;
+      background: var(--color-ink);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .nav-center a:hover::after  { transform: scaleX(1); }
+    .nav-center a:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 4px; border-radius: 1px; }
+
+    .nav-join {
+      font-style: italic !important;
+      color: var(--color-pink) !important;
+    }
+
+    .nav-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .nav-right span {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      color: var(--color-grey);
+      text-transform: uppercase;
+    }
+
+    /* =============================================
+       HERO — SECTION 1  (und-ny architecture)
+    ============================================= */
+    #hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ── IMAGE AREA ── */
+    .hero-image-area {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      background: var(--color-cream);
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+
+    .hero-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+      margin: 0;
+      padding: 0;
+      border: none;
+      /* starts invisible — JS fires after preloader */
+      opacity: 0;
+      transform: scale(1.04);
+      will-change: opacity, transform;
+    }
+
+    /* ── BOTTOM BAR: [n] [content] [u] ── */
+    .hero-bar {
+      flex-shrink: 0;
+      height: clamp(130px, 20vh, 210px);
+      background: var(--color-cream);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: stretch;
+      border-top: 0.5px solid var(--color-grey-light);
+    }
+
+    /* ── N GLYPH — bottom-left ── */
+    .hero-n-wrap {
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 clamp(12px, 2vw, 32px) 0 clamp(16px, 3vw, 48px);
+    }
+
+    .hero-n-img {
+      display: block;
+      height: clamp(100px, 15vw, 190px);
+      width: auto;
+      transform: translateY(110%);
+      will-change: transform;
+    }
+
+    /* ── U GLYPH — bottom-right ── */
+    .hero-u-wrap {
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 clamp(16px, 3vw, 48px) 0 clamp(12px, 2vw, 32px);
+    }
+
+    .hero-u-img {
+      display: block;
+      height: clamp(100px, 15vw, 190px);
+      width: auto;
+      transform: translateY(110%);
+      will-change: transform;
+    }
+
+    /* ── BAR CONTENT (meta + nav) ── */
+    .hero-bar-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: var(--space-sm) var(--space-sm);
+      gap: 10px;
+    }
+
+    .hero-bar-meta {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    .hero-bar-nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px clamp(12px, 2.5vw, 32px);
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    .hero-bar-nav a {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .hero-bar-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 1px;
+      background: var(--color-ink);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .hero-bar-nav a:hover::after  { transform: scaleX(1); }
+    .hero-bar-nav a:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 4px; }
+
+    .hero-join-link { font-style: italic; color: var(--color-pink) !important; }
+    .hero-join-link::after { background: var(--color-pink) !important; }
+
+    /* =============================================
+       MARQUEE STRIPS
+    ============================================= */
+    .marquee-strip {
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .marquee-inner {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 25s linear infinite;
+      will-change: transform;
+    }
+
+    .marquee-inner.reverse { animation-direction: reverse; }
+    .marquee-inner.slow    { animation-duration: 30s; }
+
+    .marquee-text {
+      font-family: var(--font-headline);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding-right: 2.5rem;
+    }
+
+    .marquee-text-sm {
+      font-family: var(--font-headline);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding-right: 2rem;
+    }
+
+    /* =============================================
+       SECTION TITLE CLIP-UP
+    ============================================= */
+    .title-clip { overflow: hidden; }
+
+    .title-clip > span {
+      display: block;
+      transform: translateY(100%);
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .title-clip.is-visible > span { transform: translateY(0); }
+
+    /* =============================================
+       SCROLL REVEAL
+    ============================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity  0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =============================================
+       SLIDE REVEALS (process rows)
+    ============================================= */
+    .slide-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity  0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .slide-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity  0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .slide-left.is-visible,
+    .slide-right.is-visible {
+      opacity: 1;
+      transform: translate(0);
+    }
+
+    /* =============================================
+       IMAGE HOVER ZOOM
+    ============================================= */
+    .img-hover { overflow: hidden; }
+
+    .img-hover img {
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .img-hover:hover img { transform: scale(1.04); }
+
+    /* =============================================
+       PARALLAX WRAPPER
+    ============================================= */
+    .parallax-wrap { overflow: hidden; position: relative; }
+
+    .parallax-img {
+      will-change: transform;
+      transform: scale(1.12) translateY(0);
+    }
+
+    /* =============================================
+       TYPOGRAPHY UTILITIES
+    ============================================= */
+    .wm   { font-family: var(--font-wordmark); font-weight: 400; letter-spacing: -0.02em; line-height: 0.90; }
+    .hl   { font-family: var(--font-headline); }
+    .bd   { font-family: var(--font-body); }
+
+    .t-h1-hero    { font-family: var(--font-headline); font-size: clamp(56px, 6vw, 72px);   font-weight: 700; letter-spacing: -0.03em; line-height: 0.95; }
+    .t-h1-section { font-family: var(--font-headline); font-size: clamp(48px, 5vw, 64px);   font-weight: 700; letter-spacing: -0.03em; line-height: 1.00; }
+    .t-h2         { font-family: var(--font-headline); font-size: clamp(32px, 3.5vw, 40px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
+    .t-h3         { font-family: var(--font-headline); font-size: clamp(20px, 2vw, 26px);   font-weight: 500; letter-spacing: -0.015em; line-height: 1.15; }
+    .t-nav        { font-family: var(--font-body);     font-size: 11px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; }
+    .t-body-bold  { font-family: var(--font-headline); font-size: clamp(18px, 2vw, 22px);   font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; }
+    .t-body       { font-family: var(--font-body);     font-size: clamp(15px, 1.2vw, 16px); font-weight: 400; letter-spacing: 0; line-height: 1.70; }
+    .t-caption    { font-family: var(--font-body);     font-size: clamp(10px, 1vw, 11px);   font-weight: 300; letter-spacing: 0.03em; line-height: 1.50; }
+
+    .col-grey       { color: var(--color-grey); }
+    .col-grey-light { color: var(--color-grey-light); }
+    .col-cream      { color: var(--color-cream); }
+    .col-ink        { color: var(--color-ink); }
+    .col-primary    { color: var(--color-primary); }
+
+    .uc { text-transform: uppercase; }
+    .ls-wide { letter-spacing: 0.10em; }
+
+    /* =============================================
+       SECTION PADDING
+    ============================================= */
+    .pad-xl  { padding: var(--space-3xl) var(--space-xl); }
+    .pad-lg  { padding: var(--space-2xl) var(--space-xl); }
+    .pad-md  { padding: var(--space-xl)  var(--space-xl); }
+    .pad-h   { padding-left: var(--space-xl); padding-right: var(--space-xl); }
+
+    /* =============================================
+       SECTION 3 — BRAND INTRO
+    ============================================= */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+
+    /* =============================================
+       SECTION 4 — PRODUCTS
+    ============================================= */
+    .products-mega {
+      font-family: var(--font-wordmark);
+      font-size: clamp(80px, 13vw, 180px);
+      letter-spacing: -0.02em;
+      line-height: 0.88;
+      color: var(--color-ink);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+    }
+
+    .product-card { display: flex; flex-direction: column; gap: var(--space-xs); }
+
+    .product-card__img {
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+
+    .product-card__img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .product-card__img:hover img { transform: scale(1.04); }
+
+    /* =============================================
+       SECTION 6 — PROCESS
+    ============================================= */
+    .process-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+    }
+
+    .process-img {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .process-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .process-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-2xl) var(--space-2xl);
+      background: var(--color-cream);
+    }
+
+    /* =============================================
+       SECTION 7 — LOCATIONS
+    ============================================= */
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    .location-card {
+      background: var(--color-cream);
+      border: 0.5px solid var(--color-ink);
+      border-radius: 2px;
+      padding: var(--space-xl) var(--space-lg);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .location-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 2px 4px rgba(26,20,16,0.06),
+        0 8px 24px rgba(26,20,16,0.10),
+        0 24px 48px rgba(242,228,155,0.14);
+    }
+
+    /* =============================================
+       SECTION 8 — COMMUNITY
+    ============================================= */
+    .community-layout {
+      display: grid;
+      grid-template-columns: 60% 40%;
+      min-height: 640px;
+    }
+
+    .community-panel {
+      background: var(--color-cream);
+      padding: var(--space-2xl) var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-lg);
+    }
+
+    .community-tag {
+      display: inline-block;
+      background: var(--color-pink);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+    }
+
+    .event-item {
+      border-bottom: 0.5px solid var(--color-grey-light);
+      padding: 14px 0;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--color-ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: default;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .event-item:last-child { border-bottom: none; }
+    .event-item:hover { transform: translateX(4px); }
+
+    /* =============================================
+       SECTION 9 — NEWS
+    ============================================= */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .news-card { display: flex; flex-direction: column; gap: var(--space-sm); }
+
+    .news-card__img {
+      aspect-ratio: 3/2;
+      overflow: hidden;
+    }
+
+    .news-card__img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .news-card__img:hover img { transform: scale(1.04); }
+
+    .news-tag {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      border: 0.5px solid var(--color-grey-light);
+      padding: 3px 8px;
+    }
+
+    /* =============================================
+       CTAs
+    ============================================= */
+    .cta-link {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-ink);
+      padding-bottom: 2px;
+      transition: opacity 0.25s ease;
+    }
+
+    .cta-link:hover      { opacity: 0.55; }
+    .cta-link:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 4px; }
+
+    .cta-btn {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      background: var(--color-ink);
+      border: none;
+      padding: 14px 32px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.25s ease,
+                  transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .cta-btn:hover       { opacity: 0.82; }
+    .cta-btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 4px; }
+    .cta-btn:active      { transform: scale(0.97); }
+
+    .see-all-link {
+      font-family: var(--font-body);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.25s ease;
+    }
+
+    .see-all-link:hover      { border-color: var(--color-ink); }
+    .see-all-link:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 4px; }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .footer-mega-wrap {
+      background: var(--color-ink);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: var(--space-2xl) var(--space-xl) var(--space-md);
+      overflow: hidden;
+    }
+
+    .footer-mega-word {
+      font-family: var(--font-wordmark);
+      font-size: clamp(80px, 15vw, 200px);
+      color: var(--color-primary);
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-bar {
+      background: var(--color-ink);
+      border-top: 0.5px solid rgba(140, 128, 112, 0.25);
+      padding: var(--space-lg) var(--space-xl);
+    }
+
+    .footer-cols {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: var(--space-md);
+    }
+
+    .footer-col {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      line-height: 1.80;
+      color: var(--color-grey);
+      text-transform: uppercase;
+    }
+
+    .footer-copy {
+      border-top: 0.5px solid rgba(140, 128, 112, 0.15);
+      margin-top: var(--space-md);
+      padding-top: var(--space-sm);
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      text-align: center;
+    }
+
+    /* =============================================
+       KEYFRAMES
+    ============================================= */
+    @keyframes kenBurns {
+      from { transform: scale(1.08); }
+      to   { transform: scale(1.00); }
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUpClip {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
+    }
+
+    @keyframes navFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* =============================================
+       ABOUT BADGE
+    ============================================= */
+    .about-badge {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--color-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-wordmark);
+      font-size: 64px;
+      color: var(--color-ink);
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.20),
+        0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    /* =============================================
+       SHADOWS
+    ============================================= */
+    .shadow-layered {
+      box-shadow:
+        0 1px 2px rgba(26,20,16,0.04),
+        0 4px 12px rgba(26,20,16,0.06),
+        0 16px 40px rgba(242,228,155,0.08);
+    }
+
+    /* =============================================
+       PREFERS-REDUCED-MOTION
+    ============================================= */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1024px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-cols  { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      #hero { grid-template-columns: 1fr; grid-template-rows: 55vh 45vh; }
+      .hero-image-area { padding: 0; }
+      .hero-bar { grid-template-columns: auto 1fr auto; height: clamp(110px, 22vh, 160px); }
+      .hero-n-img { height: clamp(75px, 12vw, 120px); }
+      .hero-u-img { height: clamp(75px, 12vw, 120px); }
+      .hero-bar-nav ul { gap: 6px clamp(10px, 2vw, 20px); }
+      .intro-grid { grid-template-columns: 1fr; }
+      .process-row { grid-template-columns: 1fr; min-height: auto; }
+      .process-text { padding: var(--space-xl) var(--space-md); }
+      .community-layout { grid-template-columns: 1fr; }
+      .community-layout > .img-hover { min-height: 360px; }
+      .location-grid { grid-template-columns: 1fr; }
+      .news-grid { grid-template-columns: 1fr; }
+      .footer-cols { grid-template-columns: repeat(2, 1fr); }
+      .pad-xl, .pad-lg, .pad-md { padding-left: var(--space-md); padding-right: var(--space-md); }
+      .pad-h { padding-left: var(--space-md); padding-right: var(--space-md); }
+      .nav-center { display: none; }
+      .nav-right  { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .footer-cols  { grid-template-columns: 1fr; }
+    }
+
+    /* =============================================
+       SCROLL-MORPHING NAV (Parts 1–3)
+    ============================================= */
+
+    /* Hide static hero-bar — nav visually replaces it */
+    #hero .hero-bar { visibility: hidden; }
+
+    /* Nav: JS drives position/height, no CSS transition */
+    #nav {
+      display: grid !important;
+      grid-template-columns: auto 1fr auto !important;
+      align-items: stretch !important;
+      transition: none !important;
+      overflow: hidden;
+      /* Initial state set by JS on first updateNav() call */
+    }
+
+    /* ── Left column ── */
+    .nav-col-left {
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      padding-left: clamp(16px, 3vw, 48px);
+      padding-right: clamp(8px, 1.5vw, 20px);
+    }
+
+    .nav-n-wrap {
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .nav-wordmark-left {
+      display: block;
+      height: clamp(90px, 13vw, 175px);
+      width: auto;
+      transition: none;
+      transform-origin: bottom left;
+      will-change: opacity, transform;
+    }
+
+    /* NUDES text — fades in as glyph fades out, absolutely positioned */
+    .nav-logo {
+      position: absolute;
+      left: clamp(16px, 3vw, 48px);
+      bottom: 14px;
+      opacity: 0; /* JS drives this */
+      transition: none;
+      will-change: opacity;
+    }
+
+    /* ── Center column ── */
+    .nav-col-center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 clamp(12px, 2vw, 28px);
+    }
+
+    .nav-bar-meta-scroll {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      margin-bottom: 8px;
+      opacity: 1; /* starts visible, fades with glyph */
+      transition: none;
+      will-change: opacity;
+    }
+
+    /* nav-center ul already styled; just ensure flex */
+    .nav-center {
+      display: flex !important;
+      justify-content: flex-start !important;
+      flex-wrap: wrap;
+      gap: 6px clamp(12px, 2vw, 28px);
+      opacity: 1; /* always visible */
+    }
+
+    /* ── Right column ── */
+    .nav-col-right {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+      padding-right: clamp(16px, 3vw, 48px);
+      padding-left: clamp(8px, 1.5vw, 20px);
+    }
+
+    .nav-right {
+      position: absolute;
+      right: clamp(16px, 3vw, 48px);
+      bottom: 14px;
+      opacity: 0; /* JS drives this */
+      transition: none;
+      will-change: opacity;
+    }
+
+    .nav-u-wrap {
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .nav-wordmark-right {
+      display: block;
+      height: clamp(90px, 13vw, 175px);
+      width: auto;
+      transition: none;
+      transform-origin: bottom right;
+      will-change: opacity, transform;
+    }
+
+    /* =============================================
+       TRANSITION ZONE — Part 4
+    ============================================= */
+    .hero-transition-zone {
+      background: var(--color-cream);
+      height: 200px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      border-top: 0.5px solid var(--color-grey-light);
+      border-bottom: 0.5px solid var(--color-grey-light);
+    }
+
+    .hero-tz-frag {
+      font-family: var(--font-wordmark);
+      font-size: clamp(80px, 10vw, 120px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+      color: var(--color-ink);
+      padding: 0 clamp(20px, 4vw, 60px);
+      display: block;
+    }
+
+    .hero-tz-tagline {
+      font-family: var(--font-headline);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-ink);
+      text-align: center;
+      padding: 0 var(--space-md);
+    }
+
+    /* =============================================
+       PRELOADER
+    ============================================= */
+
+    /* Lock scroll while preloader is active */
+    body.is-loading {
+      overflow: hidden;
+    }
+
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      pointer-events: none;
+    }
+
+    /* The pink panel — starts below the viewport */
+    #preloader-panel {
+      position: absolute;
+      inset: 0;
+      background: #E8A0B4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(24px, 5vw, 80px);
+      transform: translateY(100%);
+      will-change: transform;
+    }
+
+    /* Logo inside panel — starts hidden */
+    #preloader-logo {
+      width: clamp(180px, 42vw, 560px);
+      max-width: 90%;
+      opacity: 0;
+      transform: translateY(16px);
+      will-change: opacity, transform;
+      /* no transition — driven by JS */
+    }
+
+    /* ── Keyframes ── */
+
+    /* Panel wipes up from bottom and settles */
+    @keyframes preloaderPanelIn {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
+    }
+
+    /* Logo fades + lifts in */
+    @keyframes preloaderLogoIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Panel (with logo) exits upward */
+    @keyframes preloaderPanelOut {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-100%); }
+    }
+
+  </style>
+</head>
+
+<body class="is-loading">
+
+  <!-- ══════════════════════════════════════════════
+       PRELOADER
+  ══════════════════════════════════════════════ -->
+  <div id="preloader" role="status" aria-label="Cargando NUDES">
+    <div id="preloader-panel">
+      <img
+        id="preloader-logo"
+        src="logo.png"
+        alt="NUDES"
+        draggable="false"
+      >
+    </div>
+  </div>
+
+  <!-- Grain texture -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Skip to content -->
+  <a href="#main" class="skip-link">Ir al contenido principal</a>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 0 — NAV
+  ══════════════════════════════════════════════ -->
+  <nav id="nav" role="navigation" aria-label="Navegación principal">
+
+    <!-- LEFT: N glyph (large at bottom) → NUDES logo (compact at top) -->
+    <div class="nav-col-left">
+      <div class="nav-n-wrap" aria-hidden="true">
+        <img src="n.png" class="nav-wordmark-left" alt="">
+      </div>
+      <a href="/" class="nav-logo" aria-label="NUDES — inicio">NUDES</a>
+    </div>
+
+    <!-- CENTER: location meta (bottom) + nav links -->
+    <div class="nav-col-center">
+      <p class="nav-bar-meta-scroll">C/Rec 10 · El Born &nbsp;·&nbsp; C/Nueva Dirección &nbsp;·&nbsp; Barcelona</p>
+      <ul class="nav-center" role="list">
+        <li><a href="#products">Products</a></li>
+        <li><a href="https://instagram.com/eat.nudes" rel="noopener noreferrer" target="_blank">Instagram</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Glovo / Uber</a></li>
+        <li><a href="#community" class="nav-join">Join The Club°</a></li>
+        <li><a href="#about">About Us</a></li>
+      </ul>
+    </div>
+
+    <!-- RIGHT: location text (compact at top) + U glyph (large at bottom) -->
+    <div class="nav-col-right">
+      <div class="nav-right" aria-label="Ubicaciones">
+        <span>C/Rec 10</span>
+        <span>C/Nueva Dirección</span>
+      </div>
+      <div class="nav-u-wrap" aria-hidden="true">
+        <img src="u.png" class="nav-wordmark-right" alt="">
+      </div>
+    </div>
+
+  </nav>
+
+  <!-- ══════════════════════════════════════════════
+       MAIN
+  ══════════════════════════════════════════════ -->
+  <main id="main">
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 1 — HERO
+    ══════════════════════════════════════════════ -->
+    <section id="hero">
+
+      <!-- ── IMAGE AREA (top ~73%) ── -->
+      <div class="hero-image-area">
+
+        <!-- Full-bleed hero image (with side padding via container) -->
+        <img
+          src="hero-img.png"
+          alt="Persona disfrutando de un café Nudes en la playa — bocadillos artesanales y matcha ceremonial en Barcelona"
+          class="hero-bg-img"
+          fetchpriority="high"
+          id="hero-bg"
+        >
+
+      </div>
+
+      <!-- ── BOTTOM BAR: [n.png] [nav + meta] [u.png] ── -->
+      <div class="hero-bar">
+
+        <!-- N glyph — bottom-left, clips up from below -->
+        <div class="hero-n-wrap" aria-hidden="true">
+          <img src="n.png" class="hero-n-img" alt="">
+        </div>
+
+        <!-- Center: meta + nav -->
+        <div class="hero-bar-content">
+          <p class="hero-bar-meta" id="hero-bar-meta">
+            C/Rec 10 · El Born &nbsp;·&nbsp; C/Nueva Dirección &nbsp;·&nbsp; Barcelona
+          </p>
+          <nav class="hero-bar-nav" aria-label="Navegación principal" id="hero-bar-nav">
+            <ul role="list">
+              <li><a href="#products">Products</a></li>
+              <li><a href="https://instagram.com/eat.nudes" rel="noopener noreferrer" target="_blank">Instagram</a></li>
+              <li><a href="#">Shop</a></li>
+              <li><a href="#">Glovo / Uber</a></li>
+              <li><a href="#community" class="hero-join-link">Join The Club°</a></li>
+              <li><a href="#about">About Us</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- U glyph — bottom-right, clips up from below -->
+        <div class="hero-u-wrap" aria-hidden="true">
+          <img src="u.png" class="hero-u-img" alt="">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         TRANSITION ZONE — Hero → Content (und-ny style)
+    ══════════════════════════════════════════════ -->
+    <div class="hero-transition-zone" aria-hidden="true">
+      <span class="hero-tz-frag hero-tz-left">NU</span>
+      <p class="hero-tz-tagline">For People With Really Great Taste</p>
+      <span class="hero-tz-frag hero-tz-right">ES</span>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 2 — TAGLINE MARQUEE
+    ══════════════════════════════════════════════ -->
+    <section
+      aria-label="Tagline Nudes"
+      style="background: var(--color-ink); height: 60px; display: flex; align-items: center;"
+    >
+      <div class="marquee-strip" style="width: 100%;" aria-hidden="true">
+        <div class="marquee-inner">
+          <!-- 8 copies — first 4 = visible run, last 4 = seamless duplicate -->
+          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
+          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
+          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
+          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
+          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
+          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
+          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
+          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 3 — BRAND INTRO
+    ══════════════════════════════════════════════ -->
+    <section id="about" aria-labelledby="who-label">
+
+      <!-- Wide panoramic image -->
+      <div class="parallax-wrap" style="height: clamp(220px, 30vw, 500px);">
+        <img
+          src="https://placehold.co/1600x500/8C8070/FDFAF2?text=NUDES"
+          alt="Vista panorámica del espacio Nudes — ambiente cálido y contemporáneo en Barcelona"
+          class="parallax-img"
+          loading="lazy"
+          style="width: 100%; height: 120%; object-fit: cover;"
+        >
+      </div>
+
+      <!-- Two-column intro -->
+      <div class="pad-xl intro-grid">
+        <div>
+          <p
+            id="who-label"
+            class="t-caption col-grey uc ls-wide reveal"
+            style="margin-bottom: var(--space-sm);"
+          >Who We Are</p>
+
+          <p class="t-body-bold reveal" style="--i:1;">
+            Nudes es un espacio para personas con buen gusto.
+            Nació en Barcelona con bocadillos artesanales
+            y hoy ofrece mucho más.
+          </p>
+        </div>
+
+        <div class="reveal" style="--i:2; padding-top: 1.5rem;">
+          <p class="t-body col-grey">
+            Desde nuestros locales en C/Rec 10 y C/Nueva Dirección,
+            servimos desayunos, almuerzos y cafés de especialidad
+            elaborados con ingredientes seleccionados. Matcha ceremonial,
+            pan de masa madre, combinaciones inesperadas — todo pensado
+            para los que aprecian los detalles.
+          </p>
+        </div>
+      </div>
+
+      <!-- Portrait image -->
+      <div class="pad-h img-hover reveal" style="padding-bottom: var(--space-3xl);">
+        <img
+          src="https://placehold.co/1400x700/D4CCBC/1A1410?text="
+          alt="Detalle de los bocadillos artesanales Nudes, elaborados con ingredientes frescos seleccionados"
+          loading="lazy"
+          style="width: 100%; object-fit: cover;"
+        >
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 4 — PRODUCTS
+    ══════════════════════════════════════════════ -->
+    <section id="products" aria-labelledby="products-label">
+
+      <div class="pad-h" style="padding-top: var(--space-2xl);">
+        <!-- Mega title -->
+        <div class="title-clip" aria-labelledby="products-label">
+          <span class="products-mega" id="products-label" role="heading" aria-level="2">PRODUCTS</span>
+        </div>
+
+        <!-- Sub-header row -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: var(--space-md); margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md);">
+          <h2 class="t-h2 reveal" style="max-width: 380px;" aria-level="3">Lo mejor de nuestra carta</h2>
+          <p class="t-body col-grey reveal" style="--i:1; max-width: 320px;">
+            Bocadillos, bebidas y desayunos elaborados con ingredientes de primera selección.
+          </p>
+        </div>
+      </div>
+
+      <!-- Product card grid -->
+      <div class="pad-h product-grid" style="padding-bottom: var(--space-3xl);">
+
+        <article class="product-card reveal" style="--i:0;">
+          <div class="product-card__img">
+            <img
+              src="https://placehold.co/600x600/D4CCBC/1A1410?text=01"
+              alt="Chicken Club — bocadillo artesanal de pollo con ingredientes frescos y salsas propias"
+              loading="lazy"
+            >
+          </div>
+          <h3 class="t-h3" style="margin-top: var(--space-xs);">Chicken Club</h3>
+          <p class="t-caption col-grey uc" style="letter-spacing: 0.08em;">Bocadillos</p>
+        </article>
+
+        <article class="product-card reveal" style="--i:1;">
+          <div class="product-card__img">
+            <img
+              src="https://placehold.co/600x600/C8D4B4/1A1410?text=02"
+              alt="Ceremonial Matcha — matcha japonés de grado ceremonial batido en taza"
+              loading="lazy"
+            >
+          </div>
+          <h3 class="t-h3" style="margin-top: var(--space-xs);">Ceremonial Matcha</h3>
+          <p class="t-caption col-grey uc" style="letter-spacing: 0.08em;">Bebidas Calientes</p>
+        </article>
+
+        <article class="product-card reveal" style="--i:2;">
+          <div class="product-card__img">
+            <img
+              src="https://placehold.co/600x600/E8D4B4/1A1410?text=03"
+              alt="Tostada con Aguacate — pan de masa madre con aguacate fresco y semillas variadas"
+              loading="lazy"
+            >
+          </div>
+          <h3 class="t-h3" style="margin-top: var(--space-xs);">Tostada con Aguacate</h3>
+          <p class="t-caption col-grey uc" style="letter-spacing: 0.08em;">Desayunos</p>
+        </article>
+
+        <article class="product-card reveal" style="--i:3;">
+          <div class="product-card__img">
+            <img
+              src="https://placehold.co/600x600/B4C8D4/1A1410?text=04"
+              alt="Cold Brew — café frío de extracción lenta servido en botella Nudes"
+              loading="lazy"
+            >
+          </div>
+          <h3 class="t-h3" style="margin-top: var(--space-xs);">Cold Brew</h3>
+          <p class="t-caption col-grey uc" style="letter-spacing: 0.08em;">Bebidas Frías</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 5 — ABOUT US
+    ══════════════════════════════════════════════ -->
+    <section aria-labelledby="about-section-label">
+
+      <!-- Full viewport image -->
+      <div class="parallax-wrap" style="height: 100vh; position: relative;">
+        <img
+          src="https://placehold.co/1600x900/1A1410/FDFAF2?text=NUDES"
+          alt="Equipo Nudes en el local de El Born Barcelona — espacio de cafetería artesanal con ambiente único"
+          class="parallax-img"
+          loading="lazy"
+          style="width: 100%; height: 120%; object-fit: cover;"
+        >
+
+        <!-- Centre badge -->
+        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;" aria-hidden="true">
+          <div class="about-badge">N</div>
+        </div>
+
+        <!-- Bottom overlay bar -->
+        <div style="
+          position: absolute; bottom: 0; left: 0; right: 0;
+          padding: var(--space-lg) var(--space-xl);
+          display: flex; justify-content: space-between; align-items: flex-end;
+          background: linear-gradient(to top, rgba(26,20,16,0.65), transparent);
+        ">
+          <p class="t-caption col-cream uc ls-wide reveal" id="about-section-label">About Nudes</p>
+          <p class="t-caption col-grey-light reveal" style="--i:1; max-width: 400px; text-align: right;">
+            Un espacio en Barcelona para los que aprecian los detalles —
+            desayunos, almuerzos y café de especialidad.
+          </p>
+        </div>
+      </div>
+
+      <!-- Two-column history block -->
+      <div class="pad-xl intro-grid">
+        <div>
+          <p class="t-caption col-grey uc ls-wide reveal" style="margin-bottom: var(--space-sm);">Nuestra Historia</p>
+          <h2 class="t-h2 reveal" style="--i:1;">
+            Empezamos sirviendo bocadillos.<br>
+            Nos quedamos por el sabor.
+          </h2>
+        </div>
+
+        <div class="reveal" style="--i:2; padding-top: 1.5rem;">
+          <p class="t-body col-grey">
+            Nudes nació de una idea simple: que comer bien no tiene que
+            ser complicado. Ingredientes honestos, recetas con criterio,
+            y un espacio donde la gente se sienta a gusto. Hoy tenemos
+            dos locales en Barcelona y seguimos creciendo.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 6 — OUR PROCESS
+    ══════════════════════════════════════════════ -->
+    <section aria-labelledby="process-label" style="background: var(--color-cream);">
+
+      <div class="pad-h" style="padding-top: var(--space-2xl); padding-bottom: var(--space-xl);">
+        <p class="t-caption col-grey uc ls-wide reveal" style="margin-bottom: var(--space-xs);" id="process-label">Nuestro Proceso</p>
+        <div class="title-clip">
+          <span class="t-h1-section">Cómo lo hacemos.</span>
+        </div>
+      </div>
+
+      <!-- Row 1: image left, text right -->
+      <div class="process-row">
+        <div class="process-img slide-left">
+          <img
+            src="https://placehold.co/800x600/D4CCBC/1A1410?text=01"
+            alt="Selección cuidadosa de ingredientes frescos para los bocadillos artesanales de Nudes"
+            loading="lazy"
+          >
+        </div>
+        <div class="process-text slide-right">
+          <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);">01 — Selección</p>
+          <h3 class="t-h2" style="margin-bottom: var(--space-md);">Selección</h3>
+          <p class="t-body col-grey">
+            Trabajamos solo con proveedores que comparten nuestra filosofía.
+            Cada ingrediente tiene una razón de estar aquí.
+          </p>
+        </div>
+      </div>
+
+      <!-- Marquee between rows -->
+      <div aria-hidden="true" style="background: var(--color-primary); height: 52px; display: flex; align-items: center;">
+        <div class="marquee-strip" style="width: 100%;">
+          <div class="marquee-inner slow">
+            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: text left, image right -->
+      <div class="process-row">
+        <div class="process-text slide-left" style="order: 1;">
+          <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);">02 — Elaboración</p>
+          <h3 class="t-h2" style="margin-bottom: var(--space-md);">Elaboración</h3>
+          <p class="t-body col-grey">
+            Nada viene de bote. Nuestras salsas, panes y bases se
+            preparan cada mañana en cocina.
+          </p>
+        </div>
+        <div class="process-img slide-right" style="order: 2;">
+          <img
+            src="https://placehold.co/800x600/C8CCBC/1A1410?text=02"
+            alt="Elaboración artesanal de salsas y panes en la cocina de Nudes — preparados cada mañana"
+            loading="lazy"
+          >
+        </div>
+      </div>
+
+      <!-- Marquee between rows -->
+      <div aria-hidden="true" style="background: var(--color-primary); height: 52px; display: flex; align-items: center;">
+        <div class="marquee-strip" style="width: 100%;">
+          <div class="marquee-inner reverse slow">
+            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: image left, text right -->
+      <div class="process-row">
+        <div class="process-img slide-left">
+          <img
+            src="https://placehold.co/800x600/BCCCCC/1A1410?text=03"
+            alt="Servicio atento y personal en el local Nudes — cada visita es una experiencia especial"
+            loading="lazy"
+          >
+        </div>
+        <div class="process-text slide-right">
+          <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);">03 — Servicio</p>
+          <h3 class="t-h2" style="margin-bottom: var(--space-md);">Servicio</h3>
+          <p class="t-body col-grey">
+            Queremos que cada visita se sienta especial. No somos un
+            fast food. Somos un espacio.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 7 — LOCATIONS
+    ══════════════════════════════════════════════ -->
+    <section id="locations" aria-labelledby="locations-label">
+
+      <!-- Full-bleed image with title overlay -->
+      <div class="parallax-wrap" style="height: 70vh; position: relative;">
+        <img
+          src="https://placehold.co/1600x700/1A1410/F2E49B?text=BCN"
+          alt="Vista aérea de Barcelona — ciudad donde se encuentran los locales de Nudes"
+          class="parallax-img"
+          loading="lazy"
+          style="width: 100%; height: 120%; object-fit: cover;"
+        >
+        <!-- Dark overlay -->
+        <div style="position: absolute; inset: 0; background: rgba(26,20,16,0.35);"></div>
+        <!-- Centered H1 -->
+        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+          <div class="title-clip" style="text-align: center;">
+            <h1 class="t-h1-hero col-cream" id="locations-label">
+              <span>OUR LOCATIONS</span>
+            </h1>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location cards -->
+      <div class="pad-md location-grid">
+
+        <article class="location-card reveal">
+          <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);">Barcelona · El Born</p>
+          <h2 class="t-h2" style="margin-bottom: var(--space-sm);">C/Rec 10</h2>
+          <p class="t-body col-grey" style="margin-bottom: 4px;">Lun–Vie &nbsp; 8:00 – 17:00</p>
+          <p class="t-body col-grey" style="margin-bottom: var(--space-lg);">Sáb–Dom &nbsp; 9:00 – 17:00</p>
+          <a href="#" class="cta-link" aria-label="Ver C/Rec 10 en Google Maps">Ver en Maps →</a>
+        </article>
+
+        <article class="location-card reveal" style="--i:1;">
+          <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);">Barcelona</p>
+          <h2 class="t-h2" style="margin-bottom: var(--space-sm);">C/Nueva Dirección</h2>
+          <p class="t-body col-grey" style="margin-bottom: var(--space-lg);">Próximamente</p>
+          <a href="#" class="cta-link" aria-label="Más información sobre la nueva ubicación">Más info →</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 8 — EVENTS & COMMUNITY
+    ══════════════════════════════════════════════ -->
+    <section id="community" class="community-layout" aria-labelledby="community-label">
+
+      <!-- Left: full-bleed image -->
+      <div class="img-hover" style="position: relative; overflow: hidden; min-height: 500px;">
+        <img
+          src="https://placehold.co/960x800/8C8070/FDFAF2?text=COMMUNITY"
+          alt="Evento community Nudes en Barcelona — pop-up y catas de matcha ceremonial en El Born"
+          loading="lazy"
+          style="width: 100%; height: 100%; object-fit: cover;"
+        >
+        <div style="
+          position: absolute; inset: 0;
+          background: linear-gradient(to right, transparent 60%, rgba(26,20,16,0.12));
+        " aria-hidden="true"></div>
+      </div>
+
+      <!-- Right: panel -->
+      <div class="community-panel">
+
+        <div class="reveal">
+          <span class="community-tag">Community</span>
+        </div>
+
+        <div class="reveal" style="--i:1;">
+          <h2 class="t-h2" style="margin-bottom: var(--space-md);" id="community-label">
+            Eventos, colabs y más.
+          </h2>
+          <p class="t-body col-grey" style="margin-bottom: var(--space-lg);">
+            Organizamos pop-ups, catas de matcha y colaboraciones con
+            marcas afines. Síguenos en Instagram para no perderte nada.
+          </p>
+          <a
+            href="https://instagram.com/eat.nudes"
+            class="cta-btn"
+            rel="noopener noreferrer"
+            target="_blank"
+            aria-label="Seguir a Nudes en Instagram (@eat.nudes)"
+          >INSTAGRAM →</a>
+          <p class="t-caption col-grey" style="margin-top: var(--space-sm);">@eat.nudes</p>
+        </div>
+
+        <div class="reveal" style="--i:2;">
+          <div class="event-item">
+            <span>→ Cata de Matcha Ceremonial</span>
+            <span class="t-caption col-grey">15 Feb</span>
+          </div>
+          <div class="event-item">
+            <span>→ Pop-up El Born</span>
+            <span class="t-caption col-grey">22 Feb</span>
+          </div>
+          <div class="event-item">
+            <span>→ Colaboración especial</span>
+            <span class="t-caption col-grey">Próximamente</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 9 — LATEST NEWS
+    ══════════════════════════════════════════════ -->
+    <section id="news" class="pad-xl" aria-labelledby="news-label">
+
+      <!-- Header row -->
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-sm);">
+        <div>
+          <p class="t-caption col-grey uc ls-wide reveal" style="margin-bottom: var(--space-xs);">Últimas Noticias</p>
+          <h2 class="t-h2 reveal" style="--i:1;" id="news-label">Lo que está pasando.</h2>
+        </div>
+        <a href="#" class="see-all-link reveal" style="--i:2;" aria-label="Ver todas las noticias de Nudes">Ver todo →</a>
+      </div>
+
+      <!-- 3-col grid -->
+      <div class="news-grid">
+
+        <article class="news-card reveal" style="--i:0;">
+          <div class="news-card__img">
+            <img
+              src="https://placehold.co/600x400/D4CCBC/1A1410?text=01"
+              alt="Nuevo menú de temporada de Nudes — primavera 2025 con ingredientes frescos"
+              loading="lazy"
+            >
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="news-tag">Productos</span>
+            <span class="t-caption col-grey">10 Mar 2025</span>
+          </div>
+          <h3 class="t-h3">Nuevo menú de temporada</h3>
+        </article>
+
+        <article class="news-card reveal" style="--i:1;">
+          <div class="news-card__img">
+            <img
+              src="https://placehold.co/600x400/C8D4BC/1A1410?text=02"
+              alt="Nudes x Collab — colaboración especial con marca local de Barcelona"
+              loading="lazy"
+            >
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="news-tag">Eventos</span>
+            <span class="t-caption col-grey">5 Mar 2025</span>
+          </div>
+          <h3 class="t-h3">Nudes x Collab</h3>
+        </article>
+
+        <article class="news-card reveal" style="--i:2;">
+          <div class="news-card__img">
+            <img
+              src="https://placehold.co/600x400/BCCCD4/1A1410?text=03"
+              alt="Nudes abre nuevo local en C/Nueva Dirección Barcelona — próxima apertura"
+              loading="lazy"
+            >
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="news-tag">Noticias</span>
+            <span class="t-caption col-grey">28 Feb 2025</span>
+          </div>
+          <h3 class="t-h3">Abrimos C/Nueva Dirección</h3>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 10 — FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+
+    <!-- Mega wordmark -->
+    <div class="footer-mega-wrap">
+      <div class="title-clip footer-wm-clip" style="text-align: center;">
+        <span class="footer-mega-word">NUDES</span>
+      </div>
+    </div>
+
+    <!-- Info bar -->
+    <div class="footer-bar">
+      <div class="footer-cols">
+        <div class="footer-col">NUDES</div>
+        <div class="footer-col">C/Calvet 1<br>Barcelona</div>
+        <div class="footer-col">C/Rec 10<br>C/Nueva Dirección</div>
+        <div class="footer-col">T<br>E</div>
+        <div class="footer-col">+34 605 87 23 50<br>Info@Eatnudes.com</div>
+        <div class="footer-col">@Eat.Nudes</div>
+      </div>
+
+      <div class="footer-copy">
+        © 2025 NUDES — For People With Really Great Taste
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- ══════════════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════════════ -->
+  <script>
+  (function () {
+
+    /* ─────────────────────────────────────────────
+       PRELOADER SEQUENCE
+    ───────────────────────────────────────────── */
+    const preloader = document.getElementById('preloader');
+    const panel     = document.getElementById('preloader-panel');
+    const logo      = document.getElementById('preloader-logo');
+
+    // Timing constants (ms)
+    const PANEL_IN_DUR  = 700;   // panel slides up
+    const PANEL_IN_EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
+    const LOGO_DELAY    = 600;   // logo appears (slightly before panel finishes)
+    const LOGO_DUR      = 500;
+    const HOLD          = 1800;  // total hold before exit starts
+    const PANEL_OUT_DUR = 800;
+    const PANEL_OUT_EASE = 'cubic-bezier(0.76, 0, 0.24, 1)';
+
+    function runPreloader () {
+      // 1 ── Panel slides up from bottom
+      panel.style.animation =
+        `preloaderPanelIn ${PANEL_IN_DUR}ms ${PANEL_IN_EASE} both`;
+
+      // 2 ── Logo fades in once panel arrives
+      setTimeout(() => {
+        logo.style.transition =
+          `opacity ${LOGO_DUR}ms ease,
+           transform ${LOGO_DUR}ms cubic-bezier(0.16, 1, 0.3, 1)`;
+        logo.style.opacity   = '1';
+        logo.style.transform = 'translateY(0)';
+      }, LOGO_DELAY);
+
+      // 3 ── Panel (+ logo) shoots upward and exits
+      setTimeout(() => {
+        panel.style.animation =
+          `preloaderPanelOut ${PANEL_OUT_DUR}ms ${PANEL_OUT_EASE} both`;
+      }, HOLD);
+
+      // 4 ── Clean up: remove preloader, unlock scroll, fire hero animations
+      setTimeout(() => {
+        preloader.style.display = 'none';
+        document.body.classList.remove('is-loading');
+        initHeroAnimations();
+      }, HOLD + PANEL_OUT_DUR + 50);
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO ANIMATIONS (fire after preloader exits)
+    ───────────────────────────────────────────── */
+    function initHeroAnimations () {
+      const bgImg  = document.getElementById('hero-bg');
+      const ease   = 'cubic-bezier(0.16, 1, 0.3, 1)';
+
+      // ① Set nav initial position immediately (bottom of viewport, large)
+      updateNav();
+
+      // ② Hero image: fade in + Ken Burns
+      if (bgImg) {
+        bgImg.style.transition = `opacity 1100ms ease, transform 2000ms ${ease}`;
+        requestAnimationFrame(() => {
+          bgImg.style.opacity   = '1';
+          bgImg.style.transform = 'scale(1)';
+        });
+      }
+
+      // ③ N glyph in nav: already visible (opacity driven by updateNav at progress=0)
+      //    Animate its entry: start below, slide up
+      if (navNImg) {
+        navNImg.style.transform = 'translateY(110%) scale(1)';
+        navNImg.style.transition = `transform 1000ms ${ease}`;
+        setTimeout(() => { navNImg.style.transform = 'translateY(0) scale(1)'; }, 180);
+      }
+
+      // ④ U glyph in nav: same
+      if (navUImg) {
+        navUImg.style.transform = 'translateY(110%) scale(1)';
+        navUImg.style.transition = `transform 1000ms ${ease}`;
+        setTimeout(() => { navUImg.style.transform = 'translateY(0) scale(1)'; }, 320);
+      }
+
+      // ⑤ Meta + nav links fade in
+      if (navMetaEl) {
+        navMetaEl.style.opacity = '0';
+        navMetaEl.style.transition = 'opacity 700ms ease';
+        setTimeout(() => { navMetaEl.style.opacity = '1'; }, 480);
+      }
+
+      const navUl = nav.querySelector('.nav-center');
+      if (navUl) {
+        navUl.style.opacity = '0';
+        navUl.style.transition = 'opacity 700ms ease';
+        setTimeout(() => { navUl.style.opacity = '1'; }, 580);
+      }
+    }
+
+    // Start immediately on script execution (DOM is ready — script is at end of body)
+    runPreloader();
+
+    /* ─────────────────────────────────────────────
+       END PRELOADER
+    ───────────────────────────────────────────── */
+
+    /* ─── SCROLL-MORPHING NAV ─── */
+    const nav  = document.getElementById('nav');
+    const hero = document.getElementById('hero');
+
+    const NAV_H_LARGE = 190;  // px — matches hero-bar height at progress 0
+    const NAV_H_SMALL = 64;   // px — compact height at progress 1
+    const EASE_SPRING = 'cubic-bezier(0.16, 1, 0.3, 1)';
+
+    const navNImg    = nav.querySelector('.nav-wordmark-left');
+    const navUImg    = nav.querySelector('.nav-wordmark-right');
+    const navLogoEl  = nav.querySelector('.nav-logo');
+    const navRightEl = nav.querySelector('.nav-right');
+    const navMetaEl  = nav.querySelector('.nav-bar-meta-scroll');
+
+    function updateNav () {
+      const scrollY   = window.scrollY;
+      const heroH     = hero ? hero.offsetHeight : window.innerHeight;
+      const progress  = Math.min(Math.max(scrollY / (heroH * 0.6), 0), 1);
+      const sp        = progress;
+
+      /* ── Height: large → compact ── */
+      const h = NAV_H_LARGE - (NAV_H_LARGE - NAV_H_SMALL) * sp;
+      nav.style.height = h + 'px';
+
+      /* ── Position: bottom of viewport → top ── */
+      const fromY = window.innerHeight - NAV_H_LARGE;
+      nav.style.transform = 'translateY(' + (fromY * (1 - sp)) + 'px)';
+
+      /* ── Background: cream → frosted glass ── */
+      if (sp >= 1) {
+        nav.style.background           = 'rgba(253,250,242,0.93)';
+        nav.style.backdropFilter       = 'blur(12px)';
+        nav.style.webkitBackdropFilter = 'blur(12px)';
+        nav.style.borderTop            = 'none';
+      } else {
+        nav.style.background           = 'var(--color-cream)';
+        nav.style.backdropFilter       = 'none';
+        nav.style.webkitBackdropFilter = 'none';
+        nav.style.borderTop            = '0.5px solid var(--color-grey-light)';
+      }
+
+      /* ── Glyphs: fade + scale down (fast) ── */
+      const spFast       = Math.min(sp * 2, 1);
+      const glyphOpacity = Math.max(1 - spFast * 1.4, 0);
+      const glyphScale   = 1 - spFast * 0.2;
+      if (navNImg) { navNImg.style.opacity = glyphOpacity; navNImg.style.transform = 'scale(' + glyphScale + ')'; }
+      if (navUImg) { navUImg.style.opacity = glyphOpacity; navUImg.style.transform = 'scale(' + glyphScale + ')'; }
+
+      /* ── Meta text: fades out with glyphs ── */
+      if (navMetaEl) navMetaEl.style.opacity = glyphOpacity;
+
+      /* ── NUDES logo + location: fade in after midpoint ── */
+      const topOpacity = Math.max((sp - 0.5) * 2, 0);
+      if (navLogoEl)  navLogoEl.style.opacity  = topOpacity;
+      if (navRightEl) navRightEl.style.opacity = topOpacity;
+
+      /* ── Ensure nav is always visible (override old opacity:0 CSS) ── */
+      nav.style.opacity       = '1';
+      nav.style.pointerEvents = 'auto';
+    }
+
+    window.addEventListener('scroll', updateNav, { passive: true });
+
+    /* ─── INTERSECTION OBSERVER: .reveal ─── */
+    function initReveal () {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal').forEach(el => {
+        const i = parseFloat(el.style.getPropertyValue('--i') || '0');
+        el.style.transitionDelay = (i * 120) + 'ms';
+        obs.observe(el);
+      });
+    }
+
+    /* ─── INTERSECTION OBSERVER: .title-clip ─── */
+    function initTitleClip () {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        });
+      }, { threshold: 0.10 });
+
+      document.querySelectorAll('.title-clip').forEach(el => obs.observe(el));
+    }
+
+    /* ─── INTERSECTION OBSERVER: .slide-left / .slide-right ─── */
+    function initSlide () {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        });
+      }, { threshold: 0.10 });
+
+      document.querySelectorAll('.slide-left, .slide-right').forEach(el => obs.observe(el));
+    }
+
+    /* ─── PARALLAX ─── */
+    function handleParallax () {
+      document.querySelectorAll('.parallax-img').forEach(img => {
+        const wrap = img.parentElement;
+        const rect = wrap.getBoundingClientRect();
+        const offset = (rect.top / window.innerHeight) * 40;
+        img.style.transform = 'translateY(' + offset + 'px) scale(1.12)';
+      });
+    }
+
+    window.addEventListener('scroll', handleParallax, { passive: true });
+
+    /* ─── INIT ─── */
+    function init () {
+      updateNav();
+      initReveal();
+      initTitleClip();
+      initSlide();
+      handleParallax();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+  }());
+  </script>
+
+</body>
+</html>
