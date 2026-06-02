@@ -2169,7 +2169,6 @@
         border: none;
         cursor: pointer;
         padding: 4px;
-        /* z-index is irrelevant here — the nav itself is now z-index 1100 */
         flex-shrink: 0;
       }
       .nav-hamburger span {
@@ -2192,7 +2191,7 @@
         transform: translateY(-6.5px) rotate(-45deg);
       }
 
-      /* ── Mobile overlay menu (z-index below nav's 1100) ── */
+      /* ── Mobile overlay menu (z-index 1000, nav is 1100 so button stays on top) ── */
       .mobile-menu {
         position: fixed;
         inset: 0;
@@ -2239,39 +2238,68 @@
       .mobile-menu__lang-btn.is-active { color: #FDFAF2; font-weight: 600; }
       .mobile-menu__lang-sep { color: rgba(253,250,242,0.25); font-size: 11px; }
 
-      /* ── Category grid → sticky card stack (9:16) ── */
-      #category-grid { padding: 0 0 60px !important; }
+      /* ════════════════════════════════════════════
+         CATEGORY GRID — sticky card stack (9:16)
+         Progressively increasing top so each card
+         peeks 60px above the one before it.
+      ════════════════════════════════════════════ */
+      #category-grid { padding: 0 0 80px !important; }
+
       .category-grid-wrap {
         display: block !important;
         position: relative;
+        padding-bottom: 60px;
       }
+
       .category-card {
         position: sticky !important;
-        top: 70px !important;
         display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
         width: 85vw !important;
         height: calc(85vw * 16 / 9) !important;
         margin: 0 auto !important;
-        border-radius: 14px !important;
+        border-radius: 16px !important;
         overflow: hidden !important;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.20) !important;
+        /* Reset height from desktop */
       }
-      /* Increasing z-index so later cards stack on top of earlier ones */
-      .category-card:nth-child(1) { z-index: 1; }
-      .category-card:nth-child(2) { z-index: 2; }
-      .category-card:nth-child(3) { z-index: 3; }
-      .category-card:nth-child(4) { z-index: 4; }
-      .category-card:nth-child(5) { z-index: 5; }
-      .category-card:nth-child(6) { z-index: 6; }
-      .category-card:nth-child(7) { z-index: 7; }
-      .category-card:nth-child(8) { z-index: 8; }
-      .category-card:nth-child(9) { z-index: 9; }
-      /* Always show card label, title, and shop link in overlay */
-      .category-card-overlay { opacity: 1 !important; }
-      .category-card-descriptor { opacity: 1 !important; }
-      .category-card-bottom { opacity: 1 !important; }
-      .category-card-shop { opacity: 1 !important; }
 
-      /* ── Locations: ensure carousel is visible ── */
+      /* Progressively larger top → deck peek effect */
+      .category-card:nth-child(1) { top:   0px; z-index: 1; }
+      .category-card:nth-child(2) { top:  60px; z-index: 2; }
+      .category-card:nth-child(3) { top: 120px; z-index: 3; }
+      .category-card:nth-child(4) { top: 180px; z-index: 4; }
+      .category-card:nth-child(5) { top: 240px; z-index: 5; }
+      .category-card:nth-child(6) { top: 300px; z-index: 6; }
+      .category-card:nth-child(7) { top: 360px; z-index: 7; }
+      .category-card:nth-child(8) { top: 420px; z-index: 8; }
+      .category-card:nth-child(9) { top: 480px; z-index: 9; }
+
+      /* Gradient: strong at bottom where text lives */
+      .category-card-overlay {
+        background: linear-gradient(
+          to top,
+          rgba(0,0,0,0.65) 0%,
+          rgba(0,0,0,0.15) 55%,
+          transparent 100%
+        ) !important;
+        opacity: 1 !important;
+      }
+
+      /* Label / title / shop always visible */
+      .category-card-descriptor {
+        opacity: 1 !important;
+        font-size: 10px !important;
+        letter-spacing: 0.15em !important;
+      }
+      .category-card-name { font-size: 28px !important; }
+      .category-card-bottom { opacity: 1 !important; }
+      .category-card-shop  { opacity: 1 !important; }
+
+      /* ════════════════════════════════════════════
+         LOCATIONS — ensure carousel always visible
+      ════════════════════════════════════════════ */
       #locations { padding: 40px 0 !important; min-height: 300px; }
       .stores-carousel { min-height: 280px; width: 100%; }
       .store-card {
@@ -2279,7 +2307,9 @@
         aspect-ratio: 3/4;
       }
 
-      /* ── Join-the-club collage: show only center image ── */
+      /* ════════════════════════════════════════════
+         JOIN-THE-CLUB COLLAGE — show center image only
+      ════════════════════════════════════════════ */
       #join-club { height: 85vh; margin-top: 5vh; }
       .hero-collage { display: block !important; position: relative; height: 100%; }
       .collage-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -2291,17 +2321,63 @@
       .collage-img--7 { display: none !important; }
       .collage-img--3 { display: block !important; }
 
-      /* ── News cards: force clean block layout, no overlap ── */
-      #news { padding-top: 40px !important; padding-bottom: 40px !important; }
-      .news-grid {
+      /* ════════════════════════════════════════════
+         COMMUNITY SECTION — fix overlap with news
+         Root cause: community-stack-panel forces
+         min-height:620px + overflow:visible, making
+         absolute-positioned cards bleed into news.
+      ════════════════════════════════════════════ */
+      .community-layout {
         display: block !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow: hidden !important;   /* contain any overflow */
+        position: relative !important;
       }
+      /* Hide decorative animated card-stack; not useful on mobile */
+      .community-stack-panel { display: none !important; }
+
+      .community-panel {
+        padding: 48px 20px !important;
+        gap: 16px !important;
+      }
+      .community-right-col .comm-headline {
+        font-size: clamp(26px, 7vw, 36px) !important;
+      }
+      .comm-event-row {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: flex-start !important;
+        flex-wrap: nowrap !important;
+        padding: 16px 0 !important;
+        border-bottom: 1px solid rgba(28,28,26,0.08) !important;
+        gap: 12px;
+      }
+      .comm-event-date {
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+      }
+
+      /* ════════════════════════════════════════════
+         NEWS / WHAT'S HAPPENING — clear block stack,
+         no overlap with community section above
+      ════════════════════════════════════════════ */
+      #news {
+        position: static !important;
+        margin-top: 0 !important;
+        padding-top: 40px !important;
+        padding-bottom: 48px !important;
+      }
+      #news > div:first-child { padding-top: 0 !important; }
+
+      .news-grid { display: block !important; }
+
       .news-card {
         display: block !important;
         width: 100% !important;
         margin-bottom: 40px !important;
         position: static !important;
-        /* Disable the reveal translateY so cards don't stack/overlap on mobile */
+        /* Disable reveal animation on mobile — no translateY offset */
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
