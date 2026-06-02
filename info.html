@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NUDES — Hours, locations, FAQ, careers and contact. All the practical stuff.">
+  <title>Info — NUDES Barcelona</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'Melodrame';
+      src: url('melodrame.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --ink:        #1C1C1A;
+      --cream:      #FDFAF2;
+      --sand:       #F2EADC;
+      --yellow:     #F5E6A3;
+      --pink:       #E8A0B4;
+      --green:      #AADBA4;
+      --purple:     #C5B8F5;
+      --taupe:      #8C8070;
+      --grey-light: #D4CCBC;
+      --nav-h:      64px;
+      --display:    'Melodrame', serif;
+      --sans:       'DM Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    h1,h2,h3,h4,h5,h6 { font-weight: normal; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body { background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+    img  { display: block; max-width: 100%; }
+    a    { color: inherit; text-decoration: none; }
+
+    .grain {
+      pointer-events: none; position: fixed; inset: 0; z-index: 1000; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 300px 300px;
+    }
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      display: flex; align-items: center;
+      padding: 0 clamp(20px,3vw,48px);
+      background: rgba(253,250,242,0.96);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 0.5px solid var(--grey-light);
+    }
+    .nav-main { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .nav-wordmark img { height: 36px; width: auto; display: block; }
+    .nav-links { list-style: none; display: flex; align-items: center; gap: clamp(14px,2.2vw,36px); }
+    .nav-links a {
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.10em; text-transform: uppercase; color: var(--ink);
+      position: relative; padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 1px; background: var(--ink);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-join-club { color: #E8A0B4 !important; }
+    .nav-join-club::after { background: #E8A0B4 !important; }
+
+    /* ── INNER WRAPPER ── */
+    .inner { max-width: 1240px; margin: 0 auto; }
+
+    /* ── SECTION LABEL ── */
+    .sec-label {
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.26em; text-transform: uppercase; color: var(--taupe);
+    }
+
+    /* ══════════════════════════════════════
+       PAGE HEADER
+    ══════════════════════════════════════ */
+    #page-header {
+      position: relative;
+      padding: 180px 40px 80px;
+      overflow: hidden;
+    }
+    .hdr-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center right;
+      z-index: 0;
+    }
+    .hdr-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(to right,
+        rgba(253,250,242,0.92) 0%,
+        rgba(253,250,242,0.85) 40%,
+        rgba(253,250,242,0.2)  75%,
+        rgba(253,250,242,0)    100%);
+    }
+    #page-header .inner {
+      position: relative;
+      z-index: 2;
+    }
+    .hdr-eyebrow {
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.26em; text-transform: uppercase; color: var(--taupe);
+      margin-bottom: 28px;
+    }
+    .hdr-headline {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(56px, 7vw, 112px);
+      line-height: 0.92; letter-spacing: -0.035em; color: var(--ink);
+    }
+    .hdr-headline em { font-style: italic; }
+    .hdr-lede {
+      font-family: var(--sans); font-size: 18px; line-height: 1.6;
+      color: var(--taupe); max-width: 560px; margin-top: 24px;
+    }
+
+    /* ══════════════════════════════════════
+       QUICK NAV
+    ══════════════════════════════════════ */
+    #quick-nav {
+      position: sticky; top: var(--nav-h); z-index: 20;
+      background: rgba(253,250,242,0.92);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(28,28,26,0.08);
+    }
+    .quick-nav-inner {
+      max-width: 1240px; margin: 0 auto;
+      padding: 18px 40px;
+      display: flex; align-items: center; gap: 0;
+      overflow-x: auto; scrollbar-width: none; white-space: nowrap;
+    }
+    .quick-nav-inner::-webkit-scrollbar { display: none; }
+    .quick-nav-label {
+      font-family: var(--sans); font-size: 11px; font-weight: 400;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--taupe);
+      margin-right: 20px; flex-shrink: 0;
+    }
+    .quick-nav-inner a {
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      letter-spacing: 0.06em; color: var(--ink);
+      padding: 4px 16px 4px 0; flex-shrink: 0;
+      transition: color 0.2s;
+    }
+    .quick-nav-inner a:hover { color: var(--taupe); }
+
+    /* ══════════════════════════════════════
+       SECTION 1 — LOCATIONS
+    ══════════════════════════════════════ */
+    #locations {
+      background: var(--cream); padding: 120px 40px;
+      scroll-margin-top: 140px;
+    }
+    .loc-heading {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(56px, 6.5vw, 104px);
+      line-height: 0.95; letter-spacing: -0.03em;
+      margin: 20px 0 56px; max-width: 900px;
+    }
+    .loc-heading em { font-style: italic; }
+    .loc-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .loc-card {
+      display: grid; grid-template-columns: 1fr 1fr;
+      background: var(--sand); border-radius: 8px;
+      overflow: hidden; min-height: 280px;
+    }
+    .loc-card__text {
+      padding: 36px 32px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .loc-card__top {}
+    .loc-city {
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--taupe);
+      margin-bottom: 8px;
+    }
+    .loc-name {
+      font-family: var(--display); font-weight: 400;
+      font-size: 52px; line-height: 0.95; color: var(--ink);
+    }
+    .loc-card__bottom { margin-top: 24px; }
+    .loc-address {
+      font-family: var(--sans); font-size: 14px; color: var(--ink); line-height: 1.5;
+    }
+    .loc-hours {
+      font-family: var(--sans); font-size: 13px; color: var(--taupe);
+      margin-top: 8px; line-height: 1.5;
+    }
+    .loc-dir {
+      display: inline-block; margin-top: 20px;
+      font-family: var(--sans); font-size: 12px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+    .loc-dir:hover { opacity: 0.55; }
+    .loc-card__img {
+      position: relative; display: flex;
+      align-items: flex-end; padding: 16px;
+    }
+    .loc-card__img-label {
+      font-family: var(--sans); font-size: 9px; font-weight: 500;
+      letter-spacing: 0.20em; text-transform: uppercase;
+      color: rgba(28,28,26,0.45);
+    }
+
+    /* ── STORE PHOTO CARDS ── */
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .store-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      border-radius: 8px;
+      display: block;
+      text-decoration: none;
+    }
+    .store-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .store-card:hover img { transform: scale(1.06); }
+    .store-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,28,26,0.75) 0%, rgba(28,28,26,0.1) 50%, transparent 100%);
+      pointer-events: none;
+      transition: background 400ms ease;
+    }
+    .store-card:hover .store-overlay {
+      background: linear-gradient(to top, rgba(28,28,26,0.85) 0%, rgba(28,28,26,0.1) 50%, transparent 100%);
+    }
+    .store-body {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 24px;
+      z-index: 2;
+    }
+    .store-tag {
+      font-family: var(--sans); font-size: 10px;
+      text-transform: uppercase; letter-spacing: 0.2em;
+      color: rgba(253,250,242,0.7); margin-bottom: 6px;
+    }
+    .store-name {
+      font-family: var(--display); font-size: 32px;
+      color: #FDFAF2; line-height: 1; font-weight: 400;
+    }
+    .store-addr {
+      font-family: var(--sans); font-size: 12px;
+      color: rgba(253,250,242,0.75); margin-top: 6px; line-height: 1.45;
+    }
+    .store-dir {
+      display: block; font-family: var(--sans); font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: #F5E6A3; margin-top: 10px;
+      opacity: 0.7;
+      transition: opacity 400ms ease, transform 400ms ease;
+    }
+    .store-card:hover .store-dir { opacity: 1; transform: translateY(-4px); }
+    @media (max-width: 900px) { .store-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .store-grid { grid-template-columns: 1fr; } }
+
+    /* ══════════════════════════════════════
+       SECTION 2 — HOURS
+    ══════════════════════════════════════ */
+    #hours {
+      background: var(--sand); padding: 120px 40px;
+      scroll-margin-top: 140px;
+      position: relative;
+    }
+    .hours-deco {
+      position: absolute; bottom: 0; right: 0;
+      width: 220px; height: auto;
+      object-fit: contain;
+      opacity: 0.35;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hours-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 80px; align-items: start;
+      position: relative; z-index: 2;
+    }
+    .hours-heading {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(48px, 5.5vw, 88px);
+      line-height: 0.95; letter-spacing: -0.03em;
+      margin-top: 20px;
+    }
+    .hours-heading em { font-style: italic; }
+    .hours-table { margin-top: 0; }
+    .hours-row {
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: baseline; gap: 16px;
+      padding: 20px 0;
+      border-top: 0.5px solid rgba(28,28,26,0.15);
+    }
+    .hours-row:last-of-type { border-bottom: 0.5px solid rgba(28,28,26,0.15); }
+    .hours-day { font-family: var(--sans); font-size: 15px; color: var(--ink); }
+    .hours-time { font-family: var(--display); font-size: 22px; color: var(--ink); white-space: nowrap; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 32px; margin-top: 48px;
+    }
+    .svc-name {
+      font-family: var(--display); font-size: 28px;
+      line-height: 1; color: var(--ink); margin-bottom: 10px;
+    }
+    .svc-desc { font-family: var(--sans); font-size: 14px; color: var(--taupe); line-height: 1.55; }
+
+    /* ══════════════════════════════════════
+       SECTION 3 — FAQ
+    ══════════════════════════════════════ */
+    #faq {
+      background: var(--cream); padding: 120px 40px;
+      scroll-margin-top: 140px;
+    }
+    .faq-heading {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(56px, 6.5vw, 104px);
+      line-height: 0.95; letter-spacing: -0.03em;
+      margin: 20px 0 56px;
+    }
+    .faq-list { border-bottom: 1px solid rgba(28,28,26,0.15); }
+    .faq-item { border-top: 1px solid rgba(28,28,26,0.15); }
+    .faq-btn {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; padding: 28px 0;
+      text-align: left;
+    }
+    .faq-q {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(28px, 3vw, 40px); line-height: 1.05;
+      color: var(--ink);
+    }
+    .faq-icon {
+      font-family: var(--sans); font-size: 24px; font-weight: 300;
+      color: var(--ink); flex-shrink: 0;
+      transition: transform 0.3s ease;
+      line-height: 1;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      display: none;
+      font-family: var(--sans); font-size: 17px; line-height: 1.65;
+      color: var(--taupe); padding-bottom: 28px; max-width: 780px;
+    }
+    .faq-answer a { color: var(--ink); border-bottom: 1px solid var(--ink); }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* ══════════════════════════════════════
+       SECTION 4 — CAREERS
+    ══════════════════════════════════════ */
+    #careers {
+      background: var(--yellow); padding: 120px 40px;
+      scroll-margin-top: 140px;
+      position: relative;
+    }
+    .careers-sketch {
+      position: absolute;
+      top: 0; right: 0;
+      width: 45%; max-width: 600px;
+      height: auto;
+      object-fit: contain;
+      object-position: top right;
+      opacity: 0.85;
+      mix-blend-mode: multiply;
+      z-index: 1;
+      pointer-events: none;
+    }
+    #careers .inner {
+      position: relative;
+      z-index: 2;
+    }
+    .careers-heading {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(56px, 6.5vw, 104px);
+      line-height: 0.95; letter-spacing: -0.03em;
+      max-width: 900px; margin: 20px 0 0;
+    }
+    .careers-intro {
+      font-family: var(--sans); font-size: 17px; line-height: 1.6;
+      color: var(--ink); max-width: 640px; margin: 28px 0 56px;
+    }
+    .jobs-list { border-bottom: 1px solid var(--ink); }
+    .job-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      align-items: center; gap: 32px;
+      border-top: 1px solid var(--ink);
+      padding: 28px 0;
+      text-decoration: none; color: var(--ink);
+      transition: opacity 0.2s;
+    }
+    .job-row:hover { opacity: 0.65; }
+    .job-title {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(28px, 3vw, 40px); line-height: 1;
+    }
+    .job-location { font-family: var(--sans); font-size: 14px; color: var(--ink); white-space: nowrap; }
+    .job-tag {
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.20em; text-transform: uppercase;
+      padding: 6px 14px; border: 1px solid var(--ink); border-radius: 999px;
+      white-space: nowrap;
+    }
+    .job-apply {
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      letter-spacing: 0.10em; text-transform: uppercase; white-space: nowrap;
+    }
+
+    /* ══════════════════════════════════════
+       SECTION 5 — CONTACT
+    ══════════════════════════════════════ */
+    #contact {
+      display: flex; flex-direction: row;
+      width: 100vw; min-height: 600px;
+      overflow: hidden;
+      scroll-margin-top: 140px;
+    }
+    .contact-left {
+      width: 50%; flex-shrink: 0;
+      background: var(--cream);
+      padding: 80px 60px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .contact-right {
+      width: 50%; flex-shrink: 0;
+      position: relative; overflow: hidden;
+    }
+    .contact-right img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+    }
+    .contact-heading {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(48px, 5vw, 96px);
+      line-height: 0.95; letter-spacing: -0.03em;
+      margin: 20px 0 48px;
+    }
+    .contact-body {
+      font-family: var(--sans); font-size: 17px; line-height: 1.7;
+      color: var(--taupe); max-width: 480px; margin: 20px 0 32px;
+    }
+    .contact-email-link {
+      font-family: var(--display); font-style: italic; font-size: clamp(26px, 3.5vw, 44px);
+      color: var(--ink); text-decoration: none; display: inline-block;
+      border-bottom: 1.5px solid currentColor; padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .contact-email-link:hover { opacity: 0.6; }
+    .contact-grid {
+      display: flex; flex-wrap: wrap; gap: 12px;
+    }
+    .contact-card {
+      flex: 1 1 calc(50% - 6px);
+    }
+    .contact-card {
+      display: flex; flex-direction: column;
+      padding: 32px 24px; background: var(--sand);
+      border-radius: 8px; min-height: 180px;
+      text-decoration: none; color: var(--ink);
+      transition: opacity 0.2s;
+    }
+    .contact-card:hover { opacity: 0.75; }
+    .contact-label {
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--taupe);
+    }
+    .contact-email {
+      font-family: var(--display); font-size: 22px; color: var(--ink);
+      letter-spacing: -0.015em; margin-top: 14px;
+      word-break: break-word; line-height: 1.15;
+    }
+    .contact-footer-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(28,28,26,0.15);
+      padding: 32px 0 0; margin-top: 32px;
+      font-family: var(--sans); font-size: 14px; color: var(--taupe);
+      flex-wrap: wrap; gap: 12px;
+    }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    footer { background: var(--cream); }
+    .ft-top {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      padding: clamp(2rem,5vw,4rem) clamp(1.5rem,5vw,4rem);
+      border-bottom: 0.5px solid var(--grey-light);
+    }
+    .ft-nav { list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-direction: column; gap: 0.3rem; }
+    .ft-nav a { font-family: var(--sans); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); transition: opacity 0.2s; }
+    .ft-nav a:hover { opacity: 0.45; }
+    .ft-meta { font-family: var(--sans); font-size: 11px; letter-spacing: 0.04em; color: var(--taupe); line-height: 1.9; }
+    .ft-ig { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--ink); border-radius: 50%; margin-top: 1rem; color: var(--ink); transition: background 0.2s, color 0.2s; }
+    .ft-ig:hover { background: var(--ink); color: var(--cream); }
+    .ft-newsletter-label { font-family: var(--sans); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); margin-bottom: 1rem; }
+    .ft-form { display: flex; flex-direction: column; gap: 0; }
+    .ft-form-row { display: grid; grid-template-columns: 1fr 1fr; }
+    .ft-input { background: transparent; border: 0.5px solid var(--ink); padding: 0.85rem 1rem; font-family: var(--sans); font-size: 12px; color: var(--ink); outline: none; transition: background 0.2s; }
+    .ft-input::placeholder { color: var(--taupe); }
+    .ft-input:focus { background: rgba(28,28,26,0.04); }
+    .ft-input:first-child { border-right: none; }
+    .ft-btn { background: var(--ink); color: var(--cream); border: none; padding: 0.85rem 1rem; font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; width: 100%; min-height: 44px; }
+    .ft-btn:hover { background: var(--taupe); }
+    .ft-wm { background: var(--cream); border-top: 0.5px solid var(--grey-light); padding: clamp(1.5rem,3vw,2.5rem) clamp(1.5rem,5vw,4rem); overflow: hidden; display: flex; align-items: flex-end; }
+    .ft-logo-img { width: clamp(300px,40vw,580px); height: auto; display: block; }
+    .ft-copy { font-family: var(--sans); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--taupe); padding: 1rem clamp(1rem,3vw,2.5rem); text-align: right; }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      #page-header { padding: 140px 20px 60px; }
+      #quick-nav .quick-nav-inner { padding: 14px 20px; }
+      #locations, #hours, #faq, #careers, #contact { padding: 60px 20px; }
+
+      .loc-grid { grid-template-columns: 1fr; }
+      .loc-card { grid-template-columns: 1fr; }
+      .loc-card__img { height: 100px; }
+
+      .hours-grid { grid-template-columns: 1fr; gap: 48px; }
+      .services-grid { grid-template-columns: 1fr; gap: 24px; }
+
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+
+      .job-row { grid-template-columns: 1fr; gap: 12px; }
+      .job-apply { display: none; }
+
+      .nav-links { display: none; }
+      .ft-top { grid-template-columns: 1fr; }
+      .ft-form-row { grid-template-columns: 1fr; }
+      .ft-input:first-child { border-right: 0.5px solid var(--ink); border-bottom: none; }
+
+      .contact-footer-bar { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ── LANGUAGE TOGGLE ── */
+    .lang-toggle-wrap { display: flex; align-items: center; gap: 4px; list-style: none; padding-left: 16px; border-left: 1px solid rgba(28,28,26,0.12); }
+    .lang-opt { background: none; border: none; cursor: pointer; padding: 2px 0; font-family: var(--sans, 'DM Sans', sans-serif); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #8C8070; transition: color 0.2s; }
+    .lang-opt--active { color: #1C1C1A; font-weight: 600; }
+    .lang-sep { color: #8C8070; font-size: 11px; }
+  </style>
+</head>
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ── NAV ── -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-main">
+      <a href="/" class="nav-wordmark" aria-label="NUDES — home">
+        <img src="/assets/logo-black.png" alt="NUDES" style="height:36px;width:auto;display:block;border:none;background:none;">
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="./info.html" class="active">Info</a></li>
+        <li><a href="https://instagram.com/eat.nudes" rel="noopener noreferrer" target="_blank">Instagram</a></li>
+        <li><a href="index.html#community" class="nav-join-club">Join The Club*</a></li>
+        <li class="lang-toggle-wrap">
+          <button class="lang-opt lang-opt--active" data-lang="en" onclick="__setLang('en')">EN</button>
+          <span class="lang-sep">/</span>
+          <button class="lang-opt" data-lang="es" onclick="__setLang('es')">ES</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── PAGE HEADER ── -->
+  <section id="page-header">
+    <img class="hdr-bg" src="/newinfo.png" alt="">
+    <div class="hdr-overlay" aria-hidden="true"></div>
+    <div class="inner">
+      <p class="hdr-eyebrow">Info</p>
+      <h1 class="hdr-headline" data-en="Hours, answers,&lt;br&gt;&lt;em&gt;and how to find us.&lt;/em&gt;" data-es="Horarios, respuestas,&lt;br&gt;&lt;em&gt;y cómo encontrarnos.&lt;/em&gt;">Hours, answers,<br><em>and how to find us.</em></h1>
+      <p class="hdr-lede" data-en="Where we are, when we open, what's in the food, and who to email. All the practical stuff in one place." data-es="Dónde estamos, cuándo abrimos, qué hay en la comida y a quién escribir. Todo lo práctico en un solo lugar.">Where we are, when we open, what's in the food, and who to email. All the practical stuff in one place.</p>
+    </div>
+  </section>
+
+  <!-- ── QUICK NAV ── -->
+  <div id="quick-nav" role="navigation" aria-label="Page sections">
+    <div class="quick-nav-inner">
+      <span class="quick-nav-label" data-en="jump to —" data-es="ir a —">jump to —</span>
+      <a href="#locations" data-en="Locations" data-es="Locales">Locations</a>
+      <a href="#hours" data-en="Hours" data-es="Horarios">Hours</a>
+      <a href="#faq" data-en="FAQ" data-es="Preguntas">FAQ</a>
+      <a href="#careers" data-en="Careers" data-es="Empleo">Careers</a>
+      <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════
+         SECTION 1 — LOCATIONS
+    ══════════════════════════════════════ -->
+    <section id="locations">
+      <div class="inner">
+        <p class="sec-label" data-en="01 — locations" data-es="01 — locales">01 — locations</p>
+        <h2 class="loc-heading" data-en="Five bars. &lt;em&gt;Find the closest.&lt;/em&gt;" data-es="Cinco bares. &lt;em&gt;Encuentra el más cercano.&lt;/em&gt;">Five bars. <em>Find the closest.</em></h2>
+
+        <div class="store-grid">
+
+          <!-- BCN1: El Born -->
+          <a class="store-card" href="https://maps.google.com/?q=Carrer+del+Rec+10+Barcelona" target="_blank" rel="noopener">
+            <img src="/assets/stores/BCN1.jpg" alt="NUDES El Born" loading="lazy">
+            <div class="store-overlay"></div>
+            <div class="store-body">
+              <p class="store-name">El Born</p>
+              <p class="store-addr">Carrer del Rec, 10<br>Ciutat Vella, 08003 Barcelona</p>
+              <span class="store-dir" data-en="Get directions →" data-es="Cómo llegar →">Get directions →</span>
+            </div>
+          </a>
+
+          <!-- BCN2: Eixample -->
+          <a class="store-card" href="https://maps.google.com/?q=Rambla+de+Catalunya+29+Barcelona" target="_blank" rel="noopener">
+            <img src="/assets/stores/BCN2.jpg" alt="NUDES Eixample" loading="lazy">
+            <div class="store-overlay"></div>
+            <div class="store-body">
+              <p class="store-name">Eixample</p>
+              <p class="store-addr">Rambla de Catalunya, 29, Local 3<br>Eixample, 08007 Barcelona</p>
+              <span class="store-dir" data-en="Get directions →" data-es="Cómo llegar →">Get directions →</span>
+            </div>
+          </a>
+
+          <!-- BCN3: Sarrià -->
+          <a class="store-card" href="https://maps.google.com/?q=Carrer+de+Calvet+1+Barcelona" target="_blank" rel="noopener">
+            <img src="/assets/stores/BCN3.jpg" alt="NUDES Sarrià" loading="lazy">
+            <div class="store-overlay"></div>
+            <div class="store-body">
+              <p class="store-name">Sarrià</p>
+              <p class="store-addr">Carrer de Calvet, 1<br>Sarrià-Sant Gervasi, 08021 Barcelona</p>
+              <span class="store-dir" data-en="Get directions →" data-es="Cómo llegar →">Get directions →</span>
+            </div>
+          </a>
+
+          <!-- REPEAT -->
+          <a class="store-card" href="https://maps.google.com/?q=Carrer+Ausias+Marc+41+Barcelona" target="_blank" rel="noopener">
+            <img src="/assets/stores/REPEAT.jpg" alt="NUDES at Repeat" loading="lazy">
+            <div class="store-overlay"></div>
+            <div class="store-body">
+              <p class="store-tag" data-en="Found us at Repeat — our corner" data-es="Encuéntranos en Repeat — nuestro rincón">Found us at Repeat — our corner</p>
+              <p class="store-name">Repeat</p>
+              <p class="store-addr">Carrer d'Ausiàs Marc, 41<br>Eixample, 08010 Barcelona</p>
+              <span class="store-dir" data-en="Get directions →" data-es="Cómo llegar →">Get directions →</span>
+            </div>
+          </a>
+
+          <!-- MADRID -->
+          <a class="store-card" href="https://maps.google.com/?q=Calle+San+Mateo+30+Madrid" target="_blank" rel="noopener">
+            <img src="/assets/stores/MADRID.jpg" alt="NUDES Madrid" loading="lazy">
+            <div class="store-overlay"></div>
+            <div class="store-body">
+              <p class="store-name">Madrid</p>
+              <p class="store-addr">C. de San Mateo, 30<br>Centro, 28004 Madrid</p>
+              <span class="store-dir" data-en="Get directions →" data-es="Cómo llegar →">Get directions →</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 2 — HOURS
+    ══════════════════════════════════════ -->
+    <section id="hours">
+      <div class="inner">
+        <div class="hours-grid">
+
+          <!-- Left -->
+          <div>
+            <p class="sec-label" data-en="02 — hours &amp; services" data-es="02 — horarios y servicios">02 — hours &amp; services</p>
+            <h2 class="hours-heading" data-en="Open early. &lt;em&gt;Closed by nine.&lt;/em&gt;" data-es="Abrimos temprano. &lt;em&gt;Cerramos a las nueve.&lt;/em&gt;">Open early. <em>Closed by nine.</em></h2>
+          </div>
+
+          <!-- Right -->
+          <div>
+            <div class="hours-table">
+              <div class="hours-row">
+                <span class="hours-day" data-en="Monday – Friday" data-es="Lunes – Viernes">Monday – Friday</span>
+                <span class="hours-time">8:00 – 21:00</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day" data-en="Saturday" data-es="Sábado">Saturday</span>
+                <span class="hours-time">9:00 – 21:00</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day" data-en="Sunday" data-es="Domingo">Sunday</span>
+                <span class="hours-time">9:00 – 20:00</span>
+              </div>
+            </div>
+
+            <div class="services-grid">
+              <div>
+                <p class="svc-name" data-en="Dine-in." data-es="En local.">Dine-in.</p>
+                <p class="svc-desc" data-en="Walk-ins welcome. Counter seating plus tables." data-es="Sin reserva. Barra y mesas disponibles.">Walk-ins welcome. Counter seating plus tables.</p>
+              </div>
+              <div>
+                <p class="svc-name" data-en="Takeaway." data-es="Para llevar.">Takeaway.</p>
+                <p class="svc-desc" data-en="Order at the bar or via our partners." data-es="Pide en barra o a través de nuestros partners.">Order at the bar or via our partners.</p>
+              </div>
+              <div>
+                <p class="svc-name" data-en="Delivery." data-es="Entrega a domicilio.">Delivery.</p>
+                <p class="svc-desc" data-en="Glovo &amp; Uber Eats · 11:00–20:30 · 3km radius." data-es="Glovo y Uber Eats · 11:00–20:30 · radio de 3 km.">Glovo &amp; Uber Eats · 11:00–20:30 · 3km radius.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 3 — FAQ
+    ══════════════════════════════════════ -->
+    <section id="faq">
+      <div class="inner">
+        <p class="sec-label" data-en="03 — faq" data-es="03 — preguntas frecuentes">03 — faq</p>
+        <h2 class="faq-heading" data-en="The usual questions." data-es="Las preguntas de siempre.">The usual questions.</h2>
+
+        <div class="faq-list" role="list">
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false">
+              <span class="faq-q" data-en="What is NUDES &quot;Performance Nutrition&quot;?" data-es="¿Qué es la &apos;Nutrición de Rendimiento&apos; de NUDES?">What is NUDES "Performance Nutrition"?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" data-en="It's more than just a snack; it's functional fuel. We design our Açaí bowls and shakes to provide high-quality nutrients, antioxidants, and clean energy to support your daily performance, whether you're training or on the go." data-es="Es más que un snack; es combustible funcional. Diseñamos nuestros bowls de Açaí y batidos para aportar nutrientes de alta calidad, antioxidantes y energía limpia que apoyen tu rendimiento diario, tanto si entrenas como si estás en movimiento.">It's more than just a snack; it's functional fuel. We design our Açaí bowls and shakes to provide high-quality nutrients, antioxidants, and clean energy to support your daily performance, whether you're training or on the go.</div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false">
+              <span class="faq-q" data-en="Is your Açaí pure?" data-es="¿Vuestro Açaí es puro?">Is your Açaí pure?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" data-en="Absolutely. We pride ourselves on using 100% pure Brazilian Açaí. Our signature base contains no added sugar and is not mixed with banana, ensuring you get the most authentic and nutrient-dense experience possible. Our Açaí base is 100% organic and blended with a touch of Guarana to naturally sweeten and balance the flavor. It is packed with antioxidants and healthy fats." data-es="Por supuesto. Nos enorgullece usar Açaí brasileño 100% puro. Nuestra base no contiene azúcar añadido y no está mezclada con plátano, garantizando la experiencia más auténtica y nutritiva posible. Nuestra base de Açaí es 100% orgánica y se mezcla con un toque de Guaraná para endulzar y equilibrar el sabor de forma natural. Rica en antioxidantes y grasas saludables.">Absolutely. We pride ourselves on using 100% pure Brazilian Açaí. Our signature base contains no added sugar and is not mixed with banana, ensuring you get the most authentic and nutrient-dense experience possible. Our Açaí base is 100% organic and blended with a touch of Guarana to naturally sweeten and balance the flavor. It is packed with antioxidants and healthy fats.</div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false">
+              <span class="faq-q" data-en="Do you have vegan and gluten-free options?" data-es="¿Tenéis opciones veganas y sin gluten?">Do you have vegan and gluten-free options?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" data-en="Yes! Most of our menu is naturally plant-based. Our Acai Protein Shake uses high-quality vegan protein, and we offer a variety of gluten-free toppings like fresh organic fruits, seeds, and nuts." data-es="¡Sí! La mayor parte de nuestro menú es naturalmente plant-based. Nuestro Acai Protein Shake usa proteína vegana de alta calidad, y ofrecemos una variedad de toppings sin gluten como frutas orgánicas frescas, semillas y frutos secos.">Yes! Most of our menu is naturally plant-based. Our Acai Protein Shake uses high-quality vegan protein, and we offer a variety of gluten-free toppings like fresh organic fruits, seeds, and nuts.</div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false">
+              <span class="faq-q" data-en="Can I customize my bowl or shake?" data-es="¿Puedo personalizar mi bowl o batido?">Can I customize my bowl or shake?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" data-en="Of course. You can personalize your order by adding extra toppings like our homemade granola, peanut butter, or chia pudding to match your taste and nutritional needs." data-es="Claro que sí. Puedes personalizar tu pedido añadiendo toppings extra como nuestra granola casera, mantequilla de cacahuete o pudding de chía, según tu gusto y necesidades nutricionales.">Of course. You can personalize your order by adding extra toppings like our homemade granola, peanut butter, or chia pudding to match your taste and nutritional needs.</div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false">
+              <span class="faq-q" data-en="What are the nutritional benefits of Açaí?" data-es="¿Cuáles son los beneficios nutricionales del Açaí?">What are the nutritional benefits of Açaí?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" data-en="Açaí is a superfood powerhouse. It is naturally rich in antioxidants, healthy fats, and fiber. It helps with muscle recovery, boosts your immune system, and provides sustained energy without the sugar crash." data-es="El Açaí es un superalimento extraordinario. Es naturalmente rico en antioxidantes, grasas saludables y fibra. Ayuda en la recuperación muscular, refuerza el sistema inmune y proporciona energía sostenida sin el bajón del azúcar.">Açaí is a superfood powerhouse. It is naturally rich in antioxidants, healthy fats, and fiber. It helps with muscle recovery, boosts your immune system, and provides sustained energy without the sugar crash.</div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false">
+              <span class="faq-q" data-en="Do you offer catering for events?" data-es="¿Ofrecéis catering para eventos?">Do you offer catering for events?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" data-en="While we don't offer traditional catering, we love partnering with brands that share our values for special activations. For all partnership or event inquiries, please contact us at &lt;a href='mailto:PR@eatnudes.com'&gt;PR@eatnudes.com&lt;/a&gt;." data-es="Aunque no ofrecemos catering tradicional, nos encanta colaborar con marcas que compartan nuestros valores en activaciones especiales. Para consultas de colaboración o eventos, contáctanos en &lt;a href='mailto:PR@eatnudes.com'&gt;PR@eatnudes.com&lt;/a&gt;.">While we don't offer traditional catering, we love partnering with brands that share our values for special activations. For all partnership or event inquiries, please contact us at <a href="mailto:PR@eatnudes.com">PR@eatnudes.com</a>.</div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false">
+              <span class="faq-q" data-en="Are your stores pet-friendly?" data-es="¿Vuestros locales admiten mascotas?">Are your stores pet-friendly?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" data-en="Absolutely! We are big fans of your furry friends. We love welcoming pets, and we might even have a little treat waiting for them." data-es="¡Por supuesto! Somos grandes fans de vuestros amigos peludos. Nos encanta recibirles, y puede que hasta tengamos algún regalito esperándoles.">Absolutely! We are big fans of your furry friends. We love welcoming pets, and we might even have a little treat waiting for them.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 4 — CAREERS
+    ══════════════════════════════════════ -->
+    <section id="careers">
+      <img class="careers-sketch" src="/sketch2.png" alt="" aria-hidden="true">
+      <div class="inner">
+        <p class="sec-label" data-en="04 — careers" data-es="04 — empleo">04 — careers</p>
+        <h2 class="careers-heading" data-en="Work with us." data-es="Trabaja con nosotros.">Work with us.</h2>
+        <p class="careers-intro" data-en="We're building a team of people who care — about ingredients, about the guest across the bar, about doing it right. If that sounds like you, we'd love to hear from you." data-es="Estamos formando un equipo de personas comprometidas — con los ingredientes, con el cliente al otro lado de la barra, con hacerlo bien. Si eso te suena, nos encantaría saber de ti.">We're building a team of people who care — about ingredients, about the guest across the bar, about doing it right. If that sounds like you, we'd love to hear from you.</p>
+
+        <div class="jobs-list">
+
+          <a href="mailto:hello@nudes.bar" class="job-row">
+            <span class="job-title" data-en="Barista / Bartender" data-es="Barista / Bartender">Barista / Bartender</span>
+            <span class="job-location">Barcelona · Gràcia</span>
+            <span class="job-tag" data-en="Full-time" data-es="Jornada completa">Full-time</span>
+            <span class="job-apply" data-en="Apply →" data-es="Aplicar →">Apply →</span>
+          </a>
+
+          <a href="mailto:hello@nudes.bar" class="job-row">
+            <span class="job-title" data-en="Line Cook" data-es="Cocinero/a">Line Cook</span>
+            <span class="job-location">Madrid · Chamberí</span>
+            <span class="job-tag" data-en="Full-time" data-es="Jornada completa">Full-time</span>
+            <span class="job-apply" data-en="Apply →" data-es="Aplicar →">Apply →</span>
+          </a>
+
+          <a href="mailto:hello@nudes.bar" class="job-row">
+            <span class="job-title" data-en="Pastry Assistant" data-es="Ayudante de Pastelería">Pastry Assistant</span>
+            <span class="job-location">Barcelona · Born</span>
+            <span class="job-tag" data-en="Part-time" data-es="Media jornada">Part-time</span>
+            <span class="job-apply" data-en="Apply →" data-es="Aplicar →">Apply →</span>
+          </a>
+
+          <a href="mailto:hello@nudes.bar" class="job-row">
+            <span class="job-title" data-en="Bar Manager" data-es="Responsable de Sala">Bar Manager</span>
+            <span class="job-location" data-en="Valencia (new opening)" data-es="Valencia (nueva apertura)">Valencia (new opening)</span>
+            <span class="job-tag" data-en="Full-time" data-es="Jornada completa">Full-time</span>
+            <span class="job-apply" data-en="Apply →" data-es="Aplicar →">Apply →</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 5 — CONTACT
+    ══════════════════════════════════════ -->
+    <section id="contact">
+      <div class="contact-left">
+        <div>
+          <p class="sec-label" data-en="05 — contact" data-es="05 — contacto">05 — contact</p>
+          <h2 class="contact-heading" data-en="Get in touch." data-es="Escríbenos.">Get in touch.</h2>
+          <p class="contact-body" data-en="For collaborations, events, or any questions — we'd love to hear from you." data-es="Para colaboraciones, eventos o cualquier consulta — estaremos encantados de escucharte.">For collaborations, events, or any questions — we'd love to hear from you.</p>
+          <a href="mailto:pr@eatnudes.com" class="contact-email-link">pr@eatnudes.com</a>
+        </div>
+        <div class="contact-footer-bar">
+          <span data-en="NUDES™ SL · C/Rec 10, El Born, 08003 Barcelona, Spain" data-es="NUDES™ SL · C/Rec 10, El Born, 08003 Barcelona, España">NUDES™ SL · C/Rec 10, El Born, 08003 Barcelona, Spain</span>
+          <span>CIF B12345678</span>
+        </div>
+      </div>
+      <div class="contact-right">
+        <img src="/backk.png" alt="">
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer role="contentinfo">
+    <div class="ft-top">
+      <div>
+        <ul class="ft-nav">
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="./info.html">Info</a></li>
+          <li><a href="https://instagram.com/eat.nudes" rel="noopener" target="_blank">Instagram</a></li>
+          <li><a href="index.html#community">Join The Club°</a></li>
+        </ul>
+        <div class="ft-meta">info@eatnudes.com<br>© 2025 NUDES</div>
+        <a href="https://instagram.com/eat.nudes" class="ft-ig" rel="noopener" target="_blank" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+      </div>
+      <div>
+        <p class="ft-newsletter-label">Newsletter Signup</p>
+        <form class="ft-form" onsubmit="return false;">
+          <div class="ft-form-row">
+            <input class="ft-input" type="text" placeholder="Your name" autocomplete="off">
+            <input class="ft-input" type="email" placeholder="Your email address" autocomplete="off">
+          </div>
+          <button class="ft-btn" type="submit">Sign Up</button>
+        </form>
+      </div>
+    </div>
+    <div class="ft-wm">
+      <img src="nudes-logo.png" alt="NUDES" class="ft-logo-img">
+    </div>
+    <div class="ft-copy">For People With Really Great Taste</div>
+  </footer>
+
+  <script>
+    // ── FAQ ACCORDION ──
+    document.querySelectorAll('.faq-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = this.closest('.faq-item');
+        var isOpen = item.classList.contains('open');
+        // close all
+        document.querySelectorAll('.faq-item.open').forEach(function(i) {
+          i.classList.remove('open');
+          i.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+        });
+        // open clicked if it was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+
+  <script>
+  /* ── LANGUAGE TOGGLE ── */
+  (function () {
+    function applyLang(lang) {
+      document.querySelectorAll('[data-en]').forEach(function(el) {
+        el.innerHTML = el.dataset[lang] !== undefined ? el.dataset[lang] : el.dataset.en;
+      });
+      localStorage.setItem('nudes-lang', lang);
+      document.querySelectorAll('.lang-opt').forEach(function(btn) {
+        btn.classList.toggle('lang-opt--active', btn.dataset.lang === lang);
+      });
+      document.documentElement.lang = lang;
+    }
+    window.__setLang = applyLang;
+    var saved = localStorage.getItem('nudes-lang') || 'en';
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { applyLang(saved); });
+    } else { applyLang(saved); }
+  })();
+  </script>
+
+</body>
+</html>

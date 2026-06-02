@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nudes Barcelona — bocadillos artesanales, matcha ceremonial y café de especialidad. C/Rec 10 y C/Nueva Dirección.">
+  <meta name="description" content="Nudes Barcelona — artisan sandwiches, ceremonial matcha and specialty coffee. C/Rec 10 and C/Nueva Dirección.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://eatnudes.com">
   <title>NUDES — For People With Really Great Taste | Barcelona</title>
 
   <!-- Open Graph -->
   <meta property="og:title" content="NUDES — For People With Really Great Taste">
-  <meta property="og:description" content="Bocadillos artesanales, matcha ceremonial y café de especialidad en Barcelona.">
+  <meta property="og:description" content="Artisan sandwiches, ceremonial matcha and specialty coffee in Barcelona.">
   <meta property="og:image" content="https://placehold.co/1200x630/F2E49B/1A1410?text=NUDES">
   <meta property="og:url" content="https://eatnudes.com">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="NUDES — For People With Really Great Taste">
-  <meta name="twitter:description" content="Bocadillos artesanales, matcha ceremonial y café de especialidad en Barcelona.">
+  <meta name="twitter:description" content="Artisan sandwiches, ceremonial matcha and specialty coffee in Barcelona.">
   <meta name="twitter:image" content="https://placehold.co/1200x630/F2E49B/1A1410?text=NUDES">
 
   <!-- Preconnect -->
@@ -71,6 +71,14 @@
   </script>
 
   <style>
+    @font-face {
+      font-family: 'Melodrame';
+      src: url('melodrame.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
     /* =============================================
        CSS CUSTOM PROPERTIES
     ============================================= */
@@ -82,6 +90,7 @@
       --color-grey:       #8C8070;
       --color-grey-light: #D4CCBC;
 
+      --font-display:  'Melodrame', serif;
       --font-wordmark: 'Bebas Neue', sans-serif;
       --font-headline: 'Neue Haas Grotesk Display', 'HelveticaNeue', 'Helvetica Neue', sans-serif;
       --font-body:     'Suisse Intl', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -102,7 +111,7 @@
     ============================================= */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
 
     body {
       background: var(--color-cream);
@@ -111,7 +120,7 @@
       font-size: clamp(1rem, 1.2vw, 1.125rem);
       line-height: 1.70;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
 
     img { display: block; max-width: 100%; }
@@ -271,7 +280,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 30%;
+      object-position: center 90%;
       display: block;
       margin: 0;
       padding: 0;
@@ -330,7 +339,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       padding: var(--space-sm) var(--space-sm);
       gap: 10px;
     }
@@ -384,6 +393,30 @@
     .hero-join-link { font-style: italic; color: var(--color-pink) !important; }
     .hero-join-link::after { background: var(--color-pink) !important; }
 
+    /* ── HERO COLLAGE ── */
+    .hero-collage {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr 1.6fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 100%;
+      gap: 0;
+      background: none;
+    }
+    .collage-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Explicit grid placement — no overflow */
+    .collage-img--1 { grid-column: 1; grid-row: 1; }
+    .collage-img--2 { grid-column: 1; grid-row: 2; }
+    .collage-img--3 { grid-column: 2 / 4; grid-row: 1 / 3; }
+    .collage-img--4 { grid-column: 4; grid-row: 1; }
+    .collage-img--5 { grid-column: 4; grid-row: 2; }
+    .collage-img--6 { display: none; }
+    .collage-img--7 { display: none; }
+
     /* =============================================
        MARQUEE STRIPS
     ============================================= */
@@ -413,11 +446,11 @@
     }
 
     .marquee-text-sm {
-      font-family: var(--font-headline);
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: normal;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
       padding-right: 2rem;
     }
 
@@ -500,13 +533,13 @@
     .hl   { font-family: var(--font-headline); }
     .bd   { font-family: var(--font-body); }
 
-    .t-h1-hero    { font-family: var(--font-headline); font-size: clamp(56px, 6vw, 72px);   font-weight: 700; letter-spacing: -0.03em; line-height: 0.95; }
-    .t-h1-section { font-family: var(--font-headline); font-size: clamp(48px, 5vw, 64px);   font-weight: 700; letter-spacing: -0.03em; line-height: 1.00; }
-    .t-h2         { font-family: var(--font-headline); font-size: clamp(32px, 3.5vw, 40px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
-    .t-h3         { font-family: var(--font-headline); font-size: clamp(20px, 2vw, 26px);   font-weight: 500; letter-spacing: -0.015em; line-height: 1.15; }
-    .t-nav        { font-family: var(--font-body);     font-size: 11px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; }
-    .t-body-bold  { font-family: var(--font-headline); font-size: clamp(18px, 2vw, 22px);   font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; }
-    .t-body       { font-family: var(--font-body);     font-size: clamp(15px, 1.2vw, 16px); font-weight: 400; letter-spacing: 0; line-height: 1.70; }
+    .t-h1-hero    { font-family: var(--font-display); font-size: clamp(56px, 6vw, 72px);   font-weight: normal; letter-spacing: 0.01em; line-height: 0.95; }
+    .t-h1-section { font-family: var(--font-display); font-size: clamp(48px, 5vw, 64px);   font-weight: normal; letter-spacing: 0.01em; line-height: 1.00; }
+    .t-h2         { font-family: var(--font-display); font-size: clamp(42px, 5vw, 60px);   font-weight: normal; letter-spacing: 0.01em; line-height: 1.00; }
+    .t-h3         { font-family: var(--font-display); font-size: clamp(28px, 2.8vw, 38px); font-weight: normal; letter-spacing: 0.01em; line-height: 1.10; }
+    .t-nav        { font-family: var(--font-body);    font-size: 11px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; }
+    .t-body-bold  { font-family: var(--font-display); font-size: clamp(18px, 2vw, 22px);   font-weight: normal; letter-spacing: 0.01em; line-height: 1.35; }
+    .t-body       { font-family: var(--font-body);     font-size: clamp(17px, 1.5vw, 20px); font-weight: 400; letter-spacing: 0; line-height: 1.72; }
     .t-caption    { font-family: var(--font-body);     font-size: clamp(10px, 1vw, 11px);   font-weight: 300; letter-spacing: 0.03em; line-height: 1.50; }
 
     .col-grey       { color: var(--color-grey); }
@@ -537,12 +570,219 @@
     }
 
     /* =============================================
+       PROTEIN SCROLL SECTION
+    ============================================= */
+    .protein-section {
+      background: var(--color-primary);
+      position: relative;
+    }
+
+    .protein-head {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      text-align: center;
+      padding: 0 5%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .protein-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6.5vw, 96px);
+      color: #fff;
+      line-height: 0.92;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+
+    .protein-sub {
+      font-family: var(--font-body);
+      font-size: clamp(14px, 1.2vw, 18px);
+      color: #fff;
+      opacity: 0.65;
+      margin-top: 16px;
+    }
+
+    /* Negative margin pulls grid up so it starts behind sticky head */
+    .protein-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw 10vw;
+      padding: 0 14vw 10vw;
+      margin-top: -100vh;
+    }
+
+    .protein-cell { background: #C5C0B5; border-radius: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; overflow: hidden; }
+    .protein-cell:nth-child(1) { aspect-ratio: 16/9; width: 95%; justify-self: start; }
+    .protein-cell:nth-child(2) { aspect-ratio: 4/5;  width: 72%; justify-self: end;  margin-top: 9vw; }
+    .protein-cell:nth-child(3) { aspect-ratio: 3/4;  width: 68%; justify-self: end;  margin-top: 5vw; }
+    .protein-cell:nth-child(4) { aspect-ratio: 4/3;  width: 88%; justify-self: start; margin-top: 11vw; }
+    .protein-cell:nth-child(5) { aspect-ratio: 16/9; width: 82%; justify-self: start; margin-top: 3vw; }
+    .protein-cell:nth-child(6) { aspect-ratio: 2/3;  width: 62%; justify-self: end;  margin-top: 7vw; }
+
+    .protein-editorial {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw 6vw;
+      padding: 0 14vw 10vw;
+    }
+
+    .protein-editorial-cell {
+      background: #BDB8AE;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      overflow: hidden;
+    }
+    .protein-editorial-cell:nth-child(1) { aspect-ratio: 16/9; }  /* supply image at 1600×900 */
+    .protein-editorial-cell:nth-child(2) { aspect-ratio: 4/3; }   /* supply image at 1200×900 */
+
+    /* =============================================
+       DRINKS SCROLL SECTION (mirrors smoothies, pink)
+    ============================================= */
+    .dr-scroll-driver { height: 300vh; position: relative; }
+    .dr-sticky {
+      position: sticky; top: 0; height: 100vh; width: 100%;
+      overflow: hidden; display: grid; grid-template-columns: 1fr 1fr;
+      background: var(--color-cream);
+    }
+    .dr-color-wipe {
+      position: absolute; bottom: 0; left: 0; width: 100%; height: 0%;
+      background: #E8A0B4; z-index: 1; will-change: height;
+    }
+    .dr-left {
+      position: relative; z-index: 2; padding: 52px 44px 52px 52px;
+      display: flex; flex-direction: column; justify-content: space-between; height: 100%;
+    }
+    .dr-img-slot { width: 240px; height: 200px; position: relative; border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+    .dr-img-layer {
+      width: 100%; height: 100%; position: absolute; top: 0; left: 0;
+      transition: opacity 0.45s ease; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px; background: #ede9e2;
+    }
+    .dr-img-layer.img-b { background: #e0d8d0; opacity: 0; }
+    .dr-img-slot.swapped .dr-img-layer.img-a { opacity: 0; }
+    .dr-img-slot.swapped .dr-img-layer.img-b { opacity: 1; }
+    .dr-blueprint-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #999; text-align: center; line-height: 1.5; font-family: var(--font-body); }
+    .dr-title-block { position: relative; }
+    .dr-eyebrow { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-grey); margin-bottom: 8px; transition: color 0.4s ease; font-family: var(--font-body); }
+    .dr-eyebrow.on-wipe { color: rgba(80,20,40,0.55); }
+    .dr-title {
+      font-family: var(--font-display); font-size: 3.2rem; line-height: 0.92;
+      color: var(--color-ink); letter-spacing: -0.01em;
+      transition: font-size 0.35s ease, color 0.3s ease; text-transform: uppercase;
+    }
+    .dr-title.large { font-size: 7.5rem; }
+    .dr-title.on-wipe { color: #3a0d1a; }
+    .dr-body {
+      font-family: var(--font-body); font-size: 0.9rem; line-height: 1.7;
+      color: #555; max-width: 320px; margin-top: 18px;
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+    }
+    .dr-body.visible { max-height: 160px; opacity: 1; }
+    .dr-body.on-wipe { color: rgba(80,20,40,0.65); }
+    .dr-right { position: relative; z-index: 2; height: 100%; overflow: hidden; padding: 40px 48px 40px 24px; display: flex; align-items: center; }
+    .dr-photo-slot { width: 100%; height: 100%; position: relative; border-radius: 6px; overflow: hidden; }
+    .dr-photo-layer {
+      width: 100%; height: 100%; position: absolute; top: 0; left: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.45s ease; background: #ddd8cf;
+    }
+    .dr-photo-layer.photo-b { background: #d0c8be; opacity: 0; }
+    .dr-photo-slot.clear .dr-photo-layer.photo-a { opacity: 0; }
+    .dr-photo-slot.clear .dr-photo-layer.photo-b { opacity: 1; }
+    .dr-blueprint { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; width: 100%; height: 100%; }
+    .dr-icon-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 3; opacity: 1; transition: opacity 0.4s ease; pointer-events: none; }
+    .dr-icon-overlay.hidden { opacity: 0; }
+
+    /* DRINKS images section (mirrors protein, pink bg) */
+    .drinks-section { background: #E8A0B4; position: relative; }
+    .drinks-head {
+      position: sticky; top: 0; z-index: 5; text-align: center;
+      padding: 0 5%; height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; pointer-events: none;
+    }
+    .drinks-title { font-family: var(--font-display); font-size: clamp(40px, 6.5vw, 96px); color: #fff; line-height: 0.92; text-transform: uppercase; letter-spacing: -0.01em; }
+    .drinks-sub { font-family: var(--font-body); font-size: clamp(14px, 1.2vw, 18px); color: #fff; opacity: 0.7; margin-top: 16px; }
+    .drinks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw 10vw; padding: 0 14vw 10vw; margin-top: -100vh; }
+    .drinks-cell { background: #D4849A; border-radius: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; overflow: hidden; }
+    .drinks-cell:nth-child(1) { aspect-ratio: 16/9; width: 95%; justify-self: start; }              /* supply image at 1600×900 */
+    .drinks-cell:nth-child(2) { aspect-ratio: 4/5;  width: 72%; justify-self: end;  margin-top: 9vw; }  /* supply image at 800×1000 */
+    .drinks-cell:nth-child(3) { aspect-ratio: 3/4;  width: 68%; justify-self: end;  margin-top: 5vw; }  /* supply image at 900×1200 */
+    .drinks-cell:nth-child(4) { aspect-ratio: 4/3;  width: 88%; justify-self: start; margin-top: 11vw; } /* supply image at 1200×900 */
+    .drinks-cell:nth-child(5) { aspect-ratio: 16/9; width: 82%; justify-self: start; margin-top: 3vw; }  /* supply image at 1600×900 */
+    .drinks-cell:nth-child(6) { aspect-ratio: 2/3;  width: 62%; justify-self: end;  margin-top: 7vw; }   /* supply image at 800×1200 */
+    .drinks-editorial { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw 6vw; padding: 0 14vw 10vw; }
+    .drinks-editorial-cell { background: #C87A8E; border-radius: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; overflow: hidden; }
+    .drinks-editorial-cell:nth-child(1) { aspect-ratio: 16/9; }  /* supply image at 1600×900 */
+    .drinks-editorial-cell:nth-child(2) { aspect-ratio: 4/3; }   /* supply image at 1200×900 */
+
+    /* =============================================
+       FOOD SCROLL SECTION (pink → #FDFAF2)
+    ============================================= */
+    .fo-scroll-driver { height: 300vh; position: relative; }
+    .fo-sticky {
+      position: sticky; top: 0; height: 100vh; width: 100%;
+      overflow: hidden; display: grid; grid-template-columns: 1fr 1fr;
+      background: #E8A0B4;
+    }
+    .fo-color-wipe { position: absolute; bottom: 0; left: 0; width: 100%; height: 0%; background: #FDFAF2; z-index: 1; will-change: height; }
+    .fo-left { position: relative; z-index: 2; padding: 52px 44px 52px 52px; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+    .fo-img-slot { width: 240px; height: 200px; position: relative; border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+    .fo-img-layer { width: 100%; height: 100%; position: absolute; top: 0; left: 0; transition: opacity 0.45s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: #d4b0bc; }
+    .fo-img-layer.img-b { background: #c8a0ac; opacity: 0; }
+    .fo-img-slot.swapped .fo-img-layer.img-a { opacity: 0; }
+    .fo-img-slot.swapped .fo-img-layer.img-b { opacity: 1; }
+    .fo-blueprint-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-align: center; line-height: 1.5; font-family: var(--font-body); }
+    .fo-title-block { position: relative; }
+    .fo-eyebrow { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 8px; transition: color 0.4s ease; font-family: var(--font-body); }
+    .fo-eyebrow.on-wipe { color: var(--color-grey); }
+    .fo-title { font-family: var(--font-display); font-size: 3.2rem; line-height: 0.92; color: #fff; letter-spacing: -0.01em; transition: font-size 0.35s ease, color 0.3s ease; text-transform: uppercase; }
+    .fo-title.large { font-size: 7.5rem; }
+    .fo-title.on-wipe { color: var(--color-ink); }
+    .fo-body { font-family: var(--font-body); font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.8); max-width: 320px; margin-top: 18px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.5s ease, opacity 0.5s ease; }
+    .fo-body.visible { max-height: 160px; opacity: 1; }
+    .fo-body.on-wipe { color: var(--color-grey); }
+    .fo-right { position: relative; z-index: 2; height: 100%; overflow: hidden; padding: 40px 48px 40px 24px; display: flex; align-items: center; }
+    .fo-photo-slot { width: 100%; height: 100%; position: relative; border-radius: 6px; overflow: hidden; }
+    .fo-photo-layer { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; align-items: center; justify-content: center; transition: opacity 0.45s ease; background: #c898a8; }
+    .fo-photo-layer.photo-b { background: #b88898; opacity: 0; }
+    .fo-photo-slot.clear .fo-photo-layer.photo-a { opacity: 0; }
+    .fo-photo-slot.clear .fo-photo-layer.photo-b { opacity: 1; }
+    .fo-blueprint { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; width: 100%; height: 100%; }
+    .fo-icon-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 3; opacity: 1; transition: opacity 0.4s ease; pointer-events: none; }
+    .fo-icon-overlay.hidden { opacity: 0; }
+
+    /* FOOD images section (#FDFAF2 bg) */
+    .food-section { background: #FDFAF2; position: relative; }
+    .food-head { position: sticky; top: 0; z-index: 5; text-align: center; padding: 0 5%; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; }
+    .food-title { font-family: var(--font-display); font-size: clamp(40px, 6.5vw, 96px); color: var(--color-ink); line-height: 0.92; text-transform: uppercase; letter-spacing: -0.01em; }
+    .food-sub { font-family: var(--font-body); font-size: clamp(14px, 1.2vw, 18px); color: var(--color-grey); margin-top: 16px; }
+    .food-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw 10vw; padding: 0 14vw 10vw; margin-top: -100vh; }
+    .food-cell { background: #D4CCBC; border-radius: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; overflow: hidden; }
+    .food-cell:nth-child(1) { aspect-ratio: 16/9; width: 95%; justify-self: start; }               /* supply image at 1600×900 */
+    .food-cell:nth-child(2) { aspect-ratio: 4/5;  width: 72%; justify-self: end;  margin-top: 9vw; }  /* supply image at 800×1000  */
+    .food-cell:nth-child(3) { aspect-ratio: 3/4;  width: 68%; justify-self: end;  margin-top: 5vw; }  /* supply image at 900×1200  */
+    .food-cell:nth-child(4) { aspect-ratio: 4/3;  width: 88%; justify-self: start; margin-top: 11vw; } /* supply image at 1200×900  */
+    .food-cell:nth-child(5) { aspect-ratio: 16/9; width: 82%; justify-self: start; margin-top: 3vw; }  /* supply image at 1600×900  */
+    .food-cell:nth-child(6) { aspect-ratio: 2/3;  width: 62%; justify-self: end;  margin-top: 7vw; }   /* supply image at 800×1200  */
+
+    /* =============================================
        SECTION 4 — PRODUCTS
     ============================================= */
     .products-mega {
-      font-family: var(--font-wordmark);
+      font-family: var(--font-display);
       font-size: clamp(80px, 13vw, 180px);
-      letter-spacing: -0.02em;
+      letter-spacing: 0.01em;
       line-height: 0.88;
       color: var(--color-ink);
     }
@@ -598,36 +838,179 @@
     /* =============================================
        SECTION 7 — LOCATIONS
     ============================================= */
-    .location-grid {
+    /* ── LOCATION PANELS ── */
+    .loc-panel-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-lg);
+      grid-template-columns: repeat(4, 1fr);
+      height: 90vh;
     }
 
-    .location-card {
-      background: var(--color-cream);
-      border: 0.5px solid var(--color-ink);
-      border-radius: 2px;
-      padding: var(--space-xl) var(--space-lg);
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                  box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    .loc-panel {
+      position: relative;
+      overflow: hidden;
     }
 
-    .location-card:hover {
-      transform: translateY(-4px);
-      box-shadow:
-        0 2px 4px rgba(26,20,16,0.06),
-        0 8px 24px rgba(26,20,16,0.10),
-        0 24px 48px rgba(242,228,155,0.14);
+    .loc-panel-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
+
+    .loc-panel:hover .loc-panel-img {
+      transform: scale(1.04);
+    }
+
+    .loc-panel-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,20,16,0.80) 0%, rgba(26,20,16,0.10) 55%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .loc-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      transform: translateY(40px);
+      opacity: 0;
+      transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.75s ease;
+    }
+
+    .loc-panel:hover .loc-info {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .loc-number {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-grey-light);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .loc-name {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 2.8vw, 44px);
+      color: var(--color-cream);
+      line-height: 1.0;
+      margin-bottom: 0.75rem;
+      font-weight: normal;
+    }
+
+    .loc-address {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--color-grey-light);
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .loc-status {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+    }
+
+    @media (max-width: 900px) {
+      .loc-panel-grid { grid-template-columns: 1fr 1fr; height: auto; }
+      .loc-panel { height: 60vh; }
+    }
+    @media (max-width: 540px) {
+      .loc-panel-grid { grid-template-columns: 1fr; }
+      .loc-panel { height: 70vh; }
+    }
+
+    /* ── STORE PHOTO CARDS ── */
+    #locations { padding: 80px 40px; }
+    .stores-carousel { overflow: hidden; position: relative; }
+    .stores-track { display: flex; will-change: transform; }
+    .stores-dots {
+      display: flex; justify-content: center; align-items: center;
+      gap: 8px; margin-top: 24px;
+    }
+    .stores-dot {
+      background: rgba(28,28,26,0.25); border: none; border-radius: 3px;
+      width: 6px; height: 6px; cursor: pointer; padding: 0; flex-shrink: 0;
+      transition: width 300ms ease, background 300ms ease;
+    }
+    .stores-dot--active { background: #1C1C1A; width: 24px; }
+    .store-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      border-radius: 8px;
+      display: block;
+      text-decoration: none;
+    }
+    .store-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .store-card:hover img { transform: scale(1.06); }
+    .store-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,28,26,0.75) 0%, rgba(28,28,26,0.1) 50%, transparent 100%);
+      pointer-events: none;
+      transition: background 400ms ease;
+    }
+    .store-card:hover .store-overlay {
+      background: linear-gradient(to top, rgba(28,28,26,0.85) 0%, rgba(28,28,26,0.1) 50%, transparent 100%);
+    }
+    .store-body {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 24px;
+      z-index: 2;
+    }
+    .store-tag {
+      font-family: var(--font-body); font-size: 10px;
+      text-transform: uppercase; letter-spacing: 0.2em;
+      color: rgba(253,250,242,0.7); margin-bottom: 6px;
+    }
+    .store-name {
+      font-family: var(--font-display); font-size: 32px;
+      color: #FDFAF2; line-height: 1; font-weight: 400;
+    }
+    .store-addr {
+      font-family: var(--font-body); font-size: 12px;
+      color: rgba(253,250,242,0.75); margin-top: 6px; line-height: 1.45;
+    }
+    .store-dir {
+      display: block; font-family: var(--font-body); font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: #F5E6A3; margin-top: 10px;
+      opacity: 0.7;
+      transition: opacity 400ms ease, transform 400ms ease;
+    }
+    .store-card:hover .store-dir { opacity: 1; transform: translateY(-4px); }
+    @media (max-width: 540px) { #locations { padding: 60px 20px; } }
 
     /* =============================================
        SECTION 8 — COMMUNITY
     ============================================= */
     .community-layout {
       display: grid;
-      grid-template-columns: 60% 40%;
-      min-height: 640px;
+      grid-template-columns: 1fr 40%;
+      height: 100vh;
+      max-height: 100vh;
+      overflow: visible;
+      background: #FDFAF2;
     }
 
     .community-panel {
@@ -761,56 +1144,148 @@
     /* =============================================
        FOOTER
     ============================================= */
-    .footer-mega-wrap {
-      background: var(--color-ink);
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding: var(--space-2xl) var(--space-xl) var(--space-md);
-      overflow: hidden;
+    /* ── FOOTER ── */
+    footer {
+      background: var(--color-cream);
     }
 
-    .footer-mega-word {
-      font-family: var(--font-wordmark);
-      font-size: clamp(80px, 15vw, 200px);
-      color: var(--color-primary);
-      line-height: 0.88;
-      letter-spacing: -0.02em;
-    }
-
-    .footer-bar {
-      background: var(--color-ink);
-      border-top: 0.5px solid rgba(140, 128, 112, 0.25);
-      padding: var(--space-lg) var(--space-xl);
-    }
-
-    .footer-cols {
+    .ft-top {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: var(--space-md);
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4rem);
+      border-bottom: 0.5px solid var(--color-grey-light);
     }
 
-    .footer-col {
+    .ft-nav {
+      list-style: none;
+      padding: 0; margin: 0 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .ft-nav a {
+      font-family: var(--font-body);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .ft-nav a:hover { opacity: 0.45; }
+
+    .ft-meta {
       font-family: var(--font-body);
       font-size: 11px;
-      font-weight: 300;
-      letter-spacing: 0.03em;
-      line-height: 1.80;
+      letter-spacing: 0.04em;
       color: var(--color-grey);
-      text-transform: uppercase;
+      line-height: 1.9;
     }
 
-    .footer-copy {
-      border-top: 0.5px solid rgba(140, 128, 112, 0.15);
-      margin-top: var(--space-md);
-      padding-top: var(--space-sm);
+    .ft-ig {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border: 1px solid var(--color-ink);
+      border-radius: 50%;
+      margin-top: 1rem;
+      color: var(--color-ink);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .ft-ig:hover { background: var(--color-ink); color: var(--color-cream); }
+
+    .ft-newsletter-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+      margin-bottom: 1rem;
+    }
+
+    .ft-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .ft-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .ft-input {
+      background: transparent;
+      border: 0.5px solid var(--color-ink);
+      padding: 0.85rem 1rem;
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--color-ink);
+      outline: none;
+      transition: background 0.2s;
+    }
+
+    .ft-input::placeholder { color: var(--color-grey); }
+    .ft-input:focus { background: rgba(26,20,16,0.04); }
+
+    .ft-input:first-child { border-right: none; }
+
+    .ft-btn {
+      background: var(--color-ink);
+      color: var(--color-cream);
+      border: none;
+      padding: 0.85rem 1rem;
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+    }
+
+    .ft-btn:hover { background: var(--color-grey); }
+
+    /* Big wordmark */
+    .ft-wm {
+      background: var(--color-cream);
+      border-top: 0.5px solid var(--color-grey-light);
+      padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 5vw, 4rem);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+
+    .ft-logo-img {
+      width: clamp(300px, 40vw, 580px);
+      height: auto;
+      display: block;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.7s ease;
+    }
+
+    .ft-logo-img.ft-in {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .ft-copy {
       font-family: var(--font-body);
       font-size: 10px;
-      font-weight: 300;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--color-grey);
-      text-align: center;
+      padding: 1rem clamp(1rem, 3vw, 2.5rem);
+      text-align: right;
     }
 
     /* =============================================
@@ -873,6 +1348,142 @@
     /* =============================================
        PREFERS-REDUCED-MOTION
     ============================================= */
+    /* =============================================
+       SMOOTHIES SCROLL SECTION
+    ============================================= */
+    .sm-scroll-driver { height: 300vh; position: relative; }
+
+    .sm-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--color-cream);
+    }
+
+    .sm-color-wipe {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      height: 0%;
+      background: var(--color-primary);
+      z-index: 1;
+      will-change: height;
+    }
+
+    .sm-left {
+      position: relative;
+      z-index: 2;
+      padding: 52px 44px 52px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .sm-img-slot {
+      width: 240px;
+      height: 200px;
+      position: relative;
+      border-radius: 3px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .sm-img-layer {
+      width: 100%; height: 100%;
+      position: absolute; top: 0; left: 0;
+      transition: opacity 0.45s ease;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px;
+      background: #ede9e2;
+    }
+
+    .sm-img-layer.img-b { background: #e6e0d5; opacity: 0; }
+    .sm-img-slot.swapped .sm-img-layer.img-a { opacity: 0; }
+    .sm-img-slot.swapped .sm-img-layer.img-b { opacity: 1; }
+
+    .sm-blueprint-label {
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #999; text-align: center; line-height: 1.5;
+      font-family: var(--font-body);
+    }
+
+    .sm-title-block { position: relative; }
+
+    .sm-eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--color-grey); margin-bottom: 8px;
+      transition: color 0.4s ease;
+      font-family: var(--font-body);
+    }
+    .sm-eyebrow.on-wipe { color: rgba(42,40,0,0.55); }
+
+    .sm-title {
+      font-family: var(--font-display);
+      font-size: 3.2rem;
+      line-height: 0.92;
+      color: var(--color-ink);
+      letter-spacing: -0.01em;
+      transition: font-size 0.35s ease, color 0.3s ease;
+      text-transform: uppercase;
+    }
+    .sm-title.large { font-size: 7.5rem; }
+    .sm-title.on-wipe { color: #2a2800; }
+
+    .sm-body {
+      font-family: var(--font-body);
+      font-size: 0.9rem; line-height: 1.7;
+      color: #555; max-width: 320px;
+      margin-top: 18px;
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+    }
+    .sm-body.visible { max-height: 160px; opacity: 1; }
+    .sm-body.on-wipe { color: rgba(42,40,0,0.65); }
+
+    .sm-right {
+      position: relative; z-index: 2;
+      height: 100%; overflow: hidden;
+      padding: 40px 48px 40px 24px;
+      display: flex; align-items: center;
+    }
+
+    .sm-photo-slot {
+      width: 100%; height: 100%; position: relative;
+      border-radius: 6px; overflow: hidden;
+    }
+
+    .sm-photo-layer {
+      width: 100%; height: 100%;
+      position: absolute; top: 0; left: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.45s ease;
+      background: #ddd8cf;
+    }
+    .sm-photo-layer.photo-b { background: #d5d0c8; opacity: 0; }
+    .sm-photo-slot.clear .sm-photo-layer.photo-a { opacity: 0; }
+    .sm-photo-slot.clear .sm-photo-layer.photo-b { opacity: 1; }
+
+    .sm-blueprint {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px; width: 100%; height: 100%;
+    }
+
+    .sm-icon-overlay {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3; opacity: 1;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .sm-icon-overlay.hidden { opacity: 0; }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -918,8 +1529,8 @@
        SCROLL-MORPHING NAV (Parts 1–3)
     ============================================= */
 
-    /* Hide static hero-bar — nav visually replaces it */
-    #hero .hero-bar { visibility: hidden; }
+    /* Nav visually replaces hero-bar — remove from layout entirely */
+    #hero .hero-bar { display: none; }
 
     /* Nav: JS drives position/height, no CSS transition */
     #nav {
@@ -971,7 +1582,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       padding: 0 clamp(12px, 2vw, 28px);
     }
 
@@ -1046,10 +1657,10 @@
     }
 
     .hero-tz-frag {
-      font-family: var(--font-wordmark);
+      font-family: var(--font-display);
       font-size: clamp(80px, 10vw, 120px);
-      font-weight: 400;
-      letter-spacing: -0.02em;
+      font-weight: normal;
+      letter-spacing: 0.01em;
       line-height: 0.9;
       color: var(--color-ink);
       padding: 0 clamp(20px, 4vw, 60px);
@@ -1057,10 +1668,10 @@
     }
 
     .hero-tz-tagline {
-      font-family: var(--font-headline);
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: normal;
+      letter-spacing: 0.01em;
       color: var(--color-ink);
       text-align: center;
       padding: 0 var(--space-md);
@@ -1126,6 +1737,406 @@
     }
 
   </style>
+
+  <style>
+    /* ── NEW NAVBAR ── */
+    #nav {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 100 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      padding: 14px clamp(24px, 4vw, 60px) 16px !important;
+      background: transparent !important;
+      height: auto !important;
+      transform: none !important;
+      border-top: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      overflow: visible !important;
+      transition: background 350ms ease, backdrop-filter 350ms ease !important;
+    }
+    #nav.nav-scrolled {
+      background: rgba(28,28,26,0.88) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+    }
+    .nav-address {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(253,250,242,0.55);
+      margin-bottom: 9px;
+      text-align: center;
+    }
+    .nav-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .nav-wordmark {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.2vw, 30px);
+      color: var(--color-cream);
+      text-decoration: none;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 2.2vw, 36px);
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(253,250,242,0.88);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 1px;
+      background: rgba(253,250,242,0.88);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a:focus-visible { outline: 2px solid rgba(253,250,242,0.88); outline-offset: 4px; border-radius: 1px; }
+    .nav-join-club { color: #E8A0B4 !important; }
+    .nav-join-club::after { background: #E8A0B4 !important; }
+    @media (max-width: 768px) {
+      .nav-address { display: none; }
+      .nav-links { display: none; }
+      #nav { align-items: flex-start !important; padding: 18px clamp(18px, 5vw, 32px) !important; }
+    }
+
+    /* ── NEW VIDEO HERO ── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      background: #1C1C1A;
+      overflow: hidden;
+      display: block !important;
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(28,28,26,0.35);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      text-align: left;
+      padding: 0 0 60px 60px;
+    }
+    @media (max-width: 768px) {
+      .hero-content { padding: 0 0 40px 28px; }
+    }
+    .hero-display-wm {
+      font-family: var(--font-display);
+      font-size: clamp(72px, 11vw, 156px);
+      color: var(--color-cream);
+      line-height: 0.92;
+      letter-spacing: 0.01em;
+      font-weight: normal;
+    }
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: clamp(10px, 0.9vw, 12px);
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: rgba(253,250,242,0.55);
+      margin-top: 28px;
+    }
+    .hero-scroll-cue {
+      position: absolute;
+      bottom: clamp(28px, 4vh, 48px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(253,250,242,0.4);
+    }
+
+    /* ── PRODUCT CATEGORY GRID ── */
+    #category-grid, #about.category-section {
+      background: var(--color-cream);
+      padding: 0 5vw 15vh;
+    }
+    .category-grid-header {
+      padding: 60px 0 40px 0;
+    }
+    .category-grid-label {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 3.5vw, 52px);
+      color: #1C1C1A;
+      letter-spacing: 0.01em;
+      line-height: 0.95;
+      font-weight: normal;
+    }
+    .category-grid-wrap {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+    @media (max-width: 900px) {
+      .category-grid-wrap { grid-template-columns: repeat(2, 1fr); }
+    }
+    .category-card {
+      position: relative;
+      height: 460px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+      cursor: pointer;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+    }
+    .category-card-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: 0;
+      transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .category-card:hover .category-card-photo { transform: scale(1.03); }
+    .category-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(28,28,26,0.28) 0%, rgba(28,28,26,0.68) 100%);
+      transition: opacity 400ms cubic-bezier(0.2, 0.7, 0.2, 1);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .category-card:hover .category-card-overlay { opacity: 0.04; }
+    .category-card-descriptor {
+      position: relative;
+      z-index: 2;
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(253,250,242,0.7);
+    }
+    .category-card-bottom {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .category-card-name {
+      position: static;
+      padding: 0;
+      font-family: var(--font-display);
+      font-size: clamp(36px, 3.5vw, 64px);
+      color: #FDFAF2;
+      line-height: 0.92;
+      letter-spacing: 0.01em;
+      font-weight: normal;
+      transition: none;
+    }
+    .category-card-shop {
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(253,250,242,0.55);
+      text-decoration: none;
+      flex-shrink: 0;
+      padding-left: 16px;
+      align-self: flex-end;
+      padding-bottom: 4px;
+    }
+
+    /* ── COMMUNITY CARD STACK ── */
+    .community-stack-panel {
+      background: #FDFAF2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 560px;
+      min-height: 620px;
+      padding: 60px 48px 60px 80px;
+      overflow: visible;
+    }
+    #card-stack {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 640px;
+      overflow: visible;
+    }
+    .stack-card {
+      position: absolute;
+      width: 480px;
+      aspect-ratio: 3 / 4;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(28,28,26,0.14);
+      transition: transform 400ms cubic-bezier(0.2,0.7,0.2,1), opacity 400ms ease;
+    }
+    .stack-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .stack-card.pos-top  { transform: rotate(-1.5deg); z-index: 3; opacity: 1; }
+    .stack-card.pos-bl   { transform: translateX(-35px) translateY(12px) rotate(-4deg) scale(0.97); z-index: 2; opacity: 1; }
+    .stack-card.pos-br   { transform: translateX(25px) translateY(20px) rotate(2deg) scale(0.94); z-index: 1; opacity: 1; }
+    .stack-card.pos-exit { transform: translateX(-140%) rotate(-10deg); opacity: 0; z-index: 4; pointer-events: none; }
+    .community-right-col .comm-tag {
+      display: inline-block;
+      background: #E8A0B4;
+      color: #1C1C1A;
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+    .community-right-col .comm-headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3vw, 44px);
+      color: #1C1C1A;
+      font-weight: normal;
+      line-height: 1.05;
+      margin-top: 16px;
+      margin-bottom: 0;
+    }
+    .community-right-col .comm-body {
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 16px;
+      color: #8C8070;
+      line-height: 1.65;
+      margin-top: 12px;
+    }
+    .community-right-col .comm-cta {
+      display: inline-block;
+      background: #1C1C1A;
+      color: #FDFAF2;
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 0;
+      text-decoration: none;
+      margin-top: 28px;
+      transition: background 200ms, color 200ms;
+    }
+    .community-right-col .comm-cta:hover { background: #E8A0B4; color: #1C1C1A; }
+    .community-right-col .comm-handle {
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 13px;
+      color: #8C8070;
+      display: block;
+      margin-top: 10px;
+    }
+    .community-right-col .comm-divider {
+      border: none;
+      border-top: 1px solid rgba(28,28,26,0.10);
+      margin-top: 36px;
+      margin-bottom: 0;
+    }
+    .comm-event-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(28,28,26,0.08);
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 14px;
+      color: #1C1C1A;
+    }
+    .comm-event-date { color: #8C8070; font-size: 13px; flex-shrink: 0; margin-left: 16px; }
+    @media (max-width: 860px) {
+      .community-layout { grid-template-columns: 1fr; height: auto; }
+      .community-stack-panel { min-width: unset; padding: 60px 5vw; }
+      #card-stack { height: 460px; }
+      .stack-card { width: 300px; }
+    }
+
+    /* ── JOIN THE CLUB ── */
+    .jtc-btn {
+      background: #FDFAF2;
+      color: #1C1C1A;
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 250ms ease, color 250ms ease, border-color 250ms ease;
+    }
+    .jtc-btn:hover {
+      background: #1C1C1A;
+      color: #FDFAF2;
+      border-color: #FDFAF2;
+    }
+    .jtc-input::placeholder { color: rgba(253,250,242,0.45); }
+    .jtc-input:focus { outline: none; background: rgba(255,255,255,0.18) !important; }
+
+    /* ── GLOBAL BREATHING ROOM ── */
+    .pad-xl, .pad-lg, .pad-md {
+      padding-left:  clamp(40px, 5vw, 100px) !important;
+      padding-right: clamp(40px, 5vw, 100px) !important;
+    }
+    .pad-h {
+      padding-left:  clamp(40px, 5vw, 100px) !important;
+      padding-right: clamp(40px, 5vw, 100px) !important;
+    }
+    section[aria-labelledby="process-label"] { padding-top: 60px; }
+
+    /* ── LANGUAGE TOGGLE ── */
+    .lang-toggle-wrap { display: flex; align-items: center; gap: 4px; list-style: none; padding-left: 16px; border-left: 1px solid rgba(28,28,26,0.12); }
+    .lang-opt { background: none; border: none; cursor: pointer; padding: 2px 0; font-family: var(--font-body, 'DM Sans', sans-serif); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #8C8070; transition: color 0.2s; }
+    .lang-opt--active { color: #1C1C1A; font-weight: 600; }
+    .lang-sep { color: #8C8070; font-size: 11px; }
+  </style>
 </head>
 
 <body class="is-loading">
@@ -1148,45 +2159,27 @@
   <div class="grain" aria-hidden="true"></div>
 
   <!-- Skip to content -->
-  <a href="#main" class="skip-link">Ir al contenido principal</a>
+  <a href="#main" class="skip-link">Skip to main content</a>
 
   <!-- ══════════════════════════════════════════════
        SECTION 0 — NAV
   ══════════════════════════════════════════════ -->
-  <nav id="nav" role="navigation" aria-label="Navegación principal">
-
-    <!-- LEFT: N glyph (large at bottom) → NUDES logo (compact at top) -->
-    <div class="nav-col-left">
-      <div class="nav-n-wrap" aria-hidden="true">
-        <img src="n.png" class="nav-wordmark-left" alt="">
-      </div>
-      <a href="/" class="nav-logo" aria-label="NUDES — inicio">NUDES</a>
-    </div>
-
-    <!-- CENTER: location meta (bottom) + nav links -->
-    <div class="nav-col-center">
-      <p class="nav-bar-meta-scroll">C/Rec 10 · El Born &nbsp;·&nbsp; C/Nueva Dirección &nbsp;·&nbsp; Barcelona</p>
-      <ul class="nav-center" role="list">
-        <li><a href="#products">Products</a></li>
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-main">
+      <a href="/" class="nav-wordmark" aria-label="NUDES — home"><img src="/LOGO.png" alt="NUDES" style="height:36px;width:auto;display:block;border:none;background:none;"></a>
+      <ul class="nav-links" role="list">
+        <li><a href="products.html" data-en="Products" data-es="Productos">Products</a></li>
+        <li><a href="about.html" data-en="About Us" data-es="Sobre nosotros">About Us</a></li>
+        <li><a href="./info.html" data-en="Info" data-es="Info">Info</a></li>
         <li><a href="https://instagram.com/eat.nudes" rel="noopener noreferrer" target="_blank">Instagram</a></li>
-        <li><a href="#">Shop</a></li>
-        <li><a href="#">Glovo / Uber</a></li>
-        <li><a href="#community" class="nav-join">Join The Club°</a></li>
-        <li><a href="#about">About Us</a></li>
+        <li><a href="#community" class="nav-join-club" data-en="Join The Club*" data-es="Únete al Club*">Join The Club*</a></li>
+        <li class="lang-toggle-wrap">
+          <button class="lang-opt lang-opt--active" data-lang="en" onclick="__setLang('en')">EN</button>
+          <span class="lang-sep">/</span>
+          <button class="lang-opt" data-lang="es" onclick="__setLang('es')">ES</button>
+        </li>
       </ul>
     </div>
-
-    <!-- RIGHT: location text (compact at top) + U glyph (large at bottom) -->
-    <div class="nav-col-right">
-      <div class="nav-right" aria-label="Ubicaciones">
-        <span>C/Rec 10</span>
-        <span>C/Nueva Dirección</span>
-      </div>
-      <div class="nav-u-wrap" aria-hidden="true">
-        <img src="u.png" class="nav-wordmark-right" alt="">
-      </div>
-    </div>
-
   </nav>
 
   <!-- ══════════════════════════════════════════════
@@ -1197,269 +2190,140 @@
     <!-- ══════════════════════════════════════════════
          SECTION 1 — HERO
     ══════════════════════════════════════════════ -->
-    <section id="hero">
-
-      <!-- ── IMAGE AREA (top ~73%) ── -->
-      <div class="hero-image-area">
-
-        <!-- Full-bleed hero image (with side padding via container) -->
-        <img
-          src="hero-img.png"
-          alt="Persona disfrutando de un café Nudes en la playa — bocadillos artesanales y matcha ceremonial en Barcelona"
-          class="hero-bg-img"
-          fetchpriority="high"
-          id="hero-bg"
-        >
-
+    <section id="hero" aria-label="NUDES hero">
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+        <source src="./assets/hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-overlay" aria-hidden="true"></div>
+      <div class="hero-content">
+        <h1 class="hero-display-wm">Eat Better.<br>Feel Everything.</h1>
       </div>
-
-      <!-- ── BOTTOM BAR: [n.png] [nav + meta] [u.png] ── -->
-      <div class="hero-bar">
-
-        <!-- N glyph — bottom-left, clips up from below -->
-        <div class="hero-n-wrap" aria-hidden="true">
-          <img src="n.png" class="hero-n-img" alt="">
-        </div>
-
-        <!-- Center: meta + nav -->
-        <div class="hero-bar-content">
-          <p class="hero-bar-meta" id="hero-bar-meta">
-            C/Rec 10 · El Born &nbsp;·&nbsp; C/Nueva Dirección &nbsp;·&nbsp; Barcelona
-          </p>
-          <nav class="hero-bar-nav" aria-label="Navegación principal" id="hero-bar-nav">
-            <ul role="list">
-              <li><a href="#products">Products</a></li>
-              <li><a href="https://instagram.com/eat.nudes" rel="noopener noreferrer" target="_blank">Instagram</a></li>
-              <li><a href="#">Shop</a></li>
-              <li><a href="#">Glovo / Uber</a></li>
-              <li><a href="#community" class="hero-join-link">Join The Club°</a></li>
-              <li><a href="#about">About Us</a></li>
-            </ul>
-          </nav>
-        </div>
-
-        <!-- U glyph — bottom-right, clips up from below -->
-        <div class="hero-u-wrap" aria-hidden="true">
-          <img src="u.png" class="hero-u-img" alt="">
-        </div>
-
-      </div>
+      <p class="hero-scroll-cue" aria-hidden="true">Scroll</p>
     </section>
-
-    <!-- ══════════════════════════════════════════════
-         TRANSITION ZONE — Hero → Content (und-ny style)
-    ══════════════════════════════════════════════ -->
-    <div class="hero-transition-zone" aria-hidden="true">
-      <span class="hero-tz-frag hero-tz-left">NU</span>
-      <p class="hero-tz-tagline">For People With Really Great Taste</p>
-      <span class="hero-tz-frag hero-tz-right">ES</span>
-    </div>
 
     <!-- ══════════════════════════════════════════════
          SECTION 2 — TAGLINE MARQUEE
     ══════════════════════════════════════════════ -->
     <section
       aria-label="Tagline Nudes"
-      style="background: var(--color-ink); height: 60px; display: flex; align-items: center;"
+      style="background: #E8A0B4; height: 64px; display: flex; align-items: center; overflow: hidden;"
     >
       <div class="marquee-strip" style="width: 100%;" aria-hidden="true">
         <div class="marquee-inner">
-          <!-- 8 copies — first 4 = visible run, last 4 = seamless duplicate -->
-          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
-          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
-          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
-          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
-          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
-          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
-          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
-          <span class="marquee-text" style="color: var(--color-primary);">FOR PEOPLE WITH REALLY GREAT TASTE ·&nbsp;</span>
+          <span class="marquee-text" style="font-family:'Melodrame',serif;color:#fff;font-weight:normal;letter-spacing:0.04em;">For People With Really Great Taste &nbsp;·&nbsp;&nbsp;</span>
+          <span class="marquee-text" style="font-family:'Melodrame',serif;color:#fff;font-weight:normal;letter-spacing:0.04em;">For People With Really Great Taste &nbsp;·&nbsp;&nbsp;</span>
+          <span class="marquee-text" style="font-family:'Melodrame',serif;color:#fff;font-weight:normal;letter-spacing:0.04em;">For People With Really Great Taste &nbsp;·&nbsp;&nbsp;</span>
+          <span class="marquee-text" style="font-family:'Melodrame',serif;color:#fff;font-weight:normal;letter-spacing:0.04em;">For People With Really Great Taste &nbsp;·&nbsp;&nbsp;</span>
+          <span class="marquee-text" style="font-family:'Melodrame',serif;color:#fff;font-weight:normal;letter-spacing:0.04em;">For People With Really Great Taste &nbsp;·&nbsp;&nbsp;</span>
+          <span class="marquee-text" style="font-family:'Melodrame',serif;color:#fff;font-weight:normal;letter-spacing:0.04em;">For People With Really Great Taste &nbsp;·&nbsp;&nbsp;</span>
+          <span class="marquee-text" style="font-family:'Melodrame',serif;color:#fff;font-weight:normal;letter-spacing:0.04em;">For People With Really Great Taste &nbsp;·&nbsp;&nbsp;</span>
+          <span class="marquee-text" style="font-family:'Melodrame',serif;color:#fff;font-weight:normal;letter-spacing:0.04em;">For People With Really Great Taste &nbsp;·&nbsp;&nbsp;</span>
         </div>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════
-         SECTION 3 — BRAND INTRO
+         SECTION 3 — PRODUCT CATEGORY GRID
     ══════════════════════════════════════════════ -->
-    <section id="about" aria-labelledby="who-label">
-
-      <!-- Wide panoramic image -->
-      <div class="parallax-wrap" style="height: clamp(220px, 30vw, 500px);">
-        <img
-          src="https://placehold.co/1600x500/8C8070/FDFAF2?text=NUDES"
-          alt="Vista panorámica del espacio Nudes — ambiente cálido y contemporáneo en Barcelona"
-          class="parallax-img"
-          loading="lazy"
-          style="width: 100%; height: 120%; object-fit: cover;"
-        >
+    <section id="category-grid" aria-labelledby="category-label">
+      <div style="max-width:1200px;margin:0 auto;">
+      <div class="category-grid-header">
+        <p class="category-grid-label" id="category-label">What We Make</p>
       </div>
+      <div class="category-grid-wrap">
 
-      <!-- Two-column intro -->
-      <div class="pad-xl intro-grid">
-        <div>
-          <p
-            id="who-label"
-            class="t-caption col-grey uc ls-wide reveal"
-            style="margin-bottom: var(--space-sm);"
-          >Who We Are</p>
-
-          <p class="t-body-bold reveal" style="--i:1;">
-            Nudes es un espacio para personas con buen gusto.
-            Nació en Barcelona con bocadillos artesanales
-            y hoy ofrece mucho más.
-          </p>
-        </div>
-
-        <div class="reveal" style="--i:2; padding-top: 1.5rem;">
-          <p class="t-body col-grey">
-            Desde nuestros locales en C/Rec 10 y C/Nueva Dirección,
-            servimos desayunos, almuerzos y cafés de especialidad
-            elaborados con ingredientes seleccionados. Matcha ceremonial,
-            pan de masa madre, combinaciones inesperadas — todo pensado
-            para los que aprecian los detalles.
-          </p>
-        </div>
-      </div>
-
-      <!-- Portrait image -->
-      <div class="pad-h img-hover reveal" style="padding-bottom: var(--space-3xl);">
-        <img
-          src="https://placehold.co/1400x700/D4CCBC/1A1410?text="
-          alt="Detalle de los bocadillos artesanales Nudes, elaborados con ingredientes frescos seleccionados"
-          loading="lazy"
-          style="width: 100%; object-fit: cover;"
-        >
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════════════
-         SECTION 4 — PRODUCTS
-    ══════════════════════════════════════════════ -->
-    <section id="products" aria-labelledby="products-label">
-
-      <div class="pad-h" style="padding-top: var(--space-2xl);">
-        <!-- Mega title -->
-        <div class="title-clip" aria-labelledby="products-label">
-          <span class="products-mega" id="products-label" role="heading" aria-level="2">PRODUCTS</span>
-        </div>
-
-        <!-- Sub-header row -->
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: var(--space-md); margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md);">
-          <h2 class="t-h2 reveal" style="max-width: 380px;" aria-level="3">Lo mejor de nuestra carta</h2>
-          <p class="t-body col-grey reveal" style="--i:1; max-width: 320px;">
-            Bocadillos, bebidas y desayunos elaborados con ingredientes de primera selección.
-          </p>
-        </div>
-      </div>
-
-      <!-- Product card grid -->
-      <div class="pad-h product-grid" style="padding-bottom: var(--space-3xl);">
-
-        <article class="product-card reveal" style="--i:0;">
-          <div class="product-card__img">
-            <img
-              src="https://placehold.co/600x600/D4CCBC/1A1410?text=01"
-              alt="Chicken Club — bocadillo artesanal de pollo con ingredientes frescos y salsas propias"
-              loading="lazy"
-            >
+        <a class="category-card" href="products.html#smoothies">
+          <img src="nh/smoothiescat.png" class="category-card-photo" alt="Smoothies">
+          <div class="category-card-overlay" aria-hidden="true"></div>
+          <span class="category-card-descriptor">Six Recipes · Daily</span>
+          <div class="category-card-bottom">
+            <span class="category-card-name">Smoothies</span>
+            <span class="category-card-shop">Shop →</span>
           </div>
-          <h3 class="t-h3" style="margin-top: var(--space-xs);">Chicken Club</h3>
-          <p class="t-caption col-grey uc" style="letter-spacing: 0.08em;">Bocadillos</p>
-        </article>
+        </a>
 
-        <article class="product-card reveal" style="--i:1;">
-          <div class="product-card__img">
-            <img
-              src="https://placehold.co/600x600/C8D4B4/1A1410?text=02"
-              alt="Ceremonial Matcha — matcha japonés de grado ceremonial batido en taza"
-              loading="lazy"
-            >
+        <a class="category-card" href="products.html#protein-shakes">
+          <img src="nh/use-protein.png" class="category-card-photo" alt="Protein Shakes">
+          <div class="category-card-overlay" aria-hidden="true"></div>
+          <span class="category-card-descriptor">Whey · Plant · Boost</span>
+          <div class="category-card-bottom">
+            <span class="category-card-name">Protein Shakes</span>
+            <span class="category-card-shop">Shop →</span>
           </div>
-          <h3 class="t-h3" style="margin-top: var(--space-xs);">Ceremonial Matcha</h3>
-          <p class="t-caption col-grey uc" style="letter-spacing: 0.08em;">Bebidas Calientes</p>
-        </article>
+        </a>
 
-        <article class="product-card reveal" style="--i:2;">
-          <div class="product-card__img">
-            <img
-              src="https://placehold.co/600x600/E8D4B4/1A1410?text=03"
-              alt="Tostada con Aguacate — pan de masa madre con aguacate fresco y semillas variadas"
-              loading="lazy"
-            >
+        <a class="category-card" href="products.html#acai">
+          <img src="nh/use-acai.png" class="category-card-photo" alt="Açaí">
+          <div class="category-card-overlay" aria-hidden="true"></div>
+          <span class="category-card-descriptor">Bowls · Toppings · Honey</span>
+          <div class="category-card-bottom">
+            <span class="category-card-name">Açaí</span>
+            <span class="category-card-shop">Shop →</span>
           </div>
-          <h3 class="t-h3" style="margin-top: var(--space-xs);">Tostada con Aguacate</h3>
-          <p class="t-caption col-grey uc" style="letter-spacing: 0.08em;">Desayunos</p>
-        </article>
+        </a>
 
-        <article class="product-card reveal" style="--i:3;">
-          <div class="product-card__img">
-            <img
-              src="https://placehold.co/600x600/B4C8D4/1A1410?text=04"
-              alt="Cold Brew — café frío de extracción lenta servido en botella Nudes"
-              loading="lazy"
-            >
+        <a class="category-card" href="products.html#food">
+          <img src="nh/Food.jpg" class="category-card-photo" alt="Food">
+          <div class="category-card-overlay" aria-hidden="true"></div>
+          <span class="category-card-descriptor">Bowls · Toasts · Plates</span>
+          <div class="category-card-bottom">
+            <span class="category-card-name">Food</span>
+            <span class="category-card-shop">Shop →</span>
           </div>
-          <h3 class="t-h3" style="margin-top: var(--space-xs);">Cold Brew</h3>
-          <p class="t-caption col-grey uc" style="letter-spacing: 0.08em;">Bebidas Frías</p>
-        </article>
+        </a>
+
+        <a class="category-card" href="products.html#hot-drinks">
+          <img src="nh/hotdrinkss.png" class="category-card-photo" alt="Hot Drinks" style="object-position: center center;">
+          <div class="category-card-overlay" aria-hidden="true"></div>
+          <span class="category-card-descriptor">Matcha · Latte · Chai</span>
+          <div class="category-card-bottom">
+            <span class="category-card-name">Hot Drinks</span>
+            <span class="category-card-shop">Shop →</span>
+          </div>
+        </a>
+
+        <a class="category-card" href="products.html#cold-drinks">
+          <img src="nh/coldrinks.webp" class="category-card-photo" alt="Cold Drinks">
+          <div class="category-card-overlay" aria-hidden="true"></div>
+          <span class="category-card-descriptor">Cold Brew · Kombucha · Juice</span>
+          <div class="category-card-bottom">
+            <span class="category-card-name">Cold Drinks</span>
+            <span class="category-card-shop">Shop →</span>
+          </div>
+        </a>
+
+        <a class="category-card" href="products.html#breakfast-pots">
+          <img src="nh/use-pots.png" class="category-card-photo" alt="Breakfast Pots">
+          <div class="category-card-overlay" aria-hidden="true"></div>
+          <span class="category-card-descriptor">Oats · Granola · Chia</span>
+          <div class="category-card-bottom">
+            <span class="category-card-name">Breakfast Pots</span>
+            <span class="category-card-shop">Shop →</span>
+          </div>
+        </a>
+
+        <a class="category-card" href="products.html#clubs">
+          <img src="nh/use-clubs.png" class="category-card-photo" alt="Clubs">
+          <div class="category-card-overlay" aria-hidden="true"></div>
+          <span class="category-card-descriptor">Monthly · Weekly · Seasonal</span>
+          <div class="category-card-bottom">
+            <span class="category-card-name">Clubs</span>
+            <span class="category-card-shop">Shop →</span>
+          </div>
+        </a>
+
+        <a class="category-card" href="products.html#sweet-treats">
+          <img src="nh/use-sweet.png" class="category-card-photo" alt="Sweet Treats">
+          <div class="category-card-overlay" aria-hidden="true"></div>
+          <span class="category-card-descriptor">Bites · Bars · Cookies</span>
+          <div class="category-card-bottom">
+            <span class="category-card-name">Sweet Treats</span>
+            <span class="category-card-shop">Shop →</span>
+          </div>
+        </a>
 
       </div>
-    </section>
-
-    <!-- ══════════════════════════════════════════════
-         SECTION 5 — ABOUT US
-    ══════════════════════════════════════════════ -->
-    <section aria-labelledby="about-section-label">
-
-      <!-- Full viewport image -->
-      <div class="parallax-wrap" style="height: 100vh; position: relative;">
-        <img
-          src="https://placehold.co/1600x900/1A1410/FDFAF2?text=NUDES"
-          alt="Equipo Nudes en el local de El Born Barcelona — espacio de cafetería artesanal con ambiente único"
-          class="parallax-img"
-          loading="lazy"
-          style="width: 100%; height: 120%; object-fit: cover;"
-        >
-
-        <!-- Centre badge -->
-        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;" aria-hidden="true">
-          <div class="about-badge">N</div>
-        </div>
-
-        <!-- Bottom overlay bar -->
-        <div style="
-          position: absolute; bottom: 0; left: 0; right: 0;
-          padding: var(--space-lg) var(--space-xl);
-          display: flex; justify-content: space-between; align-items: flex-end;
-          background: linear-gradient(to top, rgba(26,20,16,0.65), transparent);
-        ">
-          <p class="t-caption col-cream uc ls-wide reveal" id="about-section-label">About Nudes</p>
-          <p class="t-caption col-grey-light reveal" style="--i:1; max-width: 400px; text-align: right;">
-            Un espacio en Barcelona para los que aprecian los detalles —
-            desayunos, almuerzos y café de especialidad.
-          </p>
-        </div>
-      </div>
-
-      <!-- Two-column history block -->
-      <div class="pad-xl intro-grid">
-        <div>
-          <p class="t-caption col-grey uc ls-wide reveal" style="margin-bottom: var(--space-sm);">Nuestra Historia</p>
-          <h2 class="t-h2 reveal" style="--i:1;">
-            Empezamos sirviendo bocadillos.<br>
-            Nos quedamos por el sabor.
-          </h2>
-        </div>
-
-        <div class="reveal" style="--i:2; padding-top: 1.5rem;">
-          <p class="t-body col-grey">
-            Nudes nació de una idea simple: que comer bien no tiene que
-            ser complicado. Ingredientes honestos, recetas con criterio,
-            y un espacio donde la gente se sienta a gusto. Hoy tenemos
-            dos locales en Barcelona y seguimos creciendo.
-          </p>
-        </div>
-      </div>
-
+      </div><!-- /max-width wrapper -->
     </section>
 
     <!-- ══════════════════════════════════════════════
@@ -1467,10 +2331,10 @@
     ══════════════════════════════════════════════ -->
     <section aria-labelledby="process-label" style="background: var(--color-cream);">
 
-      <div class="pad-h" style="padding-top: var(--space-2xl); padding-bottom: var(--space-xl);">
-        <p class="t-caption col-grey uc ls-wide reveal" style="margin-bottom: var(--space-xs);" id="process-label">Nuestro Proceso</p>
+      <div class="pad-h" style="min-height: 15vh; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: var(--space-xl);">
+        <p class="t-caption col-grey uc ls-wide reveal" style="margin-bottom: var(--space-xs);" id="process-label" data-en="Our Process" data-es="Nuestro Proceso">Our Process</p>
         <div class="title-clip">
-          <span class="t-h1-section">Cómo lo hacemos.</span>
+          <span class="t-h1-section" data-en="How we do it." data-es="Cómo lo hacemos.">How we do it.</span>
         </div>
       </div>
 
@@ -1478,18 +2342,15 @@
       <div class="process-row">
         <div class="process-img slide-left">
           <img
-            src="https://placehold.co/800x600/D4CCBC/1A1410?text=01"
+            src="/BRAND_ASSETS/hacemos01.png"
             alt="Selección cuidadosa de ingredientes frescos para los bocadillos artesanales de Nudes"
             loading="lazy"
           >
         </div>
         <div class="process-text slide-right">
-          <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);">01 — Selección</p>
-          <h3 class="t-h2" style="margin-bottom: var(--space-md);">Selección</h3>
-          <p class="t-body col-grey">
-            Trabajamos solo con proveedores que comparten nuestra filosofía.
-            Cada ingrediente tiene una razón de estar aquí.
-          </p>
+          <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);" data-en="01 — Selection" data-es="01 — Selección">01 — Selection</p>
+          <h3 class="t-h2" style="margin-bottom: var(--space-md);" data-en="Selection" data-es="Selección">Selection</h3>
+          <p class="t-body col-grey" data-en="We only work with suppliers who share our philosophy. Every ingredient is here for a reason." data-es="Trabajamos solo con proveedores que comparten nuestra filosofía. Cada ingrediente tiene una razón de estar aquí.">We only work with suppliers who share our philosophy. Every ingredient is here for a reason.</p>
         </div>
       </div>
 
@@ -1497,12 +2358,12 @@
       <div aria-hidden="true" style="background: var(--color-primary); height: 52px; display: flex; align-items: center;">
         <div class="marquee-strip" style="width: 100%;">
           <div class="marquee-inner slow">
-            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
-            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
-            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
-            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
-            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
-            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink" data-en="SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;" data-es="INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;">SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink" data-en="SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;" data-es="INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;">SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink" data-en="SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;" data-es="INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;">SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink" data-en="SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;" data-es="INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;">SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink" data-en="SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;" data-es="INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;">SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink" data-en="SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;" data-es="INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;">SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;</span>
           </div>
         </div>
       </div>
@@ -1510,16 +2371,13 @@
       <!-- Row 2: text left, image right -->
       <div class="process-row">
         <div class="process-text slide-left" style="order: 1;">
-          <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);">02 — Elaboración</p>
-          <h3 class="t-h2" style="margin-bottom: var(--space-md);">Elaboración</h3>
-          <p class="t-body col-grey">
-            Nada viene de bote. Nuestras salsas, panes y bases se
-            preparan cada mañana en cocina.
-          </p>
+          <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);" data-en="02 — Preparation" data-es="02 — Elaboración">02 — Preparation</p>
+          <h3 class="t-h2" style="margin-bottom: var(--space-md);" data-en="Preparation" data-es="Elaboración">Preparation</h3>
+          <p class="t-body col-grey" data-en="Nothing comes from a jar. Our sauces, breads and bases are made fresh every morning in the kitchen." data-es="Nada viene de bote. Nuestras salsas, panes y bases se preparan cada mañana en cocina.">Nothing comes from a jar. Our sauces, breads and bases are made fresh every morning in the kitchen.</p>
         </div>
         <div class="process-img slide-right" style="order: 2;">
           <img
-            src="https://placehold.co/800x600/C8CCBC/1A1410?text=02"
+            src="/BRAND_ASSETS/hacemos02.png"
             alt="Elaboración artesanal de salsas y panes en la cocina de Nudes — preparados cada mañana"
             loading="lazy"
           >
@@ -1530,12 +2388,12 @@
       <div aria-hidden="true" style="background: var(--color-primary); height: 52px; display: flex; align-items: center;">
         <div class="marquee-strip" style="width: 100%;">
           <div class="marquee-inner reverse slow">
-            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
-            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
-            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
-            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
-            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
-            <span class="marquee-text-sm col-ink">INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink" data-en="SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;" data-es="INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;">SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink" data-en="SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;" data-es="INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;">SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink" data-en="SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;" data-es="INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;">SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink" data-en="SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;" data-es="INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;">SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink" data-en="SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;" data-es="INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;">SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;</span>
+            <span class="marquee-text-sm col-ink" data-en="SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;" data-es="INGREDIENTES SELECCIONADOS · RECETAS CON CRITERIO · HECHO CON CUIDADO ·&nbsp;">SELECTED INGREDIENTS · CRAFTED RECIPES · MADE WITH CARE ·&nbsp;</span>
           </div>
         </div>
       </div>
@@ -1544,21 +2402,81 @@
       <div class="process-row">
         <div class="process-img slide-left">
           <img
-            src="https://placehold.co/800x600/BCCCCC/1A1410?text=03"
+            src="/BRAND_ASSETS/hacemos03.jpeg"
             alt="Servicio atento y personal en el local Nudes — cada visita es una experiencia especial"
             loading="lazy"
           >
         </div>
         <div class="process-text slide-right">
-          <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);">03 — Servicio</p>
-          <h3 class="t-h2" style="margin-bottom: var(--space-md);">Servicio</h3>
-          <p class="t-body col-grey">
-            Queremos que cada visita se sienta especial. No somos un
-            fast food. Somos un espacio.
-          </p>
+          <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);" data-en="03 — Service" data-es="03 — Servicio">03 — Service</p>
+          <h3 class="t-h2" style="margin-bottom: var(--space-md);" data-en="Service" data-es="Servicio">Service</h3>
+          <p class="t-body col-grey" data-en="We want every visit to feel special. We're not fast food. We're a space." data-es="Queremos que cada visita se sienta especial. No somos un fast food. Somos un espacio.">We want every visit to feel special. We're not fast food. We're a space.</p>
         </div>
       </div>
 
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         JOIN THE CLUB
+    ══════════════════════════════════════════════ -->
+    <section aria-labelledby="join-club-label" id="join-club" style="position:relative;overflow:hidden;height:100vh;margin-top:15vh;">
+
+      <!-- Collage background — untouched -->
+      <div class="hero-collage" style="height:100%;width:100%;">
+        <img src="/BRAND_ASSETS/imageONE.png" class="collage-img collage-img--1" alt="" loading="lazy">
+        <img src="/BRAND_ASSETS/01 (3).png" class="collage-img collage-img--2" alt="" loading="lazy">
+        <img src="/BRAND_ASSETS/033.png" class="collage-img collage-img--3" alt="" loading="lazy">
+        <img src="/BRAND_ASSETS/05.png" class="collage-img collage-img--4" alt="" loading="lazy">
+        <img src="/BRAND_ASSETS/005.jpg" class="collage-img collage-img--5" alt="" loading="lazy">
+        <img src="https://placehold.co/400x300/2a2a2a/555?text=06" class="collage-img collage-img--6" alt="" loading="lazy">
+        <img src="https://placehold.co/400x600/1a1a1a/444?text=07" class="collage-img collage-img--7" alt="" loading="lazy">
+      </div>
+
+      <!-- Dark gradient overlay -->
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(28,28,26,0.55) 0%, rgba(28,28,26,0.65) 100%);pointer-events:none;" aria-hidden="true"></div>
+
+      <!-- Content block — centered, 10vw padding on all four edges -->
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10vw;">
+
+        <p style="font-family:'DM Sans',var(--font-body),sans-serif;font-size:11px;font-weight:500;letter-spacing:0.20em;text-transform:uppercase;color:#FDFAF2;opacity:0.7;margin:0 0 20px;">— THE NUDES CLUB</p>
+
+        <h2 id="join-club-label" style="font-family:var(--font-display);font-size:clamp(48px,6vw,96px);color:#FDFAF2;font-weight:normal;line-height:0.95;letter-spacing:0.01em;margin:0 0 28px;">Join the Club.</h2>
+
+        <p style="font-family:'DM Sans',var(--font-body),sans-serif;font-size:clamp(14px,1.2vw,16px);color:#FDFAF2;opacity:0.75;line-height:1.65;margin:0 0 4px;">Be the first to know. New menus, drops, and events.</p>
+        <p style="font-family:'DM Sans',var(--font-body),sans-serif;font-size:clamp(14px,1.2vw,16px);color:#FDFAF2;opacity:0.75;line-height:1.65;margin:0 0 40px;">No noise — just good food news.</p>
+
+        <form style="display:flex;gap:0;max-width:500px;width:100%;" onsubmit="return false;">
+          <input
+            type="email"
+            placeholder="hello@nudes.co"
+            class="jtc-input"
+            style="flex:1;min-width:0;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);border-right:none;color:#FDFAF2;font-family:'DM Sans',var(--font-body),sans-serif;font-size:14px;padding:14px 20px;"
+            autocomplete="off"
+          >
+          <button type="submit" class="jtc-btn">Subscribe</button>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- LOCATIONS TITLE BREAK -->
+    <section style="
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      background: var(--color-cream);
+      overflow: hidden;
+    ">
+      <h2 style="
+        font-family: var(--font-display);
+        font-size: clamp(64px, 12vw, 160px);
+        font-weight: normal;
+        color: var(--color-ink);
+        line-height: 1;
+        letter-spacing: -0.01em;
+        margin: 0;
+      ">Locations.</h2>
     </section>
 
     <!-- ══════════════════════════════════════════════
@@ -1566,46 +2484,68 @@
     ══════════════════════════════════════════════ -->
     <section id="locations" aria-labelledby="locations-label">
 
-      <!-- Full-bleed image with title overlay -->
-      <div class="parallax-wrap" style="height: 70vh; position: relative;">
-        <img
-          src="https://placehold.co/1600x700/1A1410/F2E49B?text=BCN"
-          alt="Vista aérea de Barcelona — ciudad donde se encuentran los locales de Nudes"
-          class="parallax-img"
-          loading="lazy"
-          style="width: 100%; height: 120%; object-fit: cover;"
-        >
-        <!-- Dark overlay -->
-        <div style="position: absolute; inset: 0; background: rgba(26,20,16,0.35);"></div>
-        <!-- Centered H1 -->
-        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
-          <div class="title-clip" style="text-align: center;">
-            <h1 class="t-h1-hero col-cream" id="locations-label">
-              <span>OUR LOCATIONS</span>
-            </h1>
-          </div>
+      <div class="stores-carousel" id="stores-carousel">
+        <div class="stores-track" id="stores-track">
+
+          <!-- BCN1: El Born -->
+          <a class="store-card" href="https://maps.google.com/?q=Carrer+del+Rec+10+Barcelona" target="_blank" rel="noopener">
+            <img src="/assets/stores/BCN1.jpg" alt="NUDES El Born" loading="lazy">
+            <div class="store-overlay"></div>
+            <div class="store-body">
+              <p class="store-name">El Born</p>
+              <p class="store-addr">Carrer del Rec, 10<br>Ciutat Vella, 08003 Barcelona</p>
+              <span class="store-dir" data-en="Get directions →" data-es="Cómo llegar →">Get directions →</span>
+            </div>
+          </a>
+
+          <!-- BCN2: Eixample -->
+          <a class="store-card" href="https://maps.google.com/?q=Rambla+de+Catalunya+29+Barcelona" target="_blank" rel="noopener">
+            <img src="/assets/stores/BCN2.jpg" alt="NUDES Eixample" loading="lazy">
+            <div class="store-overlay"></div>
+            <div class="store-body">
+              <p class="store-name">Eixample</p>
+              <p class="store-addr">Rambla de Catalunya, 29, Local 3<br>Eixample, 08007 Barcelona</p>
+              <span class="store-dir" data-en="Get directions →" data-es="Cómo llegar →">Get directions →</span>
+            </div>
+          </a>
+
+          <!-- BCN3: Sarrià -->
+          <a class="store-card" href="https://maps.google.com/?q=Carrer+de+Calvet+1+Barcelona" target="_blank" rel="noopener">
+            <img src="/assets/stores/BCN3.jpg" alt="NUDES Sarrià" loading="lazy">
+            <div class="store-overlay"></div>
+            <div class="store-body">
+              <p class="store-name">Sarrià</p>
+              <p class="store-addr">Carrer de Calvet, 1<br>Sarrià-Sant Gervasi, 08021 Barcelona</p>
+              <span class="store-dir" data-en="Get directions →" data-es="Cómo llegar →">Get directions →</span>
+            </div>
+          </a>
+
+          <!-- REPEAT -->
+          <a class="store-card" href="https://maps.google.com/?q=Carrer+Ausias+Marc+41+Barcelona" target="_blank" rel="noopener">
+            <img src="/assets/stores/REPEAT.jpg" alt="NUDES at Repeat" loading="lazy">
+            <div class="store-overlay"></div>
+            <div class="store-body">
+              <p class="store-tag" data-en="Found us at Repeat — our corner" data-es="Encuéntranos en Repeat — nuestro rincón">Found us at Repeat — our corner</p>
+              <p class="store-name">Repeat</p>
+              <p class="store-addr">Carrer d'Ausiàs Marc, 41<br>Eixample, 08010 Barcelona</p>
+              <span class="store-dir" data-en="Get directions →" data-es="Cómo llegar →">Get directions →</span>
+            </div>
+          </a>
+
+          <!-- MADRID -->
+          <a class="store-card" href="https://maps.google.com/?q=Calle+San+Mateo+30+Madrid" target="_blank" rel="noopener">
+            <img src="/assets/stores/MADRID.jpg" alt="NUDES Madrid" loading="lazy">
+            <div class="store-overlay"></div>
+            <div class="store-body">
+              <p class="store-name">Madrid</p>
+              <p class="store-addr">C. de San Mateo, 30<br>Centro, 28004 Madrid</p>
+              <span class="store-dir" data-en="Get directions →" data-es="Cómo llegar →">Get directions →</span>
+            </div>
+          </a>
+
         </div>
       </div>
-
-      <!-- Location cards -->
-      <div class="pad-md location-grid">
-
-        <article class="location-card reveal">
-          <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);">Barcelona · El Born</p>
-          <h2 class="t-h2" style="margin-bottom: var(--space-sm);">C/Rec 10</h2>
-          <p class="t-body col-grey" style="margin-bottom: 4px;">Lun–Vie &nbsp; 8:00 – 17:00</p>
-          <p class="t-body col-grey" style="margin-bottom: var(--space-lg);">Sáb–Dom &nbsp; 9:00 – 17:00</p>
-          <a href="#" class="cta-link" aria-label="Ver C/Rec 10 en Google Maps">Ver en Maps →</a>
-        </article>
-
-        <article class="location-card reveal" style="--i:1;">
-          <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);">Barcelona</p>
-          <h2 class="t-h2" style="margin-bottom: var(--space-sm);">C/Nueva Dirección</h2>
-          <p class="t-body col-grey" style="margin-bottom: var(--space-lg);">Próximamente</p>
-          <a href="#" class="cta-link" aria-label="Más información sobre la nueva ubicación">Más info →</a>
-        </article>
-
-      </div>
+      <div class="stores-dots" id="stores-dots"></div>
     </section>
 
     <!-- ══════════════════════════════════════════════
@@ -1613,57 +2553,38 @@
     ══════════════════════════════════════════════ -->
     <section id="community" class="community-layout" aria-labelledby="community-label">
 
-      <!-- Left: full-bleed image -->
-      <div class="img-hover" style="position: relative; overflow: hidden; min-height: 500px;">
-        <img
-          src="https://placehold.co/960x800/8C8070/FDFAF2?text=COMMUNITY"
-          alt="Evento community Nudes en Barcelona — pop-up y catas de matcha ceremonial en El Born"
-          loading="lazy"
-          style="width: 100%; height: 100%; object-fit: cover;"
-        >
-        <div style="
-          position: absolute; inset: 0;
-          background: linear-gradient(to right, transparent 60%, rgba(26,20,16,0.12));
-        " aria-hidden="true"></div>
+      <!-- Left: dark panel with stacked cards -->
+      <div class="community-stack-panel">
+        <div id="card-stack"></div>
       </div>
 
-      <!-- Right: panel -->
-      <div class="community-panel">
+      <!-- Right: text panel -->
+      <div class="community-panel community-right-col">
 
         <div class="reveal">
-          <span class="community-tag">Community</span>
+          <span class="comm-tag">Community</span>
         </div>
 
         <div class="reveal" style="--i:1;">
-          <h2 class="t-h2" style="margin-bottom: var(--space-md);" id="community-label">
-            Eventos, colabs y más.
-          </h2>
-          <p class="t-body col-grey" style="margin-bottom: var(--space-lg);">
-            Organizamos pop-ups, catas de matcha y colaboraciones con
-            marcas afines. Síguenos en Instagram para no perderte nada.
-          </p>
-          <a
-            href="https://instagram.com/eat.nudes"
-            class="cta-btn"
-            rel="noopener noreferrer"
-            target="_blank"
-            aria-label="Seguir a Nudes en Instagram (@eat.nudes)"
-          >INSTAGRAM →</a>
-          <p class="t-caption col-grey" style="margin-top: var(--space-sm);">@eat.nudes</p>
+          <h2 class="comm-headline" id="community-label" data-en="Events, collabs and more." data-es="Eventos, colabs y más.">Events, collabs and more.</h2>
+          <p class="comm-body" data-en="We host pop-ups, matcha tastings and collabs with like-minded brands. Follow us on Instagram so you don't miss a thing." data-es="Organizamos pop-ups, catas de matcha y colaboraciones con marcas afines. Síguenos en Instagram para no perderte nada.">We host pop-ups, matcha tastings and collabs with like-minded brands. Follow us on Instagram so you don't miss a thing.</p>
+          <a href="https://instagram.com/eat.nudes" class="comm-cta" rel="noopener noreferrer" target="_blank" aria-label="Follow Nudes on Instagram (@eat.nudes)">INSTAGRAM →</a>
+          <span class="comm-handle">@eat.nudes</span>
         </div>
 
         <div class="reveal" style="--i:2;">
-          <div class="event-item">
-            <span>→ Cata de Matcha Ceremonial</span>
-            <span class="t-caption col-grey">15 Feb</span>
+          <hr class="comm-divider" style="margin-top:0;">
+          <div class="comm-event-row">
+            <span data-en="→ Social run with Club Rodeo — Nudes El Born" data-es="→ Carrera social con Club Rodeo — Nudes El Born">→ Social run with Club Rodeo — Nudes El Born</span>
+            <span class="comm-event-date" data-en="Every Tue 19:30" data-es="Cada Mar 19:30">Every Tue 19:30</span>
           </div>
-          <div class="event-item">
-            <span>→ Pop-up El Born</span>
-            <span class="t-caption col-grey">22 Feb</span>
+          <div class="comm-event-row">
+            <span data-en="→ New Items added to the menu" data-es="→ Nuevos platos añadidos al menú">→ New Items added to the menu</span>
+            <span class="comm-event-date" data-en="Now" data-es="Ya disponible">Now</span>
           </div>
-          <div class="event-item">
-            <span>→ Colaboración especial</span>
-            <span class="t-caption col-grey">Próximamente</span>
+          <div class="comm-event-row">
+            <span data-en="→ Glow Midnight Smoothie collab with Glow Cosmetics" data-es="→ Collab Glow Midnight Smoothie con Glow Cosmetics">→ Glow Midnight Smoothie collab with Glow Cosmetics</span>
+            <span class="comm-event-date" data-en="Coming soon" data-es="Próximamente">Coming soon</span>
           </div>
         </div>
 
@@ -1678,10 +2599,10 @@
       <!-- Header row -->
       <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-sm);">
         <div>
-          <p class="t-caption col-grey uc ls-wide reveal" style="margin-bottom: var(--space-xs);">Últimas Noticias</p>
-          <h2 class="t-h2 reveal" style="--i:1;" id="news-label">Lo que está pasando.</h2>
+          <p class="t-caption col-grey uc ls-wide reveal" style="margin-bottom: var(--space-xs);" data-en="Latest News" data-es="Últimas Noticias">Latest News</p>
+          <h2 class="t-h2 reveal" style="--i:1;" id="news-label" data-en="What's happening." data-es="Lo que está pasando.">What's happening.</h2>
         </div>
-        <a href="#" class="see-all-link reveal" style="--i:2;" aria-label="Ver todas las noticias de Nudes">Ver todo →</a>
+        <a href="#" class="see-all-link reveal" style="--i:2;" aria-label="See all Nudes news" data-en="SEE ALL →" data-es="VER TODO →">SEE ALL →</a>
       </div>
 
       <!-- 3-col grid -->
@@ -1690,46 +2611,46 @@
         <article class="news-card reveal" style="--i:0;">
           <div class="news-card__img">
             <img
-              src="https://placehold.co/600x400/D4CCBC/1A1410?text=01"
-              alt="Nuevo menú de temporada de Nudes — primavera 2025 con ingredientes frescos"
+              src="/nh/nudes-run.png"
+              alt="New items added to the Nudes menu"
               loading="lazy"
             >
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span class="news-tag">Productos</span>
-            <span class="t-caption col-grey">10 Mar 2025</span>
+            <span class="news-tag" data-en="Products" data-es="Productos">Products</span>
+            <span class="t-caption col-grey" data-en="Now" data-es="Ya disponible">Now</span>
           </div>
-          <h3 class="t-h3">Nuevo menú de temporada</h3>
+          <h3 class="t-h3" data-en="New Items Added to the Menu" data-es="Nuevos platos añadidos al menú">New Items Added to the Menu</h3>
         </article>
 
         <article class="news-card reveal" style="--i:1;">
           <div class="news-card__img">
             <img
-              src="https://placehold.co/600x400/C8D4BC/1A1410?text=02"
-              alt="Nudes x Collab — colaboración especial con marca local de Barcelona"
+              src="/nh/nudes-run.png"
+              alt="Social run with Club Rodeo every Tuesday at Nudes El Born"
               loading="lazy"
             >
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span class="news-tag">Eventos</span>
-            <span class="t-caption col-grey">5 Mar 2025</span>
+            <span class="news-tag" data-en="Events" data-es="Eventos">Events</span>
+            <span class="t-caption col-grey" data-en="Every Tue 19:30" data-es="Cada Mar 19:30">Every Tue 19:30</span>
           </div>
-          <h3 class="t-h3">Nudes x Collab</h3>
+          <h3 class="t-h3" data-en="Social Run with Club Rodeo" data-es="Carrera social con Club Rodeo">Social Run with Club Rodeo</h3>
         </article>
 
         <article class="news-card reveal" style="--i:2;">
           <div class="news-card__img">
             <img
-              src="https://placehold.co/600x400/BCCCD4/1A1410?text=03"
+              src="/BRAND_ASSETS/blog3.png"
               alt="Nudes abre nuevo local en C/Nueva Dirección Barcelona — próxima apertura"
               loading="lazy"
             >
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span class="news-tag">Noticias</span>
+            <span class="news-tag" data-en="News" data-es="Noticias">News</span>
             <span class="t-caption col-grey">28 Feb 2025</span>
           </div>
-          <h3 class="t-h3">Abrimos C/Nueva Dirección</h3>
+          <h3 class="t-h3" data-en="New location opening" data-es="Abrimos C/Nueva Dirección">New location opening</h3>
         </article>
 
       </div>
@@ -1742,28 +2663,49 @@
   ══════════════════════════════════════════════ -->
   <footer role="contentinfo">
 
-    <!-- Mega wordmark -->
-    <div class="footer-mega-wrap">
-      <div class="title-clip footer-wm-clip" style="text-align: center;">
-        <span class="footer-mega-word">NUDES</span>
+    <!-- Top: nav + newsletter -->
+    <div class="ft-top">
+
+      <!-- Left -->
+      <div>
+        <ul class="ft-nav">
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="./info.html">Info</a></li>
+          <li><a href="https://instagram.com/eat.nudes" rel="noopener" target="_blank">Instagram</a></li>
+          <li><a href="#community">Join The Club°</a></li>
+        </ul>
+        <div class="ft-meta">
+          info@eatnudes.com<br>
+          © 2025 NUDES
+        </div>
+        <a href="https://instagram.com/eat.nudes" class="ft-ig" rel="noopener" target="_blank" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
       </div>
+
+      <!-- Right: newsletter -->
+      <div>
+        <p class="ft-newsletter-label">Newsletter Signup</p>
+        <form class="ft-form" onsubmit="return false;">
+          <div class="ft-form-row">
+            <input class="ft-input" type="text" placeholder="Your name" autocomplete="off">
+            <input class="ft-input" type="email" placeholder="Your email address" autocomplete="off">
+          </div>
+          <button class="ft-btn" type="submit">Sign Up</button>
+        </form>
+      </div>
+
     </div>
 
-    <!-- Info bar -->
-    <div class="footer-bar">
-      <div class="footer-cols">
-        <div class="footer-col">NUDES</div>
-        <div class="footer-col">C/Calvet 1<br>Barcelona</div>
-        <div class="footer-col">C/Rec 10<br>C/Nueva Dirección</div>
-        <div class="footer-col">T<br>E</div>
-        <div class="footer-col">+34 605 87 23 50<br>Info@Eatnudes.com</div>
-        <div class="footer-col">@Eat.Nudes</div>
-      </div>
-
-      <div class="footer-copy">
-        © 2025 NUDES — For People With Really Great Taste
-      </div>
+    <!-- Bottom: animated wordmark -->
+    <div class="ft-wm" id="ft-wm">
+      <img src="nudes-logo.png" alt="NUDES" class="ft-letter ft-logo-img">
     </div>
+    <div class="ft-copy">For People With Really Great Taste</div>
 
   </footer>
 
@@ -1821,49 +2763,7 @@
        HERO ANIMATIONS (fire after preloader exits)
     ───────────────────────────────────────────── */
     function initHeroAnimations () {
-      const bgImg  = document.getElementById('hero-bg');
-      const ease   = 'cubic-bezier(0.16, 1, 0.3, 1)';
-
-      // ① Set nav initial position immediately (bottom of viewport, large)
       updateNav();
-
-      // ② Hero image: fade in + Ken Burns
-      if (bgImg) {
-        bgImg.style.transition = `opacity 1100ms ease, transform 2000ms ${ease}`;
-        requestAnimationFrame(() => {
-          bgImg.style.opacity   = '1';
-          bgImg.style.transform = 'scale(1)';
-        });
-      }
-
-      // ③ N glyph in nav: already visible (opacity driven by updateNav at progress=0)
-      //    Animate its entry: start below, slide up
-      if (navNImg) {
-        navNImg.style.transform = 'translateY(110%) scale(1)';
-        navNImg.style.transition = `transform 1000ms ${ease}`;
-        setTimeout(() => { navNImg.style.transform = 'translateY(0) scale(1)'; }, 180);
-      }
-
-      // ④ U glyph in nav: same
-      if (navUImg) {
-        navUImg.style.transform = 'translateY(110%) scale(1)';
-        navUImg.style.transition = `transform 1000ms ${ease}`;
-        setTimeout(() => { navUImg.style.transform = 'translateY(0) scale(1)'; }, 320);
-      }
-
-      // ⑤ Meta + nav links fade in
-      if (navMetaEl) {
-        navMetaEl.style.opacity = '0';
-        navMetaEl.style.transition = 'opacity 700ms ease';
-        setTimeout(() => { navMetaEl.style.opacity = '1'; }, 480);
-      }
-
-      const navUl = nav.querySelector('.nav-center');
-      if (navUl) {
-        navUl.style.opacity = '0';
-        navUl.style.transition = 'opacity 700ms ease';
-        setTimeout(() => { navUl.style.opacity = '1'; }, 580);
-      }
     }
 
     // Start immediately on script execution (DOM is ready — script is at end of body)
@@ -1873,63 +2773,17 @@
        END PRELOADER
     ───────────────────────────────────────────── */
 
-    /* ─── SCROLL-MORPHING NAV ─── */
+    /* ─── NAV SCROLL BEHAVIOUR ─── */
     const nav  = document.getElementById('nav');
     const hero = document.getElementById('hero');
 
-    const NAV_H_LARGE = 190;  // px — matches hero-bar height at progress 0
-    const NAV_H_SMALL = 64;   // px — compact height at progress 1
-    const EASE_SPRING = 'cubic-bezier(0.16, 1, 0.3, 1)';
-
-    const navNImg    = nav.querySelector('.nav-wordmark-left');
-    const navUImg    = nav.querySelector('.nav-wordmark-right');
-    const navLogoEl  = nav.querySelector('.nav-logo');
-    const navRightEl = nav.querySelector('.nav-right');
-    const navMetaEl  = nav.querySelector('.nav-bar-meta-scroll');
-
     function updateNav () {
-      const scrollY   = window.scrollY;
-      const heroH     = hero ? hero.offsetHeight : window.innerHeight;
-      const progress  = Math.min(Math.max(scrollY / (heroH * 0.6), 0), 1);
-      const sp        = progress;
-
-      /* ── Height: large → compact ── */
-      const h = NAV_H_LARGE - (NAV_H_LARGE - NAV_H_SMALL) * sp;
-      nav.style.height = h + 'px';
-
-      /* ── Position: bottom of viewport → top ── */
-      const fromY = window.innerHeight - NAV_H_LARGE;
-      nav.style.transform = 'translateY(' + (fromY * (1 - sp)) + 'px)';
-
-      /* ── Background: cream → frosted glass ── */
-      if (sp >= 1) {
-        nav.style.background           = 'rgba(253,250,242,0.93)';
-        nav.style.backdropFilter       = 'blur(12px)';
-        nav.style.webkitBackdropFilter = 'blur(12px)';
-        nav.style.borderTop            = 'none';
+      if (!nav) return;
+      if (window.scrollY > 60) {
+        nav.classList.add('nav-scrolled');
       } else {
-        nav.style.background           = 'var(--color-cream)';
-        nav.style.backdropFilter       = 'none';
-        nav.style.webkitBackdropFilter = 'none';
-        nav.style.borderTop            = '0.5px solid var(--color-grey-light)';
+        nav.classList.remove('nav-scrolled');
       }
-
-      /* ── Glyphs: fade + scale down (fast) ── */
-      const spFast       = Math.min(sp * 2, 1);
-      const glyphOpacity = Math.max(1 - spFast * 1.4, 0);
-      const glyphScale   = 1 - spFast * 0.2;
-      if (navNImg) { navNImg.style.opacity = glyphOpacity; navNImg.style.transform = 'scale(' + glyphScale + ')'; }
-      if (navUImg) { navUImg.style.opacity = glyphOpacity; navUImg.style.transform = 'scale(' + glyphScale + ')'; }
-
-      /* ── Meta text: fades out with glyphs ── */
-      if (navMetaEl) navMetaEl.style.opacity = glyphOpacity;
-
-      /* ── NUDES logo + location: fade in after midpoint ── */
-      const topOpacity = Math.max((sp - 0.5) * 2, 0);
-      if (navLogoEl)  navLogoEl.style.opacity  = topOpacity;
-      if (navRightEl) navRightEl.style.opacity = topOpacity;
-
-      /* ── Ensure nav is always visible (override old opacity:0 CSS) ── */
       nav.style.opacity       = '1';
       nav.style.pointerEvents = 'auto';
     }
@@ -1991,6 +2845,187 @@
 
     window.addEventListener('scroll', handleParallax, { passive: true });
 
+    /* ── Smoothies scroll section ── */
+    (function () {
+      const SM2 = 0.20, SM3 = 0.60;
+      const smDriver  = document.getElementById('smDriver');
+      const smWipe    = document.getElementById('smWipe');
+      const smImgSlot = document.getElementById('smImgSlot');
+      const smPhoto   = document.getElementById('smPhoto');
+      const smIcon    = document.getElementById('smIcon');
+      const smTitle   = document.getElementById('smTitle');
+      const smEyebrow = document.getElementById('smEyebrow');
+      const smBody    = document.getElementById('smBody');
+      if (!smDriver) return;
+
+      function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+      function norm(v,a,b){return clamp((v-a)/(b-a),0,1);}
+
+      function updateSm() {
+        const rect = smDriver.getBoundingClientRect();
+        const total = smDriver.offsetHeight - window.innerHeight;
+        const p = clamp(-rect.top / total, 0, 1);
+
+        if (p < SM2) {
+          smWipe.style.height = '0%';
+          smImgSlot.classList.remove('swapped');
+          smPhoto.classList.remove('clear');
+          smIcon.classList.remove('hidden');
+          smTitle.classList.remove('large','on-wipe');
+          smEyebrow.classList.remove('on-wipe');
+          smBody.classList.remove('visible','on-wipe');
+        } else if (p < SM3) {
+          const p2 = norm(p, SM2, SM3);
+          smWipe.style.height = (p2 * 100).toFixed(2) + '%';
+          const mid = p2 > 0.5;
+          smImgSlot.classList.toggle('swapped', mid);
+          smPhoto.classList.toggle('clear', mid);
+          smIcon.classList.toggle('hidden', mid);
+          smTitle.classList.toggle('large', mid);
+          smTitle.classList.toggle('on-wipe', p2 > 0.15);
+          smEyebrow.classList.toggle('on-wipe', p2 > 0.15);
+          smBody.classList.remove('visible');
+          smBody.classList.toggle('on-wipe', p2 > 0.15);
+        } else {
+          smWipe.style.height = '100%';
+          smImgSlot.classList.add('swapped');
+          smPhoto.classList.add('clear');
+          smIcon.classList.add('hidden');
+          smTitle.classList.add('large','on-wipe');
+          smEyebrow.classList.add('on-wipe');
+          smBody.classList.add('visible','on-wipe');
+        }
+      }
+
+      window.addEventListener('scroll', updateSm, { passive: true });
+      updateSm();
+    }());
+
+    /* ── Drinks scroll section ── */
+    (function () {
+      const DR2 = 0.20, DR3 = 0.60;
+      const drDriver  = document.getElementById('drDriver');
+      const drWipe    = document.getElementById('drWipe');
+      const drImgSlot = document.getElementById('drImgSlot');
+      const drPhoto   = document.getElementById('drPhoto');
+      const drIcon    = document.getElementById('drIcon');
+      const drTitle   = document.getElementById('drTitle');
+      const drEyebrow = document.getElementById('drEyebrow');
+      const drBody    = document.getElementById('drBody');
+      if (!drDriver) return;
+
+      function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+
+      function updateDr() {
+        const rect = drDriver.getBoundingClientRect();
+        const total = drDriver.offsetHeight - window.innerHeight;
+        const p = clamp(-rect.top / total, 0, 1);
+
+        if (p < DR2) {
+          drWipe.style.height = '0%';
+          drImgSlot.classList.remove('swapped');
+          drPhoto.classList.remove('clear');
+          drIcon.classList.remove('hidden');
+          drTitle.classList.remove('large','on-wipe');
+          drEyebrow.classList.remove('on-wipe');
+          drBody.classList.remove('visible','on-wipe');
+        } else if (p < DR3) {
+          const p2 = (p - DR2) / (DR3 - DR2);
+          drWipe.style.height = (p2 * 100).toFixed(2) + '%';
+          const mid = p2 > 0.5;
+          drImgSlot.classList.toggle('swapped', mid);
+          drPhoto.classList.toggle('clear', mid);
+          drIcon.classList.toggle('hidden', mid);
+          drTitle.classList.toggle('large', mid);
+          drTitle.classList.toggle('on-wipe', p2 > 0.15);
+          drEyebrow.classList.toggle('on-wipe', p2 > 0.15);
+          drBody.classList.remove('visible');
+          drBody.classList.toggle('on-wipe', p2 > 0.15);
+        } else {
+          drWipe.style.height = '100%';
+          drImgSlot.classList.add('swapped');
+          drPhoto.classList.add('clear');
+          drIcon.classList.add('hidden');
+          drTitle.classList.add('large','on-wipe');
+          drEyebrow.classList.add('on-wipe');
+          drBody.classList.add('visible','on-wipe');
+        }
+      }
+
+      window.addEventListener('scroll', updateDr, { passive: true });
+      updateDr();
+    }());
+
+    /* ── Food scroll section ── */
+    (function () {
+      const FO2 = 0.20, FO3 = 0.60;
+      const foDriver  = document.getElementById('foDriver');
+      const foWipe    = document.getElementById('foWipe');
+      const foImgSlot = document.getElementById('foImgSlot');
+      const foPhoto   = document.getElementById('foPhoto');
+      const foIcon    = document.getElementById('foIcon');
+      const foTitle   = document.getElementById('foTitle');
+      const foEyebrow = document.getElementById('foEyebrow');
+      const foBody    = document.getElementById('foBody');
+      if (!foDriver) return;
+
+      function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+
+      function updateFo() {
+        const rect = foDriver.getBoundingClientRect();
+        const total = foDriver.offsetHeight - window.innerHeight;
+        const p = clamp(-rect.top / total, 0, 1);
+
+        if (p < FO2) {
+          foWipe.style.height = '0%';
+          foImgSlot.classList.remove('swapped');
+          foPhoto.classList.remove('clear');
+          foIcon.classList.remove('hidden');
+          foTitle.classList.remove('large','on-wipe');
+          foEyebrow.classList.remove('on-wipe');
+          foBody.classList.remove('visible','on-wipe');
+        } else if (p < FO3) {
+          const p2 = (p - FO2) / (FO3 - FO2);
+          foWipe.style.height = (p2 * 100).toFixed(2) + '%';
+          const mid = p2 > 0.5;
+          foImgSlot.classList.toggle('swapped', mid);
+          foPhoto.classList.toggle('clear', mid);
+          foIcon.classList.toggle('hidden', mid);
+          foTitle.classList.toggle('large', mid);
+          foTitle.classList.toggle('on-wipe', p2 > 0.15);
+          foEyebrow.classList.toggle('on-wipe', p2 > 0.15);
+          foBody.classList.remove('visible');
+          foBody.classList.toggle('on-wipe', p2 > 0.15);
+        } else {
+          foWipe.style.height = '100%';
+          foImgSlot.classList.add('swapped');
+          foPhoto.classList.add('clear');
+          foIcon.classList.add('hidden');
+          foTitle.classList.add('large','on-wipe');
+          foEyebrow.classList.add('on-wipe');
+          foBody.classList.add('visible','on-wipe');
+        }
+      }
+
+      window.addEventListener('scroll', updateFo, { passive: true });
+      updateFo();
+    }());
+
+    /* ── FOOTER WORDMARK — logo slides up on scroll ── */
+    (function () {
+      const wm = document.getElementById('ft-wm');
+      if (!wm) return;
+      const logo = wm.querySelector('.ft-logo-img');
+      if (!logo) return;
+      const obs = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          logo.classList.add('ft-in');
+          obs.disconnect();
+        }
+      }, { threshold: 0.2 });
+      obs.observe(wm);
+    }());
+
     /* ─── INIT ─── */
     function init () {
       updateNav();
@@ -2007,6 +3042,194 @@
     }
 
   }());
+
+  </script>
+
+  <script>
+    (function () {
+      var images = [
+        '/nh/comm-1.jpeg',
+        '/nh/comm-2.jpeg',
+        '/nh/comm-3.jpg',
+        '/nh/comm-4.jpeg',
+        '/nh/comm-5.jpeg'
+      ];
+      var stack = document.getElementById('card-stack');
+      if (!stack) return;
+
+      var cards = [];
+      for (var i = 0; i < 3; i++) {
+        var card = document.createElement('div');
+        card.className = 'stack-card';
+        var img = document.createElement('img');
+        img.src = images[i];
+        img.alt = 'Community lifestyle photo';
+        card.appendChild(img);
+        stack.appendChild(card);
+        cards.push(card);
+      }
+
+      var topIdx = 2, blIdx = 0, brIdx = 1;
+      var imgIdx = 3;
+
+      function applyPositions() {
+        cards[topIdx].className = 'stack-card pos-top';
+        cards[blIdx].className  = 'stack-card pos-bl';
+        cards[brIdx].className  = 'stack-card pos-br';
+      }
+      applyPositions();
+
+      function advance() {
+        var exiting = topIdx;
+        var newTop  = blIdx;
+        var newBl   = brIdx;
+        var newBr   = exiting;
+
+        cards[exiting].className = 'stack-card pos-exit';
+
+        setTimeout(function () {
+          cards[newTop].className = 'stack-card pos-top';
+          cards[newBl].className  = 'stack-card pos-bl';
+          cards[newBr].querySelector('img').src = images[imgIdx % images.length];
+          imgIdx++;
+          cards[newBr].className  = 'stack-card pos-br';
+
+          topIdx = newTop;
+          blIdx  = newBl;
+          brIdx  = newBr;
+        }, 400);
+      }
+
+      setInterval(advance, 5000);
+    }());
+  </script>
+
+  <script>
+  /* ── LANGUAGE TOGGLE ── */
+  (function () {
+    function applyLang(lang) {
+      document.querySelectorAll('[data-en]').forEach(function(el) {
+        el.innerHTML = el.dataset[lang] !== undefined ? el.dataset[lang] : el.dataset.en;
+      });
+      localStorage.setItem('nudes-lang', lang);
+      document.querySelectorAll('.lang-opt').forEach(function(btn) {
+        btn.classList.toggle('lang-opt--active', btn.dataset.lang === lang);
+      });
+      document.documentElement.lang = lang;
+    }
+    window.__setLang = applyLang;
+    var saved = localStorage.getItem('nudes-lang') || 'en';
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { applyLang(saved); });
+    } else { applyLang(saved); }
+  })();
+  </script>
+
+  <script>
+  /* ── STORES CAROUSEL ── */
+  (function () {
+    var TOTAL   = 5;
+    var VISIBLE = 3;
+    var current = 0;
+    var animating = false;
+    var paused  = false;
+    var timer   = null;
+
+    var carousel = document.getElementById('stores-carousel');
+    var track    = document.getElementById('stores-track');
+    var dotsWrap = document.getElementById('stores-dots');
+
+    if (!carousel || !track || !dotsWrap) return;
+
+    /* Clone first VISIBLE cards so the loop is seamless */
+    var origCards = Array.from(track.querySelectorAll('.store-card'));
+    for (var c = 0; c < VISIBLE; c++) {
+      track.appendChild(origCards[c].cloneNode(true));
+    }
+    var allCards = Array.from(track.querySelectorAll('.store-card'));
+
+    /* Size every card to exactly 1/3 of the carousel width */
+    function sizeCards() {
+      var w = carousel.offsetWidth / VISIBLE;
+      allCards.forEach(function (card) {
+        card.style.width     = w + 'px';
+        card.style.flexShrink = '0';
+      });
+      track.style.width = (allCards.length * w) + 'px';
+      /* Snap to current position without animation */
+      track.style.transition = 'none';
+      track.style.transform  = 'translateX(' + (-current * carousel.offsetWidth / VISIBLE) + 'px)';
+    }
+
+    function setPos(idx, animate) {
+      var w = carousel.offsetWidth / VISIBLE;
+      track.style.transition = animate
+        ? 'transform 600ms cubic-bezier(0.4, 0, 0.2, 1)'
+        : 'none';
+      track.style.transform = 'translateX(' + (-idx * w) + 'px)';
+    }
+
+    function updateDots(active) {
+      dotsWrap.querySelectorAll('.stores-dot').forEach(function (d, i) {
+        d.classList.toggle('stores-dot--active', i === active);
+      });
+    }
+
+    function goTo(idx, animate) {
+      if (animating) return;
+      animating = true;
+      current = idx;
+      setPos(current, animate !== false);
+      updateDots(current % TOTAL);
+
+      setTimeout(function () {
+        /* If we slid into the cloned zone, jump back silently */
+        if (current >= TOTAL) {
+          current = current - TOTAL;
+          setPos(current, false);
+          updateDots(current % TOTAL);
+        }
+        animating = false;
+      }, animate !== false ? 620 : 0);
+    }
+
+    function next() { goTo(current + 1, true); }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(next, 3000);
+    }
+
+    /* Build dots */
+    for (var j = 0; j < TOTAL; j++) {
+      (function (idx) {
+        var dot = document.createElement('button');
+        dot.className = 'stores-dot' + (idx === 0 ? ' stores-dot--active' : '');
+        dot.setAttribute('aria-label', 'Show store ' + (idx + 1));
+        dot.addEventListener('click', function () {
+          clearInterval(timer);
+          goTo(idx, true);
+          if (!paused) startTimer();
+        });
+        dotsWrap.appendChild(dot);
+      })(j);
+    }
+
+    /* Pause on hover */
+    carousel.addEventListener('mouseenter', function () {
+      paused = true;
+      clearInterval(timer);
+    });
+    carousel.addEventListener('mouseleave', function () {
+      paused = false;
+      startTimer();
+    });
+
+    /* Init */
+    sizeCards();
+    window.addEventListener('resize', sizeCards);
+    startTimer();
+  })();
   </script>
 
 </body>

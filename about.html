@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NUDES — Our story. Born in Barcelona, 2021. Real food, nothing to hide.">
+  <title>About Us — NUDES Barcelona</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── FONTS ── */
+    @font-face {
+      font-family: 'Melodrame';
+      src: url('melodrame.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ── DESIGN TOKENS ── */
+    :root {
+      --color-primary:    #F2E49B;
+      --color-ink:        #1A1410;
+      --color-ink-dark:   #1C1C1A;
+      --color-cream:      #FDFAF2;
+      --color-pink:       #E8A0B4;
+      --color-grey:       #8C8070;
+      --color-grey-light: #D4CCBC;
+      --color-sand:       #F2EADC;
+      --color-yellow:     #F5E6A3;
+
+      --font-display: 'Melodrame', serif;
+      --font-body:    'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+      --nav-h: 64px;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body {
+      background: var(--color-cream);
+      color: var(--color-ink-dark);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+    }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ── GRAIN ── */
+    .grain {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 300px 300px;
+    }
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 clamp(20px, 3vw, 48px);
+      background: rgba(253,250,242,0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 0.5px solid var(--color-grey-light);
+    }
+
+    .nav-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-wordmark img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 2.2vw, 36px);
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--color-ink-dark);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 1px;
+      background: var(--color-ink-dark);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after { transform: scaleX(1); }
+    .nav-join-club { color: var(--color-pink) !important; }
+    .nav-join-club::after { background: var(--color-pink) !important; }
+
+    /* ── IMG PLACEHOLDER ── */
+    .img-placeholder {
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px 24px;
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(28,28,26,0.45);
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    /* ═══════════════════════════════════════
+       SECTIONS 1+2 WRAPPER — cascade container
+    ═══════════════════════════════════════ */
+    .hero-cascade-wrap {
+      position: relative;
+      background: var(--color-cream);
+      overflow: visible;
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION 1 — STORY HERO
+    ═══════════════════════════════════════ */
+    #story-hero {
+      background: var(--color-cream);
+      padding: 200px 40px 80px;
+      min-height: 100vh;
+      position: static;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      margin-bottom: 56px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(96px, 16vw, 280px);
+      line-height: 0.88;
+      letter-spacing: -0.045em;
+      color: var(--color-ink-dark);
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION 2 — PLACE & YEAR
+    ═══════════════════════════════════════ */
+    #place-year {
+      background: var(--color-cream);
+      padding: 80px 40px 160px;
+      min-height: 80vh;
+      position: static;
+    }
+
+    .place-year-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      max-width: 50%;
+    }
+
+    /* ── CASCADING PHOTO WRAPPER ── */
+    .photo-cascade {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 10;
+    }
+
+    .photo-cascade img {
+      position: absolute;
+      border-radius: 8px;
+      box-shadow: 0 12px 40px rgba(28,28,26,0.16);
+      object-fit: cover;
+    }
+
+    .place-heading {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(56px, 7vw, 128px);
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+      text-transform: uppercase;
+      color: var(--color-ink-dark);
+    }
+
+    .place-heading em {
+      font-style: italic;
+    }
+
+    .place-para {
+      font-family: var(--font-body);
+      font-size: 20px;
+      line-height: 1.55;
+      color: var(--color-grey);
+      margin-top: 40px;
+      max-width: 620px;
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION 3 — ORIGIN
+    ═══════════════════════════════════════ */
+    #origin {
+      background: var(--color-sand);
+      padding: 140px 40px;
+    }
+
+    .origin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .origin-img-col {
+      padding-top: 60px;
+    }
+
+    .origin-caption {
+      font-family: var(--font-body);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      margin-top: 20px;
+    }
+
+    .origin-heading {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(48px, 5.5vw, 96px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--color-ink-dark);
+    }
+
+    .origin-intro {
+      font-family: var(--font-body);
+      font-size: 22px;
+      line-height: 1.9;
+      font-weight: 500;
+      color: var(--color-ink-dark);
+      margin-top: 40px;
+      margin-bottom: 1.6em;
+    }
+
+    .origin-body {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.9;
+      color: var(--color-grey);
+      max-width: 580px;
+      margin-top: 0;
+      margin-bottom: 1.6em;
+    }
+
+    .origin-body:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION 4 — PULL QUOTE
+    ═══════════════════════════════════════ */
+    #pull-quote {
+      background: var(--color-ink-dark);
+      padding: 160px 40px;
+    }
+
+    .pull-quote-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quote-mark {
+      font-family: var(--font-display);
+      font-size: 120px;
+      line-height: 0.4;
+      color: var(--color-yellow);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .quote-text {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(40px, 5vw, 88px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--color-cream);
+    }
+
+    .quote-attr {
+      font-family: var(--font-body);
+      font-size: 12px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(253,250,242,0.6);
+      margin-top: 48px;
+    }
+
+    /* ═══════════════════════════════════════
+       SECTIONS 5–7 — PRINCIPLES
+    ═══════════════════════════════════════ */
+    .principle {
+      background: var(--color-cream);
+      padding: 120px 40px;
+    }
+
+    .principle + .principle {
+      padding-top: 0;
+    }
+
+    .principle-grid {
+      display: grid;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .principle-grid--img-left  { grid-template-columns: 1.1fr 1fr; }
+    .principle-grid--img-right { grid-template-columns: 1fr 1.1fr; }
+
+    .principle-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      margin-bottom: 20px;
+    }
+
+    .principle-heading {
+      font-family: var(--font-display);
+      font-weight: 400;
+      text-transform: uppercase;
+      font-size: clamp(64px, 8vw, 144px);
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+      color: var(--color-ink-dark);
+    }
+
+    .principle-body {
+      font-family: var(--font-body);
+      font-size: 19px;
+      line-height: 1.6;
+      color: var(--color-grey);
+      max-width: 540px;
+      margin-top: 32px;
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION 8 — JOIN THE REVOLUTION
+    ═══════════════════════════════════════ */
+    #join {
+      background: var(--color-yellow);
+      padding: 120px 40px;
+    }
+
+    .join-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .join-phones {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .join-phone-b {
+      padding-top: 40px;
+    }
+
+    .join-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--color-ink-dark);
+      margin-bottom: 16px;
+    }
+
+    .join-heading {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(56px, 7vw, 128px);
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+      color: var(--color-ink-dark);
+    }
+
+    .join-heading em { font-style: italic; }
+
+    .join-body {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--color-ink-dark);
+      max-width: 480px;
+      margin: 28px 0 36px;
+    }
+
+    .join-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .join-btn {
+      display: inline-block;
+      background: var(--color-ink-dark);
+      color: var(--color-cream);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .join-btn:hover {
+      background: rgba(28,28,26,0.75);
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER (copied exactly from index.html)
+    ═══════════════════════════════════════ */
+    footer {
+      background: var(--color-cream);
+    }
+
+    .ft-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4rem);
+      border-bottom: 0.5px solid var(--color-grey-light);
+    }
+
+    .ft-nav {
+      list-style: none;
+      padding: 0; margin: 0 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .ft-nav a {
+      font-family: var(--font-body);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink-dark);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .ft-nav a:hover { opacity: 0.45; }
+
+    .ft-meta {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--color-grey);
+      line-height: 1.9;
+    }
+
+    .ft-ig {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border: 1px solid var(--color-ink-dark);
+      border-radius: 50%;
+      margin-top: 1rem;
+      color: var(--color-ink-dark);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .ft-ig:hover { background: var(--color-ink-dark); color: var(--color-cream); }
+
+    .ft-newsletter-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-ink-dark);
+      margin-bottom: 1rem;
+    }
+
+    .ft-form { display: flex; flex-direction: column; gap: 0; }
+
+    .ft-form-row { display: grid; grid-template-columns: 1fr 1fr; }
+
+    .ft-input {
+      background: transparent;
+      border: 0.5px solid var(--color-ink-dark);
+      padding: 0.85rem 1rem;
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--color-ink-dark);
+      outline: none;
+      transition: background 0.2s;
+    }
+
+    .ft-input::placeholder { color: var(--color-grey); }
+    .ft-input:focus { background: rgba(26,20,16,0.04); }
+    .ft-input:first-child { border-right: none; }
+
+    .ft-btn {
+      background: var(--color-ink-dark);
+      color: var(--color-cream);
+      border: none;
+      padding: 0.85rem 1rem;
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+      min-height: 44px;
+    }
+
+    .ft-btn:hover { background: var(--color-grey); }
+
+    .ft-wm {
+      background: var(--color-cream);
+      border-top: 0.5px solid var(--color-grey-light);
+      padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 5vw, 4rem);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+
+    .ft-logo-img {
+      width: clamp(300px, 40vw, 580px);
+      height: auto;
+      display: block;
+    }
+
+    .ft-copy {
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      padding: 1rem clamp(1rem, 3vw, 2.5rem);
+      text-align: right;
+    }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      #story-hero  { padding: 140px 20px 60px; }
+      #place-year  { padding: 40px 20px 80px; }
+      #origin      { padding: 80px 20px; }
+      #pull-quote  { padding: 100px 20px; }
+      .principle   { padding: 80px 20px; }
+      #join        { padding: 80px 20px; }
+
+      .place-year-grid,
+      .origin-grid,
+      .principle-grid--img-left,
+      .principle-grid--img-right,
+      .join-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      /* reverse principle on mobile: text first */
+      .principle-grid--img-left  > :first-child { order: 2; }
+      .principle-grid--img-left  > :last-child  { order: 1; }
+
+      .origin-img-col { padding-top: 0; }
+
+      .quote-mark { font-size: 80px; }
+
+      .join-phones { gap: 12px; }
+      .join-phone-b { padding-top: 24px; }
+
+      .nav-links { display: none; }
+
+      .ft-top { grid-template-columns: 1fr; }
+      .ft-form-row { grid-template-columns: 1fr; }
+      .ft-input:first-child { border-right: 0.5px solid var(--color-ink-dark); border-bottom: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ══════════════════════════════════════
+       PRELOADER
+    ══════════════════════════════════════ */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--color-cream, #FDFAF2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    body.pl-active { overflow: hidden; }
+
+    .pl-stage {
+      position: relative;
+      width: min(260px, 50vw);
+      height: min(345px, 66vw);
+    }
+
+    /* each photo — hidden, slightly below + scaled down */
+    .pl-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 24px 64px rgba(28,28,26,0.22);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+    .pl-img--1 { transform: translate(  0px, 22px) rotate( 2.5deg) scale(0.84); }
+    .pl-img--2 { transform: translate( 10px, 28px) rotate(-2.0deg) scale(0.84); }
+    .pl-img--3 { transform: translate( -6px, 32px) rotate( 1.0deg) scale(0.84); }
+
+    /* pop-in */
+    .pl-img--1.pl-show { opacity:1; transform: translate(  0px,  0px) rotate( 2.5deg) scale(1); transition: opacity 220ms ease, transform 300ms cubic-bezier(0.2,0.8,0.2,1); }
+    .pl-img--2.pl-show { opacity:1; transform: translate( 10px,  8px) rotate(-2.0deg) scale(1); transition: opacity 220ms ease, transform 300ms cubic-bezier(0.2,0.8,0.2,1); }
+    .pl-img--3.pl-show { opacity:1; transform: translate( -6px, 16px) rotate( 1.0deg) scale(1); transition: opacity 220ms ease, transform 300ms cubic-bezier(0.2,0.8,0.2,1); }
+
+    /* title below stage */
+    .pl-title {
+      position: absolute;
+      bottom: -76px;
+      left: 50%;
+      transform: translateX(-50%) translateY(14px);
+      white-space: nowrap;
+      font-family: 'Melodrame', serif;
+      font-size: clamp(34px, 6vw, 58px);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      color: var(--color-ink-dark, #1C1C1A);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .pl-title.pl-show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      transition: opacity 420ms ease, transform 520ms cubic-bezier(0.2,0.8,0.2,1);
+    }
+
+    /* disperse — fly toward upper-right (where the cascade lives) */
+    .pl-img--1.pl-out { opacity:0; transform: translate(44vw,-38vh) rotate( 2deg) scale(0.48); transition: opacity 550ms ease,         transform 650ms cubic-bezier(0.4,0,0.2,1); }
+    .pl-img--2.pl-out { opacity:0; transform: translate(50vw,-22vh) rotate(-3deg) scale(0.52); transition: opacity 550ms ease  80ms,   transform 650ms cubic-bezier(0.4,0,0.2,1)  80ms; }
+    .pl-img--3.pl-out { opacity:0; transform: translate(46vw, -6vh) rotate( 1deg) scale(0.48); transition: opacity 550ms ease 160ms,   transform 650ms cubic-bezier(0.4,0,0.2,1) 160ms; }
+    .pl-title.pl-out  { opacity:0; transform: translateX(-50%) translateY(-18px); transition: opacity 350ms ease 80ms, transform 450ms ease 80ms; }
+
+    /* final overlay fade */
+    #preloader.pl-fade {
+      opacity: 0;
+      transition: opacity 500ms ease;
+      pointer-events: none;
+    }
+
+    /* ── LANGUAGE TOGGLE ── */
+    .lang-toggle-wrap { display: flex; align-items: center; gap: 4px; list-style: none; padding-left: 16px; border-left: 1px solid rgba(28,28,26,0.12); }
+    .lang-opt { background: none; border: none; cursor: pointer; padding: 2px 0; font-family: var(--font-body, 'DM Sans', sans-serif); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #8C8070; transition: color 0.2s; }
+    .lang-opt--active { color: #1C1C1A; font-weight: 600; }
+    .lang-sep { color: #8C8070; font-size: 11px; }
+  </style>
+</head>
+<body>
+
+  <!-- ── PRELOADER ── -->
+  <div id="preloader" aria-hidden="true">
+    <div class="pl-stage">
+      <img class="pl-img pl-img--1" src="/imageONE.png" alt="">
+      <img class="pl-img pl-img--2" src="/img-01.jpg" alt="">
+      <img class="pl-img pl-img--3" src="/img-05.jpg" alt="">
+      <p class="pl-title">Our Story.</p>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════
+       NAV (exact copy from index.html, links updated)
+  ══════════════════════════════════════════ -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-main">
+      <a href="/" class="nav-wordmark" aria-label="NUDES — home">
+        <img src="/assets/logo-black.png" alt="NUDES" style="height:36px;width:auto;display:block;border:none;background:none;">
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html" class="active">About Us</a></li>
+        <li><a href="./info.html">Info</a></li>
+        <li><a href="https://instagram.com/eat.nudes" rel="noopener noreferrer" target="_blank">Instagram</a></li>
+        <li><a href="index.html#community" class="nav-join-club">Join The Club*</a></li>
+        <li class="lang-toggle-wrap">
+          <button class="lang-opt lang-opt--active" data-lang="en" onclick="__setLang('en')">EN</button>
+          <span class="lang-sep">/</span>
+          <button class="lang-opt" data-lang="es" onclick="__setLang('es')">ES</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════
+         SECTIONS 1+2 — cascade wrapper
+    ══════════════════════════════════════════ -->
+    <div class="hero-cascade-wrap">
+
+      <!-- Cascading photos — spans both sections -->
+      <div class="photo-cascade" aria-hidden="true">
+        <img src="/imageONE.png" alt=""
+          style="width:380px;aspect-ratio:3/4;top:80px;right:40px;transform:rotate(2deg);z-index:3;">
+        <img src="/img-01.jpg" alt=""
+          style="width:340px;aspect-ratio:3/4;top:480px;right:0px;transform:rotate(-3deg);z-index:2;">
+        <img src="/img-05.jpg" alt=""
+          style="width:360px;aspect-ratio:3/4;top:880px;right:60px;transform:rotate(1.5deg);z-index:1;">
+      </div>
+
+      <section id="story-hero" aria-labelledby="story-headline">
+        <div class="section-inner">
+          <p class="hero-eyebrow">NUDES™</p>
+          <h1 class="hero-headline" id="story-headline">Our Story.</h1>
+        </div>
+      </section>
+
+      <section id="place-year">
+        <div class="section-inner">
+          <div class="place-year-grid">
+            <div>
+              <h2 class="place-heading">Born in Barcelona<br><em>2021.</em></h2>
+              <p class="place-para">Rooted in the Mediterranean. Portioned by hand. Real food, nothing to hide.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 3 — ORIGIN
+    ══════════════════════════════════════════ -->
+    <section id="origin" aria-labelledby="origin-heading">
+      <div class="section-inner">
+        <div class="origin-grid">
+
+          <!-- Left: portrait + caption -->
+          <div class="origin-img-col">
+            <div class="img-placeholder" style="background:#F5E6A3; aspect-ratio:3/4; border-radius:6px;">
+              the founders · portrait
+            </div>
+            <p class="origin-caption">Ryan and Tim — Co-Founders</p>
+          </div>
+
+          <!-- Right: story text -->
+          <div>
+            <h2 class="origin-heading" id="origin-heading">A dream come true.</h2>
+
+            <p class="origin-intro">Two founders with one clear idea: to build a food brand that made healthy eating taste genuinely good — with real ingredients, honest portions, and no guilt attached.</p>
+
+            <p class="origin-body">Ryan and Tim started with a simple frustration: healthy food was either bland, overcomplicated, or packed with ingredients nobody could pronounce. They believed better food didn't have to feel like a compromise. It could be fresh, flavorful, filling, and made from real ingredients people actually understood.</p>
+
+            <p class="origin-body">So they set out to create a brand that could change the way people thought about healthy eating. Not as a trend. Not as a diet. But as everyday food that tasted good, felt good, and fit naturally into people's lives.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 4 — PULL QUOTE
+    ══════════════════════════════════════════ -->
+    <section id="pull-quote" aria-label="Pull quote">
+      <div class="pull-quote-inner">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <blockquote class="quote-text">
+          They decided to build the place they wanted to eat at.
+        </blockquote>
+        <p class="quote-attr">— NUDES™, chapter one</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 5 — REAL FOOD (Principle 01)
+    ══════════════════════════════════════════ -->
+    <section class="principle" aria-labelledby="p1-heading">
+      <div class="section-inner">
+        <div class="principle-grid principle-grid--img-left">
+
+          <!-- Left: image -->
+          <div>
+            <img src="/assets/real-food.jpg" alt="Real Food" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px;display:block;">
+          </div>
+
+          <!-- Right: text -->
+          <div>
+            <p class="principle-eyebrow">01 · fresh, seasonal &amp; preservative-free</p>
+            <h2 class="principle-heading" id="p1-heading">Real Food.</h2>
+            <p class="principle-body">Three years sourcing from ethical growers, swapping ideas with chefs, and drawing from kitchens across the Mediterranean. Everything prepared from scratch, every morning, with short ingredient lists and zero hidden sugar.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 6 — REAL ROOTS (Principle 02)
+    ══════════════════════════════════════════ -->
+    <section class="principle" aria-labelledby="p2-heading">
+      <div class="section-inner">
+        <div class="principle-grid principle-grid--img-right">
+
+          <!-- Left: text -->
+          <div>
+            <p class="principle-eyebrow">02 · rooted in seasons; full of soul</p>
+            <h2 class="principle-heading" id="p2-heading">Real Roots.</h2>
+            <p class="principle-body">Good food should be for everyone. Our chefs serve bold plates, joyful vibes, and honest portions. Local farms, daily bread, open kitchens — a menu you can actually see being made.</p>
+          </div>
+
+          <!-- Right: image -->
+          <div>
+            <img src="/assets/real-roots.png" alt="Real Roots" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px;display:block;">
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 7 — REAL BELONGING (Principle 03)
+    ══════════════════════════════════════════ -->
+    <section class="principle" aria-labelledby="p3-heading">
+      <div class="section-inner">
+        <div class="principle-grid principle-grid--img-left">
+
+          <!-- Left: image -->
+          <div>
+            <img src="/assets/real-belonging.png" alt="Real Belonging" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px;display:block;">
+          </div>
+
+          <!-- Right: text -->
+          <div>
+            <p class="principle-eyebrow">03 · welcoming spaces, good people</p>
+            <h2 class="principle-heading" id="p3-heading">Real Belonging.</h2>
+            <p class="principle-body">Real food, made by real chefs, in welcoming rooms with good music and like-minded people. Pull up a stool at the bar. Stay as long as you want.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 8 — JOIN THE REVOLUTION
+    ══════════════════════════════════════════ -->
+    <section id="join" aria-labelledby="join-heading">
+      <div class="section-inner">
+        <div class="join-grid">
+
+          <!-- Left: stacked images -->
+          <div class="join-phones">
+            <div>
+              <img src="/assets/revo.jpeg" alt="" style="width:100%;aspect-ratio:3/5;object-fit:cover;border-radius:16px;display:block;">
+            </div>
+            <div class="join-phone-b">
+              <img src="/assets/rev.jpg" alt="" style="width:100%;aspect-ratio:3/5;object-fit:cover;border-radius:16px;display:block;">
+            </div>
+          </div>
+
+          <!-- Right: text + CTAs -->
+          <div>
+            <p class="join-eyebrow">— the club</p>
+            <h2 class="join-heading" id="join-heading">
+              Join the <em>revolution.</em>
+            </h2>
+            <p class="join-body">Skip the line. Get first word on new openings, seasonal drops, and the occasional free bowl.</p>
+            <form class="join-newsletter" onsubmit="(function(e){e.preventDefault();var f=e.target;var msg=f.querySelector('.join-confirm');var inp=f.querySelector('input');msg.style.display='block';inp.value='';setTimeout(function(){msg.style.display='none';},4000);})(event);" style="display:flex;gap:0;max-width:440px;">
+              <input type="email" placeholder="Your email address" required autocomplete="off" style="flex:1;background:transparent;border:1.5px solid var(--color-ink-dark);border-right:none;border-radius:999px 0 0 999px;padding:14px 22px;font-family:var(--font-body);font-size:13px;color:var(--color-ink-dark);outline:none;">
+              <button type="submit" style="background:var(--color-ink-dark);color:var(--color-cream);border:none;border-radius:0 999px 999px 0;padding:14px 28px;font-family:var(--font-body);font-size:12px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:background 0.2s;" onmouseover="this.style.background='rgba(28,28,26,0.75)'" onmouseout="this.style.background='var(--color-ink-dark)'">Join</button>
+            </form>
+            <p class="join-confirm" style="display:none;margin-top:14px;font-family:var(--font-body);font-size:14px;font-weight:500;color:var(--color-ink-dark);letter-spacing:0.04em;">You're in. ✓</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER (copied exactly from index.html, links updated)
+  ══════════════════════════════════════════ -->
+  <footer role="contentinfo">
+
+    <div class="ft-top">
+      <div>
+        <ul class="ft-nav">
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="./info.html">Info</a></li>
+          <li><a href="https://instagram.com/eat.nudes" rel="noopener" target="_blank">Instagram</a></li>
+          <li><a href="index.html#community">Join The Club°</a></li>
+        </ul>
+        <div class="ft-meta">
+          info@eatnudes.com<br>
+          © 2025 NUDES
+        </div>
+        <a href="https://instagram.com/eat.nudes" class="ft-ig" rel="noopener" target="_blank" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+      </div>
+
+      <div>
+        <p class="ft-newsletter-label">Newsletter Signup</p>
+        <form class="ft-form" onsubmit="return false;">
+          <div class="ft-form-row">
+            <input class="ft-input" type="text" placeholder="Your name" autocomplete="off">
+            <input class="ft-input" type="email" placeholder="Your email address" autocomplete="off">
+          </div>
+          <button class="ft-btn" type="submit">Sign Up</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="ft-wm">
+      <img src="nudes-logo.png" alt="NUDES" class="ft-logo-img">
+    </div>
+    <div class="ft-copy">For People With Really Great Taste</div>
+
+  </footer>
+
+  <script>
+  /* ── PRELOADER ── */
+  (function () {
+    var pl   = document.getElementById('preloader');
+    var img1 = pl.querySelector('.pl-img--1');
+    var img2 = pl.querySelector('.pl-img--2');
+    var img3 = pl.querySelector('.pl-img--3');
+    var ttl  = pl.querySelector('.pl-title');
+
+    document.body.classList.add('pl-active');
+
+    function show(el) { el.classList.add('pl-show'); }
+    function out(el)  { el.classList.remove('pl-show'); el.classList.add('pl-out'); }
+
+    /* Phase 1 — photos drop in fast, one by one */
+    setTimeout(function () { show(img1); }, 100);
+    setTimeout(function () { show(img2); }, 330);
+    setTimeout(function () { show(img3); }, 560);
+
+    /* Phase 2 — "Our Story." slides up */
+    setTimeout(function () { show(ttl); }, 850);
+
+    /* Phase 3 — everything flies to the upper-right cascade zone */
+    setTimeout(function () { out(img1); out(img2); out(img3); out(ttl); }, 1750);
+
+    /* Phase 4 — overlay fades out */
+    setTimeout(function () { pl.classList.add('pl-fade'); }, 2120);
+
+    /* Phase 5 — remove from DOM, restore scroll */
+    setTimeout(function () {
+      pl.style.display = 'none';
+      document.body.classList.remove('pl-active');
+    }, 2650);
+  })();
+  </script>
+
+  <script>
+  /* ── LANGUAGE TOGGLE ── */
+  (function () {
+    function applyLang(lang) {
+      document.querySelectorAll('[data-en]').forEach(function(el) {
+        el.innerHTML = el.dataset[lang] !== undefined ? el.dataset[lang] : el.dataset.en;
+      });
+      localStorage.setItem('nudes-lang', lang);
+      document.querySelectorAll('.lang-opt').forEach(function(btn) {
+        btn.classList.toggle('lang-opt--active', btn.dataset.lang === lang);
+      });
+      document.documentElement.lang = lang;
+    }
+    window.__setLang = applyLang;
+    var saved = localStorage.getItem('nudes-lang') || 'en';
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { applyLang(saved); });
+    } else { applyLang(saved); }
+  })();
+  </script>
+
+</body>
+</html>
