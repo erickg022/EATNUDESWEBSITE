@@ -2136,6 +2136,139 @@
     .lang-opt { background: none; border: none; cursor: pointer; padding: 2px 0; font-family: var(--font-body, 'DM Sans', sans-serif); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #8C8070; transition: color 0.2s; }
     .lang-opt--active { color: #1C1C1A; font-weight: 600; }
     .lang-sep { color: #8C8070; font-size: 11px; }
+
+    /* =============================================
+       HAMBURGER BUTTON (hidden on desktop)
+    ============================================= */
+    .nav-hamburger { display: none; }
+
+    /* =============================================
+       MOBILE OVERLAY MENU (hidden on desktop)
+    ============================================= */
+    .mobile-menu { display: none; }
+
+    /* =============================================
+       MOBILE BREAKPOINT — all fixes
+    ============================================= */
+    @media (max-width: 768px) {
+
+      /* ── Global ── */
+      body { overflow-x: hidden; }
+      img, video, iframe, svg { max-width: 100%; }
+
+      /* ── Hamburger button ── */
+      .nav-hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        z-index: 1002;
+        flex-shrink: 0;
+      }
+      .nav-hamburger span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: #FDFAF2;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        transform-origin: center;
+        border-radius: 1px;
+      }
+      .nav-hamburger.is-open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .nav-hamburger.is-open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .nav-hamburger.is-open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      /* ── Mobile overlay menu ── */
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        background: #1C1C1A;
+        z-index: 1000;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 32px 60px;
+        gap: 0;
+      }
+      .mobile-menu.is-open { display: flex; }
+      .mobile-menu__link {
+        font-family: 'Melodrame', Georgia, serif;
+        font-size: clamp(34px, 9vw, 54px);
+        font-weight: normal;
+        color: #FDFAF2;
+        text-decoration: none;
+        line-height: 1.2;
+        padding: 8px 0;
+        text-align: center;
+        letter-spacing: 0.01em;
+        display: block;
+      }
+      .mobile-menu__link--pink { color: #E8A0B4; }
+      .mobile-menu__lang {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 40px;
+      }
+      .mobile-menu__lang-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(253,250,242,0.4);
+        padding: 4px 0;
+        transition: color 0.2s;
+      }
+      .mobile-menu__lang-btn.is-active { color: #FDFAF2; font-weight: 600; }
+      .mobile-menu__lang-sep { color: rgba(253,250,242,0.25); font-size: 11px; }
+
+      /* ── Category grid: 1 column ── */
+      .category-grid-wrap { grid-template-columns: 1fr !important; }
+      .category-card { height: 260px; }
+
+      /* ── Join-the-club collage: show only center image ── */
+      #join-club { height: 85vh; margin-top: 5vh; }
+      .hero-collage { display: block !important; position: relative; height: 100%; }
+      .collage-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .collage-img--1,
+      .collage-img--2,
+      .collage-img--4,
+      .collage-img--5,
+      .collage-img--6,
+      .collage-img--7 { display: none !important; }
+      .collage-img--3 { display: block !important; }
+
+      /* ── News grid: single column ── */
+      .news-grid { grid-template-columns: 1fr !important; }
+
+      /* ── Footer: stack vertically, full-width form ── */
+      .ft-top { grid-template-columns: 1fr !important; }
+      .ft-form-row { grid-template-columns: 1fr; }
+      .ft-input:first-child { border-right: 0.5px solid var(--color-ink); border-bottom: none; }
+
+      /* ── Process rows: image stacks above text ── */
+      .process-row { grid-template-columns: 1fr !important; }
+      .process-img { order: 0 !important; min-height: 280px; }
+      .process-text { order: 1 !important; }
+
+    }
   </style>
 </head>
 
@@ -2179,8 +2312,27 @@
           <button class="lang-opt" data-lang="es" onclick="__setLang('es')">ES</button>
         </li>
       </ul>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile overlay menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation">
+    <a href="products.html" class="mobile-menu__link" data-en="Products" data-es="Productos">Products</a>
+    <a href="about.html" class="mobile-menu__link" data-en="About Us" data-es="Sobre nosotros">About Us</a>
+    <a href="./info.html" class="mobile-menu__link" data-en="Info" data-es="Info">Info</a>
+    <a href="https://instagram.com/eat.nudes" class="mobile-menu__link" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="#community" class="mobile-menu__link mobile-menu__link--pink" data-en="Join The Club*" data-es="Únete al Club*">Join The Club*</a>
+    <div class="mobile-menu__lang">
+      <button class="mobile-menu__lang-btn is-active" id="mob-lang-en" onclick="__setLang('en');__updateMobLang('en')">EN</button>
+      <span class="mobile-menu__lang-sep">/</span>
+      <button class="mobile-menu__lang-btn" id="mob-lang-es" onclick="__setLang('es');__updateMobLang('es')">ES</button>
+    </div>
+  </div>
 
   <!-- ══════════════════════════════════════════════
        MAIN
@@ -3129,7 +3281,7 @@
   /* ── STORES CAROUSEL ── */
   (function () {
     var TOTAL   = 5;
-    var VISIBLE = 3;
+    var VISIBLE = window.innerWidth <= 768 ? 1 : 3;
     var current = 0;
     var animating = false;
     var paused  = false;
@@ -3229,6 +3381,52 @@
     sizeCards();
     window.addEventListener('resize', sizeCards);
     startTimer();
+  })();
+  </script>
+
+  <script>
+  /* ── HAMBURGER MENU ── */
+  (function () {
+    var btn  = document.getElementById('nav-hamburger');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+
+    function openMenu() {
+      btn.classList.add('is-open');
+      menu.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      btn.classList.remove('is-open');
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    function toggleMenu() {
+      menu.classList.contains('is-open') ? closeMenu() : openMenu();
+    }
+
+    btn.addEventListener('click', toggleMenu);
+
+    /* Close when any link inside is tapped */
+    menu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeMenu);
+    });
+
+    /* Close on ESC */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    /* ── Mobile language active state ── */
+    window.__updateMobLang = function (lang) {
+      document.getElementById('mob-lang-en').classList.toggle('is-active', lang === 'en');
+      document.getElementById('mob-lang-es').classList.toggle('is-active', lang === 'es');
+    };
+    /* Sync on load */
+    var saved = localStorage.getItem('nudes-lang') || 'en';
+    window.__updateMobLang(saved);
   })();
   </script>
 
