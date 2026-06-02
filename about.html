@@ -613,6 +613,33 @@
     /* ═══════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════ */
+    /* Hamburger hidden on desktop; overlay always hidden until opened */
+    .nav-hamburger { display: none; }
+    .mobile-menu   { display: none; }
+    .mobile-menu.is-open { display: flex; }
+
+    /* Overlay styles (applied at all sizes, shown only via .is-open) */
+    .mobile-menu {
+      position: fixed; inset: 0; background: #1C1C1A; z-index: 1000;
+      flex-direction: column; align-items: center; justify-content: center;
+      padding: 80px 32px 60px; gap: 0;
+    }
+    .mobile-menu__link {
+      font-family: 'Melodrame', Georgia, serif;
+      font-size: clamp(34px,9vw,54px); font-weight: normal; color: #FDFAF2;
+      text-decoration: none; line-height: 1.2; padding: 8px 0;
+      text-align: center; letter-spacing: 0.01em; display: block;
+    }
+    .mobile-menu__link--pink { color: #E8A0B4; }
+    .mobile-menu__lang { display: flex; align-items: center; gap: 12px; margin-top: 40px; }
+    .mobile-menu__lang-btn {
+      background: none; border: none; cursor: pointer; font-family: 'DM Sans',sans-serif;
+      font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(253,250,242,0.4); padding: 4px 0; transition: color 0.2s;
+    }
+    .mobile-menu__lang-btn.is-active { color: #FDFAF2; font-weight: 600; }
+    .mobile-menu__lang-sep { color: rgba(253,250,242,0.25); font-size: 11px; }
+
     @media (max-width: 768px) {
       #story-hero  { padding: 140px 20px 60px; }
       #place-year  { padding: 40px 20px 80px; }
@@ -635,13 +662,28 @@
       .principle-grid--img-left  > :last-child  { order: 1; }
 
       .origin-img-col { padding-top: 0; }
-
       .quote-mark { font-size: 80px; }
-
       .join-phones { gap: 12px; }
       .join-phone-b { padding-top: 24px; }
 
+      /* Nav: hide links, show hamburger, raise z-index above overlay */
       .nav-links { display: none; }
+      #nav { z-index: 1100 !important; }
+      .nav-hamburger {
+        display: flex !important;
+        flex-direction: column; justify-content: center; align-items: center;
+        gap: 5px; width: 40px; height: 40px;
+        background: none; border: none; cursor: pointer; padding: 4px; flex-shrink: 0;
+      }
+      .nav-hamburger span {
+        display: block; width: 22px; height: 1.5px;
+        background: var(--color-ink-dark, #1C1C1A);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        transform-origin: center; border-radius: 1px;
+      }
+      .nav-hamburger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+      .nav-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .nav-hamburger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
       .ft-top { grid-template-columns: 1fr; }
       .ft-form-row { grid-template-columns: 1fr; }
@@ -771,8 +813,25 @@
           <button class="lang-opt" data-lang="es" onclick="__setLang('es')">ES</button>
         </li>
       </ul>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile overlay menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation">
+    <a href="products.html" class="mobile-menu__link">Products</a>
+    <a href="about.html" class="mobile-menu__link">About Us</a>
+    <a href="./info.html" class="mobile-menu__link">Info</a>
+    <a href="https://instagram.com/eat.nudes" class="mobile-menu__link" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="index.html#community" class="mobile-menu__link mobile-menu__link--pink">Join The Club*</a>
+    <div class="mobile-menu__lang">
+      <button class="mobile-menu__lang-btn is-active" id="mob-lang-en" onclick="__setLang('en')">EN</button>
+      <span class="mobile-menu__lang-sep">/</span>
+      <button class="mobile-menu__lang-btn" id="mob-lang-es" onclick="__setLang('es')">ES</button>
+    </div>
+  </div>
 
   <main>
 
@@ -1059,6 +1118,20 @@
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function() { applyLang(saved); });
     } else { applyLang(saved); }
+  })();
+  </script>
+
+  <script>
+  /* ── HAMBURGER MENU ── */
+  (function () {
+    var btn  = document.getElementById('nav-hamburger');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    function openMenu()  { btn.classList.add('is-open'); menu.classList.add('is-open'); btn.setAttribute('aria-expanded','true');  document.body.style.overflow = 'hidden'; }
+    function closeMenu() { btn.classList.remove('is-open'); menu.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow = ''; }
+    btn.addEventListener('click', function(e) { e.stopPropagation(); menu.classList.contains('is-open') ? closeMenu() : openMenu(); });
+    menu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
   })();
   </script>
 
