@@ -2153,7 +2153,9 @@
     @media (max-width: 768px) {
 
       /* ── Global ── */
-      body { overflow-x: hidden; }
+      /* clip = visual clipping without creating a scroll container,
+         so position:sticky still works (overflow:hidden breaks it) */
+      body { overflow-x: clip; }
       img, video, iframe, svg { max-width: 100%; }
 
       /* ── Hamburger button ── */
@@ -2240,10 +2242,20 @@
 
       /* ════════════════════════════════════════════
          CATEGORY GRID — sticky card stack (9:16)
-         Progressively increasing top so each card
-         peeks 60px above the one before it.
+
+         ALL cards share the SAME top value so each
+         card "stays fixed" while the next one slides
+         up from below and covers it entirely.
+         Increasing z-index ensures each new card
+         renders on top of the previous one.
+
+         KEY: overflow-x must be `clip` not `hidden`
+         on all ancestors — `hidden` creates a scroll
+         container which silently breaks sticky.
       ════════════════════════════════════════════ */
       #category-grid { padding: 0 0 80px !important; }
+      /* Remove overflow from any ancestor that could break sticky */
+      #category-grid, #category-grid > div { overflow: visible !important; }
 
       .category-grid-wrap {
         display: block !important;
@@ -2253,6 +2265,7 @@
 
       .category-card {
         position: sticky !important;
+        top: 60px !important;           /* SAME for every card */
         display: flex !important;
         flex-direction: column !important;
         justify-content: space-between !important;
@@ -2262,19 +2275,18 @@
         border-radius: 16px !important;
         overflow: hidden !important;
         box-shadow: 0 8px 32px rgba(0,0,0,0.20) !important;
-        /* Reset height from desktop */
       }
 
-      /* Progressively larger top → deck peek effect */
-      .category-card:nth-child(1) { top:   0px; z-index: 1; }
-      .category-card:nth-child(2) { top:  60px; z-index: 2; }
-      .category-card:nth-child(3) { top: 120px; z-index: 3; }
-      .category-card:nth-child(4) { top: 180px; z-index: 4; }
-      .category-card:nth-child(5) { top: 240px; z-index: 5; }
-      .category-card:nth-child(6) { top: 300px; z-index: 6; }
-      .category-card:nth-child(7) { top: 360px; z-index: 7; }
-      .category-card:nth-child(8) { top: 420px; z-index: 8; }
-      .category-card:nth-child(9) { top: 480px; z-index: 9; }
+      /* Each card has a higher z-index so it renders on top of the previous */
+      .category-card:nth-child(1) { z-index: 1; }
+      .category-card:nth-child(2) { z-index: 2; }
+      .category-card:nth-child(3) { z-index: 3; }
+      .category-card:nth-child(4) { z-index: 4; }
+      .category-card:nth-child(5) { z-index: 5; }
+      .category-card:nth-child(6) { z-index: 6; }
+      .category-card:nth-child(7) { z-index: 7; }
+      .category-card:nth-child(8) { z-index: 8; }
+      .category-card:nth-child(9) { z-index: 9; }
 
       /* Gradient: strong at bottom where text lives */
       .category-card-overlay {
