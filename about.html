@@ -641,7 +641,7 @@
     .mobile-menu__lang-sep { color: rgba(253,250,242,0.25); font-size: 11px; }
 
     @media (max-width: 768px) {
-      #story-hero  { padding: 140px 20px 60px; }
+      #story-hero  { padding: 90px 20px 60px; }
       #place-year  { padding: 40px 20px 80px; }
       #origin      { padding: 80px 20px; }
       #pull-quote  { padding: 100px 20px; }
@@ -693,26 +693,28 @@
       /* Expand container to full width so left-edge placement works */
       .photo-cascade { width: 100% !important; }
 
-      /* Card 1: moved further down past the "Our Story." headline */
+      /* Card 1: right side, just below the "Our Story." headline */
       .photo-cascade img:nth-child(1) {
         width: 56vw !important;
-        top: 290px !important;
-        right: 20px !important;
+        top: 220px !important;
+        right: 15px !important;
+        left: auto !important;
       }
 
-      /* Card 2: move down a bit + push to left edge (was top:480px right:0) */
+      /* Card 2: left edge, overlapping below card 1 */
       .photo-cascade img:nth-child(2) {
         width: 52vw !important;
-        top: 530px !important;
-        right: auto !important;
+        top: 520px !important;
         left: 0px !important;
+        right: auto !important;
       }
 
-      /* Card 3: further down + scaled down, bottom of Barcelona section */
+      /* Card 3: left edge, deeper into Barcelona section, partially cut off */
       .photo-cascade img:nth-child(3) {
         width: 46vw !important;
-        top: 1380px !important;
-        right: 10px !important;
+        top: 1150px !important;
+        left: 0px !important;
+        right: auto !important;
       }
     }
 
