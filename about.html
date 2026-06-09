@@ -688,6 +688,32 @@
       .ft-top { grid-template-columns: 1fr; }
       .ft-form-row { grid-template-columns: 1fr; }
       .ft-input:first-child { border-right: 0.5px solid var(--color-ink-dark); border-bottom: none; }
+
+      /* ── Photo Cascade — mobile position adjustments ── */
+      /* Expand container to full width so left-edge placement works */
+      .photo-cascade { width: 100% !important; }
+
+      /* Card 1: move down ~5% (was top:80px) */
+      .photo-cascade img:nth-child(1) {
+        width: 56vw !important;
+        top: 125px !important;
+        right: 20px !important;
+      }
+
+      /* Card 2: move down a bit + push to left edge (was top:480px right:0) */
+      .photo-cascade img:nth-child(2) {
+        width: 52vw !important;
+        top: 530px !important;
+        right: auto !important;
+        left: 0px !important;
+      }
+
+      /* Card 3: move further down into Barcelona section corner (was top:880px) */
+      .photo-cascade img:nth-child(3) {
+        width: 54vw !important;
+        top: 1100px !important;
+        right: 10px !important;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
