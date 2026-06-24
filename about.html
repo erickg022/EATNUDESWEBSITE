@@ -276,6 +276,22 @@
       padding-top: 60px;
     }
 
+    .origin-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--color-yellow);
+    }
+
+    .origin-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
     .origin-caption {
       font-family: var(--font-body);
       font-size: 12px;
@@ -930,21 +946,27 @@
 
           <!-- Left: portrait + caption -->
           <div class="origin-img-col">
-            <div class="img-placeholder" style="background:#F5E6A3; aspect-ratio:3/4; border-radius:6px;">
-              the founders · portrait
+            <div class="origin-photo">
+              <img src="/assets/tim-ryan.webp" alt="Ryan and Tim, NUDES co-founders" loading="lazy">
             </div>
             <p class="origin-caption">Ryan and Tim — Co-Founders</p>
           </div>
 
           <!-- Right: story text -->
           <div>
-            <h2 class="origin-heading" id="origin-heading">A dream come true.</h2>
+            <h2 class="origin-heading" id="origin-heading">NUDES Health Bar</h2>
 
-            <p class="origin-intro">Two founders with one clear idea: to build a food brand that made healthy eating taste genuinely good — with real ingredients, honest portions, and no guilt attached.</p>
+            <p class="origin-body">It all started with a simple idea: Make healthy food fun, transparent and accessible.</p>
 
-            <p class="origin-body">Ryan and Tim started with a simple frustration: healthy food was either bland, overcomplicated, or packed with ingredients nobody could pronounce. They believed better food didn't have to feel like a compromise. It could be fresh, flavorful, filling, and made from real ingredients people actually understood.</p>
+            <p class="origin-intro" style="margin-top:0;">Born in the streets of Barcelona by founders Ryan and Tim, NUDES is a premium health bar that proves you don’t have to choose between feeling amazing and actually enjoying what you eat.</p>
 
-            <p class="origin-body">So they set out to create a brand that could change the way people thought about healthy eating. Not as a trend. Not as a diet. But as everyday food that tasted good, felt good, and fit naturally into people's lives.</p>
+            <p class="origin-body">We’re obsessed with real ingredients, radical transparency, and creating little moments of delight every single day. No hidden sugars. No artificial anything. Just fresh, vibrant, nutrient-dense food made with love in-house every morning.</p>
+
+            <p class="origin-body">From our original Barcelona location to our new home in Madrid, every NUDES space is intentionally designed to feel like a warm embrace. Think beautiful design, feel-good music, and genuinely kind service. A place where you come not just to eat — but to feel good, socialise, reconnect with yourself, and leave a little brighter than when you walked in.</p>
+
+            <p class="origin-body">Whether it’s your morning ritual, post-workout recharge, or that well-deserved afternoon treat, we’re here to make healthy eating something you genuinely look forward to.</p>
+
+            <p class="origin-body">Welcome to NUDES.<br>For people with really great taste.</p>
           </div>
 
         </div>
