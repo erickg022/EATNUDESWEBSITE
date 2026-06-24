@@ -3520,6 +3520,7 @@
 
     function startTimer() {
       clearInterval(timer);
+      if (paused) return;
       timer = setInterval(next, 3000);
     }
 
@@ -3532,7 +3533,7 @@
         dot.addEventListener('click', function () {
           clearInterval(timer);
           goTo(idx, true);
-          if (!paused) startTimer();
+          startTimer();
         });
         dotsWrap.appendChild(dot);
       })(j);
@@ -3551,6 +3552,10 @@
     /* Init */
     sizeCards();
     window.addEventListener('resize', sizeCards);
+    window.addEventListener('load', function () {
+      sizeCards();
+      startTimer();
+    });
     startTimer();
   })();
   </script>
