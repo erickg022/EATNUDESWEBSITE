@@ -87,10 +87,24 @@
       width: 100%;
     }
 
+    .nav-wordmark {
+      display: inline-flex;
+      align-items: flex-start;
+    }
     .nav-wordmark img {
       height: 36px;
       width: auto;
       display: block;
+    }
+    .logo-reg {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      line-height: 1;
+      margin-left: 4px;
+      transform: translateY(-2px);
+      color: var(--color-ink-dark);
     }
 
     .nav-links {
@@ -599,6 +613,12 @@
       height: auto;
       display: block;
     }
+    .ft-wm { display: flex; align-items: flex-end; }
+    .logo-reg--footer {
+      font-size: clamp(13px, 1.4vw, 20px);
+      margin-left: 8px;
+      transform: translateY(clamp(-24px, -2vw, -12px));
+    }
 
     .ft-copy {
       font-family: var(--font-body);
@@ -830,7 +850,7 @@
   <nav id="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-main">
       <a href="/" class="nav-wordmark" aria-label="NUDES — home">
-        <img src="/assets/logo-black.png" alt="NUDES" style="height:36px;width:auto;display:block;border:none;background:none;">
+        <img src="/assets/logo-black.png" alt="NUDES" style="height:36px;width:auto;display:block;border:none;background:none;"><span class="logo-reg" aria-hidden="true">®</span>
       </a>
       <ul class="nav-links" role="list">
         <li><a href="products.html">Products</a></li>
@@ -1089,7 +1109,7 @@
     </div>
 
     <div class="ft-wm">
-      <img src="nudes-logo.png" alt="NUDES" class="ft-logo-img">
+      <img src="nudes-logo.png" alt="NUDES" class="ft-logo-img"><span class="logo-reg logo-reg--footer" aria-hidden="true">®</span>
     </div>
     <div class="ft-copy">For People With Really Great Taste</div>
 

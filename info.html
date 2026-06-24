@@ -58,7 +58,18 @@
       border-bottom: 0.5px solid var(--grey-light);
     }
     .nav-main { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .nav-wordmark { display: inline-flex; align-items: flex-start; }
     .nav-wordmark img { height: 36px; width: auto; display: block; }
+    .logo-reg {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 600;
+      line-height: 1;
+      margin-left: 4px;
+      transform: translateY(-2px);
+      color: var(--ink);
+    }
     .nav-links { list-style: none; display: flex; align-items: center; gap: clamp(14px,2.2vw,36px); }
     .nav-links a {
       font-family: var(--sans); font-size: 11px; font-weight: 500;
@@ -537,6 +548,12 @@
     .ft-btn:hover { background: var(--taupe); }
     .ft-wm { background: var(--cream); border-top: 0.5px solid var(--grey-light); padding: clamp(1.5rem,3vw,2.5rem) clamp(1.5rem,5vw,4rem); overflow: hidden; display: flex; align-items: flex-end; }
     .ft-logo-img { width: clamp(300px,40vw,580px); height: auto; display: block; }
+    .ft-wm { display: flex; align-items: flex-end; }
+    .logo-reg--footer {
+      font-size: clamp(13px,1.4vw,20px);
+      margin-left: 8px;
+      transform: translateY(clamp(-24px,-2vw,-12px));
+    }
     .ft-copy { font-family: var(--sans); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--taupe); padding: 1rem clamp(1rem,3vw,2.5rem); text-align: right; }
 
     /* ══════════════════════════════════════
@@ -632,7 +649,7 @@
   <nav id="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-main">
       <a href="/" class="nav-wordmark" aria-label="NUDES — home">
-        <img src="/assets/logo-black.png" alt="NUDES" style="height:36px;width:auto;display:block;border:none;background:none;">
+        <img src="/assets/logo-black.png" alt="NUDES" style="height:36px;width:auto;display:block;border:none;background:none;"><span class="logo-reg" aria-hidden="true">®</span>
       </a>
       <ul class="nav-links" role="list">
         <li><a href="products.html">Products</a></li>
@@ -975,7 +992,7 @@
       </div>
     </div>
     <div class="ft-wm">
-      <img src="nudes-logo.png" alt="NUDES" class="ft-logo-img">
+      <img src="nudes-logo.png" alt="NUDES" class="ft-logo-img"><span class="logo-reg logo-reg--footer" aria-hidden="true">®</span>
     </div>
     <div class="ft-copy">For People With Really Great Taste</div>
   </footer>

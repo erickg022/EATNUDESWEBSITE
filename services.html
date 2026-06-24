@@ -59,7 +59,18 @@
       border-bottom: 0.5px solid var(--color-grey-light);
     }
 
+    .nav-logo { display: inline-flex; align-items: flex-start; }
     .nav-logo img { height: 28px; width: auto; display: block; }
+    .logo-reg {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      line-height: 1;
+      margin-left: 4px;
+      transform: translateY(-2px);
+      color: var(--color-ink);
+    }
 
     .nav-center {
       display: flex;
@@ -578,7 +589,7 @@
   <!-- NAV -->
   <nav id="nav" role="navigation" aria-label="Navegación principal">
     <a href="index.html" class="nav-logo" aria-label="NUDES — inicio">
-      <img src="logo.png" alt="NUDES">
+      <img src="logo.png" alt="NUDES"><span class="logo-reg" aria-hidden="true">®</span>
     </a>
     <ul class="nav-center">
       <li><a href="products.html">Products</a></li>
@@ -819,7 +830,7 @@
       </div>
     </div>
     <div class="ft-wm">
-      <img src="nudes-logo.png" alt="NUDES" class="ft-logo-img">
+      <img src="nudes-logo.png" alt="NUDES" class="ft-logo-img"><span class="logo-reg" aria-hidden="true">®</span>
     </div>
     <div class="ft-copy">For People With Really Great Taste</div>
   </footer>

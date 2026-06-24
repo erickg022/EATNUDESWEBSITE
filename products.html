@@ -61,7 +61,18 @@
       border-bottom: 0.5px solid var(--color-grey-light);
     }
 
+    .nav-logo { display: inline-flex; align-items: flex-start; }
     .nav-logo img { height: 28px; width: auto; display: block; }
+    .logo-reg {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 600;
+      line-height: 1;
+      margin-left: 4px;
+      transform: translateY(-2px);
+      color: var(--color-ink);
+    }
 
     .nav-center {
       display: flex;
@@ -405,6 +416,12 @@
     .ft-btn:hover { background: var(--color-grey); }
     .ft-wm { background: var(--color-cream); border-top: 0.5px solid var(--color-grey-light); padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 5vw, 4rem); overflow: hidden; display: flex; align-items: flex-end; justify-content: flex-start; }
     .ft-logo-img { width: clamp(300px, 40vw, 580px); height: auto; display: block; }
+    .ft-wm { display: flex; align-items: flex-end; }
+    .logo-reg--footer {
+      font-size: clamp(13px, 1.4vw, 20px);
+      margin-left: 8px;
+      transform: translateY(clamp(-24px, -2vw, -12px));
+    }
     .ft-copy { font-family: var(--font-body); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-grey); padding: 1rem clamp(1rem, 3vw, 2.5rem); }
 
     /* ── HAMBURGER / OVERLAY (hidden on desktop) ── */
@@ -534,7 +551,7 @@
   <!-- NAV -->
   <nav id="nav" role="navigation" aria-label="Main navigation">
     <a href="index.html" class="nav-logo" aria-label="NUDES — home">
-      <img src="/assets/logo-black.png" alt="NUDES" style="height:28px;width:auto;display:block;">
+      <img src="/assets/logo-black.png" alt="NUDES" style="height:28px;width:auto;display:block;"><span class="logo-reg" aria-hidden="true">®</span>
     </a>
     <ul class="nav-center">
       <li><a href="products.html" class="active">Products</a></li>
@@ -796,45 +813,45 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/acai-and-coco.jpg" alt="Nudes Açaí & Coco" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/acai-and-coco.jpg" alt="Nudes Açaí Froyo" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="NUDES AÇAÍ &amp; COCO" data-es="NUDES AÇAÍ &amp; COCO">NUDES AÇAÍ &amp; COCO</p>
-              <p class="prod-card__tagline">Açaí &amp; coconut blend</p>
+              <p class="prod-card__name" data-en="NUDES AÇAÍ FROYO" data-es="NUDES AÇAÍ FROYO">NUDES AÇAÍ FROYO</p>
+              <p class="prod-card__tagline">Açaí &amp; froyo blend</p>
               <p class="prod-card__price">M €13 / XL €19</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/pistachio-coconut-soft-serve.jpg" alt="Pistachio Coconut Soft Serve" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/pistachio-coconut-soft-serve.jpg" alt="Pistachio Froyo Soft Serve" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="PISTACHIO COCONUT SOFT SERVE" data-es="SOFT SERVE PISTACHO COCO">PISTACHIO COCONUT SOFT SERVE</p>
-              <p class="prod-card__tagline">Pistachio &amp; coconut</p>
+              <p class="prod-card__name" data-en="PISTACHIO FROYO SOFT SERVE" data-es="SOFT SERVE PISTACHO FROYO">PISTACHIO FROYO SOFT SERVE</p>
+              <p class="prod-card__tagline">Pistachio &amp; froyo</p>
               <p class="prod-card__price">M €13 / XL €19</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/coconut-bliss.jpg" alt="Coconut Bliss Soft Serve" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/coconut-bliss.jpg" alt="Froyo Bliss Soft Serve" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="COCONUT BLISS SOFT SERVE" data-es="SOFT SERVE COCO BLISS">COCONUT BLISS SOFT SERVE</p>
+              <p class="prod-card__name" data-en="FROYO BLISS SOFT SERVE" data-es="SOFT SERVE FROYO BLISS">FROYO BLISS SOFT SERVE</p>
               <p class="prod-card__tagline">Dark choc &amp; cacao</p>
               <p class="prod-card__price">M €13 / XL €19</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/coconut-affogato.jpg" alt="Coconut Affogato" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/coconut-affogato.jpg" alt="Froyo Affogato" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="COCONUT AFFOGATO" data-es="AFFOGATO DE COCO">COCONUT AFFOGATO</p>
-              <p class="prod-card__tagline">Espresso &amp; coconut</p>
+              <p class="prod-card__name" data-en="FROYO AFFOGATO" data-es="AFFOGATO DE FROYO">FROYO AFFOGATO</p>
+              <p class="prod-card__tagline">Espresso &amp; froyo</p>
               <p class="prod-card__price">€7.5</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/matcha-affogato.jpg" alt="Matcha Coconut Affogato" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/matcha-affogato.jpg" alt="Matcha Froyo Affogato" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="MATCHA COCONUT AFFOGATO" data-es="AFFOGATO MATCHA COCO">MATCHA COCONUT AFFOGATO</p>
+              <p class="prod-card__name" data-en="MATCHA FROYO AFFOGATO" data-es="AFFOGATO MATCHA FROYO">MATCHA FROYO AFFOGATO</p>
               <p class="prod-card__tagline">Ceremonial matcha</p>
               <p class="prod-card__price">€8.5</p>
             </div>
@@ -863,7 +880,7 @@
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="VEGAN POWER" data-es="PODER VEGANO">VEGAN POWER</p>
               <p class="prod-card__tagline">Plant-based power roll</p>
-              <p class="prod-card__price">€6</p>
+              <p class="prod-card__price">€10</p>
             </div>
           </div>
 
@@ -872,7 +889,7 @@
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="BURRITO CHICKEN" data-es="BURRITO DE POLLO">BURRITO CHICKEN</p>
               <p class="prod-card__tagline">Protein &amp; fiber</p>
-              <p class="prod-card__price">€6</p>
+              <p class="prod-card__price">€10</p>
             </div>
           </div>
 
@@ -881,7 +898,7 @@
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="CAESAR SALAD" data-es="ENSALADA CÉSAR">CAESAR SALAD</p>
               <p class="prod-card__tagline">Classic &amp; crunchy</p>
-              <p class="prod-card__price">€6</p>
+              <p class="prod-card__price">€10</p>
             </div>
           </div>
 
@@ -890,7 +907,7 @@
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="AVOCADO TUNA" data-es="AGUACATE ATÚN">AVOCADO TUNA</p>
               <p class="prod-card__tagline">Omega-3 &amp; minerals</p>
-              <p class="prod-card__price">€6</p>
+              <p class="prod-card__price">€10</p>
             </div>
           </div>
 
@@ -899,7 +916,7 @@
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="THAI MANGO CHICKEN" data-es="POLLO MANGO THAI">THAI MANGO CHICKEN</p>
               <p class="prod-card__tagline">Fresh &amp; tropical</p>
-              <p class="prod-card__price">€6</p>
+              <p class="prod-card__price">€10</p>
             </div>
           </div>
 
@@ -908,7 +925,7 @@
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="TOFU RAINBOW ROLL" data-es="ROLL ARCOÍRIS DE TOFU">TOFU RAINBOW ROLL</p>
               <p class="prod-card__tagline">Vegan &amp; colorful</p>
-              <p class="prod-card__price">€6</p>
+              <p class="prod-card__price">€10</p>
             </div>
           </div>
 
@@ -916,8 +933,8 @@
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/carne-molida.png" alt="Ground Beef Roll" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="GROUND BEEF ROLL" data-es="ROLL DE CARNE MOLIDA">GROUND BEEF ROLL</p>
-              <p class="prod-card__tagline">Rich &amp; hearty · <span style="color:var(--color-ink);font-weight:500;">+€1 in combos</span></p>
-              <p class="prod-card__price">€6</p>
+              <p class="prod-card__tagline">Rich &amp; hearty</p>
+              <p class="prod-card__price">€12 <span style="font-family:var(--font-body);font-size:11px;color:var(--color-taupe);font-weight:500;">+1.50€ combo</span></p>
             </div>
           </div>
 
@@ -1120,7 +1137,7 @@
     <section id="hot-drinks" class="car-section">
       <div class="sec-hdr">
         <h2 class="sec-title">Hot Drinks</h2>
-        <span class="sec-count">12 products</span>
+        <span class="sec-count">11 products</span>
       </div>
       <div class="car-wrap">
         <button class="car-btn car-btn--prev" onclick="document.getElementById('hot-track').scrollBy({left:-260,behavior:'smooth'})" aria-label="Previous">&#8592;</button>
@@ -1212,15 +1229,6 @@
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="TURMERIC / GINGER TEA" data-es="TÉ CÚRCUMA / JENGIBRE">TURMERIC / GINGER TEA</p>
               <p class="prod-card__tagline">Anti-inflammatory blend</p>
-              <p class="prod-card__price">€3.4 / €3.9 / €4.4</p>
-            </div>
-          </div>
-
-          <div class="prod-card">
-            <div class="prod-card__img"><img src="/food/hot-drinks/midnight-glow-cacao.webp" alt="Hot Midnight Glow Cacao" loading="lazy"></div>
-            <div class="prod-card__info">
-              <p class="prod-card__name" data-en="HOT MIDNIGHT GLOW CACAO" data-es="CACAO HOT MIDNIGHT GLOW">HOT MIDNIGHT GLOW CACAO</p>
-              <p class="prod-card__tagline">Skin &amp; sleep ritual</p>
               <p class="prod-card__price">€3.4 / €3.9 / €4.4</p>
             </div>
           </div>
@@ -1455,7 +1463,7 @@
       </div>
     </div>
     <div class="ft-wm">
-      <img src="nudes-logo.png" alt="NUDES" class="ft-logo-img">
+      <img src="nudes-logo.png" alt="NUDES" class="ft-logo-img"><span class="logo-reg logo-reg--footer" aria-hidden="true">®</span>
     </div>
     <div class="ft-copy">For People With Really Great Taste</div>
   </footer>
