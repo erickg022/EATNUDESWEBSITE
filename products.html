@@ -515,6 +515,25 @@
         scroll-snap-align: start !important;
         margin-right: 0 !important;
       }
+      #smoothies .prod-card__img {
+        background: #ede3d5 !important;
+      }
+      #smoothies .prod-card__img picture {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      #smoothies .prod-card:nth-child(10) { order: 1; }
+      #smoothies .prod-card:nth-child(11) { order: 2; }
+      #smoothies .prod-card:nth-child(1) { order: 3; }
+      #smoothies .prod-card:nth-child(2) { order: 4; }
+      #smoothies .prod-card:nth-child(3) { order: 5; }
+      #smoothies .prod-card:nth-child(4) { order: 6; }
+      #smoothies .prod-card:nth-child(5) { order: 7; }
+      #smoothies .prod-card:nth-child(6) { order: 8; }
+      #smoothies .prod-card:nth-child(7) { order: 9; }
+      #smoothies .prod-card:nth-child(8) { order: 10; }
+      #smoothies .prod-card:nth-child(9) { order: 11; }
 
       /* ── Footer ── */
       footer { overflow-x: clip; box-sizing: border-box; }
@@ -637,7 +656,7 @@
         <div class="car-track" id="smoothies-track">
 
           <div class="prod-card">
-            <div class="prod-card__img"><img src="/food/smoothies/midnight-glow-new.webp" alt="MID/NIGHT 00.00 GLOW" loading="lazy"></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/glow-smoothie-mobile.png"><img src="/food/smoothies/midnight-glow-new.webp" alt="MID/NIGHT 00.00 GLOW" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="MID/NIGHT 00.00 GLOW" data-es="MID/NIGHT 00.00 GLOW">MID/NIGHT 00.00 GLOW</p>
               <p class="prod-card__tagline">Skin, hair &amp; hydration</p>
@@ -646,7 +665,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><img src="/food/smoothies/the-hangover.jpg" alt="The Hangover" loading="lazy"></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/hangover-mobile.png"><img src="/food/smoothies/the-hangover.jpg" alt="The Hangover" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="THE HANGOVER" data-es="LA RESACA">THE HANGOVER</p>
               <p class="prod-card__tagline">Anti-inflammatory &amp; refreshing</p>
@@ -655,7 +674,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><img src="/food/smoothies/cognitive-cacao.jpg" alt="Cognitive Cacao" loading="lazy"></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/cognitive-cacao-mobile.png"><img src="/food/smoothies/cognitive-cacao.jpg" alt="Cognitive Cacao" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="COGNITIVE CACAO" data-es="CACAO COGNITIVO">COGNITIVE CACAO</p>
               <p class="prod-card__tagline">Mental clarity &amp; vitality</p>
@@ -664,7 +683,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><img src="/food/smoothies/morning-glory.jpg" alt="Morning Glory" loading="lazy"></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/morning-glory-mobile.png"><img src="/food/smoothies/morning-glory.jpg" alt="Morning Glory" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="MORNING GLORY" data-es="GLORIA MATUTINA">MORNING GLORY</p>
               <p class="prod-card__tagline">Energizing &amp; vitalizing</p>
@@ -673,7 +692,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><img src="/food/smoothies/femme-fatale.jpg" alt="Femme Fatale" loading="lazy"></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/femme-fatale-mobile.png"><img src="/food/smoothies/femme-fatale.jpg" alt="Femme Fatale" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="FEMME FATALE" data-es="FEMME FATALE">FEMME FATALE</p>
               <p class="prod-card__tagline">Rejuvenating &amp; healing</p>
@@ -682,7 +701,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><img src="/food/smoothies/peach-bum.jpg" alt="Peach Bum" loading="lazy"></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/peach-bum-mobile.png"><img src="/food/smoothies/peach-bum.jpg" alt="Peach Bum" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="PEACH BUM" data-es="MELOCOTÓN BUM">PEACH BUM</p>
               <p class="prod-card__tagline">Toning &amp; moisturizing</p>
@@ -691,7 +710,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><img src="/food/smoothies/green-detox.jpg" alt="Green Detox" loading="lazy"></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/green-detox-mobile.png"><img src="/food/smoothies/green-detox.jpg" alt="Green Detox" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="GREEN DETOX" data-es="DETOX VERDE">GREEN DETOX</p>
               <p class="prod-card__tagline">Detoxifying &amp; purifying</p>
@@ -700,7 +719,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><img src="/food/smoothies/summer-glow.jpg" alt="Summer Glow" loading="lazy"></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/summer-glow-mobile.png"><img src="/food/smoothies/summer-glow.jpg" alt="Summer Glow" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="SUMMER GLOW" data-es="BRILLO VERANIEGO">SUMMER GLOW</p>
               <p class="prod-card__tagline">Immune &amp; revitalizing</p>
@@ -709,7 +728,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><img src="/food/smoothies/blue-moon.jpg" alt="Blue Moon" loading="lazy"></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/bluemoon-mobile.png"><img src="/food/smoothies/blue-moon.jpg" alt="Blue Moon" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="BLUE MOON" data-es="LUNA AZUL">BLUE MOON</p>
               <p class="prod-card__tagline">Mineralizing &amp; antioxidant</p>
@@ -718,7 +737,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><img src="/food/smoothies/cherry-shred.png" alt="Cherry Shred" loading="lazy"></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/cherry-shred-mobile.png"><img src="/food/smoothies/cherry-shred.png" alt="Cherry Shred" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="CHERRY SHRED" data-es="CHERRY SHRED">CHERRY SHRED</p>
               <p class="prod-card__tagline">Bold &amp; energizing</p>
@@ -727,7 +746,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><img src="/food/smoothies/hawaiian-temptation.png" alt="Hawaiian Temptation" loading="lazy"></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/hawaiian-temptation-mobile.png"><img src="/food/smoothies/hawaiian-temptation.png" alt="Hawaiian Temptation" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="HAWAIIAN TEMPTATION" data-es="TENTACIÓN HAWAIANA">HAWAIIAN TEMPTATION</p>
               <p class="prod-card__tagline">Tropical &amp; refreshing</p>
