@@ -2273,6 +2273,10 @@
          container which silently breaks sticky.
       ════════════════════════════════════════════ */
       #category-grid { padding: 0 0 80px !important; }
+      .category-grid-header {
+        padding-left: 24px !important;
+        box-sizing: border-box;
+      }
       /* Remove overflow from any ancestor that could break sticky */
       #category-grid, #category-grid > div { overflow: visible !important; }
 
@@ -2332,6 +2336,14 @@
          LOCATIONS — ensure carousel always visible
       ════════════════════════════════════════════ */
       #locations { padding: 40px 0 !important; min-height: 300px; }
+      .locations-title-break {
+        height: 42vh !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+      }
+      .locations-title-heading {
+        font-size: clamp(48px, 13vw, 64px) !important;
+      }
       .stores-carousel { min-height: 280px; width: 100%; }
       .store-card {
         min-width: calc(100vw - 40px) !important;
@@ -2436,6 +2448,10 @@
       /* ── Process rows: image stacks above text ── */
       .process-row { grid-template-columns: 1fr !important; }
       .process-img { order: 0 !important; min-height: 280px; }
+      .process-img--service img {
+        transform: scale(1.035) rotate(1.2deg);
+        transform-origin: center;
+      }
       .process-text { order: 1 !important; }
 
     }
@@ -2723,7 +2739,7 @@
 
       <!-- Row 3: image left, text right -->
       <div class="process-row">
-        <div class="process-img slide-left">
+        <div class="process-img process-img--service slide-left">
           <img
             src="/nh/hacemos03.jpeg"
             alt="Servicio atento y personal en el local Nudes — cada visita es una experiencia especial"
@@ -2783,7 +2799,7 @@
     </section>
 
     <!-- LOCATIONS TITLE BREAK -->
-    <section style="
+    <section class="locations-title-break" style="
       height: 50vh;
       display: flex;
       align-items: center;
@@ -2791,7 +2807,7 @@
       background: var(--color-cream);
       overflow: hidden;
     ">
-      <h2 style="
+      <h2 class="locations-title-heading" style="
         font-family: var(--font-display);
         font-size: clamp(64px, 12vw, 160px);
         font-weight: normal;

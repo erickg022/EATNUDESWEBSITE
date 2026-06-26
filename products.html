@@ -532,6 +532,21 @@
       .ft-copy { padding-left: 20px; padding-right: 20px; }
     }
 
+    @media (max-width: 768px) {
+      #ceremonial-matcha .prod-card__img {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      #ceremonial-matcha .prod-card__img img {
+        object-fit: contain !important;
+        padding: 12px !important;
+        box-sizing: border-box !important;
+        transform: scale(0.92);
+        transform-origin: center;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
