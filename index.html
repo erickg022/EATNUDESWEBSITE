@@ -2337,7 +2337,10 @@
       ════════════════════════════════════════════ */
       #locations { padding: 40px 0 !important; min-height: 300px; }
       .locations-title-break {
-        height: 42vh !important;
+        height: auto !important;
+        min-height: 0 !important;
+        padding-top: 5vh !important;
+        padding-bottom: 5vh !important;
         padding-left: 24px !important;
         padding-right: 24px !important;
       }
@@ -2452,7 +2455,13 @@
         transform: scale(1.035) rotate(1.2deg);
         transform-origin: center;
       }
-      .process-text { order: 1 !important; }
+      .process-text {
+        order: 1 !important;
+        padding: 32px 20px 5vh !important;
+      }
+      .process-img--service + .process-text {
+        padding-bottom: 5vh !important;
+      }
 
     }
   </style>
