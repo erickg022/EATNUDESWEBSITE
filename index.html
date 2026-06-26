@@ -2449,7 +2449,10 @@
       .ft-input:first-child { border-right: 0.5px solid var(--color-ink); border-bottom: none; }
 
       /* ── Process rows: image stacks above text ── */
-      .process-row { grid-template-columns: 1fr !important; }
+      .process-row {
+        grid-template-columns: 1fr !important;
+        min-height: auto !important;
+      }
       .process-img { order: 0 !important; min-height: 280px; }
       .process-img--service img {
         transform: scale(1.035) rotate(1.2deg);
@@ -2460,6 +2463,14 @@
         padding: 32px 20px 5vh !important;
       }
       .process-img--service + .process-text {
+        padding-bottom: 5vh !important;
+      }
+      .process-row--service {
+        min-height: auto !important;
+      }
+      .process-row--service .process-text {
+        justify-content: flex-start !important;
+        min-height: 0 !important;
         padding-bottom: 5vh !important;
       }
 
@@ -2747,7 +2758,7 @@
       </div>
 
       <!-- Row 3: image left, text right -->
-      <div class="process-row">
+      <div class="process-row process-row--service">
         <div class="process-img process-img--service slide-left">
           <img
             src="/nh/hacemos03.jpeg"
