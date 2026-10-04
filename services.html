@@ -470,6 +470,42 @@
       letter-spacing: 0.03em;
     }
 
+    /* Visibility switch: add class="is-hidden" to any element to hide it */
+    .is-hidden { display: none !important; }
+
+    /* signup form (js/signup.js) */
+    .nl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .nl-field { display: flex; flex-direction: column; gap: 4px; }
+    .nl-field--full { grid-column: 1 / -1; }
+    .nl-field > span {
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(26,20,16,0.6);
+    }
+    .nl-input {
+      background: transparent;
+      border: 1px solid var(--color-ink);
+      padding: 12px 14px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--color-ink);
+      outline: none;
+      border-radius: 0;
+      width: 100%;
+    }
+    .nl-input:focus { background: rgba(26,20,16,0.05); }
+    .nl-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .nl-consent { display: flex; gap: 10px; align-items: flex-start; font-size: 12px; line-height: 1.5; color: rgba(26,20,16,0.75); }
+    .nl-consent input { margin-top: 3px; accent-color: var(--color-ink); flex: none; }
+    .nl-consent a { text-decoration: underline; }
+    .newsletter-form .newsletter-btn { align-self: flex-start; }
+    .newsletter-btn:disabled { opacity: 0.5; cursor: wait; }
+    .nl-status { min-height: 1.4em; font-size: 12px; letter-spacing: 0.02em; }
+    .nl-status[data-state="error"] { color: #9b1c1c; }
+    .nl-status[data-state="warn"] { color: var(--color-ink); font-weight: 500; }
+    @media (max-width: 560px) { .nl-grid { grid-template-columns: 1fr; } }
+
     /* ── LOCATIONS ── */
     #locations { background: var(--color-cream); }
 
@@ -738,18 +774,33 @@
           </p>
         </div>
         <div class="reveal" style="transition-delay:180ms">
-          <form class="newsletter-form" action="#" method="post">
-            <div class="newsletter-input-row">
-              <input
-                type="email"
-                name="email"
-                class="newsletter-input"
-                placeholder="Tu email"
-                required
-                aria-label="Email para newsletter"
-              >
-              <button type="submit" class="newsletter-btn">Suscribirse</button>
+          <form class="newsletter-form" data-signup action="/api/subscribe" method="post" novalidate>
+            <div class="nl-grid">
+              <label class="nl-field"><span>Nombre *</span>
+                <input class="nl-input" type="text" name="nombre" required maxlength="80" autocomplete="given-name">
+              </label>
+              <label class="nl-field"><span>Email *</span>
+                <input class="nl-input" type="email" name="email" required autocomplete="email" inputmode="email">
+              </label>
+              <label class="nl-field"><span>Ciudad</span>
+                <input class="nl-input" type="text" name="ciudad" maxlength="80" autocomplete="address-level2">
+              </label>
+              <label class="nl-field"><span>Código postal</span>
+                <input class="nl-input" type="text" name="codigoPostal" maxlength="12" autocomplete="postal-code">
+              </label>
+              <label class="nl-field nl-field--full"><span>Fecha de nacimiento</span>
+                <input class="nl-input" type="date" name="fechaNacimiento" autocomplete="bday">
+              </label>
             </div>
+            <div class="nl-hp" aria-hidden="true">
+              <label>Empresa <input type="text" name="empresa" tabindex="-1" autocomplete="off"></label>
+            </div>
+            <label class="nl-consent">
+              <input type="checkbox" name="consentimiento" value="1" required>
+              <span>Acepto recibir comunicaciones de NUDES y he leído la <a href="/privacidad.html" target="_blank" rel="noopener">política de privacidad</a>. *</span>
+            </label>
+            <button type="submit" class="newsletter-btn">Suscribirse</button>
+            <p class="nl-status" data-signup-status role="status" aria-live="polite"></p>
             <p class="newsletter-note">Sin spam. Baja cuando quieras.</p>
           </form>
         </div>
@@ -848,6 +899,7 @@
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   }());
   </script>
+  <script src="/js/signup.js" defer></script>
 
 </body>
 </html>
