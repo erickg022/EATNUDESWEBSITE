@@ -9,3 +9,7 @@ nudes/
 .env
 .env.*
 !.env.example
+
+# email sources (photos, font zips, briefs assets): never in git
+emails/source/
+email-assets/_drafts/

@@ -127,3 +127,24 @@ Sent automatically by a Brevo automation (trigger: contact added to the list
 - [ ] Hero images approved and in `email-assets/`
 - [ ] Welcome HTML in `emails/build/`, test-sent to Gmail (web + mobile)
 - [ ] List of manual Brevo steps for the developer
+
+## Decisions log
+
+These decisions override anything earlier in this brief.
+
+- **Palette (confirmed from the site):** yellow `#F2E49B`, ink `#1A1410`, cream `#FDFAF2`,
+  pink `#E8A0B4` only as a tiny accent. Nothing else.
+- **Photos** live in `C:\Users\erick\eatnudesmkt`.
+  - Birthday hero: "Birthday Berry Swirl Dessert Cup.png" (real candle, keep it).
+  - Welcome hero: "Mano con tarjeta metálica NUDES.png" (keep the card silver, do not
+    recolor) with "V2.7.png" cup breaking out of the frame.
+  - Tiles: "matcha affogato.jpg" (MATCHA) and "NUDES CHICKEN CLUB.jpg" (FOOD).
+  - "Dónde encontrarnos" card in the welcome uses "coconut bliss.jpg", never labeled açaí.
+- Never place a cutout wider than half its native pixel width in CSS px (2x export).
+- **Editing:** welcome and birthday are coded HTML with editable zones; the campaign
+  template will be built by hand in Brevo's drag-and-drop editor from an image kit.
+- **Birthday gift** is a placeholder `[REGALO]` until the client defines it.
+- **Headline font** is Instrument Serif (OFL, Google Fonts) until Melodrame is licensed
+  for web and email use. Melodrame's bundled license is personal use only, so no
+  Melodrame file may be committed or published. Switching later means changing one
+  `font-family` in both emails plus hosting the licensed font file.
