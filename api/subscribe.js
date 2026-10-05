@@ -23,13 +23,15 @@ export default async function handler(req, res) {
   if (empresa) return res.status(200).json({ ok: true });
 
   const emailLimpio = String(email || '').trim().toLowerCase();
-  if (!nombre || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailLimpio)) {
-    return res.status(400).json({ error: 'Faltan el nombre o un correo válido.' });
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailLimpio)) {
+    return res.status(400).json({ error: 'Falta un correo válido.' });
   }
   if (!consentimiento) return res.status(400).json({ error: 'Falta el consentimiento.' });
 
-  // Solo se envían a Brevo los atributos que tienen valor
-  const attributes = { [ATTR_NOMBRE]: String(nombre).trim().slice(0, 80) };
+  // Solo se envían a Brevo los atributos que tienen valor (el nombre es opcional)
+  const attributes = {};
+  const nombreLimpio = String(nombre || '').trim();
+  if (nombreLimpio) attributes[ATTR_NOMBRE] = nombreLimpio.slice(0, 80);
   if (ciudad) attributes[ATTR_CIUDAD] = String(ciudad).trim().slice(0, 80);
   if (codigoPostal) attributes[ATTR_CODIGO_POSTAL] = String(codigoPostal).trim().slice(0, 12);
   if (/^\d{4}-\d{2}-\d{2}$/.test(fechaNacimiento || '')) attributes[ATTR_FECHA_NACIMIENTO] = fechaNacimiento;

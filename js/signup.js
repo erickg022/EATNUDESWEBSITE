@@ -1,14 +1,34 @@
-/* NUDES — signup form → /api/subscribe (Brevo).
- * Shared script: any <form data-signup> on the site is wired automatically.
- * Expected field names: nombre, email, ciudad, codigoPostal, fechaNacimiento,
- * consentimiento (checkbox), empresa (honeypot). Optional: [data-signup-status].
- * Optional attributes on the form: data-redirect (default /gracias.html).
+/* NUDES — newsletter signup → /api/subscribe (Brevo).
+ * Shared script: every <form data-signup> on the site is wired automatically.
+ * Field names: nombre (optional), email, codigoPostal (optional), fechaNacimiento
+ * (optional), consentimiento (checkbox), empresa (honeypot). Optional status element:
+ * [data-signup-status]. Optional form attribute: data-redirect (default /gracias.html).
+ *
+ * Language: the site toggles EN/ES with applyLang(), which sets <html lang>. Static
+ * labels use data-en / data-es (handled by the page). This script translates what the
+ * page cannot: placeholders (data-ph-en / data-ph-es) and every status message.
  */
 (function () {
   'use strict';
 
   var ENDPOINT = '/api/subscribe';
   var DEFAULT_REDIRECT = '/gracias.html';
+  var MIN_AGE = 14;
+  var MAX_AGE = 110;
+
+  var MSG = {
+    sending:   { en: 'Sending…', es: 'Enviando…' },
+    success:   { en: "You're in! Redirecting…", es: '¡Listo! Redirigiendo…' },
+    email:     { en: 'Please enter a valid email address.', es: 'Introduce un email válido.' },
+    consent:   { en: 'Please tick the box to continue.', es: 'Marca la casilla para continuar.' },
+    dateBad:   { en: 'Please enter a valid birth date.', es: 'Introduce una fecha de nacimiento válida.' },
+    dateFuture:{ en: "Your birth date can't be in the future.", es: 'La fecha de nacimiento no puede ser futura.' },
+    dateYoung: { en: 'You must be at least 14 to sign up.', es: 'Debes tener al menos 14 años para registrarte.' },
+    dateOld:   { en: 'Please check your birth date.', es: 'Revisa tu fecha de nacimiento.' },
+    typo:      { en: 'Did you mean {0}? We fixed it: check it and press again.', es: '¿Querías decir {0}? Lo hemos corregido: revísalo y pulsa de nuevo.' },
+    error:     { en: 'Something went wrong. Please try again or write to info@eatnudes.com.', es: 'Algo salió mal. Inténtalo de nuevo o escribe a info@eatnudes.com.' },
+    offline:   { en: 'No connection. Check your network and try again.', es: 'Sin conexión. Revisa tu red e inténtalo de nuevo.' }
+  };
 
   var DOMAIN_FIXES = {
     'gmial.com': 'gmail.com', 'gmai.com': 'gmail.com', 'gmail.con': 'gmail.com',
@@ -22,6 +42,19 @@
     'icoud.com': 'icloud.com'
   };
 
+  function lang() {
+    var l = (document.documentElement.getAttribute('lang') || '').toLowerCase();
+    if (!l) {
+      try { l = localStorage.getItem('nudes-lang') || ''; } catch (e) { l = ''; }
+    }
+    return l.indexOf('es') === 0 ? 'es' : 'en';
+  }
+
+  function text(key, arg) {
+    var s = MSG[key][lang()];
+    return arg === undefined ? s : s.replace('{0}', arg);
+  }
+
   function suggestEmail(value) {
     var m = /^([^\s@]+)@([^\s@]+)$/.exec(value.trim().toLowerCase());
     if (!m) return null;
@@ -29,10 +62,33 @@
     return fix ? m[1] + '@' + fix : null;
   }
 
-  function setStatus(el, text, kind) {
-    if (!el) return;
-    el.textContent = text || '';
-    el.setAttribute('data-state', kind || '');
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function iso(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function yearsAgo(n) {
+    var d = new Date();
+    return iso(new Date(d.getFullYear() - n, d.getMonth(), d.getDate()));
+  }
+
+  /* Returns a MSG key when the birth date is invalid, or null when valid or empty. */
+  function birthDateProblem(value) {
+    if (!value) return null;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return 'dateBad';
+    var p = value.split('-');
+    var d = new Date(+p[0], +p[1] - 1, +p[2]);
+    if (d.getFullYear() !== +p[0] || d.getMonth() !== +p[1] - 1 || d.getDate() !== +p[2]) return 'dateBad';
+    if (value > iso(new Date())) return 'dateFuture';
+    if (value > yearsAgo(MIN_AGE)) return 'dateYoung';
+    if (value < yearsAgo(MAX_AGE)) return 'dateOld';
+    return null;
+  }
+
+  function applyPlaceholders(root) {
+    var l = lang();
+    var nodes = (root || document).querySelectorAll('[data-ph-en]');
+    for (var i = 0; i < nodes.length; i++) {
+      var ph = nodes[i].getAttribute('data-ph-' + l) || nodes[i].getAttribute('data-ph-en');
+      nodes[i].setAttribute('placeholder', ph);
+    }
   }
 
   function init(form) {
@@ -40,47 +96,73 @@
     var button = form.querySelector('button[type="submit"]');
     var emailInput = form.elements.email;
     var dateInput = form.elements.fechaNacimiento;
-    var ignoredSuggestion = null; // typo suggestion the user already dismissed by submitting again
+    var ignoredSuggestion = null;
     var sending = false;
+    var shown = null; // {key, arg, kind} so the message can be re-rendered on language change
+
+    function show(key, kind, arg) {
+      shown = key ? { key: key, arg: arg, kind: kind } : null;
+      render();
+    }
+    function render() {
+      if (!status) return;
+      status.textContent = shown ? text(shown.key, shown.arg) : '';
+      status.setAttribute('data-state', shown ? shown.kind : '');
+    }
+    function fail(key, field) {
+      show(key, 'error');
+      if (field) {
+        field.setAttribute('aria-invalid', 'true');
+        field.focus();
+      }
+    }
+    function clearInvalid() {
+      var f = form.querySelectorAll('[aria-invalid]');
+      for (var i = 0; i < f.length; i++) f[i].removeAttribute('aria-invalid');
+    }
 
     if (dateInput) {
-      var today = new Date();
-      dateInput.max = today.toISOString().slice(0, 10);
+      dateInput.max = yearsAgo(MIN_AGE);
+      dateInput.min = yearsAgo(MAX_AGE);
     }
+    form._signupRender = render;
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (sending) return;
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
+      clearInvalid();
 
       var email = emailInput.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail('email', emailInput);
+
+      var problem = birthDateProblem(dateInput ? dateInput.value : '');
+      if (problem) return fail(problem, dateInput);
+
+      var consent = form.elements.consentimiento;
+      if (!consent || !consent.checked) return fail('consent', consent);
+
       var suggestion = suggestEmail(email);
       if (suggestion && suggestion !== ignoredSuggestion) {
         ignoredSuggestion = suggestion;
         emailInput.value = suggestion;
-        setStatus(status, '¿Querías decir ' + suggestion + '? Lo hemos corregido: revisa y pulsa de nuevo para enviar.', 'warn');
+        show('typo', 'warn', suggestion);
         emailInput.focus();
         return;
       }
 
       var payload = {
-        nombre: form.elements.nombre.value.trim(),
+        nombre: form.elements.nombre ? form.elements.nombre.value.trim() : '',
         email: email,
-        ciudad: form.elements.ciudad ? form.elements.ciudad.value.trim() : '',
         codigoPostal: form.elements.codigoPostal ? form.elements.codigoPostal.value.trim() : '',
         fechaNacimiento: dateInput ? dateInput.value : '',
-        consentimiento: !!(form.elements.consentimiento && form.elements.consentimiento.checked),
+        consentimiento: true,
         empresa: form.elements.empresa ? form.elements.empresa.value : ''
       };
 
       sending = true;
       form.setAttribute('aria-busy', 'true');
       if (button) button.disabled = true;
-      setStatus(status, 'Enviando…', 'loading');
+      show('sending', 'loading');
 
       fetch(ENDPOINT, {
         method: 'POST',
@@ -88,23 +170,18 @@
         body: JSON.stringify(payload)
       })
         .then(function (res) {
-          return res.json().catch(function () { return {}; }).then(function (data) {
-            if (!res.ok) throw new Error(data.error || 'No se pudo completar el registro.');
-            return data;
-          });
+          if (!res.ok) throw new Error('http ' + res.status);
+          return res.json().catch(function () { return {}; });
         })
         .then(function () {
-          setStatus(status, '¡Listo! Redirigiendo…', 'success');
+          show('success', 'success');
           window.location.href = form.getAttribute('data-redirect') || DEFAULT_REDIRECT;
         })
         .catch(function (err) {
           sending = false;
           form.removeAttribute('aria-busy');
           if (button) button.disabled = false;
-          var offline = err instanceof TypeError;
-          setStatus(status, offline
-            ? 'Sin conexión. Revisa tu red e inténtalo de nuevo.'
-            : err.message + ' Inténtalo de nuevo o escríbenos a info@eatnudes.com.', 'error');
+          show(err instanceof TypeError ? 'offline' : 'error', 'error');
         });
     });
   }
@@ -112,6 +189,15 @@
   function boot() {
     var forms = document.querySelectorAll('form[data-signup]');
     for (var i = 0; i < forms.length; i++) init(forms[i]);
+    applyPlaceholders();
+
+    // The page's language toggle sets <html lang>: refresh placeholders and any message.
+    if (window.MutationObserver) {
+      new MutationObserver(function () {
+        applyPlaceholders();
+        for (var i = 0; i < forms.length; i++) if (forms[i]._signupRender) forms[i]._signupRender();
+      }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

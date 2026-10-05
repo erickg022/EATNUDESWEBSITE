@@ -783,6 +783,7 @@
     .lang-opt--active { color: #1C1C1A; font-weight: 600; }
     .lang-sep { color: #8C8070; font-size: 11px; }
   </style>
+<link rel="stylesheet" href="css/signup.css">
 </head>
 <body>
 
@@ -1778,12 +1779,19 @@
       </div>
       <div>
         <p class="ft-newsletter-label">Newsletter Signup</p>
-        <form class="ft-form" onsubmit="return false;">
+        <form class="ft-form" data-signup action="/api/subscribe" method="post" novalidate>
           <div class="ft-form-row">
-            <input class="ft-input" type="text" placeholder="Your name" autocomplete="off">
-            <input class="ft-input" type="email" placeholder="Your email address" autocomplete="off">
+            <input class="ft-input" type="text" name="nombre" maxlength="80" autocomplete="given-name" placeholder="Your name" data-ph-en="Your name" data-ph-es="Tu nombre">
+            <input class="ft-input" type="email" name="email" required autocomplete="email" placeholder="Your email address" data-ph-en="Your email address" data-ph-es="Tu email">
           </div>
+          <div class="ft-form-row">
+            <label class="su-cell"><span class="su-cap" data-en="Postal code" data-es="Código postal">Postal code</span><input class="ft-input" type="text" name="codigoPostal" maxlength="12" autocomplete="postal-code" placeholder="Postal code" data-ph-en="Postal code" data-ph-es="Código postal"></label>
+            <label class="su-cell"><span class="su-cap"><span data-en="Birthday" data-es="Fecha de nacimiento">Birthday</span> <em class="su-hint" data-en="&middot; for your birthday gift" data-es="&middot; para tu regalo de cumpleaños">&middot; for your birthday gift</em></span><input class="ft-input" type="date" name="fechaNacimiento" autocomplete="bday"></label>
+          </div>
+          <label class="su-consent "><input type="checkbox" name="consentimiento" value="1" required><span data-en='I agree to receive news and a birthday gift from NUDES. <a href="privacidad.html" target="_blank" rel="noopener">Privacy policy</a>.' data-es='Acepto recibir novedades y un regalo de cumpleaños de NUDES. <a href="privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.'>I agree to receive news and a birthday gift from NUDES. <a href="privacidad.html" target="_blank" rel="noopener">Privacy policy</a>.</span></label>
+          <div class="su-hp" aria-hidden="true"><label>Company <input type="text" name="empresa" tabindex="-1" autocomplete="off"></label></div>
           <button class="ft-btn" type="submit">Sign Up</button>
+          <p class="su-status " data-signup-status role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -2826,5 +2834,6 @@
   })();
   </script>
 
+<script src="js/signup.js" defer></script>
 </body>
 </html>

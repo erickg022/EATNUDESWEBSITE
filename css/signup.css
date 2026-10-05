@@ -1,0 +1,66 @@
+/* NUDES newsletter signup: extra fields, consent line and messages.
+ * Shared by every page that has a <form data-signup>. Colors are literal on purpose:
+ * the pages use different CSS variable names. */
+
+/* honeypot: invisible to people, tempting to bots */
+.su-hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+
+/* status / error line */
+.su-status { min-height: 1.3em; margin: 8px 0 0; font-size: 12px; line-height: 1.4; letter-spacing: 0.02em; text-align: left; }
+.su-status[data-state="error"] { color: #9b1c1c; }
+.su-status[data-state="warn"],
+.su-status[data-state="success"] { font-weight: 500; }
+[data-signup] [aria-invalid="true"] { outline: 1px solid #9b1c1c; outline-offset: -1px; }
+[data-signup] button[type="submit"]:disabled { opacity: 0.55; cursor: wait; }
+
+/* consent line */
+.su-consent { display: flex; gap: 10px; align-items: flex-start; margin-top: 10px; font-size: 11px; line-height: 1.5; text-align: left; cursor: pointer; }
+.su-consent input { flex: none; width: 14px; height: 14px; margin: 2px 0 0; accent-color: #1A1410; }
+.su-consent a { text-decoration: underline; }
+
+/* caption above a field (postal code, birthday) */
+.su-cap { display: block; margin: 0 0 4px; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.65; }
+.su-hint { font-style: normal; letter-spacing: 0.04em; text-transform: none; }
+
+/* ── footer signup (second row: postal code + birthday) ── */
+.ft-form .su-cell { display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; }
+.ft-form .su-cell .ft-input { width: 100%; box-sizing: border-box; min-width: 0; }
+.ft-form .su-cell:first-child .ft-input { border-right: none; }
+.ft-form .ft-form-row + .ft-form-row { margin-top: -0.5px; }
+.ft-form .su-consent,
+.ft-form .su-status { color: #1A1410; }
+.ft-form .su-consent { margin-bottom: 10px; }
+.ft-form .su-cap { margin-top: 10px; }
+.ft-form .su-cap { color: #1A1410; }
+@media (max-width: 768px) {
+  .ft-form .su-cell:first-child .ft-input { border-right: 0.5px solid #1A1410; border-bottom: none; }
+}
+
+/* ── home "Join the Club" (dark photo background, translucent fields) ── */
+.su-extra { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; align-items: end; margin-top: 8px; text-align: left; }
+.su-extra .su-cell { display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; }
+.su-extra input[type="text"],
+.su-extra input[type="date"] { width: 100%; min-width: 0; box-sizing: border-box; font-size: 14px; padding: 12px 16px; }
+.su-extra--dark input[type="text"],
+.su-extra--dark input[type="date"] { background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 0; color: #FDFAF2; font-family: 'DM Sans', var(--font-body), sans-serif; color-scheme: dark; }
+.su-extra--dark input::placeholder { color: rgba(253, 250, 242, 0.45); }
+.su-extra--dark input:focus { outline: none; background: rgba(255, 255, 255, 0.18); }
+.su-extra--dark .su-cap { color: #FDFAF2; opacity: 0.75; }
+.su-consent--light { color: #FDFAF2; opacity: 0.8; }
+.su-consent--light a { color: #FDFAF2; }
+.su-consent--light input { accent-color: #F2E49B; }
+.su-status--light { color: #FDFAF2; }
+.su-status--light[data-state="error"] { color: #ffb4b4; }
+.su-extra--dark [aria-invalid="true"] { outline-color: #ffb4b4; }
+
+/* ── about "Join the revolution" (rounded pill fields) ── */
+.su-extra--round input[type="text"],
+.su-extra--round input[type="date"] { background: transparent; border: 1.5px solid var(--color-ink-dark, #1C1C1A); border-radius: 999px; padding: 12px 20px; font-family: var(--font-body, inherit); font-size: 13px; color: var(--color-ink-dark, #1C1C1A); outline: none; }
+.su-extra--round .su-cap { color: var(--color-ink-dark, #1C1C1A); padding-left: 20px; }
+.su-consent--ink { color: var(--color-ink-dark, #1C1C1A); }
+.su-status--ink { color: var(--color-ink-dark, #1C1C1A); }
+
+/* narrow screens: the birthday field gets its own full-width row */
+@media (max-width: 480px) {
+  .su-extra .su-cell { grid-column: 1 / -1; }
+}
