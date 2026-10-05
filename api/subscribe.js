@@ -7,6 +7,13 @@
 //   BREVO_API_KEY   → API key de la cuenta de Brevo
 //   BREVO_LIST_ID   → ID numérico de la lista "Registro web"
 
+// Nombres de los atributos de contacto. Deben coincidir EXACTAMENTE con los nombres
+// de los atributos en la cuenta de Brevo: Brevo ignora en silencio los desconocidos.
+const ATTR_NOMBRE = 'NOMBRE';
+const ATTR_CIUDAD = 'CIUDAD';
+const ATTR_CODIGO_POSTAL = 'CODIGOPOSTAL';
+const ATTR_FECHA_NACIMIENTO = 'FECHANACIMIENTO';
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Método no permitido.' });
 
@@ -22,10 +29,10 @@ export default async function handler(req, res) {
   if (!consentimiento) return res.status(400).json({ error: 'Falta el consentimiento.' });
 
   // Solo se envían a Brevo los atributos que tienen valor
-  const attributes = { FIRSTNAME: String(nombre).trim().slice(0, 80) };
-  if (ciudad) attributes.CIUDAD = String(ciudad).trim().slice(0, 80);
-  if (codigoPostal) attributes.CODIGO_POSTAL = String(codigoPostal).trim().slice(0, 12);
-  if (/^\d{4}-\d{2}-\d{2}$/.test(fechaNacimiento || '')) attributes.FECHA_NACIMIENTO = fechaNacimiento;
+  const attributes = { [ATTR_NOMBRE]: String(nombre).trim().slice(0, 80) };
+  if (ciudad) attributes[ATTR_CIUDAD] = String(ciudad).trim().slice(0, 80);
+  if (codigoPostal) attributes[ATTR_CODIGO_POSTAL] = String(codigoPostal).trim().slice(0, 12);
+  if (/^\d{4}-\d{2}-\d{2}$/.test(fechaNacimiento || '')) attributes[ATTR_FECHA_NACIMIENTO] = fechaNacimiento;
 
   try {
     const r = await fetch('https://api.brevo.com/v3/contacts', {
