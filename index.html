@@ -49,8 +49,9 @@
           "addressCountry": "ES"
         },
         "openingHoursSpecification": [
-          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" },
-          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday","Sunday"], "opens": "09:00", "closes": "17:00" }
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "22:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday","Sunday"], "opens": "09:00", "closes": "22:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["PublicHolidays"], "opens": "09:00", "closes": "22:00" }
         ],
         "telephone": "+34605872350",
         "email": "info@eatnudes.com"
@@ -1059,7 +1060,18 @@
       gap: var(--space-lg);
     }
 
-    .news-card { display: flex; flex-direction: column; gap: var(--space-sm); }
+    .news-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      cursor: pointer;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+    .news-card:hover { transform: translateY(-3px); }
+    .news-card:focus-visible {
+      outline: 2px solid var(--color-ink);
+      outline-offset: 6px;
+    }
 
     .news-card__img {
       aspect-ratio: 3/2;
@@ -1140,6 +1152,111 @@
 
     .see-all-link:hover      { border-color: var(--color-ink); }
     .see-all-link:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 4px; }
+
+    .news-modal[hidden] { display: none; }
+    .news-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(18px, 4vw, 52px);
+    }
+    .news-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(28, 28, 26, 0.55);
+    }
+    .news-modal__dialog {
+      position: relative;
+      width: min(920px, 100%);
+      max-height: min(760px, 92vh);
+      background: var(--color-cream);
+      color: var(--color-ink);
+      display: grid;
+      grid-template-columns: minmax(260px, 0.95fr) minmax(320px, 1.05fr);
+      overflow: auto;
+      box-shadow: 0 24px 70px rgba(28,28,26,0.25);
+    }
+    .news-modal__media {
+      min-height: 420px;
+      background: #ece5da;
+    }
+    .news-modal__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .news-modal__body {
+      padding: clamp(28px, 5vw, 56px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .news-modal__close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(28,28,26,0.16);
+      background: var(--color-cream);
+      color: var(--color-ink);
+      font-size: 30px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .news-modal__eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      margin-bottom: 20px;
+    }
+    .news-modal__title {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5.4vw, 76px);
+      font-weight: normal;
+      line-height: 0.96;
+      margin-bottom: 24px;
+    }
+    .news-modal__copy {
+      font-family: var(--font-body);
+      font-size: clamp(15px, 1.2vw, 17px);
+      line-height: 1.7;
+      color: var(--color-grey);
+      margin: 0;
+    }
+    .news-modal__gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 26px;
+    }
+    .news-modal__gallery img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      background: #ece5da;
+      cursor: pointer;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+    .news-modal__gallery img:hover {
+      opacity: 0.82;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 760px) {
+      .news-modal { align-items: stretch; padding: 12px; }
+      .news-modal__dialog { grid-template-columns: 1fr; max-height: 96vh; }
+      .news-modal__media { min-height: 260px; }
+      .news-modal__body { padding: 30px 22px 36px; }
+      .news-modal__gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
 
     /* =============================================
        FOOTER
@@ -1937,7 +2054,7 @@
       height: 460px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-end;
       padding: 24px;
       cursor: pointer;
       overflow: hidden;
@@ -2108,11 +2225,324 @@
       color: #1C1C1A;
     }
     .comm-event-date { color: #8C8070; font-size: 13px; flex-shrink: 0; margin-left: 16px; }
+
+    .collabs-section {
+      background: #FDFAF2;
+      padding: clamp(72px, 9vw, 132px) clamp(20px, 5vw, 80px);
+      overflow: hidden;
+    }
+    .collabs-inner {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.45fr);
+      gap: clamp(36px, 5vw, 72px);
+      align-items: stretch;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .collabs-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 560px;
+    }
+    .collabs-tag {
+      display: inline-block;
+      width: fit-content;
+      background: #E8A0B4;
+      color: #1C1C1A;
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+    .collabs-heading {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 7vw, 108px);
+      color: #1C1C1A;
+      font-weight: normal;
+      line-height: 0.92;
+      letter-spacing: 0.01em;
+      margin: 22px 0 18px;
+    }
+    .collabs-body {
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: clamp(15px, 1.2vw, 17px);
+      color: #8C8070;
+      line-height: 1.65;
+      max-width: 480px;
+    }
+    .collabs-contact {
+      margin-top: 28px;
+      border: 1px solid rgba(28,28,26,0.14);
+      padding: 16px 18px;
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 13px;
+      line-height: 1.55;
+      color: #1C1C1A;
+      background: rgba(232,160,180,0.16);
+      max-width: 440px;
+    }
+    .collabs-contact a {
+      color: inherit;
+      border-bottom: 1px solid currentColor;
+      text-decoration: none;
+    }
+    .collabs-copy .comm-cta {
+      display: inline-block;
+      background: #1C1C1A;
+      color: #FDFAF2;
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 0;
+      text-decoration: none;
+      margin-top: 28px;
+      transition: background 200ms, color 200ms;
+    }
+    .collabs-copy .comm-cta:hover { background: #E8A0B4; color: #1C1C1A; }
+    .collabs-copy .comm-handle {
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 13px;
+      color: #8C8070;
+      display: block;
+      margin-top: 10px;
+    }
+    .collabs-controls {
+      display: flex;
+      gap: 8px;
+      margin-top: 32px;
+    }
+    .collabs-arrow {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(28,28,26,0.14);
+      background: transparent;
+      color: #1C1C1A;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background 180ms ease, color 180ms ease;
+    }
+    .collabs-arrow:hover {
+      background: #1C1C1A;
+      color: #FDFAF2;
+    }
+    .collabs-carousel {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .collabs-track {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      padding: 4px 0 12px;
+    }
+    .collabs-track::-webkit-scrollbar { display: none; }
+    .collab-card {
+      flex: 0 0 min(420px, 82vw);
+      scroll-snap-align: start;
+      border: 1px solid rgba(28,28,26,0.10);
+      background: #FDFAF2;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      min-height: 560px;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+    .collab-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(28,28,26,0.2);
+      box-shadow: 0 16px 36px rgba(28,28,26,0.10);
+    }
+    .collab-card:focus-visible {
+      outline: 2px solid #1C1C1A;
+      outline-offset: 5px;
+    }
+    .collab-card__media {
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #ECE5DA;
+    }
+    .collab-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 700ms cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .collab-card:hover .collab-card__media img { transform: scale(1.04); }
+    .collab-card__body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+    .collab-card__meta {
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8C8070;
+    }
+    .collab-card__title {
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.1;
+      color: #1C1C1A;
+    }
+    .collab-card__excerpt {
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+      color: #8C8070;
+    }
+    .collab-card__read {
+      margin-top: auto;
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1C1C1A;
+    }
+    .collabs-progress {
+      height: 1px;
+      background: rgba(28,28,26,0.12);
+      overflow: hidden;
+    }
+    .collabs-progress span {
+      display: block;
+      height: 100%;
+      width: 100%;
+      background: #1C1C1A;
+      transform-origin: left center;
+      transition: transform 250ms ease;
+    }
+    .collab-modal[hidden] { display: none; }
+    .collab-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(14px, 3vw, 44px);
+    }
+    .collab-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(28,28,26,0.62);
+    }
+    .collab-modal__dialog {
+      position: relative;
+      width: min(1120px, 100%);
+      max-height: 92vh;
+      overflow: auto;
+      background: #FDFAF2;
+      color: #1C1C1A;
+      box-shadow: 0 28px 80px rgba(28,28,26,0.28);
+    }
+    .collab-modal__close {
+      position: sticky;
+      top: 18px;
+      float: right;
+      margin: 18px 18px 0 0;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(28,28,26,0.16);
+      background: #FDFAF2;
+      color: #1C1C1A;
+      font-size: 30px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .collab-modal__hero {
+      min-height: clamp(300px, 52vh, 560px);
+      position: relative;
+      overflow: hidden;
+      clear: both;
+    }
+    .collab-modal__hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+    .collab-modal__content {
+      padding: clamp(28px, 5vw, 64px);
+    }
+    .collab-modal__meta {
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #8C8070;
+      margin-bottom: 18px;
+    }
+    .collab-modal__title {
+      font-family: var(--font-display);
+      font-size: clamp(46px, 6.4vw, 96px);
+      font-weight: normal;
+      line-height: 0.94;
+      margin-bottom: 28px;
+      max-width: 920px;
+    }
+    .collab-modal__copy {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: clamp(26px, 4vw, 56px);
+      align-items: start;
+    }
+    .collab-modal__copy p {
+      font-family: 'DM Sans', var(--font-body), sans-serif;
+      font-size: clamp(15px, 1.25vw, 18px);
+      line-height: 1.72;
+      color: #5F574E;
+      margin: 0 0 18px;
+    }
+    .collab-modal__gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .collab-modal__gallery img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+      background: #ECE5DA;
+    }
+    .collab-modal__gallery img:first-child {
+      grid-column: 1 / -1;
+      aspect-ratio: 16 / 10;
+    }
     @media (max-width: 860px) {
       .community-layout { grid-template-columns: 1fr; height: auto; }
       .community-stack-panel { min-width: unset; padding: 60px 5vw; }
       #card-stack { height: 460px; }
       .stack-card { width: 300px; }
+      .collabs-section { padding: 56px 20px; }
+      .collabs-inner { grid-template-columns: 1fr; gap: 30px; }
+      .collabs-copy { min-height: auto; }
+      .collabs-heading { font-size: clamp(46px, 12vw, 68px); }
+      .collab-card { min-height: 500px; }
+      .collab-modal { align-items: stretch; padding: 10px; }
+      .collab-modal__dialog { max-height: 96vh; }
+      .collab-modal__copy { grid-template-columns: 1fr; }
+      .collab-modal__gallery { grid-template-columns: 1fr 1fr; }
     }
 
     /* ── JOIN THE CLUB ── */
@@ -2291,7 +2721,7 @@
         top: 60px !important;           /* SAME for every card */
         display: flex !important;
         flex-direction: column !important;
-        justify-content: space-between !important;
+        justify-content: flex-end !important;
         width: 85vw !important;
         height: calc(85vw * 16 / 9 * 0.75) !important;
         margin: 0 auto !important;
@@ -2516,10 +2946,10 @@
       <a href="/" class="nav-wordmark" aria-label="NUDES — home"><img src="/brand/nudes-logo-white.png" alt="NUDES" style="height:36px;width:auto;display:block;border:none;background:none;"><span class="logo-reg" aria-hidden="true">®</span></a>
       <ul class="nav-links" role="list">
         <li><a href="products.html" data-en="Products" data-es="Productos">Products</a></li>
+        <li><a href="#locations" data-en="Stores" data-es="Locales">Stores</a></li>
         <li><a href="about.html" data-en="About Us" data-es="Sobre nosotros">About Us</a></li>
         <li><a href="./info.html" data-en="Info" data-es="Info">Info</a></li>
-        <li><a href="https://instagram.com/eat.nudes" rel="noopener noreferrer" target="_blank">Instagram</a></li>
-        <li><a href="#community" class="nav-join-club" data-en="Join The Club*" data-es="Únete al Club*">Join The Club*</a></li>
+        <li><a href="#join-club" class="nav-join-club" data-en="Join The Club*" data-es="Únete al Club*">Join The Club*</a></li>
         <li class="lang-toggle-wrap">
           <button class="lang-opt lang-opt--active" data-lang="en" onclick="__setLang('en')">EN</button>
           <span class="lang-sep">/</span>
@@ -2537,10 +2967,10 @@
   <!-- Mobile overlay menu -->
   <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation">
     <a href="products.html" class="mobile-menu__link" data-en="Products" data-es="Productos">Products</a>
+    <a href="#locations" class="mobile-menu__link" data-en="Stores" data-es="Locales">Stores</a>
     <a href="about.html" class="mobile-menu__link" data-en="About Us" data-es="Sobre nosotros">About Us</a>
     <a href="./info.html" class="mobile-menu__link" data-en="Info" data-es="Info">Info</a>
-    <a href="https://instagram.com/eat.nudes" class="mobile-menu__link" target="_blank" rel="noopener noreferrer">Instagram</a>
-    <a href="#community" class="mobile-menu__link mobile-menu__link--pink" data-en="Join The Club*" data-es="Únete al Club*">Join The Club*</a>
+    <a href="#join-club" class="mobile-menu__link mobile-menu__link--pink" data-en="Join The Club*" data-es="Únete al Club*">Join The Club*</a>
     <div class="mobile-menu__lang">
       <button class="mobile-menu__lang-btn is-active" id="mob-lang-en" onclick="__setLang('en');__updateMobLang('en')">EN</button>
       <span class="mobile-menu__lang-sep">/</span>
@@ -2594,97 +3024,88 @@
     <section id="category-grid" aria-labelledby="category-label">
       <div style="max-width:1200px;margin:0 auto;">
       <div class="category-grid-header">
-        <p class="category-grid-label" id="category-label">What We Make</p>
+        <p class="category-grid-label" id="category-label" data-en="Products" data-es="Productos">Products</p>
       </div>
       <div class="category-grid-wrap">
 
         <a class="category-card" href="products.html#smoothies">
           <img src="nh/smoothies-hero.png" class="category-card-photo" alt="Smoothies">
           <div class="category-card-overlay" aria-hidden="true"></div>
-          <span class="category-card-descriptor">Six Recipes · Daily</span>
           <div class="category-card-bottom">
             <span class="category-card-name">Smoothies</span>
-            <span class="category-card-shop">Shop →</span>
+            <span class="category-card-shop">→</span>
           </div>
         </a>
 
         <a class="category-card" href="products.html#protein-shakes">
           <img src="nh/use-protein.png" class="category-card-photo" alt="Protein Shakes">
           <div class="category-card-overlay" aria-hidden="true"></div>
-          <span class="category-card-descriptor">Whey · Plant · Boost</span>
           <div class="category-card-bottom">
             <span class="category-card-name">Protein Shakes</span>
-            <span class="category-card-shop">Shop →</span>
+            <span class="category-card-shop">→</span>
           </div>
         </a>
 
         <a class="category-card" href="products.html#acai">
           <img src="nh/use-acai.png" class="category-card-photo" alt="Açaí">
           <div class="category-card-overlay" aria-hidden="true"></div>
-          <span class="category-card-descriptor">Bowls · Toppings · Honey</span>
           <div class="category-card-bottom">
             <span class="category-card-name">Açaí</span>
-            <span class="category-card-shop">Shop →</span>
+            <span class="category-card-shop">→</span>
           </div>
         </a>
 
         <a class="category-card" href="products.html#food">
           <img src="nh/Food.jpg" class="category-card-photo" alt="Food">
           <div class="category-card-overlay" aria-hidden="true"></div>
-          <span class="category-card-descriptor">Bowls · Toasts · Plates</span>
           <div class="category-card-bottom">
             <span class="category-card-name">Food</span>
-            <span class="category-card-shop">Shop →</span>
+            <span class="category-card-shop">→</span>
           </div>
         </a>
 
         <a class="category-card" href="products.html#hot-drinks">
           <img src="nh/hotdrinkss.png" class="category-card-photo" alt="Hot Drinks" style="object-position: center center;">
           <div class="category-card-overlay" aria-hidden="true"></div>
-          <span class="category-card-descriptor">Matcha · Latte · Chai</span>
           <div class="category-card-bottom">
             <span class="category-card-name">Hot Drinks</span>
-            <span class="category-card-shop">Shop →</span>
+            <span class="category-card-shop">→</span>
           </div>
         </a>
 
         <a class="category-card" href="products.html#cold-drinks">
           <img src="nh/zoomin.png" class="category-card-photo" alt="Cold Drinks">
           <div class="category-card-overlay" aria-hidden="true"></div>
-          <span class="category-card-descriptor">Cold Brew · Kombucha · Juice</span>
           <div class="category-card-bottom">
             <span class="category-card-name">Cold Drinks</span>
-            <span class="category-card-shop">Shop →</span>
+            <span class="category-card-shop">→</span>
           </div>
         </a>
 
         <a class="category-card" href="products.html#breakfast-pots">
           <img src="nh/use-pots.png" class="category-card-photo" alt="Breakfast Pots">
           <div class="category-card-overlay" aria-hidden="true"></div>
-          <span class="category-card-descriptor">Oats · Granola · Chia</span>
           <div class="category-card-bottom">
             <span class="category-card-name">Breakfast Pots</span>
-            <span class="category-card-shop">Shop →</span>
+            <span class="category-card-shop">→</span>
           </div>
         </a>
 
         <a class="category-card" href="products.html#clubs">
           <img src="nh/use-clubs.png" class="category-card-photo" alt="Clubs">
           <div class="category-card-overlay" aria-hidden="true"></div>
-          <span class="category-card-descriptor">Monthly · Weekly · Seasonal</span>
           <div class="category-card-bottom">
             <span class="category-card-name">Clubs</span>
-            <span class="category-card-shop">Shop →</span>
+            <span class="category-card-shop">→</span>
           </div>
         </a>
 
         <a class="category-card" href="products.html#sweet-treats">
           <img src="nh/use-sweet.png" class="category-card-photo" alt="Sweet Treats">
           <div class="category-card-overlay" aria-hidden="true"></div>
-          <span class="category-card-descriptor">Bites · Bars · Cookies</span>
           <div class="category-card-bottom">
             <span class="category-card-name">Sweet Treats</span>
-            <span class="category-card-shop">Shop →</span>
+            <span class="category-card-shop">→</span>
           </div>
         </a>
 
@@ -2739,7 +3160,7 @@
         <div class="process-text slide-left" style="order: 1;">
           <p class="t-caption col-grey uc ls-wide" style="margin-bottom: var(--space-sm);" data-en="02 — Preparation" data-es="02 — Elaboración">02 — Preparation</p>
           <h3 class="t-h2" style="margin-bottom: var(--space-md);" data-en="Preparation" data-es="Elaboración">Preparation</h3>
-          <p class="t-body col-grey" data-en="Nothing comes from a jar. Our sauces, breads and bases are made fresh every morning in the kitchen." data-es="Nada viene de bote. Nuestras salsas, panes y bases se preparan cada mañana en cocina.">Nothing comes from a jar. Our sauces, breads and bases are made fresh every morning in the kitchen.</p>
+          <p class="t-body col-grey" data-en="Nothing comes from a jar. Our sauces, marmalades, treats, smoothies, sandwiches, bases and anything else you eat at NUDES are made fresh every morning in house." data-es="Nada viene de bote. Nuestras salsas, mermeladas, treats, smoothies, sandwiches, bases y todo lo que comes en NUDES se prepara fresco cada mañana en casa.">Nothing comes from a jar. Our sauces, marmalades, treats, smoothies, sandwiches, bases and anything else you eat at NUDES are made fresh every morning in house.</p>
         </div>
         <div class="process-img slide-right" style="order: 2;">
           <img
@@ -2854,8 +3275,8 @@
         <div class="stores-track" id="stores-track">
 
           <!-- BCN1: El Born -->
-          <a class="store-card" href="https://maps.google.com/?q=Carrer+del+Rec+10+Barcelona" target="_blank" rel="noopener">
-            <img src="/assets/stores/BCN1.jpg" alt="NUDES El Born" loading="lazy">
+          <a class="store-card" href="https://www.google.com/maps/place/NUDES/@41.3860704,2.1794627,17z/data=!3m1!4b1!4m6!3m5!1s0x12a4a3f5b63a2399:0x70de0076fe6d2a28!8m2!3d41.3860704!4d2.182043!16s%2Fg%2F11t4bgdqy7?entry=ttu&amp;g_ep=EgoyMDI2MDgyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">
+            <img src="/assets/stores/born-carrer-del-rec.jpg" alt="NUDES El Born" loading="lazy">
             <div class="store-overlay"></div>
             <div class="store-body">
               <p class="store-name">Born</p>
@@ -2865,7 +3286,7 @@
           </a>
 
           <!-- BCN2: Eixample -->
-          <a class="store-card" href="https://maps.google.com/?q=Rambla+de+Catalunya+29+Barcelona" target="_blank" rel="noopener">
+          <a class="store-card" href="https://www.google.com/maps/place/NUDES/@41.3891506,2.1632034,17z/data=!3m1!4b1!4m6!3m5!1s0x12a4a33a6f2261fd:0x9eedfc89c9ba2f14!8m2!3d41.3891506!4d2.1657837!16s%2Fg%2F11ybnv7xlh?entry=ttu&amp;g_ep=EgoyMDI2MDgyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">
             <img src="/assets/stores/BCN2.jpg" alt="NUDES Eixample" loading="lazy">
             <div class="store-overlay"></div>
             <div class="store-body">
@@ -2876,8 +3297,8 @@
           </a>
 
           <!-- BCN3: Sarrià -->
-          <a class="store-card" href="https://maps.google.com/?q=Carrer+de+Calvet+1+Barcelona" target="_blank" rel="noopener">
-            <img src="/assets/stores/BCN3.jpg" alt="NUDES Sarrià" loading="lazy">
+          <a class="store-card" href="https://www.google.com/maps/place/Nudes+%7C+Francesc+Maci%C3%A0/@41.3933363,2.142519,17z/data=!3m1!4b1!4m6!3m5!1s0x12a499001b5350d1:0x8fc70093b174b06d!8m2!3d41.3933363!4d2.1450993!16s%2Fg%2F11vyw93k9de?entry=ttu&amp;g_ep=EgoyMDI2MDgyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">
+            <img src="/assets/stores/francesc-macia.jpeg" alt="NUDES Francesc Macià" loading="lazy">
             <div class="store-overlay"></div>
             <div class="store-body">
               <p class="store-name">Francesc Macià</p>
@@ -2887,7 +3308,7 @@
           </a>
 
           <!-- REPEAT -->
-          <a class="store-card" href="https://maps.google.com/?q=Carrer+Ausias+Marc+41+Barcelona" target="_blank" rel="noopener">
+          <a class="store-card" href="https://www.google.com/maps/place/NUDES+Health+Bar+-+Repeat/@41.3921536,2.1739147,17z/data=!3m1!4b1!4m6!3m5!1s0x12a4a3b7bf49014f:0x34d373383ef3dad0!8m2!3d41.3921536!4d2.176495!16s%2Fg%2F11yvh17rhy?entry=ttu&amp;g_ep=EgoyMDI2MDgyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">
             <img src="/assets/stores/REPEAT.jpg" alt="NUDES at Repeat" loading="lazy">
             <div class="store-overlay"></div>
             <div class="store-body">
@@ -2899,7 +3320,7 @@
           </a>
 
           <!-- MADRID -->
-          <a class="store-card" href="https://maps.google.com/?q=Calle+San+Mateo+30+Madrid" target="_blank" rel="noopener">
+          <a class="store-card" href="https://www.google.com/maps/place/NUDES+Health+Bar/@40.4260434,-3.7005404,17z/data=!3m2!4b1!5s0xd4228892b70acb5:0xeadd881de2de6c57!4m6!3m5!1s0xd4229a2631f7deb:0xa59cdce6fb6e528!8m2!3d40.4260434!4d-3.6979601!16s%2Fg%2F11zk4hsfyp?entry=ttu&amp;g_ep=EgoyMDI2MDgyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">
             <img src="/assets/stores/MADRID.jpg" alt="NUDES Madrid" loading="lazy">
             <div class="store-overlay"></div>
             <div class="store-body">
@@ -2917,45 +3338,114 @@
     <!-- ══════════════════════════════════════════════
          SECTION 8 — EVENTS & COMMUNITY
     ══════════════════════════════════════════════ -->
-    <section id="community" class="community-layout" aria-labelledby="community-label">
-
-      <!-- Left: dark panel with stacked cards -->
-      <div class="community-stack-panel">
-        <div id="card-stack"></div>
+    <section id="community" class="community-layout" aria-labelledby="community-label-restored">
+      <div class="community-stack-panel reveal">
+        <div id="card-stack" aria-hidden="true"></div>
       </div>
 
-      <!-- Right: text panel -->
-      <div class="community-panel community-right-col">
-
-        <div class="reveal">
-          <span class="comm-tag">Community</span>
-        </div>
-
-        <div class="reveal" style="--i:1;">
-          <h2 class="comm-headline" id="community-label" data-en="Events, collabs and more." data-es="Eventos, colabs y más.">Events, collabs and more.</h2>
-          <p class="comm-body" data-en="We host pop-ups, matcha tastings and collabs with like-minded brands. Follow us on Instagram so you don't miss a thing." data-es="Organizamos pop-ups, catas de matcha y colaboraciones con marcas afines. Síguenos en Instagram para no perderte nada.">We host pop-ups, matcha tastings and collabs with like-minded brands. Follow us on Instagram so you don't miss a thing.</p>
+      <div class="community-panel community-right-col reveal" style="--i:1;">
+        <div>
+          <span class="comm-tag" data-en="Community" data-es="Comunidad">Community</span>
+          <h2 class="comm-headline" id="community-label-restored" data-en="Events, collabs and more." data-es="Eventos, colabs y más.">Events, collabs and more.</h2>
+          <p class="comm-body" data-en="We host pop-ups, run clubs, collabs and much more with like-minded brands. Follow us on Instagram so you don't miss a thing." data-es="Organizamos pop-ups, run clubs, collabs y mucho más con marcas afines. Síguenos en Instagram para no perderte nada.">We host pop-ups, run clubs, collabs and much more with like-minded brands. Follow us on Instagram so you don't miss a thing.</p>
           <a href="https://instagram.com/eat.nudes" class="comm-cta" rel="noopener noreferrer" target="_blank" aria-label="Follow Nudes on Instagram (@eat.nudes)">INSTAGRAM →</a>
           <span class="comm-handle">@eat.nudes</span>
+          <div class="collabs-contact" data-en="If you want to collab with us, please send us an email at &lt;a href='mailto:pr@eatnudes.com'&gt;pr@eatnudes.com&lt;/a&gt;." data-es="Si quieres colaborar con nosotros, escríbenos a &lt;a href='mailto:pr@eatnudes.com'&gt;pr@eatnudes.com&lt;/a&gt;.">If you want to collab with us, please send us an email at <a href="mailto:pr@eatnudes.com">pr@eatnudes.com</a>.</div>
         </div>
-
-        <div class="reveal" style="--i:2;">
-          <hr class="comm-divider" style="margin-top:0;">
-          <div class="comm-event-row">
-            <span data-en="→ Social run with Club Rodeo — Nudes El Born" data-es="→ Carrera social con Club Rodeo — Nudes El Born">→ Social run with Club Rodeo — Nudes El Born</span>
-            <span class="comm-event-date" data-en="Every Tue 19:30" data-es="Cada Mar 19:30">Every Tue 19:30</span>
-          </div>
-          <div class="comm-event-row">
-            <span data-en="→ New Items added to the menu" data-es="→ Nuevos platos añadidos al menú">→ New Items added to the menu</span>
-            <span class="comm-event-date" data-en="Now" data-es="Ya disponible">Now</span>
-          </div>
-          <div class="comm-event-row">
-            <span data-en="→ Glow Midnight Smoothie collab with Glow Cosmetics" data-es="→ Collab Glow Midnight Smoothie con Glow Cosmetics">→ Glow Midnight Smoothie collab with Glow Cosmetics</span>
-            <span class="comm-event-date" data-en="Coming soon" data-es="Próximamente">Coming soon</span>
-          </div>
-        </div>
-
       </div>
     </section>
+
+    <section id="community-carousel-archive" class="collabs-section" aria-hidden="true" hidden>
+      <div class="collabs-inner">
+        <div class="collabs-copy reveal">
+          <div>
+            <span class="collabs-tag" data-en="Community" data-es="Comunidad">Community</span>
+            <h2 class="collabs-heading" id="community-label" data-en="Events, collabs and more." data-es="Eventos, colabs y más.">Events, collabs and more.</h2>
+            <p class="collabs-body" data-en="We host pop-ups, run clubs, collabs and much more with like-minded brands. Follow us on Instagram so you don't miss a thing." data-es="Organizamos pop-ups, run clubs, collabs y mucho más con marcas afines. Síguenos en Instagram para no perderte nada.">We host pop-ups, run clubs, collabs and much more with like-minded brands. Follow us on Instagram so you don't miss a thing.</p>
+            <a href="https://instagram.com/eat.nudes" class="comm-cta" rel="noopener noreferrer" target="_blank" aria-label="Follow Nudes on Instagram (@eat.nudes)">INSTAGRAM →</a>
+            <span class="comm-handle">@eat.nudes</span>
+            <div class="collabs-contact" data-en="If you want to collab with us, please send us an email at &lt;a href='mailto:pr@eatnudes.com'&gt;pr@eatnudes.com&lt;/a&gt;." data-es="Si quieres colaborar con nosotros, escríbenos a &lt;a href='mailto:pr@eatnudes.com'&gt;pr@eatnudes.com&lt;/a&gt;.">If you want to collab with us, please send us an email at <a href="mailto:pr@eatnudes.com">pr@eatnudes.com</a>.</div>
+          </div>
+          <div class="collabs-controls" aria-label="Collab carousel controls">
+            <button class="collabs-arrow" type="button" data-collab-prev aria-label="Previous collab">←</button>
+            <button class="collabs-arrow" type="button" data-collab-next aria-label="Next collab">→</button>
+          </div>
+        </div>
+
+        <div class="collabs-carousel reveal" style="--i:1;">
+          <div class="collabs-track" id="collabs-track-archive">
+            <article class="collab-card" tabindex="0" role="button" data-collab-index="0" aria-label="Read The Chillers Club x Ole Henriksen and Sephora Spain">
+              <div class="collab-card__media"><img src="/nh/colab.jpeg" alt="Ole Henriksen and NUDES drinks"></div>
+              <div class="collab-card__body">
+                <p class="collab-card__meta" data-en="COLLAB 1 · Jun 10-12 · Madrid" data-es="COLAB 1 · 10-12 Jun · Madrid">COLLAB 1 · Jun 10-12 · Madrid</p>
+                <h3 class="collab-card__title">The Chillers Club x Ole Henriksen &amp; Sephora Spain</h3>
+                <p class="collab-card__excerpt" data-en="A vibrant Madrid pop-up celebrating the launch of the new Pout Chillers with custom refreshing drinks and exclusive treats." data-es="Un pop-up vibrante en Madrid para celebrar el lanzamiento de los nuevos Pout Chillers con bebidas refrescantes y treats exclusivos.">A vibrant Madrid pop-up celebrating the launch of the new Pout Chillers with custom refreshing drinks and exclusive treats.</p>
+                <span class="collab-card__read" data-en="Read story →" data-es="Leer historia →">Read story →</span>
+              </div>
+            </article>
+
+            <article class="collab-card" tabindex="0" role="button" data-collab-index="1" aria-label="Read NUDES x Oysho Community Days Takeover">
+              <div class="collab-card__media"><img src="/nh/nudes-run.png" alt="NUDES community event crowd"></div>
+              <div class="collab-card__body">
+                <p class="collab-card__meta" data-en="COLLAB 2 · Jun 13-14 · Community Days" data-es="COLAB 2 · 13-14 Jun · Community Days">COLLAB 2 · Jun 13-14 · Community Days</p>
+                <h3 class="collab-card__title">NUDES x Oysho Community Days Takeover</h3>
+                <p class="collab-card__excerpt" data-en="A high-energy partnership with a dedicated coffee, juice and food corner built for community fuel." data-es="Una colaboración llena de energía con un corner dedicado de café, zumos y comida para alimentar a la comunidad.">A high-energy partnership with a dedicated coffee, juice and food corner built for community fuel.</p>
+                <span class="collab-card__read" data-en="Read story →" data-es="Leer historia →">Read story →</span>
+              </div>
+            </article>
+
+            <article class="collab-card" tabindex="0" role="button" data-collab-index="2" aria-label="Read Unreleased ID's Pop-Up x OffSonar">
+              <div class="collab-card__media"><img src="/brand/collage-4.jpg" alt="NUDES pop-up atmosphere"></div>
+              <div class="collab-card__body">
+                <p class="collab-card__meta" data-en="COLLAB 3 · Jun 18 · Barcelona" data-es="COLAB 3 · 18 Jun · Barcelona">COLLAB 3 · Jun 18 · Barcelona</p>
+                <h3 class="collab-card__title">Unreleased ID’s Pop-Up x OffSónar</h3>
+                <p class="collab-card__excerpt" data-en="A high-vibe music and wellness fusion with live DJ sets, custom smoothies and packed crowds." data-es="Una fusión de música y wellness con DJ sets en directo, smoothies custom y mucha comunidad.">A high-vibe music and wellness fusion with live DJ sets, custom smoothies and packed crowds.</p>
+                <span class="collab-card__read" data-en="Read story →" data-es="Leer historia →">Read story →</span>
+              </div>
+            </article>
+
+            <article class="collab-card" tabindex="0" role="button" data-collab-index="3" aria-label="Read Audemars Piguet Private Morning Takeover">
+              <div class="collab-card__media"><img src="/assets/collabs/audemars-piguet/audemars-piguet-01.jpg" alt="Audemars Piguet private morning takeover setup"></div>
+              <div class="collab-card__body">
+                <p class="collab-card__meta" data-en="COLLAB 4 · Private Morning · Barcelona" data-es="COLAB 4 · Private Morning · Barcelona">COLLAB 4 · Private Morning · Barcelona</p>
+                <h3 class="collab-card__title">Audemars Piguet Private Morning Takeover</h3>
+                <p class="collab-card__excerpt" data-en="An intimate premium catering experience with exclusive co-created smoothies alongside Audemars Piguet and Repeat Wellness." data-es="Una experiencia íntima de catering premium con smoothies co-creados junto a Audemars Piguet y Repeat Wellness.">An intimate premium catering experience with exclusive co-created smoothies alongside Audemars Piguet and Repeat Wellness.</p>
+                <span class="collab-card__read" data-en="Read story →" data-es="Leer historia →">Read story →</span>
+              </div>
+            </article>
+
+            <article class="collab-card" tabindex="0" role="button" data-collab-index="4" aria-label="Read The Summer Glow Experience">
+              <div class="collab-card__media"><img src="/food/smoothies/summer-glow.jpg" alt="Summer Glow smoothie"></div>
+              <div class="collab-card__body">
+                <p class="collab-card__meta" data-en="COLLAB 5 · Jul 9 · Barcelona" data-es="COLAB 5 · 9 Jul · Barcelona">COLLAB 5 · Jul 9 · Barcelona</p>
+                <h3 class="collab-card__title">The Summer Glow Experience</h3>
+                <p class="collab-card__excerpt" data-en="A cross-city activation with Niche Beauty Lab pairing Summer Glow smoothies, SPF lip balms and a Repeat Pilates event." data-es="Una activación por Barcelona con Niche Beauty Lab uniendo Summer Glow smoothies, SPF lip balms y una clase de Pilates con Repeat.">A cross-city activation with Niche Beauty Lab pairing Summer Glow smoothies, SPF lip balms and a Repeat Pilates event.</p>
+                <span class="collab-card__read" data-en="Read story →" data-es="Leer historia →">Read story →</span>
+              </div>
+            </article>
+          </div>
+          <div class="collabs-progress" aria-hidden="true"><span id="collabs-progress-bar-archive"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="collab-modal" id="collab-modal" hidden>
+      <div class="collab-modal__backdrop" data-close-collab-modal></div>
+      <section class="collab-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="collab-modal-title" tabindex="-1">
+        <button class="collab-modal__close" type="button" data-close-collab-modal aria-label="Close collab story">&times;</button>
+        <div class="collab-modal__hero">
+          <img id="collab-modal-hero" src="" alt="">
+        </div>
+        <div class="collab-modal__content">
+          <p class="collab-modal__meta" id="collab-modal-meta"></p>
+          <h2 class="collab-modal__title" id="collab-modal-title"></h2>
+          <div class="collab-modal__copy">
+            <div id="collab-modal-copy"></div>
+            <div class="collab-modal__gallery" id="collab-modal-gallery"></div>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <!-- ══════════════════════════════════════════════
          SECTION 9 — LATEST NEWS
@@ -2974,22 +3464,7 @@
       <!-- 3-col grid -->
       <div class="news-grid">
 
-        <article class="news-card reveal" style="--i:0;">
-          <div class="news-card__img">
-            <img
-              src="/nh/NewItems.png"
-              alt="New items added to the Nudes menu"
-              loading="lazy"
-            >
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span class="news-tag" data-en="Products" data-es="Productos">Products</span>
-            <span class="t-caption col-grey" data-en="Now" data-es="Ya disponible">Now</span>
-          </div>
-          <h3 class="t-h3" data-en="New Items Added to the Menu" data-es="Nuevos platos añadidos al menú">New Items Added to the Menu</h3>
-        </article>
-
-        <article class="news-card reveal" style="--i:1;">
+        <article class="news-card reveal" style="--i:0;" tabindex="0" role="button" aria-label="Read more about Social Run with Club Rodeo" data-news-title-en="Social Run with Club Rodeo" data-news-title-es="Carrera social con Club Rodeo" data-news-tag-en="Events · Every Tue 19:30" data-news-tag-es="Eventos · Cada Mar 19:30" data-news-img="/nh/nudes-run.png" data-news-images="/nh/nudes-run.png|/assets/real-belonging.png|/nh/hacemos03.jpeg" data-news-copy-en="Join the weekly social run with Club Rodeo from NUDES El Born every Tuesday at 19:30. Come for an easy community run, stay for good people, recovery drinks and the NUDES post-run vibe." data-news-copy-es="Únete al social run semanal con Club Rodeo desde NUDES El Born cada martes a las 19:30. Ven por una carrera comunitaria fácil, quédate por la gente, las bebidas de recuperación y el vibe post-run de NUDES.">
           <div class="news-card__img">
             <img
               src="/nh/nudes-run.png"
@@ -3004,23 +3479,99 @@
           <h3 class="t-h3" data-en="Social Run with Club Rodeo" data-es="Carrera social con Club Rodeo">Social Run with Club Rodeo</h3>
         </article>
 
-        <article class="news-card reveal" style="--i:2;">
+        <article class="news-card reveal" style="--i:1;" tabindex="0" role="button" aria-label="Read more about The Chillers Club x Ole Henriksen and Sephora Spain" data-news-title-en="The Chillers Club x Ole Henriksen &amp; Sephora Spain" data-news-title-es="The Chillers Club x Ole Henriksen &amp; Sephora Spain" data-news-tag-en="Collab · Jun 10-12 · Madrid" data-news-tag-es="Colaboración · 10-12 Jun · Madrid" data-news-img="/assets/collabs/ole-henriksen/ole-henriksen-01.png" data-news-images="/assets/collabs/ole-henriksen/ole-henriksen-01.png|/assets/collabs/ole-henriksen/ole-henriksen-02.png|/assets/collabs/ole-henriksen/ole-henriksen-03.png|/assets/collabs/ole-henriksen/ole-henriksen-04.jpg" data-news-copy-en="From June 10th to 12th, eat.nudes teamed up with Ole Henriksen and Sephora Spain to bring The Chillers Club pop-up to Madrid. For three days, our NUDES Health Bar at C. de San Mateo, 30 was transformed into the ultimate vibrant destination, celebrating the launch of the new Pout Chillers with custom refreshing drinks, exclusive treats and glowing vibes." data-news-copy-es="Del 10 al 12 de junio, eat.nudes se unió a Ole Henriksen y Sephora Spain para traer The Chillers Club a Madrid. Durante tres días, nuestro NUDES Health Bar en C. de San Mateo, 30 se transformó en el destino vibrante perfecto para celebrar el lanzamiento de los nuevos Pout Chillers con bebidas refrescantes custom, treats exclusivos y mucho glow.">
           <div class="news-card__img">
             <img
-              src="/nh/colab.jpeg"
-              alt="Ole Henriksen x Nudes collab"
+              src="/assets/collabs/ole-henriksen/ole-henriksen-01.png"
+              alt="The Chillers Club x Ole Henriksen and Nudes"
               loading="lazy"
             >
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <span class="news-tag" data-en="Collab" data-es="Colaboración">Collab</span>
-            <span class="t-caption col-grey">2025</span>
+            <span class="t-caption col-grey" data-en="Jun 10-12" data-es="10-12 Jun">Jun 10-12</span>
           </div>
-          <h3 class="t-h3" data-en="Ole Henriksen × Nudes" data-es="Ole Henriksen × Nudes">Ole Henriksen × Nudes</h3>
+          <h3 class="t-h3" data-en="The Chillers Club x Ole Henriksen" data-es="The Chillers Club x Ole Henriksen">The Chillers Club x Ole Henriksen</h3>
+        </article>
+
+        <article class="news-card reveal" style="--i:2;" tabindex="0" role="button" aria-label="Read more about NUDES x Oysho Community Days Takeover" data-news-title-en="NUDES x Oysho Community Days Takeover" data-news-title-es="NUDES x Oysho Community Days Takeover" data-news-tag-en="Collab · Jun 13-14 · 2026" data-news-tag-es="Colaboración · 13-14 Jun · 2026" data-news-img="/assets/collabs/oysho/oysho-01.jpg" data-news-images="/assets/collabs/oysho/oysho-01.jpg|/assets/collabs/oysho/oysho-02.jpg|/assets/collabs/oysho/oysho-03.jpg|/assets/collabs/oysho/oysho-04.jpg|/assets/collabs/oysho/oysho-05.jpg" data-news-copy-en="A high-energy partnership on June 13-14, 2026. We joined forces with Oysho at their exclusive Community Days event, operating a dedicated coffee, juice and food corner. Featuring extensive product sampling and custom-branded activations, we fueled the community with fresh, nutritious energy." data-news-copy-es="Una colaboración llena de energía el 13 y 14 de junio de 2026. Nos unimos a Oysho en su evento exclusivo Community Days, operando un corner dedicado de café, zumos y comida. Con sampling de producto y activaciones de marca custom, alimentamos a la comunidad con energía fresca y nutritiva.">
+          <div class="news-card__img">
+            <img
+              src="/assets/collabs/oysho/oysho-01.jpg"
+              alt="NUDES community gathering"
+              loading="lazy"
+            >
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="news-tag" data-en="Collab" data-es="Colaboración">Collab</span>
+            <span class="t-caption col-grey" data-en="Jun 13-14" data-es="13-14 Jun">Jun 13-14</span>
+          </div>
+          <h3 class="t-h3" data-en="NUDES x Oysho Community Days" data-es="NUDES x Oysho Community Days">NUDES x Oysho Community Days</h3>
+        </article>
+
+        <article class="news-card reveal" style="--i:3;" tabindex="0" role="button" aria-label="Read more about Unreleased ID's Pop-Up x OffSonar" data-news-title-en="Unreleased ID’s Pop-Up x OffSónar" data-news-title-es="Unreleased ID’s Pop-Up x OffSónar" data-news-tag-en="Collab · Jun 18 · Barcelona" data-news-tag-es="Colaboración · 18 Jun · Barcelona" data-news-img="/assets/collabs/sonar/sonar-01.jpg" data-news-images="/assets/collabs/sonar/sonar-01.jpg|/assets/collabs/sonar/sonar-02.jpg|/assets/collabs/sonar/sonar-03.jpg|/assets/collabs/sonar/sonar-04.jpg|/assets/collabs/sonar/sonar-05.jpg|/assets/collabs/sonar/sonar-06.jpg|/assets/collabs/sonar/sonar-07.jpg|/assets/collabs/sonar/sonar-08.jpg" data-news-copy-en="A high-vibe music and wellness fusion. On June 18, 2026, we partnered with Unreleased under OffSónar week in Barcelona. Featuring live DJ sets by Arodes and friends, custom-crafted unreleased smoothies and packed crowds, we brought Barcelona an immersive pop-up experience uniting music lovers and wellness enthusiasts." data-news-copy-es="Una fusión high-vibe entre música y wellness. El 18 de junio de 2026 nos aliamos con Unreleased durante la semana de OffSónar en Barcelona. Con DJ sets en directo de Arodes y amigos, smoothies unreleased custom y una sala llena, llevamos a Barcelona una experiencia pop-up inmersiva que unió a amantes de la música y del wellness.">
+          <div class="news-card__img">
+            <img
+              src="/assets/collabs/sonar/sonar-01.jpg"
+              alt="NUDES pop-up atmosphere"
+              loading="lazy"
+            >
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="news-tag" data-en="Collab" data-es="Colaboración">Collab</span>
+            <span class="t-caption col-grey" data-en="Jun 18" data-es="18 Jun">Jun 18</span>
+          </div>
+          <h3 class="t-h3" data-en="Unreleased ID’s Pop-Up x OffSónar" data-es="Unreleased ID’s Pop-Up x OffSónar">Unreleased ID’s Pop-Up x OffSónar</h3>
+        </article>
+
+        <article class="news-card reveal" style="--i:4;" tabindex="0" role="button" aria-label="Read more about Audemars Piguet Private Morning Takeover" data-news-title-en="Audemars Piguet Private Morning Takeover" data-news-title-es="Audemars Piguet Private Morning Takeover" data-news-tag-en="Collab · Private Morning" data-news-tag-es="Colaboración · Private Morning" data-news-img="/assets/collabs/audemars-piguet/audemars-piguet-01.jpg" data-news-images="/assets/collabs/audemars-piguet/audemars-piguet-01.jpg|/assets/collabs/audemars-piguet/audemars-piguet-02.jpg|/assets/collabs/audemars-piguet/audemars-piguet-03.jpg" data-news-copy-en="Premium catering experience and exclusive co-created smoothies in partnership with Audemars Piguet and Repeat Wellness, celebrating luxury and healthy living in an intimate setting." data-news-copy-es="Una experiencia premium de catering y smoothies co-creados en colaboración con Audemars Piguet y Repeat Wellness, celebrando el lujo y la vida saludable en un ambiente íntimo.">
+          <div class="news-card__img">
+            <img
+              src="/assets/collabs/audemars-piguet/audemars-piguet-01.jpg"
+              alt="Audemars Piguet private morning takeover"
+              loading="lazy"
+            >
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="news-tag" data-en="Collab" data-es="Colaboración">Collab</span>
+            <span class="t-caption col-grey" data-en="Private Morning" data-es="Private Morning">Private Morning</span>
+          </div>
+          <h3 class="t-h3" data-en="Audemars Piguet Private Morning" data-es="Audemars Piguet Private Morning">Audemars Piguet Private Morning</h3>
+        </article>
+
+        <article class="news-card reveal" style="--i:5;" tabindex="0" role="button" aria-label="Read more about The Summer Glow Experience" data-news-title-en="The Summer Glow Experience" data-news-title-es="The Summer Glow Experience" data-news-tag-en="Collab · Jul 9 · Barcelona" data-news-tag-es="Colaboración · 9 Jul · Barcelona" data-news-img="/assets/collabs/niche-beauty/niche-beauty-01.jpg" data-news-images="/assets/collabs/niche-beauty/niche-beauty-01.jpg|/assets/collabs/niche-beauty/niche-beauty-02.jpg|/assets/collabs/niche-beauty/niche-beauty-03.jpg|/assets/collabs/niche-beauty/niche-beauty-04.jpg" data-news-copy-en="Glow from the inside out with Niche Beauty Lab for an extensive cross-city activation in Barcelona. Centered around our nutrient-packed Summer Glow Smoothie paired with protective SPF lip balms, and highlighted by an exclusive community Pilates event with Repeat on July 9th, this collaboration merged skincare, active nutrition and lifestyle." data-news-copy-es="Glow from the inside out junto a Niche Beauty Lab en una activación cross-city en Barcelona. La experiencia giró alrededor de nuestro Summer Glow Smoothie, lleno de nutrientes, combinado con lip balms SPF protectores y una clase exclusiva de Pilates con Repeat el 9 de julio. Una colaboración entre skincare, nutrición activa y lifestyle.">
+          <div class="news-card__img">
+            <img
+              src="/assets/collabs/niche-beauty/niche-beauty-01.jpg"
+              alt="Summer Glow smoothie"
+              loading="lazy"
+            >
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="news-tag" data-en="Collab" data-es="Colaboración">Collab</span>
+            <span class="t-caption col-grey" data-en="Jul 9" data-es="9 Jul">Jul 9</span>
+          </div>
+          <h3 class="t-h3" data-en="The Summer Glow Experience" data-es="The Summer Glow Experience">The Summer Glow Experience</h3>
         </article>
 
       </div>
     </section>
+
+    <div class="news-modal" id="news-modal" hidden>
+      <div class="news-modal__backdrop" data-close-news-modal></div>
+      <section class="news-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="news-modal-title" tabindex="-1">
+        <button class="news-modal__close" type="button" data-close-news-modal aria-label="Close news details">&times;</button>
+        <div class="news-modal__media">
+          <img id="news-modal-img" src="" alt="">
+        </div>
+        <div class="news-modal__body">
+          <p class="news-modal__eyebrow" id="news-modal-tag"></p>
+          <h2 class="news-modal__title" id="news-modal-title"></h2>
+          <p class="news-modal__copy" id="news-modal-copy"></p>
+          <div class="news-modal__gallery" id="news-modal-gallery"></div>
+        </div>
+      </section>
+    </div>
 
   </main>
 
@@ -3039,7 +3590,7 @@
           <li><a href="about.html">About</a></li>
           <li><a href="./info.html">Info</a></li>
           <li><a href="https://instagram.com/eat.nudes" rel="noopener" target="_blank">Instagram</a></li>
-          <li><a href="#community">Join The Club°</a></li>
+          <li><a href="#join-club">Join The Club*</a></li>
         </ul>
         <div class="ft-meta">
           info@eatnudes.com<br>
@@ -3414,11 +3965,11 @@
   <script>
     (function () {
       var images = [
-        '/nh/comm-1.jpeg',
-        '/nh/comm-2.jpeg',
-        '/nh/comm-3.jpg',
-        '/nh/comm-4.jpeg',
-        '/nh/comm-5.jpeg'
+        '/assets/collabs/ole-henriksen/ole-henriksen-01.png',
+        '/assets/collabs/oysho/oysho-01.jpg',
+        '/assets/collabs/sonar/sonar-01.jpg',
+        '/assets/collabs/audemars-piguet/audemars-piguet-01.jpg',
+        '/assets/collabs/niche-beauty/niche-beauty-01.jpg'
       ];
       var stack = document.getElementById('card-stack');
       if (!stack) return;
@@ -3471,6 +4022,321 @@
   </script>
 
   <script>
+  /* ── COLLAB CAROUSEL + STORIES ── */
+  (function () {
+    var track = document.getElementById('collabs-track');
+    var progress = document.getElementById('collabs-progress-bar');
+    var modal = document.getElementById('collab-modal');
+    if (!track || !modal) return;
+
+    var dialog = modal.querySelector('.collab-modal__dialog');
+    var hero = document.getElementById('collab-modal-hero');
+    var meta = document.getElementById('collab-modal-meta');
+    var title = document.getElementById('collab-modal-title');
+    var copy = document.getElementById('collab-modal-copy');
+    var gallery = document.getElementById('collab-modal-gallery');
+    var cards = Array.from(track.querySelectorAll('.collab-card'));
+    var lastFocus = null;
+    var timer = null;
+
+    var stories = [
+      {
+        title: {
+          en: 'The Chillers Club x Ole Henriksen & Sephora Spain',
+          es: 'The Chillers Club x Ole Henriksen & Sephora Spain'
+        },
+        meta: {
+          en: 'Collab 1 · June 10-12 · Madrid',
+          es: 'Colab 1 · 10-12 de junio · Madrid'
+        },
+        images: ['/nh/colab.jpeg', '/imageONE.png', '/nh/smoothies-hero.png'],
+        paragraphs: {
+          en: [
+            'From June 10th to 12th, eat.nudes teamed up with Ole Henriksen and Sephora Spain to bring "The Chillers Club" pop-up to Madrid.',
+            'For three days, our NUDES Health Bar at C. de San Mateo, 30 was transformed into the ultimate vibrant destination, celebrating the launch of the new Pout Chillers with custom refreshing drinks, exclusive treats, and glowing vibes.'
+          ],
+          es: [
+            'Del 10 al 12 de junio, eat.nudes se unió a Ole Henriksen y Sephora Spain para traer el pop-up "The Chillers Club" a Madrid.',
+            'Durante tres días, nuestro NUDES Health Bar en C. de San Mateo, 30 se transformó en un destino vibrante para celebrar el lanzamiento de los nuevos Pout Chillers con bebidas refrescantes custom, treats exclusivos y mucho glow.'
+          ]
+        }
+      },
+      {
+        title: {
+          en: 'NUDES x Oysho Community Days Takeover',
+          es: 'NUDES x Oysho Community Days Takeover'
+        },
+        meta: {
+          en: 'Collab 2 · June 13-14, 2026',
+          es: 'Colab 2 · 13-14 de junio de 2026'
+        },
+        images: ['/nh/nudes-run.png', '/nh/hacemos03.jpeg', '/assets/real-belonging.png'],
+        paragraphs: {
+          en: [
+            'A high-energy partnership on June 13-14, 2026. We joined forces with Oysho at their exclusive "Community Days" event, operating a dedicated coffee, juice and food corner.',
+            'Featuring extensive product sampling and custom-branded activations, we fueled the community with fresh, nutritious energy.'
+          ],
+          es: [
+            'Una colaboración llena de energía el 13 y 14 de junio de 2026. Nos unimos a Oysho en su evento exclusivo "Community Days", operando un corner dedicado de café, zumos y comida.',
+            'Con sampling de producto y activaciones custom-branded, alimentamos a la comunidad con energía fresca y nutritiva.'
+          ]
+        }
+      },
+      {
+        title: {
+          en: 'Unreleased ID’s Pop-Up x OffSónar',
+          es: 'Unreleased ID’s Pop-Up x OffSónar'
+        },
+        meta: {
+          en: 'Collab 3 · June 18, 2026 · Barcelona',
+          es: 'Colab 3 · 18 de junio de 2026 · Barcelona'
+        },
+        images: ['/brand/collage-4.jpg', '/nh/collage.png', '/assets/rev.jpg'],
+        paragraphs: {
+          en: [
+            'A high-vibe music and wellness fusion.',
+            'On June 18, 2026, we partnered with Unreleased under OffSónar week in Barcelona. Featuring live DJ sets by Arodes and friends, custom-crafted unreleased smoothies, and packed crowds.',
+            'We brought Barcelona an immersive pop-up experience uniting music lovers and wellness enthusiasts.'
+          ],
+          es: [
+            'Una fusión high-vibe entre música y wellness.',
+            'El 18 de junio de 2026 nos aliamos con Unreleased durante la semana de OffSónar en Barcelona, con DJ sets en directo de Arodes y amigos, smoothies unreleased custom y una sala llena.',
+            'Llevamos a Barcelona una experiencia pop-up inmersiva que unió a amantes de la música y del wellness.'
+          ]
+        }
+      },
+      {
+        title: {
+          en: 'Audemars Piguet Private Morning Takeover',
+          es: 'Audemars Piguet Private Morning Takeover'
+        },
+        meta: {
+          en: 'Collab 4 · Private Morning Takeover',
+          es: 'Colab 4 · Private Morning Takeover'
+        },
+        images: [
+          '/assets/collabs/audemars-piguet/audemars-piguet-01.jpg',
+          '/assets/collabs/audemars-piguet/audemars-piguet-02.jpg',
+          '/assets/collabs/audemars-piguet/audemars-piguet-03.jpg'
+        ],
+        paragraphs: {
+          en: [
+            'A premium catering experience and exclusive co-created smoothies in partnership with Audemars Piguet and Repeat Wellness.',
+            'Designed as an intimate morning takeover, the activation celebrated luxury and healthy living through considered details, fresh NUDES drinks and a calm wellness setting.'
+          ],
+          es: [
+            'Una experiencia premium de catering y smoothies co-creados en colaboración con Audemars Piguet y Repeat Wellness.',
+            'Diseñada como un takeover íntimo de mañana, la activación celebró el lujo y la vida saludable con detalles cuidados, bebidas frescas NUDES y un entorno wellness tranquilo.'
+          ]
+        }
+      },
+      {
+        title: {
+          en: 'The Summer Glow Experience',
+          es: 'The Summer Glow Experience'
+        },
+        meta: {
+          en: 'Collab 5 · July 9 · Barcelona',
+          es: 'Colab 5 · 9 de julio · Barcelona'
+        },
+        images: ['/food/smoothies/summer-glow.jpg', '/nh/NewItems.png', '/nh/033.png'],
+        paragraphs: {
+          en: [
+            'Glow from the inside out with Niche Beauty Lab for an extensive cross-city activation in Barcelona.',
+            'Centered around our nutrient-packed "Summer Glow Smoothie" paired with protective SPF lip balms, and highlighted by an exclusive community Pilates event with Repeat on July 9th, this collaboration merged skincare, active nutrition, and lifestyle.'
+          ],
+          es: [
+            'Glow from the inside out junto a Niche Beauty Lab en una activación cross-city en Barcelona.',
+            'La experiencia giró alrededor de nuestro "Summer Glow Smoothie", lleno de nutrientes, combinado con lip balms SPF protectores y una clase exclusiva de Pilates con Repeat el 9 de julio. Una colaboración entre skincare, nutrición activa y lifestyle.'
+          ]
+        }
+      }
+    ];
+
+    function lang() {
+      return document.documentElement.lang === 'es' || localStorage.getItem('nudes-lang') === 'es' ? 'es' : 'en';
+    }
+
+    function activeIndex() {
+      var cardWidth = cards[0] ? cards[0].getBoundingClientRect().width + 18 : 1;
+      return Math.max(0, Math.min(cards.length - 1, Math.round(track.scrollLeft / cardWidth)));
+    }
+
+    function updateProgress() {
+      if (!progress || !cards.length) return;
+      progress.style.transform = 'scaleX(' + ((activeIndex() + 1) / cards.length) + ')';
+    }
+
+    function scrollToCard(index) {
+      var card = cards[(index + cards.length) % cards.length];
+      if (!card) return;
+      track.scrollTo({ left: card.offsetLeft, behavior: 'smooth' });
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(function () {
+        scrollToCard(activeIndex() + 1);
+      }, 5200);
+    }
+
+    function openStory(index) {
+      var story = stories[index];
+      var l = lang();
+      if (!story) return;
+      lastFocus = document.activeElement;
+      hero.src = story.images[0];
+      hero.alt = story.title[l] || story.title.en;
+      meta.textContent = story.meta[l] || story.meta.en;
+      title.textContent = story.title[l] || story.title.en;
+      copy.innerHTML = '';
+      (story.paragraphs[l] || story.paragraphs.en).forEach(function (paragraph) {
+        var p = document.createElement('p');
+        p.textContent = paragraph;
+        copy.appendChild(p);
+      });
+      gallery.innerHTML = '';
+      story.images.forEach(function (src, i) {
+        var image = document.createElement('img');
+        image.src = src;
+        image.alt = (story.title[l] || story.title.en) + ' photo ' + (i + 1);
+        gallery.appendChild(image);
+      });
+      modal.dataset.activeIndex = String(index);
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      clearInterval(timer);
+      if (dialog) dialog.focus();
+    }
+
+    function closeStory() {
+      if (modal.hidden) return;
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      startTimer();
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    cards.forEach(function (card) {
+      var index = Number(card.dataset.collabIndex || 0);
+      card.addEventListener('click', function () { openStory(index); });
+      card.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openStory(index);
+        }
+      });
+    });
+
+    document.querySelector('[data-collab-prev]')?.addEventListener('click', function () {
+      scrollToCard(activeIndex() - 1);
+      startTimer();
+    });
+    document.querySelector('[data-collab-next]')?.addEventListener('click', function () {
+      scrollToCard(activeIndex() + 1);
+      startTimer();
+    });
+    document.querySelectorAll('[data-close-collab-modal]').forEach(function (el) {
+      el.addEventListener('click', closeStory);
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeStory();
+    });
+    track.addEventListener('scroll', function () {
+      window.requestAnimationFrame(updateProgress);
+    });
+    track.addEventListener('mouseenter', function () { clearInterval(timer); });
+    track.addEventListener('mouseleave', startTimer);
+    window.addEventListener('nudes:langchange', function () {
+      if (!modal.hidden) openStory(Number(modal.dataset.activeIndex || 0));
+    });
+
+    updateProgress();
+    startTimer();
+  }());
+  </script>
+
+  <script>
+  /* ── NEWS DETAIL MODAL ── */
+  (function () {
+    var modal = document.getElementById('news-modal');
+    if (!modal) return;
+    var dialog = modal.querySelector('.news-modal__dialog');
+    var img = document.getElementById('news-modal-img');
+    var tag = document.getElementById('news-modal-tag');
+    var title = document.getElementById('news-modal-title');
+    var copy = document.getElementById('news-modal-copy');
+    var gallery = document.getElementById('news-modal-gallery');
+    var currentCard = null;
+    var lastFocus = null;
+
+    function lang() {
+      return document.documentElement.lang === 'es' || localStorage.getItem('nudes-lang') === 'es' ? 'es' : 'en';
+    }
+
+    function value(card, key) {
+      return card.dataset[key + (lang() === 'es' ? 'Es' : 'En')] || card.dataset[key + 'En'] || '';
+    }
+
+    function openNews(card) {
+      currentCard = card;
+      lastFocus = document.activeElement;
+      title.textContent = value(card, 'newsTitle');
+      tag.textContent = value(card, 'newsTag');
+      copy.textContent = value(card, 'newsCopy');
+      var images = (card.dataset.newsImages || card.dataset.newsImg || '').split('|').filter(Boolean);
+      img.src = images[0] || card.dataset.newsImg || '';
+      img.alt = title.textContent;
+      if (gallery) {
+        gallery.innerHTML = '';
+        images.slice(0, 8).forEach(function (src, index) {
+          var thumb = document.createElement('img');
+          thumb.src = src;
+          thumb.alt = title.textContent + ' photo ' + (index + 1);
+          thumb.loading = 'lazy';
+          thumb.addEventListener('click', function () {
+            img.src = src;
+          });
+          gallery.appendChild(thumb);
+        });
+        gallery.hidden = images.length <= 1;
+      }
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      if (dialog) dialog.focus();
+    }
+
+    function closeNews() {
+      if (modal.hidden) return;
+      modal.hidden = true;
+      currentCard = null;
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    document.querySelectorAll('.news-card').forEach(function (card) {
+      card.addEventListener('click', function () { openNews(card); });
+      card.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openNews(card);
+        }
+      });
+    });
+
+    document.querySelectorAll('[data-close-news-modal]').forEach(function (el) {
+      el.addEventListener('click', closeNews);
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeNews();
+    });
+    window.addEventListener('nudes:langchange', function () {
+      if (!modal.hidden && currentCard) openNews(currentCard);
+    });
+  }());
+  </script>
+
+  <script>
   /* ── LANGUAGE TOGGLE ── */
   (function () {
     function applyLang(lang) {
@@ -3482,6 +4348,7 @@
         btn.classList.toggle('lang-opt--active', btn.dataset.lang === lang);
       });
       document.documentElement.lang = lang;
+      window.dispatchEvent(new CustomEvent('nudes:langchange', { detail: { lang: lang } }));
     }
     window.__setLang = applyLang;
     var saved = localStorage.getItem('nudes-lang') || 'en';

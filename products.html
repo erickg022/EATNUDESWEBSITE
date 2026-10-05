@@ -324,23 +324,42 @@
       background: var(--color-cream);
       display: flex;
       flex-direction: column;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .prod-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(28,28,26,0.18);
+      box-shadow: 0 12px 28px rgba(28,28,26,0.08);
+    }
+
+    .prod-card:focus-visible {
+      outline: 2px solid var(--color-ink);
+      outline-offset: 4px;
     }
 
     .prod-card__img {
       width: 100%;
       height: 280px;
-      background: #F3EDE3;
+      background: #F3EDE3 !important;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 0;
+    }
+
+    .prod-card__img picture {
+      display: block;
+      width: 100%;
+      height: 100%;
     }
 
     .prod-card__img img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
       display: block;
     }
@@ -386,6 +405,156 @@
       color: var(--color-ink);
       margin-top: 6px;
       line-height: 1;
+    }
+
+    /* ── PRODUCT DETAIL MODAL ── */
+    .product-modal[hidden] { display: none; }
+
+    .product-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .product-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(28,28,26,0.48);
+      backdrop-filter: blur(8px);
+    }
+
+    .product-modal__dialog {
+      position: relative;
+      width: min(980px, calc(100vw - 48px));
+      max-height: min(760px, calc(100vh - 48px));
+      background: var(--color-cream);
+      color: var(--color-ink);
+      border: 1px solid rgba(28,28,26,0.16);
+      display: grid;
+      grid-template-columns: minmax(280px, 0.92fr) 1.08fr;
+      overflow: hidden;
+      box-shadow: 0 26px 80px rgba(28,28,26,0.22);
+    }
+
+    .product-modal__media {
+      background: #F3EDE3;
+      min-height: 520px;
+      overflow: hidden;
+    }
+
+    .product-modal__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-modal__body {
+      padding: clamp(28px, 4vw, 52px);
+      overflow: auto;
+    }
+
+    .product-modal__close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(28,28,26,0.16);
+      background: rgba(253,250,242,0.9);
+      color: var(--color-ink);
+      font-size: 26px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .product-modal__close:hover { background: var(--color-ink); color: var(--color-cream); }
+
+    .product-modal__eyebrow {
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      margin-bottom: 14px;
+    }
+
+    .product-modal__title {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5.5vw, 72px);
+      font-weight: normal;
+      line-height: 0.92;
+      letter-spacing: 0;
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .product-modal__price {
+      font-family: var(--font-display);
+      font-size: 30px;
+      margin-top: 18px;
+    }
+
+    .product-modal__tagline {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--color-grey);
+      line-height: 1.6;
+      margin-top: 6px;
+    }
+
+    .product-modal__description {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.75;
+      color: #51493f;
+      margin-top: 28px;
+    }
+
+    .product-modal__facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid rgba(28,28,26,0.14);
+      border-left: 1px solid rgba(28,28,26,0.14);
+      margin-top: 28px;
+    }
+
+    .product-modal__fact {
+      padding: 16px;
+      border-right: 1px solid rgba(28,28,26,0.14);
+      border-bottom: 1px solid rgba(28,28,26,0.14);
+      min-height: 84px;
+    }
+
+    .product-modal__fact-label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      margin-bottom: 8px;
+    }
+
+    .product-modal__fact-value {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .product-modal__note {
+      font-family: var(--font-body);
+      font-size: 11px;
+      line-height: 1.6;
+      color: var(--color-grey);
+      margin-top: 18px;
     }
 
     /* ── FOOTER ── */
@@ -515,46 +684,61 @@
         scroll-snap-align: start !important;
         margin-right: 0 !important;
       }
+      .prod-card:hover {
+        transform: none;
+        box-shadow: none;
+      }
+      .product-modal {
+        align-items: flex-end;
+        padding: 0;
+      }
+      .product-modal__dialog {
+        width: 100%;
+        max-height: 92vh;
+        grid-template-columns: 1fr;
+        overflow: auto;
+      }
+      .product-modal__media {
+        min-height: 260px;
+        height: 34vh;
+      }
+      .product-modal__body {
+        padding: 30px 22px 34px;
+        overflow: visible;
+      }
+      .product-modal__close {
+        top: 12px;
+        right: 12px;
+      }
+      .product-modal__facts {
+        grid-template-columns: 1fr 1fr;
+      }
+      .product-modal__fact {
+        padding: 14px;
+      }
       #smoothies .prod-card__img {
-        background: #ede3d5 !important;
+        background: #F3EDE3 !important;
       }
       #smoothies .prod-card__img picture {
         display: block;
         width: 100%;
         height: 100%;
       }
-      #smoothies .prod-card:nth-child(10) { order: 1; }
-      #smoothies .prod-card:nth-child(11) { order: 2; }
-      #smoothies .prod-card:nth-child(1) { order: 3; }
-      #smoothies .prod-card:nth-child(2) { order: 4; }
-      #smoothies .prod-card:nth-child(3) { order: 5; }
-      #smoothies .prod-card:nth-child(4) { order: 6; }
-      #smoothies .prod-card:nth-child(5) { order: 7; }
-      #smoothies .prod-card:nth-child(6) { order: 8; }
-      #smoothies .prod-card:nth-child(7) { order: 9; }
-      #smoothies .prod-card:nth-child(8) { order: 10; }
-      #smoothies .prod-card:nth-child(9) { order: 11; }
       #protein-shakes .prod-card__img {
-        background: #ede3d5 !important;
+        background: #F3EDE3 !important;
       }
       #protein-shakes .prod-card__img picture {
         display: block;
         width: 100%;
         height: 100%;
       }
-      #protein-shakes .prod-card:nth-child(2) { order: 1; }
-      #protein-shakes .prod-card:nth-child(1) { order: 2; }
-      #protein-shakes .prod-card:nth-child(3) { order: 3; }
-      #protein-shakes .prod-card:nth-child(4) { order: 4; }
-      #protein-shakes .prod-card:nth-child(5) { order: 5; }
-      #protein-shakes .prod-card:nth-child(6) { order: 6; }
       #hot-drinks .prod-card__img picture {
         display: block;
         width: 100%;
         height: 100%;
       }
       #cold-drinks .prod-card__img {
-        background: #f0eade !important;
+        background: #F3EDE3 !important;
       }
       #cold-drinks .prod-card__img picture {
         display: block;
@@ -579,23 +763,10 @@
     }
 
     @media (max-width: 768px) {
-      #ceremonial-matcha .prod-card__img {
-        background: #ede3d5 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-      #ceremonial-matcha .prod-card__img picture {
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
       #ceremonial-matcha .prod-card__img img {
-        object-fit: contain !important;
-        padding: 12px !important;
-        box-sizing: border-box !important;
-        transform: scale(0.92);
-        transform-origin: center;
+        object-fit: cover !important;
+        padding: 0 !important;
+        transform: none !important;
       }
     }
 
@@ -622,10 +793,10 @@
     </a>
     <ul class="nav-center">
       <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="index.html#locations">Stores</a></li>
       <li><a href="about.html">About Us</a></li>
       <li><a href="./info.html">Info</a></li>
-      <li><a href="https://instagram.com/eat.nudes" rel="noopener noreferrer" target="_blank">Instagram</a></li>
-      <li><a href="index.html#community" class="nav-join">Join The Club°</a></li>
+      <li><a href="index.html#join-club" class="nav-join">Join The Club*</a></li>
       <li class="lang-toggle-wrap">
         <button class="lang-opt lang-opt--active" data-lang="en" onclick="__setLang('en')">EN</button>
         <span class="lang-sep">/</span>
@@ -643,10 +814,10 @@
   <!-- Mobile overlay menu -->
   <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation">
     <a href="products.html" class="mobile-menu__link">Products</a>
+    <a href="index.html#locations" class="mobile-menu__link">Stores</a>
     <a href="about.html" class="mobile-menu__link">About Us</a>
     <a href="./info.html" class="mobile-menu__link">Info</a>
-    <a href="https://instagram.com/eat.nudes" class="mobile-menu__link" target="_blank" rel="noopener noreferrer">Instagram</a>
-    <a href="index.html#community" class="mobile-menu__link mobile-menu__link--pink">Join The Club*</a>
+    <a href="index.html#join-club" class="mobile-menu__link mobile-menu__link--pink">Join The Club*</a>
     <div class="mobile-menu__lang">
       <button class="mobile-menu__lang-btn is-active" id="mob-lang-en" onclick="__setLang('en')">EN</button>
       <span class="mobile-menu__lang-sep">/</span>
@@ -688,25 +859,34 @@
         <div class="car-track" id="smoothies-track">
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/glow-smoothie-mobile.png"><img src="/food/smoothies/midnight-glow-new.webp" alt="MID/NIGHT 00.00 GLOW" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/smoothies/hawaiian-temptation.png"><img src="/food/smoothies/repeat-nad-desktop.png" alt="Repeat Longevity NAD+" loading="lazy"></picture></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="MID/NIGHT 00.00 GLOW" data-es="MID/NIGHT 00.00 GLOW">MID/NIGHT 00.00 GLOW</p>
+              <p class="prod-card__name" data-en="REPEAT LONGEVITY NAD+" data-es="REPEAT LONGEVITY NAD+">REPEAT LONGEVITY NAD+</p>
+              <p class="prod-card__tagline">Rejuvenation &amp; hydration</p>
+              <p class="prod-card__price">€15</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/smoothies/midnight-glow.png"><img src="/food/smoothies/midnight-glow.png" alt="Midnight Glow" loading="lazy"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="MIDNIGHT GLOW" data-es="MIDNIGHT GLOW">MIDNIGHT GLOW</p>
               <p class="prod-card__tagline">Skin, hair &amp; hydration</p>
               <p class="prod-card__price">€12</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/hangover-mobile.png"><img src="/food/smoothies/the-hangover.jpg" alt="The Hangover" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/smoothies/cherry-shred.png"><img src="/food/smoothies/cherry-shred-desktop.png" alt="Cherry Shred" loading="lazy"></picture></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="THE HANGOVER" data-es="LA RESACA">THE HANGOVER</p>
-              <p class="prod-card__tagline">Anti-inflammatory &amp; refreshing</p>
+              <p class="prod-card__name" data-en="CHERRY SHRED" data-es="CHERRY SHRED">CHERRY SHRED</p>
+              <p class="prod-card__tagline">Muscle recovery &amp; support</p>
               <p class="prod-card__price">€12</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/cognitive-cacao-mobile.png"><img src="/food/smoothies/cognitive-cacao.jpg" alt="Cognitive Cacao" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/smoothies/cognitive-cacao.jpg"><img src="/food/smoothies/cognitive-cacao.jpg" alt="Cognitive Cacao" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="COGNITIVE CACAO" data-es="CACAO COGNITIVO">COGNITIVE CACAO</p>
               <p class="prod-card__tagline">Mental clarity &amp; vitality</p>
@@ -715,7 +895,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/morning-glory-mobile.png"><img src="/food/smoothies/morning-glory.jpg" alt="Morning Glory" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/smoothies/morning-glory.jpg"><img src="/food/smoothies/morning-glory.jpg" alt="Morning Glory" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="MORNING GLORY" data-es="GLORIA MATUTINA">MORNING GLORY</p>
               <p class="prod-card__tagline">Energizing &amp; vitalizing</p>
@@ -724,16 +904,25 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/femme-fatale-mobile.png"><img src="/food/smoothies/femme-fatale.jpg" alt="Femme Fatale" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/smoothies/the-hangover.jpg"><img src="/food/smoothies/the-hangover.jpg" alt="Hangover" loading="lazy"></picture></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="FEMME FATALE" data-es="FEMME FATALE">FEMME FATALE</p>
-              <p class="prod-card__tagline">Rejuvenating &amp; healing</p>
-              <p class="prod-card__price">€9</p>
+              <p class="prod-card__name" data-en="HANGOVER" data-es="HANGOVER">HANGOVER</p>
+              <p class="prod-card__tagline">Anti-inflammatory &amp; refreshing</p>
+              <p class="prod-card__price">€10</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/peach-bum-mobile.png"><img src="/food/smoothies/peach-bum.jpg" alt="Peach Bum" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/smoothies/blue-moon.jpg"><img src="/food/smoothies/blue-moon.jpg" alt="Bluemoon" loading="lazy"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="BLUEMOON" data-es="BLUEMOON">BLUEMOON</p>
+              <p class="prod-card__tagline">Mineralizing &amp; antioxidant</p>
+              <p class="prod-card__price">€10</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/smoothies/peach-bum.jpg"><img src="/food/smoothies/peach-bum.jpg" alt="Peach Bum" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="PEACH BUM" data-es="MELOCOTÓN BUM">PEACH BUM</p>
               <p class="prod-card__tagline">Toning &amp; moisturizing</p>
@@ -742,7 +931,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/green-detox-mobile.png"><img src="/food/smoothies/green-detox.jpg" alt="Green Detox" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/smoothies/green-detox.jpg"><img src="/food/smoothies/green-detox.jpg" alt="Green Detox" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="GREEN DETOX" data-es="DETOX VERDE">GREEN DETOX</p>
               <p class="prod-card__tagline">Detoxifying &amp; purifying</p>
@@ -751,7 +940,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/summer-glow-mobile.png"><img src="/food/smoothies/summer-glow.jpg" alt="Summer Glow" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/smoothies/summer-glow.jpg"><img src="/food/smoothies/summer-glow.jpg" alt="Summer Glow" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="SUMMER GLOW" data-es="BRILLO VERANIEGO">SUMMER GLOW</p>
               <p class="prod-card__tagline">Immune &amp; revitalizing</p>
@@ -760,29 +949,11 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/bluemoon-mobile.png"><img src="/food/smoothies/blue-moon.jpg" alt="Blue Moon" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/smoothies/femme-fatale.jpg"><img src="/food/smoothies/femme-fatale.jpg" alt="Femme Fatale" loading="lazy"></picture></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="BLUE MOON" data-es="LUNA AZUL">BLUE MOON</p>
-              <p class="prod-card__tagline">Mineralizing &amp; antioxidant</p>
-              <p class="prod-card__price">€10</p>
-            </div>
-          </div>
-
-          <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/cherry-shred-mobile.png"><img src="/food/smoothies/cherry-shred.png" alt="Cherry Shred" loading="lazy"></picture></div>
-            <div class="prod-card__info">
-              <p class="prod-card__name" data-en="CHERRY SHRED" data-es="CHERRY SHRED">CHERRY SHRED</p>
-              <p class="prod-card__tagline">Bold &amp; energizing</p>
-              <p class="prod-card__price">€12</p>
-            </div>
-          </div>
-
-          <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/smoothies/hawaiian-temptation-mobile.png"><img src="/food/smoothies/hawaiian-temptation.png" alt="Hawaiian Temptation" loading="lazy"></picture></div>
-            <div class="prod-card__info">
-              <p class="prod-card__name" data-en="HAWAIIAN TEMPTATION" data-es="TENTACIÓN HAWAIANA">HAWAIIAN TEMPTATION</p>
-              <p class="prod-card__tagline">Tropical &amp; refreshing</p>
-              <p class="prod-card__price">€12</p>
+              <p class="prod-card__name" data-en="FEMME FATALE" data-es="FEMME FATALE">FEMME FATALE</p>
+              <p class="prod-card__tagline">Rejuvenating &amp; healing</p>
+              <p class="prod-card__price">€9</p>
             </div>
           </div>
 
@@ -802,16 +973,7 @@
         <div class="car-track" id="protein-track">
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/shakes/acai-protein-shake-mobile-v2.png"><img src="/food/proteinshakes/acai-protein.jpg" alt="Açaí Protein Shake" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
-            <div class="prod-card__info">
-              <p class="prod-card__name" data-en="AÇAÍ PROTEIN SHAKE" data-es="BATIDO PROTEÍNA AÇAÍ">AÇAÍ PROTEIN SHAKE</p>
-              <p class="prod-card__tagline">Antioxidant muscle fuel</p>
-              <p class="prod-card__price">€10</p>
-            </div>
-          </div>
-
-          <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/shakes/matcha-wellness-mobile-v2.png"><img src="/food/proteinshakes/wellness-matcha.jpg" alt="Matcha Wellness" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><picture><source media="(max-width: 768px)" srcset="/food/proteinshakes/wellness-matcha.jpg"><img src="/food/proteinshakes/wellness-matcha.jpg" alt="Matcha Wellness" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="MATCHA WELLNESS" data-es="WELLNESS MATCHA">MATCHA WELLNESS</p>
               <p class="prod-card__tagline">Glow &amp; gut health</p>
@@ -820,25 +982,34 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/shakes/blue-fit-mobile-v2.png"><img src="/food/proteinshakes/blue-fit.jpg" alt="Blue Fit Protein Shake" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><picture><source media="(max-width: 768px)" srcset="/food/proteinshakes/acai-protein.jpg"><img src="/food/proteinshakes/acai-protein.jpg" alt="Açaí Protein Shake" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="AÇAÍ PROTEIN SHAKE" data-es="BATIDO PROTEÍNA AÇAÍ">AÇAÍ PROTEIN SHAKE</p>
+              <p class="prod-card__tagline">Antioxidant muscle fuel</p>
+              <p class="prod-card__price">€10</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><picture><source media="(max-width: 768px)" srcset="/food/proteinshakes/blue-fit.jpg"><img src="/food/proteinshakes/blue-fit.jpg" alt="Blue Fit Protein Shake" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="BLUE FIT PROTEIN SHAKE" data-es="BATIDO PROTEÍNA BLUE FIT">BLUE FIT PROTEIN SHAKE</p>
               <p class="prod-card__tagline">Recovery &amp; inflammation</p>
-              <p class="prod-card__price">€9</p>
+              <p class="prod-card__price">€10</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/shakes/pink-fit-protein-mobile-v2.png"><img src="/food/proteinshakes/pink-fit.jpg" alt="Pink Fit Protein" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><picture><source media="(max-width: 768px)" srcset="/food/proteinshakes/pink-fit.jpg"><img src="/food/proteinshakes/pink-fit.jpg" alt="Pink Fit Protein Shake" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="PINK FIT PROTEIN" data-es="PROTEÍNA PINK FIT">PINK FIT PROTEIN</p>
+              <p class="prod-card__name" data-en="PINK FIT PROTEIN SHAKE" data-es="PINK FIT PROTEIN SHAKE">PINK FIT PROTEIN SHAKE</p>
               <p class="prod-card__tagline">Skin radiance &amp; recovery</p>
-              <p class="prod-card__price">€9</p>
+              <p class="prod-card__price">€10</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/shakes/og-protein-shake-mobile-v2.png"><img src="/food/proteinshakes/acai-protein.jpg" alt="OG Protein Shake" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><picture><source media="(max-width: 768px)" srcset="/food/proteinshakes/acai-protein.jpg"><img src="/food/proteinshakes/acai-protein.jpg" alt="OG Protein Shake" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="OG PROTEIN SHAKE" data-es="BATIDO PROTEÍNA OG">OG PROTEIN SHAKE</p>
               <p class="prod-card__tagline">Classic muscle recovery</p>
@@ -847,7 +1018,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/shakes/mocha-protein-shake-mobile-v2.png"><img src="/food/proteinshakes/mocha-protein.jpg" alt="Mocha Protein Shake" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><picture><source media="(max-width: 768px)" srcset="/food/proteinshakes/mocha-protein.jpg"><img src="/food/proteinshakes/mocha-protein.jpg" alt="Mocha Protein Shake" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="MOCHA PROTEIN SHAKE" data-es="BATIDO PROTEÍNA MOCA">MOCHA PROTEIN SHAKE</p>
               <p class="prod-card__tagline">Pre-workout energy</p>
@@ -864,63 +1035,108 @@
     <section id="acai" class="car-section">
       <div class="sec-hdr">
         <h2 class="sec-title">Açaí &amp; Soft Serve</h2>
-        <span class="sec-count">6 products</span>
+        <span class="sec-count">11 products</span>
       </div>
       <div class="car-wrap">
         <button class="car-btn car-btn--prev" onclick="document.getElementById('acai-track').scrollBy({left:-260,behavior:'smooth'})" aria-label="Previous">&#8592;</button>
         <div class="car-track" id="acai-track">
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/nudes-acai-large.webp" alt="Nudes Açaí" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/nudes-acai-large.webp" alt="Nudes Signature Açaí" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="NUDES AÇAÍ" data-es="NUDES AÇAÍ">NUDES AÇAÍ</p>
+              <p class="prod-card__name" data-en="NUDES SIGNATURE AÇAÍ" data-es="NUDES SIGNATURE AÇAÍ">NUDES SIGNATURE AÇAÍ</p>
               <p class="prod-card__tagline">Signature no-sugar açaí</p>
-              <p class="prod-card__price">M €13 / XL €19</p>
+              <p class="prod-card__price">€13 / €19</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/acai-and-coco.jpg" alt="Nudes Açaí Froyo" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/acai-and-coco.jpg" alt="Nudes Açaí Coco" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="NUDES AÇAÍ FROYO" data-es="NUDES AÇAÍ FROYO">NUDES AÇAÍ FROYO</p>
-              <p class="prod-card__tagline">Açaí &amp; froyo blend</p>
-              <p class="prod-card__price">M €13 / XL €19</p>
+              <p class="prod-card__name" data-en="NUDES AÇAÍ COCO" data-es="NUDES AÇAÍ COCO">NUDES AÇAÍ COCO</p>
+              <p class="prod-card__tagline">Açaí &amp; coconut soft serve</p>
+              <p class="prod-card__price">€13 / €19</p>
             </div>
           </div>
 
           <div class="prod-card">
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/pistachio-froyo-large.webp" alt="Pistachio Froyo Soft Serve" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="PISTACHIO FROYO SOFT SERVE" data-es="SOFT SERVE PISTACHO FROYO">PISTACHIO FROYO SOFT SERVE</p>
-              <p class="prod-card__tagline">Pistachio &amp; froyo</p>
-              <p class="prod-card__price">M €13 / XL €19</p>
+              <p class="prod-card__name" data-en="PISTACHIO COCONUT SOFT SERVE" data-es="PISTACHIO COCONUT SOFT SERVE">PISTACHIO COCONUT SOFT SERVE</p>
+              <p class="prod-card__tagline">Pistachio coconut soft serve</p>
+              <p class="prod-card__price">€13 / €19</p>
             </div>
           </div>
 
           <div class="prod-card">
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/froyo-bliss-large.webp" alt="Froyo Bliss Soft Serve" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="FROYO BLISS SOFT SERVE" data-es="SOFT SERVE FROYO BLISS">FROYO BLISS SOFT SERVE</p>
+              <p class="prod-card__name" data-en="COCONUT BLISS SOFT SERVE" data-es="COCONUT BLISS SOFT SERVE">COCONUT BLISS SOFT SERVE</p>
               <p class="prod-card__tagline">Dark choc &amp; cacao</p>
-              <p class="prod-card__price">M €13 / XL €19</p>
+              <p class="prod-card__price">€13 / €19</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/froyo-affogato-new.webp" alt="Froyo Affogato" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/matcha-affogato.jpg" alt="Matcha Coconut Affogato" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="FROYO AFFOGATO" data-es="AFFOGATO DE FROYO">FROYO AFFOGATO</p>
-              <p class="prod-card__tagline">Espresso &amp; froyo</p>
+              <p class="prod-card__name" data-en="MATCHA COCONUT AFFOGATO" data-es="MATCHA COCONUT AFFOGATO">MATCHA COCONUT AFFOGATO</p>
+              <p class="prod-card__tagline">Ceremonial matcha</p>
+              <p class="prod-card__price">€8.5</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/froyo-affogato-new.webp" alt="Coconut Affogato" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="COCONUT AFFOGATO" data-es="COCONUT AFFOGATO">COCONUT AFFOGATO</p>
+              <p class="prod-card__tagline">Espresso &amp; coconut soft serve</p>
               <p class="prod-card__price">€7.5</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/matcha-affogato.jpg" alt="Matcha Froyo Affogato" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/strawberry-coconut-soft-serve.png" alt="Strawberry Coconut Soft Serve" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="MATCHA FROYO AFFOGATO" data-es="AFFOGATO MATCHA FROYO">MATCHA FROYO AFFOGATO</p>
-              <p class="prod-card__tagline">Ceremonial matcha</p>
-              <p class="prod-card__price">€8.5</p>
+              <p class="prod-card__name" data-en="STRAWBERRY COCONUT SOFT SERVE" data-es="STRAWBERRY COCONUT SOFT SERVE">STRAWBERRY COCONUT SOFT SERVE</p>
+              <p class="prod-card__tagline">Strawberry coconut soft serve</p>
+              <p class="prod-card__price">€9 / €15</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/mango-coconut-soft-serve.png" alt="Mango Coconut Soft Serve" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="MANGO COCONUT SOFT SERVE" data-es="MANGO COCONUT SOFT SERVE">MANGO COCONUT SOFT SERVE</p>
+              <p class="prod-card__tagline">Mango coconut soft serve</p>
+              <p class="prod-card__price">€9 / €15</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/raspberry-coconut-soft-serve.png" alt="Raspberry Coconut Soft Serve" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="RASPBERRY COCONUT SOFT SERVE" data-es="RASPBERRY COCONUT SOFT SERVE">RASPBERRY COCONUT SOFT SERVE</p>
+              <p class="prod-card__tagline">Raspberry coconut soft serve</p>
+              <p class="prod-card__price">€9 / €15</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/sour-cherry-soft-serve.png" alt="Sour Cherry Soft Serve" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="SOUR CHERRY SOFT SERVE" data-es="SOUR CHERRY SOFT SERVE">SOUR CHERRY SOFT SERVE</p>
+              <p class="prod-card__tagline">Sour cherry soft serve</p>
+              <p class="prod-card__price">€9 / €15</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/acai/passionfruit-coconut-soft-serve.png" alt="Passionfruit Coconut Soft Serve" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="PASSIONFRUIT COCONUT SOFT SERVE" data-es="PASSIONFRUIT COCONUT SOFT SERVE">PASSIONFRUIT COCONUT SOFT SERVE</p>
+              <p class="prod-card__tagline">Passionfruit coconut soft serve</p>
+              <p class="prod-card__price">€9 / €15</p>
             </div>
           </div>
 
@@ -933,7 +1149,7 @@
     <section id="food" class="car-section">
       <div class="sec-hdr">
         <h2 class="sec-title">Rolls</h2>
-        <span class="sec-count">7 products</span>
+        <span class="sec-count">6 products</span>
       </div>
       <div class="rolls-banner">
         NUDES ROLLS &mdash; 2 for €10 &nbsp;·&nbsp; 3 for €14.5 &nbsp;·&nbsp; 4 for €18.5 &nbsp;·&nbsp; 5 for €22.5 &nbsp;&mdash;&nbsp; Gluten Free &nbsp;·&nbsp; Mix &amp; Match
@@ -941,47 +1157,46 @@
       <div class="car-wrap">
         <button class="car-btn car-btn--prev" onclick="document.getElementById('rolls-track').scrollBy({left:-260,behavior:'smooth'})" aria-label="Previous">&#8592;</button>
         <div class="car-track" id="rolls-track">
-
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/tofu-rainbow.png" alt="Vegan Power" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/carne-molida.png" alt="Protein Beef Roll" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="VEGAN POWER" data-es="PODER VEGANO">VEGAN POWER</p>
-              <p class="prod-card__tagline">Plant-based power roll</p>
-              <p class="prod-card__price">€10</p>
+              <p class="prod-card__name" data-en="PROTEIN BEEF ROLL" data-es="PROTEIN BEEF ROLL">PROTEIN BEEF ROLL</p>
+              <p class="prod-card__tagline">Rich &amp; hearty</p>
+              <p class="prod-card__price">€13 <span style="font-family:var(--font-body);font-size:11px;color:var(--color-taupe);font-weight:500;">+1.50€ combo</span></p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/burrito-chicken.jpg" alt="Burrito Chicken" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/burrito-chicken.jpg" alt="Burrito Chicken Roll" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="BURRITO CHICKEN" data-es="BURRITO DE POLLO">BURRITO CHICKEN</p>
+              <p class="prod-card__name" data-en="BURRITO CHICKEN ROLL" data-es="BURRITO CHICKEN ROLL">BURRITO CHICKEN ROLL</p>
               <p class="prod-card__tagline">Protein &amp; fiber</p>
               <p class="prod-card__price">€10</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/caesar-salad.jpg" alt="Caesar Salad" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/caesar-salad.jpg" alt="Caesar Salad Roll" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="CAESAR SALAD" data-es="ENSALADA CÉSAR">CAESAR SALAD</p>
+              <p class="prod-card__name" data-en="CAESAR SALAD ROLL" data-es="CAESAR SALAD ROLL">CAESAR SALAD ROLL</p>
               <p class="prod-card__tagline">Classic &amp; crunchy</p>
               <p class="prod-card__price">€10</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/avocado-tuna.jpg" alt="Avocado Tuna" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/avocado-tuna.jpg" alt="Avocado Tuna Roll" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="AVOCADO TUNA" data-es="AGUACATE ATÚN">AVOCADO TUNA</p>
+              <p class="prod-card__name" data-en="AVOCADO TUNA ROLL" data-es="AVOCADO TUNA ROLL">AVOCADO TUNA ROLL</p>
               <p class="prod-card__tagline">Omega-3 &amp; minerals</p>
-              <p class="prod-card__price">€10</p>
+              <p class="prod-card__price">€12 <span style="font-family:var(--font-body);font-size:11px;color:var(--color-taupe);font-weight:500;">+1€ combo</span></p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/thai-mango.png" alt="Thai Mango Chicken" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/thai-mango.png" alt="Thai Mango Chicken Roll" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="THAI MANGO CHICKEN" data-es="POLLO MANGO THAI">THAI MANGO CHICKEN</p>
+              <p class="prod-card__name" data-en="THAI MANGO CHICKEN ROLL" data-es="THAI MANGO CHICKEN ROLL">THAI MANGO CHICKEN ROLL</p>
               <p class="prod-card__tagline">Fresh &amp; tropical</p>
               <p class="prod-card__price">€10</p>
             </div>
@@ -993,15 +1208,6 @@
               <p class="prod-card__name" data-en="TOFU RAINBOW ROLL" data-es="ROLL ARCOÍRIS DE TOFU">TOFU RAINBOW ROLL</p>
               <p class="prod-card__tagline">Vegan &amp; colorful</p>
               <p class="prod-card__price">€10</p>
-            </div>
-          </div>
-
-          <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/carne-molida.png" alt="Ground Beef Roll" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
-            <div class="prod-card__info">
-              <p class="prod-card__name" data-en="GROUND BEEF ROLL" data-es="ROLL DE CARNE MOLIDA">GROUND BEEF ROLL</p>
-              <p class="prod-card__tagline">Rich &amp; hearty</p>
-              <p class="prod-card__price">€12 <span style="font-family:var(--font-body);font-size:11px;color:var(--color-taupe);font-weight:500;">+1.50€ combo</span></p>
             </div>
           </div>
 
@@ -1028,11 +1234,11 @@
         <div class="car-track" id="clubs-track">
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/egg-salada.jpg" alt="Egg Salad" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/egg-salada.jpg" alt="Egg Salad Club" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="EGG SALAD" data-es="EGG SALAD">EGG SALAD</p>
+              <p class="prod-card__name" data-en="EGG SALAD CLUB" data-es="EGG SALAD CLUB">EGG SALAD CLUB</p>
               <p class="prod-card__tagline">Fresh &amp; creamy</p>
-              <p class="prod-card__price">€6</p>
+              <p class="prod-card__price">€9</p>
             </div>
           </div>
 
@@ -1041,16 +1247,16 @@
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="NUDES CHICKEN CLUB" data-es="NUDES CHICKEN CLUB">NUDES CHICKEN CLUB</p>
               <p class="prod-card__tagline">Classic &amp; satisfying</p>
-              <p class="prod-card__price">€6</p>
+              <p class="prod-card__price">€10</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/spicy-chicken.jpg" alt="Spicy Chicken" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F3EDE3;"><img src="/food/food/spicy-chicken.jpg" alt="Spicy Chicken Club" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="SPICY CHICKEN" data-es="POLLO PICANTE">SPICY CHICKEN</p>
+              <p class="prod-card__name" data-en="SPICY CHICKEN CLUB" data-es="SPICY CHICKEN CLUB">SPICY CHICKEN CLUB</p>
               <p class="prod-card__tagline">Bold &amp; spicy</p>
-              <p class="prod-card__price">€6</p>
+              <p class="prod-card__price">€10</p>
             </div>
           </div>
 
@@ -1073,7 +1279,7 @@
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F5E6A3;"><img src="/food/pots/matcha-coconut.png" alt="Matcha Coconut Pot" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="MATCHA COCONUT POT" data-es="POT MATCHA COCO">MATCHA COCONUT POT</p>
-              <p class="prod-card__tagline">Cal: 387 · Protein: 10,9g · Alg: 4,5</p>
+              <p class="prod-card__tagline">Cal: 387 · Protein: 10.9g · Allergens: Dairy, tree nuts, soy, gluten</p>
               <p class="prod-card__price">€9</p>
             </div>
           </div>
@@ -1082,7 +1288,7 @@
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F5E6A3;"><img src="/food/pots/pistachio-pot.png" alt="Pistachio Pot" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="PISTACHIO POT" data-es="POT DE PISTACHO">PISTACHIO POT</p>
-              <p class="prod-card__tagline">Cal: 687 · Protein: 25,8g · Alg: 5,8</p>
+              <p class="prod-card__tagline">Cal: 687 · Protein: 25.8g · Allergens: Dairy, tree nuts, gluten</p>
               <p class="prod-card__price">€10</p>
             </div>
           </div>
@@ -1091,7 +1297,7 @@
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F5E6A3;"><img src="/food/pots/protein-cheesecake.png" alt="Protein Cheesecake" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="PROTEIN CHEESECAKE" data-es="CHEESECAKE DE PROTEÍNA">PROTEIN CHEESECAKE</p>
-              <p class="prod-card__tagline">Cal: 389 · Protein: 26,1g</p>
+              <p class="prod-card__tagline">Cal: 389 · Protein: 26.1g · Allergens: Dairy, gluten</p>
               <p class="prod-card__price">€9</p>
             </div>
           </div>
@@ -1100,6 +1306,7 @@
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F5E6A3;"><img src="/food/pots/cacao-hazelnut.png" alt="Cacao Hazelnut Pot" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="CACAO HAZELNUT POT" data-es="POT CACAO AVELLANA">CACAO HAZELNUT POT</p>
+              <p class="prod-card__tagline">Cal: 614 · Protein: 22.9g · Allergens: Tree nuts, soy, gluten</p>
               <p class="prod-card__price">€9</p>
             </div>
           </div>
@@ -1108,14 +1315,16 @@
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F5E6A3;"><img src="/food/pots/snickers-protein-pot.png" alt="Snickers Protein Pot" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="SNICKERS PROTEIN POT" data-es="POT PROTEÍNA SNICKERS">SNICKERS PROTEIN POT</p>
+              <p class="prod-card__tagline">Cal: 456 · Protein: 24.7g · Allergens: Peanuts, tree nuts, gluten</p>
               <p class="prod-card__price">€9</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F5E6A3;"><img src="/food/pots/protein-passion-pot.png" alt="Protein Passion Pot" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#F5E6A3;"><img src="/food/pots/protein-passion-pot.png" alt="Keto Protein Passion Pot" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="PROTEIN PASSION POT" data-es="POT PROTEÍNA PASSION">PROTEIN PASSION POT</p>
+              <p class="prod-card__name" data-en="KETO PROTEIN PASSION POT" data-es="KETO PROTEIN PASSION POT">KETO PROTEIN PASSION POT</p>
+              <p class="prod-card__tagline">Cal: 322 · Protein: 16.1g · Allergens: Soy</p>
               <p class="prod-card__price">€10</p>
             </div>
           </div>
@@ -1136,10 +1345,10 @@
         <div class="car-track" id="sweet-track">
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#E8A0B4;"><img src="/food/sweet-treats/new-pistachio.webp" alt="Pistachio Matcha Cup" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#E8A0B4;"><img src="/food/sweet-treats/new-pistachio.webp" alt="Pistachio Cup" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="PISTACHIO MATCHA CUP" data-es="CUP PISTACHO MATCHA">PISTACHIO MATCHA CUP</p>
-              <p class="prod-card__tagline">Cal: 260,7 · Protein: 4,9g · Alg: 4,5</p>
+              <p class="prod-card__name" data-en="PISTACHIO CUP" data-es="PISTACHIO CUP">PISTACHIO CUP</p>
+              <p class="prod-card__tagline">Cal: 260 · Protein: 4.9g · Allergens: Peanuts, tree nuts</p>
               <p class="prod-card__price">€3.9</p>
             </div>
           </div>
@@ -1148,7 +1357,7 @@
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#E8A0B4;"><img src="/food/sweet-treats/new-peanut.webp" alt="Peanut Butter Cup" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="PEANUT BUTTER CUP" data-es="CUP MANTEQUILLA DE CACAHUETE">PEANUT BUTTER CUP</p>
-              <p class="prod-card__tagline">Cal: 156,9 · Protein: 5,7g · Alg: 4,5</p>
+              <p class="prod-card__tagline">Cal: 156.9 · Protein: 5.7g · Allergens: Peanuts, tree nuts, gluten</p>
               <p class="prod-card__price">€3.9</p>
             </div>
           </div>
@@ -1157,7 +1366,7 @@
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#E8A0B4;"><img src="/food/sweet-treats/new-cookie.webp" alt="Protein Cookie Dough" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="PROTEIN COOKIE DOUGH" data-es="MASA DE GALLETA PROTEÍNICA">PROTEIN COOKIE DOUGH</p>
-              <p class="prod-card__tagline">Cal: 157,6 · Protein: 7,8g · Alg: 4,5</p>
+              <p class="prod-card__tagline">Cal: 157.6 · Protein: 7g · Allergens: Peanuts, tree nuts, gluten</p>
               <p class="prod-card__price">€2.5</p>
             </div>
           </div>
@@ -1166,7 +1375,7 @@
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#E8A0B4;"><img src="/food/sweet-treats/new-cacao.webp" alt="Cacao Protein Ball" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="CACAO PROTEIN BALL" data-es="BOLA PROTEÍNA CACAO">CACAO PROTEIN BALL</p>
-              <p class="prod-card__tagline">Cal: 117,2 · Protein: 5,2g · Alg: 4,5</p>
+              <p class="prod-card__tagline">Cal: 117.2 · Protein: 5.2g · Allergens: Peanuts, tree nuts</p>
               <p class="prod-card__price">€1.9</p>
             </div>
           </div>
@@ -1175,7 +1384,7 @@
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#E8A0B4;"><img src="/food/sweet-treats/datil-rasp.png" alt="Dark Chocolate Date" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="RASPBERRY DATE" data-es="DÁTIL FRAMBUESA">RASPBERRY DATE</p>
-              <p class="prod-card__tagline">Calories: 403 · Protein: 14.1g</p>
+              <p class="prod-card__tagline">Cal: 185 · Protein: 2.5g</p>
               <p class="prod-card__price">€3.9</p>
             </div>
           </div>
@@ -1184,7 +1393,7 @@
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#E8A0B4;"><img src="/food/sweet-treats/datil-white.png" alt="White Chocolate Date" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="PISTACHIO DATE" data-es="DÁTIL PISTACHO">PISTACHIO DATE</p>
-              <p class="prod-card__tagline">Calories: 260.7 · Protein: 4.9g</p>
+              <p class="prod-card__tagline">Cal: 260 · Protein: 5g · Allergens: Tree nuts</p>
               <p class="prod-card__price">€3.9</p>
             </div>
           </div>
@@ -1193,7 +1402,7 @@
             <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#E8A0B4;"><img src="/food/sweet-treats/datil-choc.png" alt="Dark Salt Chocolate Date" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="PEANUT DATE" data-es="DÁTIL CACAHUETE">PEANUT DATE</p>
-              <p class="prod-card__tagline">Calories: 157.6 · Protein: 8g</p>
+              <p class="prod-card__tagline">Cal: 158 · Protein: 8g · Allergens: Peanuts, tree nuts</p>
               <p class="prod-card__price">€3.9</p>
             </div>
           </div>
@@ -1207,14 +1416,14 @@
     <section id="hot-drinks" class="car-section">
       <div class="sec-hdr">
         <h2 class="sec-title">Hot Drinks</h2>
-        <span class="sec-count">8 products</span>
+        <span class="sec-count">11 products</span>
       </div>
       <div class="car-wrap">
         <button class="car-btn car-btn--prev" onclick="document.getElementById('hot-track').scrollBy({left:-260,behavior:'smooth'})" aria-label="Previous">&#8592;</button>
         <div class="car-track" id="hot-track">
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/hot-drinks/flat-white-mobile.png"><img src="/food/hot-drinks/flat-white.webp" alt="Flat White" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/hot-drinks/flat-white.webp"><img src="/food/hot-drinks/flat-white.webp" alt="Flat White" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="FLAT WHITE" data-es="FLAT WHITE">FLAT WHITE</p>
               <p class="prod-card__tagline">Specialty espresso</p>
@@ -1223,7 +1432,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/hot-drinks/latte-cappuccino-mobile.png"><img src="/food/hot-drinks/cappuccino.webp" alt="Latte / Cappuccino" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/hot-drinks/cappuccino.webp"><img src="/food/hot-drinks/cappuccino.webp" alt="Latte / Cappuccino" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="LATTE / CAPPUCCINO" data-es="LATTE / CAPUCHINO">LATTE / CAPPUCCINO</p>
               <p class="prod-card__tagline">Classic &amp; creamy</p>
@@ -1232,7 +1441,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/hot-drinks/americano-mobile.png"><img src="/food/hot-drinks/americano.jpg" alt="Americano" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/hot-drinks/americano.jpg"><img src="/food/hot-drinks/americano.jpg" alt="Americano" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="AMERICANO" data-es="AMERICANO">AMERICANO</p>
               <p class="prod-card__tagline">Bold &amp; clean</p>
@@ -1241,7 +1450,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/hot-drinks/batch-brew-mobile.png"><img src="/food/hot-drinks/batch-brew.webp" alt="Batch Brew" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/hot-drinks/batch-brew.webp"><img src="/food/hot-drinks/batch-brew.webp" alt="Batch Brew" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="BATCH BREW" data-es="BATCH BREW">BATCH BREW</p>
               <p class="prod-card__tagline">Filter &amp; smooth</p>
@@ -1250,16 +1459,16 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/hot-drinks/cortado-espresso-mobile.png"><img src="/food/hot-drinks/espresso.webp" alt="Cortado / Espresso" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/hot-drinks/espresso-cortado.png"><img src="/food/hot-drinks/espresso-cortado.png" alt="Cortado / Espresso" loading="lazy"></picture></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="CORTADO / ESPRESSO" data-es="CORTADO / ESPRESSO">CORTADO / ESPRESSO</p>
+              <p class="prod-card__name" data-en="ESPRESSO / CORTADO" data-es="ESPRESSO / CORTADO">ESPRESSO / CORTADO</p>
               <p class="prod-card__tagline">Short &amp; intense</p>
-              <p class="prod-card__price">€1.9 / €2.9</p>
+              <p class="prod-card__price">€1.9 / €2.4 / €2.9</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/hot-drinks/mocha-mobile.png"><img src="/food/hot-drinks/mocha.webp" alt="Mocha" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/hot-drinks/mocha.webp"><img src="/food/hot-drinks/mocha.webp" alt="Mocha" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="MOCHA" data-es="MOCA">MOCHA</p>
               <p class="prod-card__tagline">Espresso &amp; cacao</p>
@@ -1268,7 +1477,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/hot-drinks/chai-mobile.png"><img src="/food/hot-drinks/chai.webp" alt="Chai" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/hot-drinks/chai.webp"><img src="/food/hot-drinks/chai.webp" alt="Chai" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="CHAI" data-es="CHAI">CHAI</p>
               <p class="prod-card__tagline">Spiced &amp; warming</p>
@@ -1277,11 +1486,38 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/hot-drinks/pistachio-latte-mobile.png"><img src="/food/hot-drinks/pistachio-latte.webp" alt="Hot Pistachio Latte" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/hot-drinks/organic-cacao.jpg"><img src="/food/hot-drinks/organic-cacao.jpg" alt="Organic Cacao" loading="lazy"></picture></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="HOT PISTACHIO LATTE" data-es="LATTE CALIENTE DE PISTACHO">HOT PISTACHIO LATTE</p>
-              <p class="prod-card__tagline">Nutty &amp; indulgent</p>
+              <p class="prod-card__name" data-en="ORGANIC CACAO" data-es="ORGANIC CACAO">ORGANIC CACAO</p>
+              <p class="prod-card__tagline">Organic cacao</p>
               <p class="prod-card__price">€3.4 / €3.9 / €4.4</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/hot-drinks/golden-milk.jpg"><img src="/food/hot-drinks/golden-milk.jpg" alt="Golden Milk" loading="lazy"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="GOLDEN MILK" data-es="GOLDEN MILK">GOLDEN MILK</p>
+              <p class="prod-card__tagline">Turmeric &amp; warming</p>
+              <p class="prod-card__price">€3.4 / €3.9 / €4.4</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/hot-drinks/turmeric-ginger-tea.jpg"><img src="/food/hot-drinks/turmeric-ginger-tea.jpg" alt="Turmeric / Ginger Tea" loading="lazy"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="TURMERIC / GINGER TEA" data-es="TURMERIC / GINGER TEA">TURMERIC / GINGER TEA</p>
+              <p class="prod-card__tagline">Turmeric &amp; ginger</p>
+              <p class="prod-card__price">€3.4 / €3.9 / €4.4</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/hot-drinks/pistachio-latte.png"><img src="/food/hot-drinks/pistachio-latte.png" alt="Hot Pistachio Latte" loading="lazy"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="PISTACHIO LATTE" data-es="PISTACHIO LATTE">PISTACHIO LATTE</p>
+              <p class="prod-card__tagline">Nutty &amp; indulgent</p>
+              <p class="prod-card__price">€3.9 / €4.4 / €4.9</p>
             </div>
           </div>
 
@@ -1294,32 +1530,14 @@
     <section id="cold-drinks" class="car-section">
       <div class="sec-hdr">
         <h2 class="sec-title">Cold Drinks</h2>
-        <span class="sec-count">7 products</span>
+        <span class="sec-count">8 products</span>
       </div>
       <div class="car-wrap">
         <button class="car-btn car-btn--prev" onclick="document.getElementById('cold-track').scrollBy({left:-260,behavior:'smooth'})" aria-label="Previous">&#8592;</button>
         <div class="car-track" id="cold-track">
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/iced-drinks/iced-mocha-mobile.png"><img src="/food/iced-drinks/iced-mocha.webp" alt="Iced Mocha" loading="lazy"></picture></div>
-            <div class="prod-card__info">
-              <p class="prod-card__name" data-en="ICED MOCHA" data-es="MOCA FRÍO">ICED MOCHA</p>
-              <p class="prod-card__tagline">Espresso &amp; cacao</p>
-              <p class="prod-card__price">€3.9 / €5.4</p>
-            </div>
-          </div>
-
-          <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/iced-drinks/coconut-brew-mobile.png"><img src="/food/iced-drinks/coconut-brew.webp" alt="Coconut Brew" loading="lazy"></picture></div>
-            <div class="prod-card__info">
-              <p class="prod-card__name" data-en="COCONUT BREW" data-es="BREW DE COCO">COCONUT BREW</p>
-              <p class="prod-card__tagline">Cold brew &amp; coconut</p>
-              <p class="prod-card__price">€3.9 / €5.4</p>
-            </div>
-          </div>
-
-          <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/iced-drinks/iced-latte-mobile.png"><img src="/food/iced-drinks/iced-latte.webp" alt="Iced Latte" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/iced-drinks/iced-latte.webp"><img src="/food/iced-drinks/iced-latte.webp" alt="Iced Latte" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="ICED LATTE" data-es="LATTE FRÍO">ICED LATTE</p>
               <p class="prod-card__tagline">Smooth &amp; refreshing</p>
@@ -1328,7 +1546,7 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/iced-drinks/iced-americano-mobile.png"><img src="/food/iced-drinks/iced-americano.webp" alt="Iced Americano" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/iced-drinks/iced-americano.webp"><img src="/food/iced-drinks/iced-americano.webp" alt="Iced Americano" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="ICED AMERICANO" data-es="AMERICANO FRÍO">ICED AMERICANO</p>
               <p class="prod-card__tagline">Bold &amp; clean</p>
@@ -1337,16 +1555,34 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/iced-drinks/iced-cacao-mobile.png"><img src="/food/iced-drinks/iced-cacao.webp" alt="Iced Cacao" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/iced-drinks/coconut-brew.webp"><img src="/food/iced-drinks/coconut-brew.webp" alt="Coconut Americano" loading="lazy"></picture></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="ICED CACAO" data-es="CACAO FRÍO">ICED CACAO</p>
-              <p class="prod-card__tagline">Ritual &amp; refreshing</p>
-              <p class="prod-card__price">€3.4 / €4.9</p>
+              <p class="prod-card__name" data-en="COCONUT AMERICANO" data-es="COCONUT AMERICANO">COCONUT AMERICANO</p>
+              <p class="prod-card__tagline">Americano &amp; coconut water</p>
+              <p class="prod-card__price">€3.4 / €4.4</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/iced-drinks/iced-chai-mobile.png"><img src="/food/iced-drinks/iced-chai.webp" alt="Iced Chai" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/iced-drinks/iced-cacao.webp"><img src="/food/iced-drinks/iced-cacao.webp" alt="Iced Cacao" loading="lazy"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="ICED CACAO" data-es="CACAO FRÍO">ICED CACAO</p>
+              <p class="prod-card__tagline">Ritual &amp; refreshing</p>
+              <p class="prod-card__price">€3.9 / €5.4</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/iced-drinks/iced-mocha.webp"><img src="/food/iced-drinks/iced-mocha.webp" alt="Iced Mocha" loading="lazy"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="ICED MOCHA" data-es="MOCA FRÍO">ICED MOCHA</p>
+              <p class="prod-card__tagline">Espresso &amp; cacao</p>
+              <p class="prod-card__price">€3.9 / €5.4</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/iced-drinks/iced-chai.webp"><img src="/food/iced-drinks/iced-chai.webp" alt="Iced Chai" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="ICED CHAI" data-es="CHAI FRÍO">ICED CHAI</p>
               <p class="prod-card__tagline">Spiced &amp; iced</p>
@@ -1355,10 +1591,19 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/mobile/iced-drinks/iced-golden-milk-mobile.png"><img src="/food/iced-drinks/iced-golden-milk.webp" alt="Iced Golden Milk" loading="lazy"></picture></div>
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/iced-drinks/iced-golden-milk.webp"><img src="/food/iced-drinks/iced-golden-milk.webp" alt="Iced Golden Milk" loading="lazy"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="ICED GOLDEN MILK" data-es="LECHE DORADA FRÍA">ICED GOLDEN MILK</p>
               <p class="prod-card__tagline">Turmeric &amp; chilled</p>
+              <p class="prod-card__price">€3.9 / €5.4</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img"><picture><source media="(max-width: 768px)" srcset="/food/iced-drinks/iced-turmeric-tea.png"><img src="/food/iced-drinks/iced-turmeric-tea.png" alt="Iced Turmeric Tea" loading="lazy"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="ICED GINGER TEA" data-es="ICED GINGER TEA">ICED GINGER TEA</p>
+              <p class="prod-card__tagline">Turmeric &amp; refreshing</p>
               <p class="prod-card__price">€3.9 / €5.4</p>
             </div>
           </div>
@@ -1372,32 +1617,23 @@
     <section id="ceremonial-matcha" class="car-section">
       <div class="sec-hdr">
         <h2 class="sec-title">Ceremonial Matcha</h2>
-        <span class="sec-count">9 products</span>
+        <span class="sec-count">12 products</span>
       </div>
       <div class="car-wrap">
         <button class="car-btn car-btn--prev" onclick="document.getElementById('matcha-track').scrollBy({left:-260,behavior:'smooth'})" aria-label="Previous">&#8592;</button>
         <div class="car-track" id="matcha-track">
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/matchas/matcha-latte-mobile.png"><img src="/food/matchas/matcha-latte.png" alt="Matcha" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/matchas/matcha-latte.png"><img src="/food/matchas/matcha-latte.png" alt="Matcha" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="MATCHA" data-es="MATCHA">MATCHA</p>
+              <p class="prod-card__name" data-en="MATCHA LATTE" data-es="MATCHA LATTE">MATCHA LATTE</p>
               <p class="prod-card__tagline">Ceremonial grade</p>
               <p class="prod-card__price">€3.4 / €3.9 / €4.4</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/matchas/iced-coconut-matcha-mobile.png"><img src="/food/matchas/iced-coconut-matcha.png" alt="Iced Coconut Matcha" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
-            <div class="prod-card__info">
-              <p class="prod-card__name" data-en="ICED COCONUT MATCHA" data-es="MATCHA COCO FRÍO">ICED COCONUT MATCHA</p>
-              <p class="prod-card__tagline">Ceremonial &amp; coconut</p>
-              <p class="prod-card__price">€5.5 / €6.9</p>
-            </div>
-          </div>
-
-          <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/matchas/iced-matcha-mobile.png"><img src="/food/matchas/iced-matcha.png" alt="Iced Matcha" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/matchas/iced-matcha.png"><img src="/food/matchas/iced-matcha.png" alt="Iced Matcha" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
             <div class="prod-card__info">
               <p class="prod-card__name" data-en="ICED MATCHA" data-es="MATCHA FRÍO">ICED MATCHA</p>
               <p class="prod-card__tagline">Clean &amp; refreshing</p>
@@ -1406,56 +1642,92 @@
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/matchas/iced-strawberry-matcha-mobile.png"><img src="/food/matchas/iced-strawberry-matcha.png" alt="Iced Strawberry Matcha" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/matchas/iced-pistachio-matcha.png"><img src="/food/matchas/iced-pistachio-matcha.png" alt="Pistachio Iced Matcha" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="ICED STRAWBERRY MATCHA" data-es="MATCHA FRESA FRÍO">ICED STRAWBERRY MATCHA</p>
-              <p class="prod-card__tagline">Sweet &amp; fruity</p>
-              <p class="prod-card__price">€4.9 / €6.4</p>
-            </div>
-          </div>
-
-          <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/matchas/iced-raspberry-matcha-mobile.png"><img src="/food/matchas/iced-raspberry-matcha.png" alt="Iced Raspberry Matcha" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
-            <div class="prod-card__info">
-              <p class="prod-card__name" data-en="ICED RASPBERRY MATCHA" data-es="MATCHA FRAMBUESA FRÍO">ICED RASPBERRY MATCHA</p>
-              <p class="prod-card__tagline">Tart &amp; vibrant</p>
-              <p class="prod-card__price">€4.9 / €6.4</p>
-            </div>
-          </div>
-
-          <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/matchas/iced-mango-matcha-mobile.png"><img src="/food/matchas/iced-mango-matcha.png" alt="Iced Mango Matcha" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
-            <div class="prod-card__info">
-              <p class="prod-card__name" data-en="ICED MANGO MATCHA" data-es="MATCHA MANGO FRÍO">ICED MANGO MATCHA</p>
-              <p class="prod-card__tagline">Tropical &amp; energizing</p>
-              <p class="prod-card__price">€4.9 / €6.4</p>
-            </div>
-          </div>
-
-          <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/matchas/iced-pistachio-matcha-mobile.png"><img src="/food/matchas/iced-pistachio-matcha.png" alt="Iced Pistachio Matcha" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
-            <div class="prod-card__info">
-              <p class="prod-card__name" data-en="ICED PISTACHIO MATCHA" data-es="MATCHA PISTACHO FRÍO">ICED PISTACHIO MATCHA</p>
+              <p class="prod-card__name" data-en="PISTACHIO ICED MATCHA" data-es="PISTACHIO ICED MATCHA">PISTACHIO ICED MATCHA</p>
               <p class="prod-card__tagline">Nutty &amp; indulgent</p>
               <p class="prod-card__price">€5.9 / €7.4</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/matchas/iced-sour-cherry-matcha-mobile.png"><img src="/food/matchas/sour-cherry-matcha.png" alt="Iced Matcha Sour Cherry" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/matchas/iced-coconut-matcha.png"><img src="/food/matchas/iced-coconut-matcha.png" alt="Iced Coconut Matcha" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="ICED MATCHA SOUR CHERRY" data-es="MATCHA CEREZA ÁCIDA FRÍO">ICED MATCHA SOUR CHERRY</p>
-              <p class="prod-card__tagline">Bold &amp; tangy</p>
-              <p class="prod-card__price">€4.9 / €5.9</p>
+              <p class="prod-card__name" data-en="ICED COCONUT MATCHA" data-es="ICED COCONUT MATCHA">ICED COCONUT MATCHA</p>
+              <p class="prod-card__tagline">Ceremonial &amp; coconut</p>
+              <p class="prod-card__price">€5.4 / €6.9</p>
             </div>
           </div>
 
           <div class="prod-card">
-            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/mobile/matchas/iced-matcha-passion-fruit-mobile.png"><img src="/food/matchas/passion-fruit-matcha.png" alt="Iced Matcha Passion Fruit" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/matchas/iced-coconut-raspberry.png"><img src="/food/matchas/iced-coconut-raspberry.png" alt="Iced Coconut Raspberry" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
             <div class="prod-card__info">
-              <p class="prod-card__name" data-en="ICED MATCHA PASSION FRUIT" data-es="MATCHA MARACUYÁ FRÍO">ICED MATCHA PASSION FRUIT</p>
+              <p class="prod-card__name" data-en="ICED COCONUT RASPBERRY" data-es="ICED COCONUT RASPBERRY">ICED COCONUT RASPBERRY</p>
+              <p class="prod-card__tagline">Coconut water &amp; raspberry jam</p>
+              <p class="prod-card__price">€5.9 / €7.4</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/matchas/iced-coconut-strawberry.png"><img src="/food/matchas/iced-coconut-strawberry.png" alt="Iced Coconut Strawberry" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="ICED COCONUT STRAWBERRY" data-es="ICED COCONUT STRAWBERRY">ICED COCONUT STRAWBERRY</p>
+              <p class="prod-card__tagline">Coconut water &amp; strawberry jam</p>
+              <p class="prod-card__price">€5.9 / €7.4</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/matchas/iced-coconut-mango.png"><img src="/food/matchas/iced-coconut-mango.png" alt="Iced Coconut Mango" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="ICED COCONUT MANGO" data-es="ICED COCONUT MANGO">ICED COCONUT MANGO</p>
+              <p class="prod-card__tagline">Coconut water &amp; mango jam</p>
+              <p class="prod-card__price">€5.9 / €7.4</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/matchas/iced-strawberry-matcha.png"><img src="/food/matchas/iced-strawberry-matcha.png" alt="Iced Strawberry" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="ICED STRAWBERRY" data-es="ICED STRAWBERRY">ICED STRAWBERRY</p>
+              <p class="prod-card__tagline">Sweet &amp; fruity</p>
+              <p class="prod-card__price">€4.9 / €6.4</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/matchas/iced-raspberry-matcha.png"><img src="/food/matchas/iced-raspberry-matcha.png" alt="Iced Raspberry" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="ICED RASPBERRY" data-es="ICED RASPBERRY">ICED RASPBERRY</p>
+              <p class="prod-card__tagline">Tart &amp; vibrant</p>
+              <p class="prod-card__price">€4.9 / €6.4</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/matchas/sour-cherry-matcha.png"><img src="/food/matchas/sour-cherry-matcha.png" alt="Iced Sour Cherry" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="ICED SOUR CHERRY" data-es="ICED SOUR CHERRY">ICED SOUR CHERRY</p>
+              <p class="prod-card__tagline">Bold &amp; tangy</p>
+              <p class="prod-card__price">€4.9 / €6.4</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/matchas/passion-fruit-matcha.png"><img src="/food/matchas/passion-fruit-matcha.png" alt="Iced Passionfruit" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="ICED PASSIONFRUIT" data-es="ICED PASSIONFRUIT">ICED PASSIONFRUIT</p>
               <p class="prod-card__tagline">Exotic &amp; bright</p>
-              <p class="prod-card__price">€5.9 / €6.9</p>
+              <p class="prod-card__price">€4.9 / €6.4</p>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-card__img" style="height:280px;overflow:hidden;padding:0;background:#D4E8C2;"><picture><source media="(max-width: 768px)" srcset="/food/matchas/iced-mango-matcha.png"><img src="/food/matchas/iced-mango-matcha.png" alt="Iced Mango" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></picture></div>
+            <div class="prod-card__info">
+              <p class="prod-card__name" data-en="ICED MANGO" data-es="ICED MANGO">ICED MANGO</p>
+              <p class="prod-card__tagline">Tropical &amp; energizing</p>
+              <p class="prod-card__price">€4.9 / €6.4</p>
             </div>
           </div>
 
@@ -1466,6 +1738,25 @@
 
   </main>
 
+  <div class="product-modal" id="product-modal" hidden>
+    <div class="product-modal__backdrop" data-close-product-modal></div>
+    <section class="product-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="product-modal-title" tabindex="-1">
+      <button class="product-modal__close" type="button" data-close-product-modal aria-label="Close product details">&times;</button>
+      <div class="product-modal__media">
+        <img id="product-modal-img" src="" alt="">
+      </div>
+      <div class="product-modal__body">
+        <p class="product-modal__eyebrow" id="product-modal-category"></p>
+        <h2 class="product-modal__title" id="product-modal-title"></h2>
+        <p class="product-modal__price" id="product-modal-price"></p>
+        <p class="product-modal__tagline" id="product-modal-tagline"></p>
+        <p class="product-modal__description" id="product-modal-description"></p>
+        <div class="product-modal__facts" id="product-modal-facts"></div>
+        <p class="product-modal__note" id="product-modal-note"></p>
+      </div>
+    </section>
+  </div>
+
   <!-- FOOTER -->
   <footer role="contentinfo">
     <div class="ft-top">
@@ -1475,7 +1766,7 @@
           <li><a href="about.html">About</a></li>
           <li><a href="./info.html">Info</a></li>
           <li><a href="https://instagram.com/eat.nudes" rel="noopener" target="_blank">Instagram</a></li>
-          <li><a href="index.html#community">Join The Club°</a></li>
+          <li><a href="index.html#join-club">Join The Club*</a></li>
         </ul>
         <div class="ft-meta">info@eatnudes.com<br>© 2025 NUDES</div>
         <a href="https://instagram.com/eat.nudes" class="ft-ig" rel="noopener" target="_blank" aria-label="Instagram">
@@ -1503,6 +1794,888 @@
   </footer>
 
   <script>
+  /* ── PRODUCT DETAIL MODAL ── */
+  (function () {
+    var rawDetails = {
+      "REPEAT LONGEVITY NAD+": {
+        description: "Passion fruit, pineapple, sugar-free coconut milk, Sri Lankan coconut sorbet and NAD+. Supports cellular energy, vitality and hydration.",
+        calories: "520",
+        protein: "6g + add 25g protein",
+        allergens: "1"
+      },
+      "MIDNIGHT GLOW": {
+        description: "Coconut sorbet, coconut water, mango, pineapple, lemon juice, blue spirulina, vitamin C, collagen and hyaluronic acid. Promotes hydration, radiance and vitality for the skin and hair.",
+        calories: "437.5",
+        protein: "6.1g + add 25g protein",
+        allergens: "1"
+      },
+      "CHERRY SHRED": {
+        description: "Ecological wild cherries, fresh lemon juice, sugar-free coconut milk, ecological avocado and coconut yogurt drizzle. Rich in antioxidants, vitamin C, potassium and healthy fats.",
+        calories: "280",
+        protein: "4g + add 25g protein",
+        allergens: "1"
+      },
+      "HANGOVER": {
+        description: "Banana, pineapple, 100% coconut pulp, ginger, turmeric and gluten-free oat milk with coconut yogurt and turmeric drizzle. Anti-inflammatory, rich in vitamins C, A and potassium.",
+        calories: "624",
+        protein: "9.3g + add 25g protein",
+        allergens: "1"
+      },
+      "COGNITIVE CACAO": {
+        description: "100% coconut pulp, banana, 100% cacao powder, sugar-free coconut milk, a touch of coconut yogurt and lion's mane. Sustained energy and cognitive support.",
+        calories: "384",
+        protein: "5.4g + add 25g protein",
+        allergens: "1,5"
+      },
+      "MORNING GLORY": {
+        description: "Nuts, dates, oats, banana, gluten-free oat milk, cinnamon, peanut cream, coconut yogurt and cacao drizzle. Rich in potassium, magnesium and fibre.",
+        calories: "711",
+        protein: "16g + add 25g protein",
+        allergens: "4,5,8"
+      },
+      "FEMME FATALE": {
+        description: "Dragon fruit, mango, ginger, wild berries, lemon, gluten-free oat milk and coconut yogurt drizzle. Vegan, high in fibre and antioxidants. Supports immunity, digestion and skin health.",
+        calories: "280",
+        protein: "5g + add 25g protein",
+        allergens: "1,8"
+      },
+      "PEACH BUM": {
+        description: "100% coconut water, unsweetened coconut milk, yellow peach, peach puree, mango, collagen and a touch of coconut yogurt. Fresh, light and vegan. Rich in vitamins A and C.",
+        calories: "340",
+        protein: "7g + add 25g protein",
+        allergens: "1,8"
+      },
+      "GREEN DETOX": {
+        description: "Spinach, avocado, pineapple, gluten-free oat milk and coconut yogurt drizzle. Vegan and gluten-free. Rich in vitamins A, C and K.",
+        calories: "340",
+        protein: "7g + add 25g protein",
+        allergens: "1,8"
+      },
+      "SUMMER GLOW": {
+        description: "Orange, mango, gluten-free oat milk, fresh lemon, ginger, turmeric and vitamin C. Vegan, light and refreshing. Rich in vitamins A and C.",
+        calories: "483",
+        protein: "8g + add 25g protein",
+        allergens: "8"
+      },
+      "BLUEMOON": {
+        description: "Avocado, green apple, fresh lemon juice, sugar-free coconut milk and blue spirulina. Vegan and gluten-free. High in protein and antioxidants.",
+        calories: "455",
+        protein: "6g + add 25g protein",
+        allergens: "1"
+      },
+      "MATCHA WELLNESS": {
+        description: "Ceremonial matcha, coconut vegan yogurt, collagen, green spirulina, 100% vanilla protein and sugar-free coconut milk. Vegan and gluten-free. Rich in vitamins A, C and B12.",
+        calories: "391",
+        protein: "28.3g",
+        allergens: "1,5,7"
+      },
+      "AÇAÍ PROTEIN SHAKE": {
+        description: "Organic wild berries, 100% pure Brazilian acai, banana, ginger, chocolate vegan protein and gluten-free oat milk. Highly nutritious, rich in protein and antioxidants.",
+        calories: "437.5",
+        protein: "28.4g",
+        allergens: "4,5,8"
+      },
+      "BLUE FIT PROTEIN SHAKE": {
+        description: "Ecological wild blueberries, ginger, fresh lemon juice, coconut milk and chocolate vegan protein. Fresh, light and high in protein, antioxidants and vitamin C.",
+        calories: "384.5",
+        protein: "27.7g",
+        allergens: "1,4,8"
+      },
+      "PINK FIT PROTEIN SHAKE": {
+        description: "Ecological raspberries, fresh lemon juice, ginger, sugar-free coconut milk and vanilla vegan protein. Low carb, fresh and light. Supports muscle growth, skin health and reduced inflammation.",
+        calories: "364",
+        protein: "27.7g",
+        allergens: "1,8"
+      },
+      "OG PROTEIN SHAKE": {
+        description: "Ecological wild red fruits, banana, ginger and vanilla vegan protein. Refreshing, high in protein and antioxidants. Supports muscle growth, brain health and digestion.",
+        calories: "402.5",
+        protein: "27.4g",
+        allergens: "1,8"
+      },
+      "MOCHA PROTEIN SHAKE": {
+        description: "Ecological peanut butter, double shot NUDES espresso, chocolate vegan protein, sugar-free coconut milk and cinnamon. Energising, stimulating and high in protein.",
+        calories: "358",
+        protein: "36.1g",
+        allergens: "1,8"
+      },
+      "NUDES SIGNATURE AÇAÍ": {
+        description: "Mix of premium acai soft serve with fresh ecological fruit, homemade granola, peanut butter and chia pudding. Nutrient-dense, rich in fibre and antioxidants.",
+        allergens: "4,5,8,11"
+      },
+      "NUDES AÇAÍ COCO": {
+        description: "Mix of acai soft serve and Greek frozen yogurt with ecological fruit, homemade granola, peanut butter and chia pudding. Rich in nutrients, fibre and antioxidants.",
+        allergens: "4,5,8,11"
+      },
+      "PISTACHIO COCONUT SOFT SERVE": {
+        description: "Greek frozen yogurt with pure pistachio butter, homemade jam, cacao nibs and crushed Persian pistachios.",
+        allergens: "1,5"
+      },
+      "COCONUT BLISS SOFT SERVE": {
+        description: "Greek frozen yogurt with cacao nibs, 85% dark chocolate drizzle, blueberries and homemade granola.",
+        allergens: "1,5"
+      },
+      "MATCHA COCONUT AFFOGATO": {
+        description: "Greek frozen yogurt with ceremonial matcha. Smooth and revitalising. Recommended extras: pistachios and pistachio butter.",
+        allergens: "1,5"
+      },
+      "COCONUT AFFOGATO": {
+        description: "Greek frozen yogurt with a double shot of NUDES espresso. Smooth and energising. Recommended extras: cacao nibs, dark chocolate drizzle and chocolate.",
+        allergens: "1"
+      },
+      "STRAWBERRY COCONUT SOFT SERVE": {
+        allergens: "1"
+      },
+      "MANGO COCONUT SOFT SERVE": {
+        allergens: "1"
+      },
+      "RASPBERRY COCONUT SOFT SERVE": {
+        allergens: "1"
+      },
+      "SOUR CHERRY SOFT SERVE": {
+        allergens: "1"
+      },
+      "PASSIONFRUIT COCONUT SOFT SERVE": {
+        allergens: "1"
+      },
+      "PROTEIN BEEF": {
+        description: "Rice paper roll filled with grass-fed minced beef, Japanese-style soy-marinated boiled egg, baby spinach, pickled carrot, pickled cucumber, jalapeno and red pepper.",
+        calories: "380",
+        protein: "28g",
+        allergens: "2,3,7,8,9,10",
+        extraLabel: "Recommended dip",
+        extraValue: "Sweet Chili"
+      },
+      "AVOCADO TUNA": {
+        description: "Rice paper roll filled with quinoa, rocket, line-caught tuna, celery, capers, guacamole and pickled cucumber. Rich in omega-3, vitamins and minerals.",
+        calories: "378.5",
+        protein: "22.1g",
+        allergens: "3,7,9,11",
+        extraLabel: "Recommended dip",
+        extraValue: "Lemon Chive"
+      },
+      "BURRITO CHICKEN": {
+        description: "Rice paper roll filled with basmati rice, grilled chicken, sweetcorn, baby spinach, sun-dried tomatoes and spicy yogurt sauce.",
+        calories: "496",
+        protein: "35.8g",
+        allergens: "1,10",
+        extraLabel: "Recommended dip",
+        extraValue: "Spicy Yoghurt"
+      },
+      "CAESAR SALAD": {
+        description: "Rice paper roll filled with lettuce, grilled chicken, croutons, parmesan, mustard, sunflower seeds and capers. Rich in protein and healthy fats.",
+        calories: "378",
+        protein: "33.2g",
+        allergens: "1,2,8,10,11",
+        extraLabel: "Recommended dip",
+        extraValue: "Caesar Dip"
+      },
+      "THAI MANGO CHICKEN ROLL": {
+        description: "Rice paper roll filled with mango, spinach, guacamole, grilled chicken, pickled cucumber, peanuts, coriander and mint. Rich in fibre and protein.",
+        calories: "285",
+        protein: "26.9g",
+        allergens: "4,5,7",
+        extraLabel: "Recommended dip",
+        extraValue: "Peanut Dip"
+      },
+      "TOFU RAINBOW ROLL": {
+        description: "Rice paper roll filled with spinach, tofu, coriander, mint, fermented green and purple cabbage, courgette, pesto and sesame seeds. Rich in probiotics, antioxidants and vegan protein.",
+        calories: "403",
+        protein: "14.1g",
+        allergens: "7,11",
+        extraLabel: "Recommended dip",
+        extraValue: "Sweet Chili"
+      },
+      "NUDES CHICKEN CLUB": {
+        description: "Shredded roasted chicken with homemade Caesar sauce, air-fried Iberian ham, lettuce, sun-dried tomatoes, homemade pesto and artisanal bread. Rich in protein and healthy fats.",
+        calories: "555",
+        protein: "35.2g",
+        allergens: "1,8,10"
+      },
+      "SPICY CHICKEN CLUB": {
+        description: "Shredded roasted chicken with sweetcorn, sun-dried tomatoes, fresh lettuce and a touch of sriracha, finished with homemade chilli yogurt sauce on artisanal bread. High in protein, spicy and refreshing.",
+        calories: "503.5",
+        protein: "43.3g",
+        allergens: "1,8,10"
+      },
+      "EGG SALAD CLUB": {
+        description: "Boiled eggs with spring onion, Dijon, Japanese mayonnaise and artisanal bread. Rich in protein and healthy fats.",
+        calories: "550",
+        protein: "35.8g",
+        allergens: "1,2,8"
+      },
+      "KETO PROTEIN PASSION POT": {
+        description: "Keto-friendly protein pot made with homemade passion fruit jam, tofu base and cacao nibs. High in plant-based protein, naturally sweet and rich in antioxidants. Vegan, gluten-free and refined sugar-free.",
+        calories: "322",
+        protein: "16.1g",
+        allergens: "7"
+      },
+      "PISTACHIO POT": {
+        description: "Gluten-free overnight oats with 100% homemade pistachio cream, 85% dark chocolate, crushed Persian pistachios and Maldon salt. High in fibre, healthy fats and antioxidants.",
+        calories: "687",
+        protein: "25.8g",
+        allergens: "1,5,8"
+      },
+      "PROTEIN CHEESECAKE": {
+        description: "Cottage cheese blended with Greek yogurt and fresh lemon, homemade raspberry jam and gluten-free granola topping. High in protein, probiotics and antioxidants.",
+        calories: "389",
+        protein: "26.1g",
+        allergens: "1,8"
+      },
+      "MATCHA COCONUT POT": {
+        description: "Sugar-free coconut yogurt with chia pudding and ceremonial matcha, sugar-free coconut milk, fresh agave syrup and fresh lemon juice, topped with homemade gluten-free granola. Rich in omega-3, fibre and vitamin C.",
+        calories: "387",
+        protein: "10.9g",
+        allergens: "1,5,7,8"
+      },
+      "SNICKERS PROTEIN POT": {
+        description: "Gluten-free oat flour with organic cacao powder, vegan gluten-free protein, organic peanut butter, gluten-free oat milk, 85% dark chocolate, crushed toasted peanuts and Maldon salt. High in protein and healthy fats.",
+        calories: "456",
+        protein: "24.7g",
+        allergens: "4,5,8"
+      },
+      "CACAO HAZELNUT POT": {
+        description: "Gluten-free oat milk overnight oats with vegan protein powder, homemade hazelnut and cacao cream, banana slices and homemade granola. Rich in protein, fibre, healthy fats and magnesium.",
+        calories: "614",
+        protein: "22.9g",
+        allergens: "5,7,8"
+      },
+      "PISTACHIO CUP": {
+        description: "Medjool dates, 100% Persian pistachios, ceremonial matcha, cashews, coconut oil and Maldon salt.",
+        calories: "260",
+        protein: "4.9g",
+        allergens: "4,5"
+      },
+      "PEANUT BUTTER CUP": {
+        description: "Almond flour, oat flour, agave, peanut butter, gluten-free oat milk, chocolate, coconut oil and crushed toasted peanuts with Maldon salt.",
+        calories: "156.9",
+        protein: "5.7g",
+        allergens: "4,5,8"
+      },
+      "PROTEIN COOKIE DOUGH": {
+        description: "Almond flour, oat flour, chocolate, gluten-free oat milk, vanilla vegan protein and agave.",
+        calories: "157.6",
+        protein: "7g",
+        allergens: "4,5,8"
+      },
+      "CACAO PROTEIN BALL": {
+        description: "Cacao, peanut cream, Medjool dates, cashews, walnuts and chocolate vegan protein blend.",
+        calories: "117.2",
+        protein: "5.2g",
+        allergens: "4,5"
+      },
+      "PISTACHIO DATE": {
+        description: "Medjool date filled with 100% Persian pistachio cream, coated in matcha infused white chocolate and topped with crushed pistachios.",
+        calories: "260",
+        protein: "5g",
+        allergens: "5"
+      },
+      "RASPBERRY DATE": {
+        description: "Medjool date filled with homemade raspberry jelly, coated in dark chocolate and topped with freeze-dried raspberry.",
+        calories: "185",
+        protein: "2.5g"
+      },
+      "PEANUT DATE": {
+        description: "Medjool date filled with 100% peanut cream, coated in dark chocolate and topped with crushed peanuts and Maldon salt.",
+        calories: "158",
+        protein: "8g",
+        allergens: "4,5"
+      }
+    };
+
+    var catalogueDescriptions = {
+      "CHERRY SHRED": "Ecological wild cherries, fresh lemon juice, sugar-free coconut milk, banana, coconut pulp and coconut yogurt drizzle. Rich in antioxidants, vitamin C, potassium and healthy fats.",
+      "REPEAT LONGEVITY NAD+": "Passion fruit, pineapple, sugar-free coconut milk, Sri Lankan coconut sorbet and NAD+. Supports cellular energy, vitality and hydration.",
+      "MIDNIGHT GLOW": "Sri Lankan coconut soft serve, 100% pure coconut water, mango, pineapple, lemon juice, blue spirulina, vitamin C, collagen and hyaluronic acid. Boosts hydration, enhances skin glow, strengthens immunity and supports hair and nails.",
+      "HANGOVER": "Banana, pineapple, mango, coconut, ginger, turmeric and gluten-free oat milk with coconut and turmeric yogurt lacing. Rich in vitamins C and B6, antioxidants. Hydrates, reduces inflammation and aids digestion.",
+      "COGNITIVE CACAO": "Banana, 100% pure coconut pulp, organic cacao, lion's mane and oat milk. Boosts mental clarity and brain health, reduces stress-driven inflammation and supports vitality.",
+      "MORNING GLORY": "Walnuts, dates, oats, gluten-free oat milk, cinnamon and peanut butter. Filling and comforting. High in fiber and healthy fats. Boosts energy, supports heart and brain health, and aids digestion.",
+      "FEMME FATALE": "Dragon fruit, mango, ginger, wild berries, lemon and gluten-free oat milk. Fruity and refreshing. High in fiber and antioxidants. Supports digestion, immune function and skin health.",
+      "PEACH BUM": "King coconut water, sugar-free coconut milk, yellow peach, peach puree, mango, dried apricot, collagen and coconut yogurt lacing. Fresh and light, with vitamins A and C for skin health.",
+      "GREEN DETOX": "Spinach, avocado, mango, pineapple and gluten-free oat milk. Earthy and refreshing. High in vitamins A, C and K. Detoxifies, boosts energy and supports bone and heart health.",
+      "SUMMER GLOW": "Orange, mango, lemon, ginger, beetroot and gluten-free oat milk. Light and refreshing. Rich in vitamins A and C and antioxidants. Boosts immunity, reduces inflammation and supports skin health.",
+      "BLUEMOON": "Avocado, green apple, lime, sugar-free coconut milk and blue spirulina. High in protein and antioxidants, supports immunity, detoxification, skin health and brain health.",
+      "AÇAÍ PROTEIN SHAKE": "Organic wild berries, 100% pure Brazilian acai, ginger, banana and vegan protein. Very nutritious, rich in protein and antioxidants.",
+      "MATCHA WELLNESS": "Skin glow, muscle recovery and gut health. Ceremonial matcha, vegan coconut yogurt, collagen peptides, green spirulina, vegan vanilla protein and coconut milk.",
+      "BLUE FIT PROTEIN SHAKE": "Wild blueberries, ginger, fresh lemon juice, coconut milk and vegan protein blend. Fresh and light. Rich in protein, antioxidants and vitamin C.",
+      "PINK FIT PROTEIN SHAKE": "Raspberry, ginger, coconut milk and vegan protein blend. Low carb, fresh and light. High in protein and antioxidants, supports muscle growth and skin health.",
+      "OG PROTEIN SHAKE": "Wild berries, banana, ginger and vegan protein blend. Refreshing and refuelling. High in protein and antioxidants, supports muscle growth, brain health and digestion.",
+      "MOCHA PROTEIN SHAKE": "Organic peanut butter, double shot espresso, vegan protein, sugar-free coconut milk and cinnamon. Energising, uplifting and rich in protein.",
+      "BURRITO CHICKEN": "Rice paper roll filled with basmati rice, yellow corn, baby spinach, dried tomatoes and spicy yoghurt salsa. Rich in protein and fiber.",
+      "CAESAR SALAD": "Rice paper roll filled with lettuce, roasted chicken, croutons, parmesan cheese, mustard and sunflower seeds. Rich in protein and healthy fats.",
+      "AVOCADO TUNA": "Rice paper roll filled with quinoa, rucula, line-caught tuna, celery, capers, guacamole and pickled cucumber. Rich in omega-3, vitamins and minerals.",
+      "THAI MANGO CHICKEN ROLL": "Rice paper roll filled with mango, guacamole, roasted chicken, pickled cucumber, peanuts, coriander and mint. Rich in fiber and protein.",
+      "TOFU RAINBOW ROLL": "Rice paper roll filled with spinach, tofu, coriander, mint, fermented green and purple cabbage and zucchini. Rich in probiotics, antioxidants and vegan protein.",
+      "PROTEIN BEEF": "Rice paper roll filled with grass-fed minced beef, Japanese-style soy-marinated boiled egg, baby spinach, pickled carrot, pickled cucumber, jalapeno and red pepper.",
+      "EGG SALAD CLUB": "NUDES Egg Salad Sandwich made fresh daily with 5 boiled eggs, spring onion, Dijon and Japanese mayo on artisanal bread. A NUDES spin on a classic.",
+      "NUDES CHICKEN CLUB": "NUDES Chicken Club Sandwich made fresh daily with roasted pulled chicken in homemade Caesar dressing, crispy bacon, lettuce, dried tomatoes, homemade pesto and artisanal bread.",
+      "SPICY CHICKEN CLUB": "NUDES Spicy Chicken Sandwich made fresh daily with roasted pulled chicken, sweet corn, dried tomatoes, fresh lettuce and a touch of sriracha, finished with homemade chili yogurt sauce on artisanal bread.",
+      "MATCHA COCONUT POT": "Sugar-free organic coconut yogurt, ceremonial matcha chia pudding with sugar-free coconut milk, organic agave syrup and lemon juice. Topped with homemade gluten-free granola and coconut chips.",
+      "PISTACHIO POT": "Overnight oats with gluten-free oat milk, homemade pistachio cream, dark chocolate, crunchy pistachios and Maldon salt. High in fibre, healthy fats and antioxidants.",
+      "PROTEIN CHEESECAKE": "Cottage cheese blended with creamy Greek yogurt and fresh lemon, layered with homemade raspberry jelly and topped with homemade gluten-free granola and dried raspberries.",
+      "CACAO HAZELNUT POT": "Overnight oats with gluten-free oat milk and vegan protein powder, homemade hazelnut and cacao cream, banana slices and homemade granola. Rich in protein, fibre, healthy fats and magnesium.",
+      "SNICKERS PROTEIN POT": "Gluten-free oat flour, organic cacao powder, vegan chocolate protein powder, organic peanut butter, gluten-free oat milk, dark chocolate, toasted crushed peanuts and Maldon salt.",
+      "KETO PROTEIN PASSION POT": "Keto-friendly protein pot made with homemade passion fruit jam, tofu base and cacao nibs. High in plant-based protein, naturally sweet and rich in antioxidants.",
+      "PISTACHIO CUP": "Dates, pistachio, cashew, matcha, coconut oil and salt. An energising, antioxidant-packed bite with creamy pistachio crunch.",
+      "PEANUT BUTTER CUP": "Almond flour, oat flour, agave, peanut butter, gluten-free oat milk, chocolate and coconut oil. A classic peanut butter cup reimagined as a guilt-free, protein-rich energy boost.",
+      "PROTEIN COOKIE DOUGH": "Almond flour, oat flour, chocolate, gluten-free oat milk, vegan chocolate protein and agave. Raw cookie dough with a clean protein boost.",
+      "CACAO PROTEIN BALL": "Cacao, peanut butter, dates, cashews and walnuts. Packed with plant-based protein and natural goodness, perfect for an energising snack.",
+      "PISTACHIO DATE": "Medjool date filled with 100% Persian pistachio cream, coated in matcha-infused white chocolate and topped with crushed pistachios.",
+      "RASPBERRY DATE": "Medjool date filled with homemade raspberry jelly, coated in dark chocolate and topped with freeze-dried raspberry.",
+      "PEANUT DATE": "Medjool date filled with 100% peanut cream, coated in dark chocolate and topped with crushed peanuts and Maldon salt.",
+      "FLAT WHITE": "NUDES Flat White: a perfectly balanced coffee with a double shot of espresso, made from 100% Arabica beans from Congo. Smooth, velvety and rich.",
+      "LATTE / CAPPUCCINO": "NUDES Latte and Cappuccino are balanced espresso drinks made with 100% Arabica coffee from Congo and the milk of your choice. Silky, smooth and crafted fresh by our baristas.",
+      "AMERICANO": "NUDES Americano: 100% Arabica beans sourced from the North Kivu region of Congo. Bold and complex, with sweet and spicy notes.",
+      "BATCH BREW": "NUDES batch brew is made fresh in store using Colombian beans from the Esmeralda Farm in Caqueta. Rich and potent with deep notes of dark chocolate and berry.",
+      "ESPRESSO / CORTADO": "NUDES espresso is made from 100% Arabica beans sourced from the North Kivu region of Congo and grown at 1,800 meters. Bold, complex, sweet and spicy.",
+      "MOCHA": "NUDES Mocha combines espresso made from 100% Arabica beans from Congo with organic cacao for a rich coffee and chocolate drink.",
+      "CHAI": "NUDES Chai: a comforting blend inspired by traditional Indian recipes and crafted with natural ingredients. Rich, aromatic and guilt-free.",
+      "PISTACHIO LATTE": "A pistachio latte made with coffee and your milk of choice, built around NUDES' smooth espresso profile and a rich pistachio finish.",
+      "ICED MOCHA": "NUDES Iced Mocha: a double shot of 100% Arabica espresso from Congo blended with organic cacao. Refreshing, indulgent and chocolatey.",
+      "ICED AMERICANO COCONUT WATER": "King coconut water from Sri Lanka and a double shot of NUDES espresso. Hydrating, light and refreshing.",
+      "ICED LATTE": "NUDES Iced Latte: a double shot of 100% Arabica espresso from Congo with the milk of your choice. Cool, rich and easy to drink.",
+      "ICED AMERICANO": "NUDES Iced Americano: made with 100% Arabica beans from the North Kivu region of Congo. Bold, complex and refreshing.",
+      "ICED CACAO": "NUDES Iced Organic Cacao: a refreshing and indulgent treat made with the finest organic cacao. Rich chocolate flavour in a cool, satisfying sip.",
+      "ICED CHAI": "NUDES Iced Chai: a refreshing twist on a classic, blending traditional Indian spices with natural ingredients for a cool, aromatic pick-me-up.",
+      "ICED GOLDEN MILK": "A refreshing blend of turmeric, ginger, spices and a hint of black pepper. Rich in antioxidants and anti-inflammatory compounds.",
+      "ICED TURMERIC TEA": "Cold-pressed organic turmeric and orange. Hydrating, anti-inflammatory and supportive for immunity.",
+      "MATCHA": "NUDES Ceremonial Matcha: ceremonial grade matcha straight from Japan. Smooth, vibrant and prepared for a refreshing pick-me-up.",
+      "ICED MATCHA": "Refreshing iced matcha made with ceremonial-grade matcha sourced from Japan. Smooth, flavourful, energising and refreshing.",
+      "ICED COCONUT WATER MATCHA": "King coconut water from Sri Lanka and ceremonial matcha from Japan. Hydrating, energising and light.",
+      "ICED COCONUT WATER RASPBERRY MATCHA": "Homemade raspberry jam made with real raspberries and a touch of agave, combined with ceremonial matcha and fresh coconut water.",
+      "ICED COCONUT WATER STRAWBERRY MATCHA": "Homemade strawberry jam made with real strawberries and a touch of agave, combined with ceremonial matcha and fresh coconut water.",
+      "ICED COCONUT WATER MANGO MATCHA": "Homemade mango jam made with real fruit and a touch of agave, combined with ceremonial matcha and fresh coconut water.",
+      "ICED STRAWBERRY MATCHA": "Homemade strawberry jam made with real strawberries and a touch of agave, combined with ceremonial matcha for a refreshing drink.",
+      "ICED RASPBERRY MATCHA": "Homemade raspberry jam made with real raspberries and a touch of agave, combined with ceremonial matcha for a refreshing drink.",
+      "ICED MANGO MATCHA": "Homemade mango jam made with real fruit and a touch of agave, combined with ceremonial matcha for a refreshing drink.",
+      "ICED PISTACHIO MATCHA": "Ceremonial matcha with a velvety layer of pure pistachio butter, topped with crushed Persian pistachios. Smooth, nutty and rich.",
+      "ICED MATCHA SOUR CHERRY": "Homemade sour cherry jam with a touch of agave, combined with ceremonial matcha for a refreshing drink.",
+      "ICED MATCHA PASSION FRUIT": "Homemade passion fruit jam with a touch of agave, combined with ceremonial matcha for a refreshing drink."
+    };
+
+    var sectionNotes = {
+      "smoothies": "Menu section: Smoothies blends. Available extras include BCAA, creatine, vitamin C, hyaluronic acid, spirulina, collagen, lion's mane, green superfood and extra protein.",
+      "protein-shakes": "Menu section: Protein Shakes blends. Available extras include BCAA, creatine, vitamin C, hyaluronic acid, spirulina, collagen, lion's mane, green superfood and extra protein.",
+      "acai": "Menu section: soft serve, 100% Brazilian acai and Greek frozen yogurt. Nutrition is not listed for these items in the menu PDF.",
+      "food": "Menu section: gluten-free rice paper rolls. Combo pricing and dip options are listed in the menu PDF.",
+      "clubs": "Menu section: sandwiches on artisanal bread.",
+      "breakfast-pots": "Menu section: breakfast pots.",
+      "sweet-treats": "Menu section: healthy guilt-free treats, nutritious bites made with organic ingredients.",
+      "hot-drinks": "Menu section: NUDES specialty coffees, 100% Arabica. Extras listed: vanilla syrup, coconut water, collagen and lion's mane.",
+      "cold-drinks": "Menu section: cold drinks. Nutrition is not listed for these drinks in the menu PDF.",
+      "ceremonial-matcha": "Menu section: organic ceremonial matcha. Jam matchas use 100% real fruit with no added sugar or syrups."
+    };
+
+    var sectionLabels = {
+      "smoothies": "Smoothies",
+      "protein-shakes": "Protein Shakes",
+      "acai": "Acai & Soft Serve",
+      "food": "Rolls",
+      "clubs": "Clubs",
+      "breakfast-pots": "Breakfast Pots",
+      "sweet-treats": "Sweet Treats",
+      "hot-drinks": "Hot Drinks",
+      "cold-drinks": "Cold Drinks",
+      "ceremonial-matcha": "Ceremonial Matcha"
+    };
+
+    function normalize(value) {
+      return (value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/&/g, "AND")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toUpperCase();
+    }
+
+    var details = {};
+    Object.keys(rawDetails).forEach(function (key) {
+      details[normalize(key)] = rawDetails[key];
+    });
+    Object.keys(catalogueDescriptions).forEach(function (key) {
+      var normalized = normalize(key);
+      var existing = details[normalized] || {};
+      details[normalized] = Object.assign({}, existing, existing.description ? {} : {
+        description: catalogueDescriptions[key]
+      });
+    });
+    var detailAliases = {
+      "PROTEIN BEEF ROLL": "PROTEIN BEEF",
+      "BURRITO CHICKEN ROLL": "BURRITO CHICKEN",
+      "CAESAR SALAD ROLL": "CAESAR SALAD",
+      "AVOCADO TUNA ROLL": "AVOCADO TUNA",
+      "MATCHA LATTE": "MATCHA",
+      "PISTACHIO ICED MATCHA": "ICED PISTACHIO MATCHA",
+      "ICED COCONUT MATCHA": "ICED COCONUT WATER MATCHA",
+      "ICED COCONUT RASPBERRY": "ICED COCONUT WATER RASPBERRY MATCHA",
+      "ICED COCONUT STRAWBERRY": "ICED COCONUT WATER STRAWBERRY MATCHA",
+      "ICED COCONUT MANGO": "ICED COCONUT WATER MANGO MATCHA",
+      "ICED STRAWBERRY": "ICED STRAWBERRY MATCHA",
+      "ICED RASPBERRY": "ICED RASPBERRY MATCHA",
+      "ICED SOUR CHERRY": "ICED MATCHA SOUR CHERRY",
+      "ICED PASSIONFRUIT": "ICED MATCHA PASSION FRUIT",
+      "ICED MANGO": "ICED MANGO MATCHA",
+      "COCONUT AMERICANO": "ICED AMERICANO COCONUT WATER",
+      "ICED GINGER TEA": "ICED TURMERIC TEA"
+    };
+    Object.keys(detailAliases).forEach(function (alias) {
+      var source = details[normalize(detailAliases[alias])];
+      if (source) details[normalize(alias)] = Object.assign({}, source);
+    });
+
+    var modal = document.getElementById("product-modal");
+    var dialog = modal && modal.querySelector(".product-modal__dialog");
+    var img = document.getElementById("product-modal-img");
+    var category = document.getElementById("product-modal-category");
+    var title = document.getElementById("product-modal-title");
+    var price = document.getElementById("product-modal-price");
+    var tagline = document.getElementById("product-modal-tagline");
+    var description = document.getElementById("product-modal-description");
+    var facts = document.getElementById("product-modal-facts");
+    var note = document.getElementById("product-modal-note");
+    var lastFocus = null;
+    var currentProductCard = null;
+    var productUi = {
+      en: {
+        calories: "Calories",
+        protein: "Protein",
+        allergens: "Allergens",
+        menuNote: "Menu note",
+        viewPrefix: "View ",
+        viewSuffix: " details",
+        sections: {
+          "smoothies": "Smoothies",
+          "protein-shakes": "Protein Shakes",
+          "acai": "Acai & Soft Serve",
+          "food": "Rolls",
+          "clubs": "Clubs",
+          "breakfast-pots": "Breakfast Pots",
+          "sweet-treats": "Sweet Treats",
+          "hot-drinks": "Hot Drinks",
+          "cold-drinks": "Cold Drinks",
+          "ceremonial-matcha": "Ceremonial Matcha"
+        }
+      },
+      es: {
+        calories: "Calorías",
+        protein: "Proteína",
+        allergens: "Alérgenos",
+        menuNote: "Nota del menú",
+        viewPrefix: "Ver detalles de ",
+        viewSuffix: "",
+        sections: {
+          "smoothies": "Smoothies",
+          "protein-shakes": "Batidos de Proteína",
+          "acai": "Açaí y Soft Serve",
+          "food": "Rolls",
+          "clubs": "Clubs",
+          "breakfast-pots": "Pots de Desayuno",
+          "sweet-treats": "Dulces",
+          "hot-drinks": "Bebidas Calientes",
+          "cold-drinks": "Bebidas Frías",
+          "ceremonial-matcha": "Matcha Ceremonial"
+        }
+      }
+    };
+    var allergenNames = {
+      en: {
+        "1": "Dairy",
+        "2": "Egg",
+        "3": "Fish",
+        "4": "Peanuts",
+        "5": "Tree nuts",
+        "6": "Shellfish",
+        "7": "Soy",
+        "8": "Gluten",
+        "9": "Celery",
+        "10": "Mustard",
+        "11": "Sesame"
+      },
+      es: {
+        "1": "Lácteos",
+        "2": "Huevo",
+        "3": "Pescado",
+        "4": "Cacahuetes",
+        "5": "Frutos secos",
+        "6": "Marisco",
+        "7": "Soja",
+        "8": "Gluten",
+        "9": "Apio",
+        "10": "Mostaza",
+        "11": "Sésamo"
+      }
+    };
+    var minimalSections = {
+      "hot-drinks": true,
+      "cold-drinks": true,
+      "ceremonial-matcha": true
+    };
+
+    function cleanText(el) {
+      return el ? el.textContent.replace(/\s+/g, " ").trim() : "";
+    }
+
+    function currentLang() {
+      return document.documentElement.lang === "es" || localStorage.getItem("nudes-lang") === "es" ? "es" : "en";
+    }
+
+    function translatedText(value, lang) {
+      if (!value || lang !== "es") return value || "";
+      var text = value;
+      var replacements = [
+        ["Recommended extras", "Extras recomendados"],
+        ["Recommended dip", "Dip recomendado"],
+        ["Menu section", "Sección del menú"],
+        ["Available extras include", "Extras disponibles"],
+        ["Nutrition is not listed for these items in the menu PDF", "La nutrición no aparece para estos productos en el PDF del menú"],
+        ["Nutrition is not listed for these drinks in the menu PDF", "La nutrición no aparece para estas bebidas en el PDF del menú"],
+        ["Jam matchas use 100% real fruit with no added sugar or syrups", "Los matchas con mermelada usan fruta 100% real sin azúcar añadido ni siropes"],
+        ["Rice paper roll filled with", "Roll de papel de arroz relleno de"],
+        ["Greek frozen yogurt", "Yogur griego helado"],
+        ["coconut yogurt and turmeric drizzle", "yogur de coco y drizzle de cúrcuma"],
+        ["gluten-free oat milk", "leche de avena sin gluten"],
+        ["sugar-free coconut milk", "leche de coco sin azúcar"],
+        ["sugar-free coconut", "coco sin azúcar"],
+        ["homemade gluten-free granola", "granola casera sin gluten"],
+        ["homemade raspberry jam", "mermelada casera de frambuesa"],
+        ["homemade strawberry jam", "mermelada casera de fresa"],
+        ["homemade mango jam", "mermelada casera de mango"],
+        ["homemade sour cherry jam", "mermelada casera de cereza ácida"],
+        ["homemade passion fruit jam", "mermelada casera de maracuyá"],
+        ["homemade granola", "granola casera"],
+        ["homemade", "casero"],
+        ["ecological wild cherries", "cerezas silvestres ecológicas"],
+        ["Ecological wild cherries", "Cerezas silvestres ecológicas"],
+        ["Ecological wild blueberries", "Arándanos silvestres ecológicos"],
+        ["Ecological wild red fruits", "frutos rojos silvestres ecológicos"],
+        ["Ecological raspberries", "frambuesas ecológicas"],
+        ["Organic wild berries", "frutos del bosque ecológicos"],
+        ["wild berries", "frutos del bosque"],
+        ["wild blueberries", "arándanos silvestres"],
+        ["fresh lemon juice", "zumo de limón fresco"],
+        ["lemon juice", "zumo de limón"],
+        ["fresh lemon", "limón fresco"],
+        ["coconut water", "agua de coco"],
+        ["king coconut water", "agua de coco king"],
+        ["King coconut water", "Agua de coco king"],
+        ["coconut sorbet", "sorbete de coco"],
+        ["coconut yogurt", "yogur de coco"],
+        ["coconut and turmeric yogurt lacing", "yogur de coco y cúrcuma"],
+        ["turmeric yogurt lacing", "drizzle de yogur de cúrcuma"],
+        ["coconut vegan yogurt", "yogur vegano de coco"],
+        ["coconut milk", "leche de coco"],
+        ["coconut pulp", "pulpa de coco"],
+        ["coconut oil", "aceite de coco"],
+        ["coconut chips", "chips de coco"],
+        ["coconut", "coco"],
+        ["yogurt", "yogur"],
+        ["ceremonial matcha", "matcha ceremonial"],
+        ["Ceremonial matcha", "Matcha ceremonial"],
+        ["green spirulina", "espirulina verde"],
+        ["blue spirulina", "espirulina azul"],
+        ["hyaluronic acid", "ácido hialurónico"],
+        ["lion's mane", "melena de león"],
+        ["vegan protein", "proteína vegana"],
+        ["vegan vanilla protein", "proteína vegana de vainilla"],
+        ["vanilla vegan protein", "proteína vegana de vainilla"],
+        ["chocolate vegan protein", "proteína vegana de chocolate"],
+        ["vegan protein blend", "mezcla de proteína vegana"],
+        ["vanilla protein", "proteína de vainilla"],
+        ["organic peanut butter", "mantequilla de cacahuete ecológica"],
+        ["peanut butter", "mantequilla de cacahuete"],
+        ["peanut cream", "crema de cacahuete"],
+        ["peanuts", "cacahuetes"],
+        ["Peanuts", "cacahuetes"],
+        ["Persian pistachios", "pistachos persas"],
+        ["pistachio butter", "mantequilla de pistacho"],
+        ["pistachio cream", "crema de pistacho"],
+        ["pistachio", "pistacho"],
+        ["Pistachio", "Pistacho"],
+        ["dark chocolate", "chocolate negro"],
+        ["white chocolate", "chocolate blanco"],
+        ["chocolate", "chocolate"],
+        ["organic cacao", "cacao ecológico"],
+        ["cacao powder", "cacao en polvo"],
+        ["cacao nibs", "nibs de cacao"],
+        ["cacao drizzle", "drizzle de cacao"],
+        ["grass-fed minced beef", "carne picada de ternera grass-fed"],
+        ["grilled chicken", "pollo a la plancha"],
+        ["roasted chicken", "pollo asado"],
+        ["Shredded roasted chicken", "Pollo asado desmenuzado"],
+        ["boiled egg", "huevo cocido"],
+        ["Boiled eggs", "Huevos cocidos"],
+        ["line-caught tuna", "atún de pesca con anzuelo"],
+        ["baby spinach", "espinaca baby"],
+        ["spinach", "espinaca"],
+        ["rocket", "rúcula"],
+        ["lettuce", "lechuga"],
+        ["quinoa", "quinoa"],
+        ["basmati rice", "arroz basmati"],
+        ["sweetcorn", "maíz dulce"],
+        ["sun-dried tomatoes", "tomates secos"],
+        ["dried tomatoes", "tomates secos"],
+        ["pickled carrot", "zanahoria encurtida"],
+        ["pickled cucumber", "pepino encurtido"],
+        ["fermented green and purple cabbage", "col verde y morada fermentada"],
+        ["courgette", "calabacín"],
+        ["guacamole", "guacamole"],
+        ["capers", "alcaparras"],
+        ["celery", "apio"],
+        ["coriander", "cilantro"],
+        ["mint", "menta"],
+        ["sunflower seeds", "semillas de girasol"],
+        ["sesame seeds", "semillas de sésamo"],
+        ["parmesan", "parmesano"],
+        ["Dijon", "Dijon"],
+        ["Japanese mayonnaise", "mayonesa japonesa"],
+        ["Japanese-style soy-marinated", "marinado estilo japonés en soja"],
+        ["spicy yogurt sauce", "salsa de yogur picante"],
+        ["homemade Caesar sauce", "salsa César casera"],
+        ["homemade Caesar dressing", "salsa César casera"],
+        ["air-fried Iberian ham", "jamón ibérico air-fried"],
+        ["crispy bacon", "bacon crujiente"],
+        ["artisanal bread", "pan artesanal"],
+        ["gluten-free oat flour", "harina de avena sin gluten"],
+        ["oat flour", "harina de avena"],
+        ["gluten-free oat milk", "leche de avena sin gluten"],
+        ["oat milk", "leche de avena"],
+        ["overnight oats", "overnight oats"],
+        ["Almond flour", "Harina de almendra"],
+        ["almond flour", "harina de almendra"],
+        ["Medjool dates", "dátiles Medjool"],
+        ["Medjool date", "dátil Medjool"],
+        ["dates", "dátiles"],
+        ["cashews", "anacardos"],
+        ["walnuts", "nueces"],
+        ["banana slices", "rodajas de plátano"],
+        ["banana", "plátano"],
+        ["pineapple", "piña"],
+        ["mango", "mango"],
+        ["yellow peach", "melocotón amarillo"],
+        ["peach puree", "puré de melocotón"],
+        ["dried apricot", "albaricoque seco"],
+        ["dragon fruit", "pitaya"],
+        ["raspberries", "frambuesas"],
+        ["raspberry", "frambuesa"],
+        ["blueberries", "arándanos"],
+        ["strawberries", "fresas"],
+        ["strawberry", "fresa"],
+        ["sour cherry", "cereza ácida"],
+        ["passion fruit", "maracuyá"],
+        ["green apple", "manzana verde"],
+        ["orange", "naranja"],
+        ["ginger", "jengibre"],
+        ["turmeric", "cúrcuma"],
+        ["cinnamon", "canela"],
+        ["fresh agave syrup", "sirope de agave fresco"],
+        ["agave", "agave"],
+        ["Maldon salt", "sal Maldon"],
+        ["vitamin C", "vitamina C"],
+        ["vitamins", "vitaminas"],
+        ["collagen peptides", "péptidos de colágeno"],
+        ["collagen", "colágeno"],
+        ["100% pure Brazilian acai", "açaí brasileño 100% puro"],
+        ["premium acai soft serve", "soft serve premium de açaí"],
+        ["acai soft serve", "soft serve de açaí"],
+        ["tofu base", "base de tofu"],
+        ["tofu", "tofu"],
+        ["double shot NUDES espresso", "doble shot de espresso NUDES"],
+        ["double shot of NUDES espresso", "doble shot de espresso NUDES"],
+        ["espresso", "espresso"],
+        ["100% Arabica beans", "granos 100% arábica"],
+        ["North Kivu region of Congo", "región de Kivu Norte en Congo"],
+        ["Colombian beans", "granos colombianos"],
+        ["Smooth", "Suave"],
+        ["smooth", "suave"],
+        ["refreshing", "refrescante"],
+        ["Refreshing", "Refrescante"],
+        ["energising", "energizante"],
+        ["Energising", "Energizante"],
+        ["stimulating", "estimulante"],
+        ["light", "ligero"],
+        ["Fresh", "Fresco"],
+        ["fresh", "fresco"],
+        ["high in protein", "alto en proteína"],
+        ["High in protein", "Alto en proteína"],
+        ["rich in protein", "rico en proteína"],
+        ["Rich in protein", "Rico en proteína"],
+        ["rich in vitamins", "rico en vitaminas"],
+        ["Rich in vitamins", "Rico en vitaminas"],
+        ["rich in vitaminas", "rico en vitaminas"],
+        ["Rich in vitaminas", "Rico en vitaminas"],
+        ["rich in antioxidants", "rico en antioxidantes"],
+        ["Rich in antioxidants", "Rico en antioxidantes"],
+        ["healthy fats", "grasas saludables"],
+        ["fibre", "fibra"],
+        ["fiber", "fibra"],
+        ["antioxidants", "antioxidantes"],
+        ["Anti-inflammatory", "Antiinflamatorio"],
+        ["anti-inflammatory", "antiinflamatorio"],
+        ["potassium", "potasio"],
+        ["supports", "apoya"],
+        ["Supports", "Apoya"],
+        ["Promotes", "Promueve"],
+        ["Boosts", "Impulsa"],
+        ["boosts", "impulsa"],
+        ["Hydrates", "Hidrata"],
+        ["hydrates", "hidrata"],
+        ["reduces inflammation", "reduce la inflamación"],
+        ["aids digestion", "ayuda a la digestión"],
+        ["muscle growth", "crecimiento muscular"],
+        ["muscle recovery", "recuperación muscular"],
+        ["skin health", "salud de la piel"],
+        ["brain health", "salud cerebral"],
+        ["digestion", "digestión"],
+        ["immunity", "inmunidad"],
+        ["hydration", "hidratación"],
+        ["vitality", "vitalidad"],
+        ["radiance", "brillo"],
+        ["guilt-free", "sin culpa"],
+        ["refined sugar-free", "sin azúcar refinado"],
+        ["gluten-free", "sin gluten"],
+        ["Vegan", "Vegano"],
+        ["vegan", "vegano"],
+        ["and", "y"],
+        ["with", "con"],
+        ["from", "de"],
+        ["made", "hecho"],
+        ["topped", "cubierto"],
+        ["combined", "combinado"],
+        ["coated in", "cubierto de"],
+        ["filled with", "relleno de"],
+        ["a touch of", "un toque de"],
+        ["add 25g protein", "añadir 25g proteína"]
+      ];
+      function escapeRegExp(value) {
+        return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      }
+      replacements.forEach(function (pair) {
+        if (/^[A-Za-z ]+$/.test(pair[0])) {
+          text = text.replace(new RegExp("\\b" + escapeRegExp(pair[0]) + "\\b", "g"), pair[1]);
+        } else {
+          text = text.split(pair[0]).join(pair[1]);
+        }
+      });
+      return text;
+    }
+
+    function formatAllergens(value) {
+      if (!value) return "";
+      var names = allergenNames[currentLang()] || allergenNames.en;
+      return value
+        .split(",")
+        .map(function (code) { return names[code.trim()] || ""; })
+        .filter(Boolean)
+        .join(", ");
+    }
+
+    function makeFact(label, value) {
+      if (!value) return null;
+      var item = document.createElement("div");
+      item.className = "product-modal__fact";
+      var labelEl = document.createElement("span");
+      labelEl.className = "product-modal__fact-label";
+      labelEl.textContent = label;
+      var valueEl = document.createElement("span");
+      valueEl.className = "product-modal__fact-value";
+      valueEl.textContent = value;
+      item.appendChild(labelEl);
+      item.appendChild(valueEl);
+      return item;
+    }
+
+    function appendFact(label, value) {
+      var fact = makeFact(label, value);
+      if (fact) facts.appendChild(fact);
+    }
+
+    function getSectionId(card) {
+      var section = card.closest(".car-section");
+      return section ? section.id : "";
+    }
+
+    function openProduct(card) {
+      var nameEl = card.querySelector(".prod-card__name");
+      var name = cleanText(nameEl);
+      var lookupName = nameEl && nameEl.dataset.en ? nameEl.dataset.en : name;
+      var productImg = card.querySelector(".prod-card__img img");
+      var sectionId = getSectionId(card);
+      var lang = currentLang();
+      var ui = productUi[lang] || productUi.en;
+      var detail = details[normalize(lookupName)] || {};
+      var fallbackDescription = minimalSections[sectionId] ? "" : (sectionNotes[sectionId] || cleanText(card.querySelector(".prod-card__tagline")));
+      var modalCategory = (ui.sections && ui.sections[sectionId]) || sectionLabels[sectionId] || "Products";
+
+      currentProductCard = card;
+      lastFocus = document.activeElement;
+      category.textContent = modalCategory;
+      category.hidden = Boolean(minimalSections[sectionId]);
+      title.textContent = name;
+      price.textContent = cleanText(card.querySelector(".prod-card__price"));
+      tagline.textContent = cleanText(card.querySelector(".prod-card__tagline"));
+      description.textContent = translatedText(detail.description || fallbackDescription, lang);
+      description.hidden = !description.textContent;
+      img.src = productImg ? (productImg.currentSrc || productImg.getAttribute("src")) : "";
+      img.alt = name;
+
+      facts.innerHTML = "";
+      appendFact(ui.calories, detail.calories);
+      appendFact(ui.protein, translatedText(detail.protein, lang));
+      appendFact(ui.allergens, formatAllergens(detail.allergens));
+      if (detail.extraLabel || detail.extraValue) {
+        appendFact(translatedText(detail.extraLabel || ui.menuNote, lang), translatedText(detail.extraValue, lang));
+      }
+      facts.hidden = !facts.children.length;
+
+      note.textContent = "";
+      note.hidden = true;
+
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+      if (dialog) dialog.focus();
+    }
+
+    function closeProduct() {
+      if (!modal || modal.hidden) return;
+      modal.hidden = true;
+      currentProductCard = null;
+      document.body.style.overflow = "";
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    document.querySelectorAll(".prod-card").forEach(function (card) {
+      var name = cleanText(card.querySelector(".prod-card__name"));
+      card.setAttribute("role", "button");
+      card.setAttribute("tabindex", "0");
+      card.setAttribute("aria-label", name ? (productUi[currentLang()].viewPrefix + name + productUi[currentLang()].viewSuffix) : "View product details");
+      card.addEventListener("click", function () { openProduct(card); });
+      card.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openProduct(card);
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-close-product-modal]").forEach(function (el) {
+      el.addEventListener("click", closeProduct);
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeProduct();
+    });
+    window.addEventListener("nudes:langchange", function () {
+      document.querySelectorAll(".prod-card").forEach(function (card) {
+        var name = cleanText(card.querySelector(".prod-card__name"));
+        var ui = productUi[currentLang()] || productUi.en;
+        card.setAttribute("aria-label", name ? (ui.viewPrefix + name + ui.viewSuffix) : "View product details");
+      });
+      if (modal && !modal.hidden && currentProductCard) openProduct(currentProductCard);
+    });
+  })();
+  </script>
+
+  <script>
     // Update active tab on scroll
     var sections = ['smoothies','protein-shakes','acai','food','clubs','breakfast-pots','sweet-treats','hot-drinks','cold-drinks','ceremonial-matcha'];
     var tabs = document.querySelectorAll('.cat-tab');
@@ -1527,8 +2700,101 @@
   <script>
   /* ── LANGUAGE TOGGLE ── */
   (function () {
+    var productTaglineEs = {
+      "Rejuvenation & hydration": "Rejuvenecimiento e hidratación",
+      "Skin, hair & hydration": "Piel, pelo e hidratación",
+      "Muscle recovery & support": "Recuperación y soporte muscular",
+      "Mental clarity & vitality": "Claridad mental y vitalidad",
+      "Energizing & vitalizing": "Energizante y revitalizante",
+      "Anti-inflammatory & refreshing": "Antiinflamatorio y refrescante",
+      "Mineralizing & antioxidant": "Mineralizante y antioxidante",
+      "Toning & moisturizing": "Tonificante e hidratante",
+      "Detoxifying & purifying": "Detoxificante y depurativo",
+      "Immune & revitalizing": "Inmune y revitalizante",
+      "Rejuvenating & healing": "Rejuvenecedor y reparador",
+      "Glow & gut health": "Glow y salud digestiva",
+      "Antioxidant muscle fuel": "Combustible muscular antioxidante",
+      "Recovery & inflammation": "Recuperación e inflamación",
+      "Skin radiance & recovery": "Luminosidad y recuperación",
+      "Classic muscle recovery": "Recuperación muscular clásica",
+      "Pre-workout energy": "Energía pre-entreno",
+      "Signature no-sugar açaí": "Açaí signature sin azúcar",
+      "Açaí & coconut soft serve": "Açaí y soft serve de coco",
+      "Pistachio coconut soft serve": "Soft serve de coco y pistacho",
+      "Dark choc & cacao": "Chocolate negro y cacao",
+      "Ceremonial matcha": "Matcha ceremonial",
+      "Espresso & coconut soft serve": "Espresso y soft serve de coco",
+      "Strawberry coconut soft serve": "Soft serve de coco y fresa",
+      "Mango coconut soft serve": "Soft serve de coco y mango",
+      "Raspberry coconut soft serve": "Soft serve de coco y frambuesa",
+      "Sour cherry soft serve": "Soft serve de coco y cereza ácida",
+      "Passionfruit coconut soft serve": "Soft serve de coco y maracuyá",
+      "Rich & hearty": "Rico y contundente",
+      "Protein & fiber": "Proteína y fibra",
+      "Classic & crunchy": "Clásico y crujiente",
+      "Omega-3 & minerals": "Omega-3 y minerales",
+      "Fresh & tropical": "Fresco y tropical",
+      "Vegan & colorful": "Vegano y colorido",
+      "Fresh & creamy": "Fresco y cremoso",
+      "Classic & satisfying": "Clásico y saciante",
+      "Bold & spicy": "Intenso y picante",
+      "Specialty espresso": "Espresso de especialidad",
+      "Classic & creamy": "Clásico y cremoso",
+      "Bold & clean": "Intenso y limpio",
+      "Filter & smooth": "Filtro y suave",
+      "Short & intense": "Corto e intenso",
+      "Espresso & cacao": "Espresso y cacao",
+      "Spiced & warming": "Especiado y cálido",
+      "Organic cacao": "Cacao orgánico",
+      "Turmeric & warming": "Cúrcuma y calidez",
+      "Turmeric & ginger": "Cúrcuma y jengibre",
+      "Nutty & indulgent": "Cremoso y de pistacho",
+      "Smooth & refreshing": "Suave y refrescante",
+      "Americano & coconut water": "Americano y agua de coco",
+      "Ritual & refreshing": "Ritual y refrescante",
+      "Spiced & iced": "Especiado y frío",
+      "Turmeric & chilled": "Cúrcuma fría",
+      "Turmeric & refreshing": "Cúrcuma refrescante",
+      "Ceremonial grade": "Grado ceremonial",
+      "Clean & refreshing": "Limpio y refrescante",
+      "Ceremonial & coconut": "Ceremonial y coco",
+      "Coconut water & raspberry jam": "Agua de coco y mermelada de frambuesa",
+      "Coconut water & strawberry jam": "Agua de coco y mermelada de fresa",
+      "Coconut water & mango jam": "Agua de coco y mermelada de mango",
+      "Sweet & fruity": "Dulce y afrutado",
+      "Tart & vibrant": "Ácido y vibrante",
+      "Bold & tangy": "Intenso y ácido",
+      "Exotic & bright": "Exótico y brillante",
+      "Tropical & energizing": "Tropical y energizante",
+      "Cal: 387 · Protein: 10.9g · Allergens: Dairy, tree nuts, soy, gluten": "Calorías: 387 · Proteína: 10.9g · Alérgenos: Lácteos, frutos secos, soja, gluten",
+      "Cal: 687 · Protein: 25.8g · Allergens: Dairy, tree nuts, gluten": "Calorías: 687 · Proteína: 25.8g · Alérgenos: Lácteos, frutos secos, gluten",
+      "Cal: 389 · Protein: 26.1g · Allergens: Dairy, gluten": "Calorías: 389 · Proteína: 26.1g · Alérgenos: Lácteos, gluten",
+      "Cal: 614 · Protein: 22.9g · Allergens: Tree nuts, soy, gluten": "Calorías: 614 · Proteína: 22.9g · Alérgenos: Frutos secos, soja, gluten",
+      "Cal: 456 · Protein: 24.7g · Allergens: Peanuts, tree nuts, gluten": "Calorías: 456 · Proteína: 24.7g · Alérgenos: Cacahuetes, frutos secos, gluten",
+      "Cal: 322 · Protein: 16.1g · Allergens: Soy": "Calorías: 322 · Proteína: 16.1g · Alérgenos: Soja",
+      "Cal: 260 · Protein: 4.9g · Allergens: Peanuts, tree nuts": "Calorías: 260 · Proteína: 4.9g · Alérgenos: Cacahuetes, frutos secos",
+      "Cal: 156.9 · Protein: 5.7g · Allergens: Peanuts, tree nuts, gluten": "Calorías: 156.9 · Proteína: 5.7g · Alérgenos: Cacahuetes, frutos secos, gluten",
+      "Cal: 157.6 · Protein: 7g · Allergens: Peanuts, tree nuts, gluten": "Calorías: 157.6 · Proteína: 7g · Alérgenos: Cacahuetes, frutos secos, gluten",
+      "Cal: 117.2 · Protein: 5.2g · Allergens: Peanuts, tree nuts": "Calorías: 117.2 · Proteína: 5.2g · Alérgenos: Cacahuetes, frutos secos",
+      "Cal: 185 · Protein: 2.5g": "Calorías: 185 · Proteína: 2.5g",
+      "Cal: 260 · Protein: 5g · Allergens: Tree nuts": "Calorías: 260 · Proteína: 5g · Alérgenos: Frutos secos",
+      "Cal: 158 · Protein: 8g · Allergens: Peanuts, tree nuts": "Calorías: 158 · Proteína: 8g · Alérgenos: Cacahuetes, frutos secos"
+    };
+
+    function hydrateProductTaglines() {
+      document.querySelectorAll('.prod-card__tagline').forEach(function (el) {
+        var english = el.dataset.en || el.textContent.trim().replace(/\s+/g, ' ');
+        el.dataset.en = english;
+        if (!el.dataset.es && productTaglineEs[english]) {
+          el.dataset.es = productTaglineEs[english];
+        }
+      });
+    }
+
     function applyLang(lang) {
+      hydrateProductTaglines();
       document.querySelectorAll('[data-en]').forEach(function(el) {
+        if (el.classList.contains('prod-card__name')) return;
         el.innerHTML = el.dataset[lang] !== undefined ? el.dataset[lang] : el.dataset.en;
       });
       localStorage.setItem('nudes-lang', lang);
@@ -1536,6 +2802,7 @@
         btn.classList.toggle('lang-opt--active', btn.dataset.lang === lang);
       });
       document.documentElement.lang = lang;
+      window.dispatchEvent(new CustomEvent('nudes:langchange', { detail: { lang: lang } }));
     }
     window.__setLang = applyLang;
     var saved = localStorage.getItem('nudes-lang') || 'en';
