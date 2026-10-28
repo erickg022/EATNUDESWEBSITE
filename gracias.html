@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Gracias — NUDES Barcelona</title>
+
+  <style>
+    @font-face {
+      font-family: 'Melodrame';
+      src: url('melodrame.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --color-primary:    #F2E49B;
+      --color-ink:        #1A1410;
+      --color-cream:      #FDFAF2;
+      --color-grey:       #8C8070;
+      --color-grey-light: #D4CCBC;
+      --font-display: 'Melodrame', serif;
+      --font-body:    'Suisse Intl', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--color-primary);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: inherit; }
+
+    header {
+      padding: 0 clamp(16px, 3vw, 48px);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      border-bottom: 0.5px solid rgba(26,20,16,0.25);
+    }
+    header img { height: 28px; width: auto; display: block; }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 20px;
+      padding: clamp(32px, 6vw, 96px) clamp(24px, 5vw, 80px);
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-weight: normal;
+      font-size: clamp(56px, 11vw, 160px);
+      line-height: 0.92;
+    }
+    p { max-width: 520px; font-size: 16px; }
+    .btn {
+      display: inline-block;
+      background: var(--color-ink);
+      color: var(--color-primary);
+      padding: 14px 28px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+    .btn:hover { opacity: 0.82; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" aria-label="NUDES — inicio"><img src="/assets/logo-black.png" alt="NUDES"></a>
+  </header>
+
+  <main>
+    <h1>Ya eres<br>del club.</h1>
+    <p>Gracias por registrarte. En unos minutos recibirás un correo de bienvenida; si no lo ves, mira en spam o promociones.</p>
+    <a class="btn" href="index.html">Volver a la web</a>
+  </main>
+
+</body>
+</html>

@@ -4,3 +4,15 @@ screenshot.mjs
 convert-food.mjs
 *.mjs
 nudes/
+
+# env / secrets
+.env
+.env.*
+!.env.example
+
+# email sources (photos, font zips, briefs assets): never in git
+emails/source/
+email-assets/_drafts/
+
+# local Vercel project link (never commit)
+.vercel/
